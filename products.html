@@ -1,0 +1,915 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Silver Rings - ETTHNICOAST</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #EBDED4;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --light-peach: #F8E3D2;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--dark-black);
+            overflow-x: hidden;
+            background: #f9f9f9;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-black);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons a {
+            color: var(--dark-black);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        .page-header {
+            margin-top: 80px;
+            padding: 3rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
+            color: var(--white);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 0.5rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .product-count {
+            margin-top: 1rem;
+            font-size: 0.95rem;
+            opacity: 0.8;
+        }
+
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            background: var(--white);
+        }
+
+        .breadcrumb a {
+            color: var(--dark-black);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+            color: var(--primary-blue);
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            opacity: 0.5;
+        }
+
+        .filter-section {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .filter-left {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--secondary-peach);
+            background: transparent;
+            color: var(--primary-blue);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .sort-dropdown {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--secondary-peach);
+            background: var(--white);
+            color: var(--primary-blue);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto 5rem;
+            padding: 0 2rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            background: #f9f9f9;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #4CAF50;
+            color: white;
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .product-actions {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 3;
+        }
+
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+
+        .action-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .action-icon:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .action-icon.wishlist {
+            color: #dc3545;
+        }
+
+        .action-icon.wishlist:hover {
+            background: #dc3545;
+            color: var(--white);
+        }
+
+        .action-icon.wishlist.active {
+            background: #dc3545;
+            color: var(--white);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            font-size: 0.8rem;
+            color: var(--dark-black);
+            opacity: 0.6;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .product-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        .rating-count {
+            font-size: 0.8rem;
+            color: var(--dark-black);
+            opacity: 0.6;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .current-price {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: var(--primary-blue);
+        }
+
+        .original-price {
+            font-size: 1rem;
+            color: var(--dark-black);
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .add-to-cart {
+            width: 100%;
+            padding: 1rem;
+            background: var(--secondary-peach);
+            color: var(--primary-blue);
+            border: 2px solid var(--secondary-peach);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 968px) {
+            .filter-section {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .filter-left {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 50px;
+            }
+
+            .product-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#collections">Collections</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                <a href="/profile.html"><i class="fas fa-user"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="header-content">
+            <h1>SILVER RINGS</h1>
+            <p>Timeless elegance for every occasion</p>
+            <div class="product-count">24 Products</div>
+        </div>
+    </section>
+
+    <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/#collections">Collections</a>
+        <span>/</span>
+        <span>Rings</span>
+    </div>
+
+    <div class="filter-section">
+        <div class="filter-left">
+            <button class="filter-btn active">
+                <i class="fas fa-filter"></i> All
+            </button>
+            <button class="filter-btn">
+                <i class="fas fa-venus"></i> Women
+            </button>
+            <button class="filter-btn">
+                <i class="fas fa-mars"></i> Men
+            </button>
+            <button class="filter-btn">
+                <i class="fas fa-tag"></i> On Sale
+            </button>
+        </div>
+        <select class="sort-dropdown">
+            <option>Sort by: Featured</option>
+            <option>Price: Low to High</option>
+            <option>Price: High to Low</option>
+            <option>Newest First</option>
+            <option>Best Selling</option>
+        </select>
+    </div>
+
+    <div class="products-container">
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Silver Ring">
+                    <div class="product-badge">BESTSELLER</div>
+                    <div class="discount-badge">30% OFF</div>
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Ring</div>
+                    <h3 class="product-name">Eternal Elegance Ring</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(124)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹2,499</span>
+                        <span class="original-price">₹3,499</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=500&q=80" alt="Silver Ring">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Ring</div>
+                    <h3 class="product-name">Diamond Accent Band</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(89)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹3,999</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Silver Ring">
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Unisex Ring</div>
+                    <h3 class="product-name">Classic Silver Band</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★☆</div>
+                        <span class="rating-count">(56)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹1,899</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Silver Ring">
+                    <div class="product-badge">TRENDING</div>
+                    <div class="discount-badge">25% OFF</div>
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Ring</div>
+                    <h3 class="product-name">Pearl Accent Ring</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(142)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹2,799</span>
+                        <span class="original-price">₹3,699</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=500&q=80" alt="Silver Ring">
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Ring</div>
+                    <h3 class="product-name">Infinity Design Ring</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(98)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹3,299</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Silver Ring">
+                    <div class="discount-badge">20% OFF</div>
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Men's Ring</div>
+                    <h3 class="product-name">Geometric Silver Ring</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★☆</div>
+                        <span class="rating-count">(73)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹2,399</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Silver Ring">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Ring</div>
+                    <h3 class="product-name">Floral Silver Ring</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(110)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹2,999</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-image">
+                    <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=500&q=80" alt="Silver Ring">
+                    <div class="product-badge">BESTSELLER</div>
+                    <div class="discount-badge">35% OFF</div>
+                    <div class="product-actions">
+                        <button class="action-icon wishlist" onclick="toggleWishlist(this)">
+                            <i class="far fa-heart"></i>
+                        </button>
+                        <button class="action-icon">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div class="product-category">Women's Ring</div>
+                    <h3 class="product-name">Vintage Style Ring</h3>
+                    <div class="product-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(167)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="current-price">₹1,949</span>
+                        <span class="original-price">₹2,999</span>
+                    </div>
+                    <button class="add-to-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>ABOUT ETHNICOAST</h4>
+                <ul>
+                    <li><a href="/about.html">Our Story</a></li>
+                    <li><a href="#">Craftsmanship</a></li>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CUSTOMER SERVICE</h4>
+                <ul>
+                    <li><a href="/contact.html">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns & Exchanges</a></li>
+                    <li><a href="#">Size Guide</a></li>
+                    <li><a href="#">Care Instructions</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>COLLECTIONS</h4>
+                <ul>
+                    <li><a href="/women.html">Women's Jewelry</a></li>
+                    <li><a href="/men.html">Men's Jewelry</a></li>
+                    <li><a href="#">Wedding Collection</a></li>
+                    <li><a href="#">New Arrivals</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CONNECT WITH US</h4>
+                <ul>
+                    <li><a href="#"><i class="fab fa-facebook-f"></i> Facebook</a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="#"><i class="fab fa-pinterest"></i> Pinterest</a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i> Twitter</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2024 ETTHNICOAST. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        });
+
+        function toggleWishlist(button) {
+            button.classList.toggle('active');
+            const icon = button.querySelector('i');
+            if (button.classList.contains('active')) {
+                icon.classList.remove('far');
+                icon.classList.add('fas');
+            } else {
+                icon.classList.remove('fas');
+                icon.classList.add('far');
+            }
+        }
+    </script>
+</body>
+</html>
+    

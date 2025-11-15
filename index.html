@@ -406,9 +406,8 @@
 
         /* Collections Section */
         .collections {
-            padding: 5rem 2rem;
-            background: var(--primary-blue);
-            color: var(--white);
+            padding: 6rem 2rem;
+            background: var(--white);
         }
 
         .collections-container {
@@ -416,18 +415,39 @@
             margin: 0 auto;
         }
 
+        .collections-intro {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .collections-intro p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.8;
+            margin-top: 1rem;
+        }
+
         .collection-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
         }
 
         .collection-card {
             position: relative;
-            height: 400px;
+            height: 500px;
             overflow: hidden;
             cursor: pointer;
             background: var(--white);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
         }
 
         .collection-card img {
@@ -438,7 +458,7 @@
         }
 
         .collection-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .collection-overlay {
@@ -446,24 +466,132 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 2rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(7, 32, 63, 0.9) 100%);
+            height: 100%;
+            padding: 2.5rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(7, 32, 63, 0.75) 60%, rgba(7, 32, 63, 0.95) 100%);
             z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover .collection-overlay {
+            background: linear-gradient(180deg, transparent 0%, rgba(7, 32, 63, 0.85) 50%, rgba(7, 32, 63, 1) 100%);
+        }
+
+        .collection-badge {
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            background: var(--secondary-peach);
+            color: var(--primary-blue);
+            padding: 0.6rem 1.2rem;
+            font-size: 0.75rem;
+            letter-spacing: 1.5px;
+            font-weight: 400;
+            z-index: 2;
+            opacity: 0;
+            transform: translateY(-20px);
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover .collection-badge {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .collection-info h3 {
-            font-size: 1.8rem;
+            font-size: 2.2rem;
             font-weight: 300;
-            letter-spacing: 3px;
+            letter-spacing: 4px;
             color: var(--white);
-            margin-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            transform: translateY(10px);
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover .collection-info h3 {
+            transform: translateY(0);
         }
 
         .collection-info p {
-            font-size: 0.9rem;
+            font-size: 1rem;
             letter-spacing: 1px;
             color: var(--white);
             opacity: 0.9;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .collection-stats {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease 0.1s;
+        }
+
+        .collection-card:hover .collection-stats {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--secondary-peach);
+            margin-bottom: 0.3rem;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--white);
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+        }
+
+        .collection-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 2rem;
+            background: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+            width: fit-content;
+        }
+
+        .collection-card:hover .collection-btn {
+            opacity: 1;
+            transform: translateY(0);
+            transition-delay: 0.2s;
+        }
+
+        .collection-btn:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .collection-btn i {
+            transition: transform 0.3s ease;
+        }
+
+        .collection-btn:hover i {
+            transform: translateX(5px);
         }
 
         /* Features Section */
@@ -494,7 +622,7 @@
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
 
         .feature h3 {
@@ -668,7 +796,7 @@
             <div class="nav-icons">
                 <a href="#"><i class="fas fa-search"></i></a>
                 <a href="#"><i class="fas fa-shopping-bag"></i></a>
-              <a href="/profile.html"><i class="fas fa-user"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -693,7 +821,8 @@
             <h2 class="section-title">SHOP BY GENDER</h2>
             <p class="section-subtitle">Discover collections crafted for every style</p>
             <div class="gender-grid">
-                <div class="gender-card" id="women">
+                 <a href="/women.html" style="text-decoration: none; color: inherit;">
+                     <div class="gender-card" id="women">
                     <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80" alt="Women's Silver Jewelry">
                     <div class="gender-overlay">
                         <div class="gender-info">
@@ -702,7 +831,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="gender-card" id="men">
+                 </a>
+                
+                  <a href="/men.html" style="text-decoration: none; color: inherit;">
+                    <div class="gender-card" id="men">
                     <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80" alt="Men's Silver Jewelry">
                     <div class="gender-overlay">
                         <div class="gender-info">
@@ -711,6 +843,8 @@
                         </div>
                     </div>
                 </div>
+                  </a>
+                
             </div>
         </div>
     </section>
@@ -767,49 +901,57 @@
             <h2 class="section-title">BEST SELLERS</h2>
             <p class="section-subtitle">Our most loved silver pieces</p>
             <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Silver Ring">
-                        <div class="product-badge">BESTSELLER</div>
+                <a href="/products.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Silver Ring">
+                            <div class="product-badge">BESTSELLER</div>
+                        </div>
+                        <div class="product-details">
+                            <h4>ETERNAL ELEGANCE RING</h4>
+                            <p class="product-price">₹2,499</p>
+                            <div class="product-rating">★★★★★</div>
+                        </div>
                     </div>
-                    <div class="product-details">
-                        <h4>ETERNAL ELEGANCE RING</h4>
-                        <p class="product-price">₹2,499</p>
-                        <div class="product-rating">★★★★★</div>
+                </a>
+                <a href="/products.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=80" alt="Silver Necklace">
+                            <div class="product-badge">NEW</div>
+                        </div>
+                        <div class="product-details">
+                            <h4>CLASSIC CHAIN NECKLACE</h4>
+                            <p class="product-price">₹3,999</p>
+                            <div class="product-rating">★★★★★</div>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=80" alt="Silver Necklace">
-                        <div class="product-badge">NEW</div>
+                </a>
+                <a href="/products.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80" alt="Silver Earrings">
+                        </div>
+                        <div class="product-details">
+                            <h4>PEARL DROP EARRINGS</h4>
+                            <p class="product-price">₹1,899</p>
+                            <div class="product-rating">★★★★☆</div>
+                        </div>
                     </div>
-                    <div class="product-details">
-                        <h4>CLASSIC CHAIN NECKLACE</h4>
-                        <p class="product-price">₹3,999</p>
-                        <div class="product-rating">★★★★★</div>
+                </a>
+                <a href="/products.html" style="text-decoration: none; color: inherit;">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Silver Bracelet">
+                            <div class="product-badge">TRENDING</div>
+                        </div>
+                        <div class="product-details">
+                            <h4>SILVER CHAIN BRACELET</h4>
+                            <p class="product-price">₹2,799</p>
+                            <div class="product-rating">★★★★★</div>
+                        </div>
                     </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80" alt="Silver Earrings">
-                    </div>
-                    <div class="product-details">
-                        <h4>PEARL DROP EARRINGS</h4>
-                        <p class="product-price">₹1,899</p>
-                        <div class="product-rating">★★★★☆</div>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Silver Bracelet">
-                        <div class="product-badge">TRENDING</div>
-                    </div>
-                    <div class="product-details">
-                        <h4>SILVER CHAIN BRACELET</h4>
-                        <p class="product-price">₹2,799</p>
-                        <div class="product-rating">★★★★★</div>
-                    </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>
@@ -855,22 +997,22 @@
     <section class="features">
         <div class="features-container">
             <div class="feature">
-                <div class="feature-icon">✨</div>
+                <div class="feature-icon"><i class="fas fa-gem"></i></div>
                 <h3>Premium Silver</h3>
                 <p>925 sterling silver with hallmark certification</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🚚</div>
+                <div class="feature-icon"><i class="fas fa-shipping-fast"></i></div>
                 <h3>Free Shipping</h3>
                 <p>Complimentary shipping on all orders</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">🔒</div>
+                <div class="feature-icon"><i class="fas fa-lock"></i></div>
                 <h3>Secure Payment</h3>
                 <p>Your transactions are safe and protected</p>
             </div>
             <div class="feature">
-                <div class="feature-icon">💎</div>
+                <div class="feature-icon"><i class="fas fa-shield-alt"></i></div>
                 <h3>Lifetime Warranty</h3>
                 <p>Quality guarantee on all silver jewelry</p>
             </div>
