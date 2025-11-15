@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ETTHNICOAST - Luxury Jewelry</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>ETTHNICOAST - Silver Jewelry</title>
     <style>
         * {
             margin: 0;
@@ -45,12 +46,11 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--primary-blue);
-            text-decoration: none;
+        .logo img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
 
         .nav-links {
@@ -118,8 +118,8 @@
             position: absolute;
             width: 100%;
             height: 100%;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M20,50 Q40,20 60,50 T100,50" stroke="rgba(255,255,255,0.03)" fill="none" stroke-width="2"/></svg>');
-            opacity: 0.3;
+            background: url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&q=80') center/cover;
+            opacity: 0.15;
         }
 
         .hero-content {
@@ -127,13 +127,6 @@
             color: var(--white);
             z-index: 1;
             padding: 2rem;
-        }
-
-        .hero-logo {
-            width: 120px;
-            height: auto;
-            margin-bottom: 2rem;
-            animation: fadeInDown 1s ease;
         }
 
         .hero h1 {
@@ -160,7 +153,6 @@
             text-decoration: none;
             letter-spacing: 2px;
             font-size: 0.95rem;
-            border-radius: 0;
             transition: all 0.4s ease;
             animation: fadeInUp 1s ease 0.9s both;
             border: 2px solid var(--secondary-peach);
@@ -173,9 +165,13 @@
             box-shadow: 0 10px 30px rgba(235, 222, 212, 0.3);
         }
 
-        /* Collections Section */
-        .collections {
+        /* Gender Categories */
+        .gender-categories {
             padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .gender-container {
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -186,7 +182,238 @@
             font-weight: 300;
             letter-spacing: 4px;
             color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--dark-black);
+            opacity: 0.7;
             margin-bottom: 4rem;
+        }
+
+        .gender-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+
+        .gender-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .gender-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .gender-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .gender-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .gender-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 40%, rgba(7, 32, 63, 0.85) 100%);
+            display: flex;
+            align-items: flex-end;
+            padding: 3rem;
+            z-index: 1;
+        }
+
+        .gender-info h3 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--white);
+            margin-bottom: 1rem;
+        }
+
+        .gender-info p {
+            font-size: 1rem;
+            color: var(--white);
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        /* Shop by Category */
+        .shop-category {
+            padding: 5rem 2rem;
+            background: var(--light-peach);
+        }
+
+        .category-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .category-card {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(7, 32, 63, 0.9) 100%);
+            z-index: 1;
+        }
+
+        .category-info h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--white);
+            margin-bottom: 0.5rem;
+        }
+
+        .category-info p {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            color: var(--white);
+            opacity: 0.9;
+        }
+
+        /* Best Sellers */
+        .best-sellers {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .best-sellers-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .product-card {
+            background: var(--white);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            border: 1px solid #f0f0f0;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            background: #f9f9f9;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.1);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .product-details {
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .product-details h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1.5px;
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+        }
+
+        .product-price {
+            font-size: 1.2rem;
+            color: var(--dark-black);
+            font-weight: 400;
+        }
+
+        .product-rating {
+            margin-top: 0.5rem;
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        /* Collections Section */
+        .collections {
+            padding: 5rem 2rem;
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .collections-container {
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
         .collection-grid {
@@ -200,23 +427,7 @@
             height: 400px;
             overflow: hidden;
             cursor: pointer;
-            background: var(--secondary-peach);
-        }
-
-        .collection-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, transparent 0%, rgba(7, 32, 63, 0.8) 100%);
-            z-index: 1;
-            transition: all 0.4s ease;
-        }
-
-        .collection-card:hover::before {
-            background: linear-gradient(180deg, transparent 0%, rgba(7, 32, 63, 0.95) 100%);
+            background: var(--white);
         }
 
         .collection-card img {
@@ -230,24 +441,28 @@
             transform: scale(1.1);
         }
 
-        .collection-info {
+        .collection-overlay {
             position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            color: var(--white);
-            z-index: 2;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 2rem;
+            background: linear-gradient(180deg, transparent 0%, rgba(7, 32, 63, 0.9) 100%);
+            z-index: 1;
         }
 
         .collection-info h3 {
             font-size: 1.8rem;
             font-weight: 300;
             letter-spacing: 3px;
+            color: var(--white);
             margin-bottom: 0.5rem;
         }
 
         .collection-info p {
             font-size: 0.9rem;
             letter-spacing: 1px;
+            color: var(--white);
             opacity: 0.9;
         }
 
@@ -348,17 +563,6 @@
         }
 
         /* Animations */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -418,7 +622,10 @@
                 font-size: 2rem;
             }
 
-            .collection-grid {
+            .gender-grid,
+            .category-grid,
+            .collection-grid,
+            .product-grid {
                 grid-template-columns: 1fr;
             }
 
@@ -433,9 +640,8 @@
                 letter-spacing: 3px;
             }
 
-            .logo {
-                font-size: 1.4rem;
-                letter-spacing: 2px;
+            .logo img {
+                height: 50px;
             }
 
             .cta-button {
@@ -443,32 +649,26 @@
                 font-size: 0.85rem;
             }
         }
-        .logo img {
-   height: 70px;  /* adjust as per navbar height */
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-               <a href="/" class="logo">
-    <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
-</a>
+            <a href="/" class="logo">
+                <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="#collections">Collections</a></li>
-                <li><a href="#new">New Arrivals</a></li>
+                <li><a href="#women">Women</a></li>
+                <li><a href="#men">Men</a></li>
                 <li><a href="/about.html">About</a></li>
                 <li><a href="/contact.html">Contact</a></li>
             </ul>
             <div class="nav-icons">
-                <a href="#search">🔍</a>
-                <a href="#cart">🛍️</a>
-                <a href="#account">👤</a>
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                <a href="#"><i class="fas fa-user"></i></a>
             </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
@@ -481,38 +681,171 @@
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
-            <svg class="hero-logo" viewBox="0 0 200 50" xmlns="http://www.w3.org/2000/svg">
-                <path d="M20,25 Q40,10 60,25 T100,25" stroke="white" fill="none" stroke-width="2"/>
-            </svg>
             <h1>ETTHNICOAST</h1>
-            <p>TIMELESS ELEGANCE & LUXURY</p>
+            <p>PREMIUM SILVER JEWELRY</p>
             <a href="#collections" class="cta-button">EXPLORE COLLECTION</a>
+        </div>
+    </section>
+
+    <!-- Gender Categories -->
+    <section class="gender-categories" id="gender">
+        <div class="gender-container">
+            <h2 class="section-title">SHOP BY GENDER</h2>
+            <p class="section-subtitle">Discover collections crafted for every style</p>
+            <div class="gender-grid">
+                <div class="gender-card" id="women">
+                    <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80" alt="Women's Silver Jewelry">
+                    <div class="gender-overlay">
+                        <div class="gender-info">
+                            <h3>WOMEN</h3>
+                            <p>Elegant silver pieces for the modern woman</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="gender-card" id="men">
+                    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80" alt="Men's Silver Jewelry">
+                    <div class="gender-overlay">
+                        <div class="gender-info">
+                            <h3>MEN</h3>
+                            <p>Bold and refined designs for gentlemen</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop by Category -->
+    <section class="shop-category">
+        <div class="category-container">
+            <h2 class="section-title">SHOP BY CATEGORY</h2>
+            <p class="section-subtitle">Find your perfect piece</p>
+            <div class="category-grid">
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Silver Rings">
+                    <div class="category-overlay">
+                        <div class="category-info">
+                            <h3>Rings</h3>
+                            <p>Timeless silver rings</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=600&q=80" alt="Silver Necklaces">
+                    <div class="category-overlay">
+                        <div class="category-info">
+                            <h3>Necklaces</h3>
+                            <p>Elegant statement pieces</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80" alt="Silver Earrings">
+                    <div class="category-overlay">
+                        <div class="category-info">
+                            <h3>Earrings</h3>
+                            <p>Perfect finishing touch</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="category-card">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Silver Bracelets">
+                    <div class="category-overlay">
+                        <div class="category-info">
+                            <h3>Bracelets</h3>
+                            <p>Grace on your wrist</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Best Sellers -->
+    <section class="best-sellers">
+        <div class="best-sellers-container">
+            <h2 class="section-title">BEST SELLERS</h2>
+            <p class="section-subtitle">Our most loved silver pieces</p>
+            <div class="product-grid">
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Silver Ring">
+                        <div class="product-badge">BESTSELLER</div>
+                    </div>
+                    <div class="product-details">
+                        <h4>ETERNAL ELEGANCE RING</h4>
+                        <p class="product-price">₹2,499</p>
+                        <div class="product-rating">★★★★★</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=80" alt="Silver Necklace">
+                        <div class="product-badge">NEW</div>
+                    </div>
+                    <div class="product-details">
+                        <h4>CLASSIC CHAIN NECKLACE</h4>
+                        <p class="product-price">₹3,999</p>
+                        <div class="product-rating">★★★★★</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80" alt="Silver Earrings">
+                    </div>
+                    <div class="product-details">
+                        <h4>PEARL DROP EARRINGS</h4>
+                        <p class="product-price">₹1,899</p>
+                        <div class="product-rating">★★★★☆</div>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Silver Bracelet">
+                        <div class="product-badge">TRENDING</div>
+                    </div>
+                    <div class="product-details">
+                        <h4>SILVER CHAIN BRACELET</h4>
+                        <p class="product-price">₹2,799</p>
+                        <div class="product-rating">★★★★★</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Collections Section -->
     <section class="collections" id="collections">
-        <h2 class="section-title">OUR COLLECTIONS</h2>
-        <div class="collection-grid">
-            <div class="collection-card">
-                <div style="background: linear-gradient(135deg, #07203F 0%, #0a3d6e 100%); height: 100%;"></div>
-                <div class="collection-info">
-                    <h3>Necklaces</h3>
-                    <p>Exquisite pieces that define elegance</p>
+        <div class="collections-container">
+            <h2 class="section-title">SIGNATURE COLLECTIONS</h2>
+            <p class="section-subtitle">Explore our exclusive silver designs</p>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80" alt="Heritage Collection">
+                    <div class="collection-overlay">
+                        <div class="collection-info">
+                            <h3>Heritage Collection</h3>
+                            <p>Traditional designs reimagined</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="collection-card">
-                <div style="background: linear-gradient(135deg, #EBDED4 0%, #d4c4b4 100%); height: 100%;"></div>
-                <div class="collection-info">
-                    <h3>Bracelets</h3>
-                    <p>Crafted with precision and grace</p>
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=600&q=80" alt="Modern Collection">
+                    <div class="collection-overlay">
+                        <div class="collection-info">
+                            <h3>Modern Luxe</h3>
+                            <p>Contemporary silver sophistication</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <div class="collection-card">
-                <div style="background: linear-gradient(135deg, #07203F 0%, #0a3d6e 100%); height: 100%;"></div>
-                <div class="collection-info">
-                    <h3>Earrings</h3>
-                    <p>Perfect accent to your style</p>
+                <div class="collection-card">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Bridal Collection">
+                    <div class="collection-overlay">
+                        <div class="collection-info">
+                            <h3>Bridal Collection</h3>
+                            <p>Silver for your special day</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -523,13 +856,13 @@
         <div class="features-container">
             <div class="feature">
                 <div class="feature-icon">✨</div>
-                <h3>Premium Quality</h3>
-                <p>Each piece is crafted with the finest materials and attention to detail</p>
+                <h3>Premium Silver</h3>
+                <p>925 sterling silver with hallmark certification</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🚚</div>
                 <h3>Free Shipping</h3>
-                <p>Complimentary shipping on all orders worldwide</p>
+                <p>Complimentary shipping on all orders</p>
             </div>
             <div class="feature">
                 <div class="feature-icon">🔒</div>
@@ -539,7 +872,7 @@
             <div class="feature">
                 <div class="feature-icon">💎</div>
                 <h3>Lifetime Warranty</h3>
-                <p>We stand behind the quality of our jewelry</p>
+                <p>Quality guarantee on all silver jewelry</p>
             </div>
         </div>
     </section>
@@ -550,26 +883,26 @@
             <div class="footer-section">
                 <h4>ABOUT US</h4>
                 <ul>
-                    <li><a href="#story">Our Story</a></li>
-                    <li><a href="#craftsmanship">Craftsmanship</a></li>
-                    <li><a href="#sustainability">Sustainability</a></li>
+                    <li><a href="/about.html">Our Story</a></li>
+                    <li><a href="/about.html">Craftsmanship</a></li>
+                    <li><a href="/about.html">Sustainability</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>CUSTOMER CARE</h4>
                 <ul>
-                    <li><a href="#contact">Contact Us</a></li>
-                    <li><a href="#shipping">Shipping Info</a></li>
-                    <li><a href="#returns">Returns</a></li>
-                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="/contact.html">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4>CONNECT</h4>
                 <ul>
-                    <li><a href="#instagram">Instagram</a></li>
-                    <li><a href="#facebook">Facebook</a></li>
-                    <li><a href="#pinterest">Pinterest</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Pinterest</a></li>
                 </ul>
             </div>
             <div class="footer-section">
