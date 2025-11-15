@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Settings - ETTHNICOAST</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #EBDED4;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --light-peach: #F8E3D2;
+        }
+        body { font-family: 'Georgia', serif; color: var(--dark-black); overflow-x: hidden; background: #f9f9f9; }
+        nav { position: fixed; top: 0; width: 100%; background: var(--white); z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .nav-container { max-width: 1400px; margin: 0 auto; padding: 1rem 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo img { height: 70px; }
+        .nav-links { display: flex; list-style: none; gap: 2.5rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--dark-black); font-size: 0.95rem; letter-spacing: 1px; transition: color 0.3s; }
+        .nav-links a:hover { color: var(--primary-blue); }
+        .nav-icons { display: flex; gap: 1.5rem; }
+        .nav-icons a { color: var(--dark-black); font-size: 1.2rem; cursor: pointer; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .hamburger span { width: 25px; height: 2px; background: var(--primary-blue); transition: all 0.3s; }
+        .page-header { margin-top: 80px; padding: 4rem 2rem 2rem; background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%); color: var(--white); }
+        .header-content { max-width: 1400px; margin: 0 auto; }
+        .page-header h1 { font-size: 3rem; font-weight: 300; letter-spacing: 6px; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.1rem; opacity: 0.9; letter-spacing: 1px; }
+        .breadcrumb { max-width: 1400px; margin: 0 auto; padding: 1.5rem 2rem; background: var(--white); }
+        .breadcrumb a { color: var(--dark-black); text-decoration: none; opacity: 0.7; }
+        .breadcrumb span { margin: 0 0.5rem; opacity: 0.5; }
+        .settings-container { max-width: 1400px; margin: 3rem auto 5rem; padding: 0 2rem; display: grid; grid-template-columns: 280px 1fr; gap: 3rem; }
+        .settings-sidebar { background: var(--white); padding: 2rem; box-shadow: 0 2px 15px rgba(0,0,0,0.08); height: fit-content; position: sticky; top: 120px; }
+        .settings-menu { list-style: none; }
+        .settings-menu li { margin-bottom: 0.5rem; }
+        .settings-menu a { display: flex; align-items: center; gap: 1rem; padding: 1rem 1.2rem; color: var(--dark-black); text-decoration: none; letter-spacing: 1px; font-size: 0.95rem; transition: all 0.3s; border-left: 3px solid transparent; }
+        .settings-menu a:hover { background: var(--light-peach); border-left-color: var(--primary-blue); }
+        .settings-menu a.active { background: var(--light-peach); border-left-color: var(--primary-blue); color: var(--primary-blue); }
+        .settings-content { background: var(--white); padding: 3rem; box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+        .settings-section { display: none; }
+        .settings-section.active { display: block; }
+        .section-header { margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 2px solid var(--secondary-peach); }
+        .section-header h2 { font-size: 2rem; font-weight: 300; letter-spacing: 3px; color: var(--primary-blue); margin-bottom: 0.5rem; }
+        .form-group { margin-bottom: 2rem; }
+        .form-group label { display: block; font-size: 0.9rem; letter-spacing: 1px; color: var(--primary-blue); margin-bottom: 0.8rem; }
+        .form-group input, .form-group select { width: 100%; padding: 1rem; border: 1px solid var(--secondary-peach); background: var(--white); font-family: 'Georgia', serif; font-size: 1rem; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .btn { padding: 1.2rem 2.5rem; border: 2px solid var(--secondary-peach); background: transparent; color: var(--primary-blue); font-family: 'Georgia', serif; font-size: 0.95rem; letter-spacing: 1px; cursor: pointer; transition: all 0.3s; display: inline-flex; align-items: center; gap: 0.8rem; }
+        .btn.primary { background: var(--secondary-peach); }
+        .btn.primary:hover { background: var(--primary-blue); color: var(--white); }
+        .btn.danger { border-color: #dc3545; color: #dc3545; }
+        .btn.danger:hover { background: #dc3545; color: var(--white); }
+        .profile-photo-section { display: flex; align-items: center; gap: 2rem; padding: 2rem; background: var(--light-peach); margin-bottom: 2rem; }
+        .profile-photo { width: 120px; height: 120px; border-radius: 50%; background: var(--white); display: flex; align-items: center; justify-content: center; font-size: 3rem; color: var(--primary-blue); }
+        .toggle-switch { display: flex; align-items: center; justify-content: space-between; padding: 1.5rem; background: var(--light-peach); margin-bottom: 1rem; }
+        .toggle-info h4 { font-size: 1rem; letter-spacing: 1px; color: var(--primary-blue); margin-bottom: 0.5rem; }
+        .switch { position: relative; width: 60px; height: 30px; }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider { position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0; background-color: #ccc; transition: 0.4s; border-radius: 30px; }
+        .slider:before { position: absolute; content: ""; height: 22px; width: 22px; left: 4px; bottom: 4px; background-color: white; transition: 0.4s; border-radius: 50%; }
+        input:checked + .slider { background-color: var(--primary-blue); }
+        input:checked + .slider:before { transform: translateX(30px); }
+        .security-item { padding: 1.5rem; background: var(--light-peach); margin-bottom: 1rem; display: flex; align-items: center; justify-content: space-between; }
+        .danger-zone { background: #fff5f5; border: 2px solid #fee; padding: 2rem; margin-top: 3rem; }
+        .danger-zone h3 { color: #dc3545; font-size: 1.3rem; letter-spacing: 2px; margin-bottom: 1rem; }
+        footer { background: var(--primary-blue); color: var(--white); padding: 3rem 2rem 1rem; }
+        .footer-container { max-width: 1400px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 3rem; margin-bottom: 2rem; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid rgba(255,255,255,0.1); opacity: 0.7; }
+        @media (max-width: 968px) {
+            .settings-container { grid-template-columns: 1fr; }
+            .form-row { grid-template-columns: 1fr; }
+        }
+        @media (max-width: 768px) {
+            .hamburger { display: flex; }
+            .nav-links { position: fixed; left: -100%; top: 80px; flex-direction: column; background: var(--white); width: 100%; padding: 2rem 0; transition: 0.3s; }
+            .nav-links.active { left: 0; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo"><img src="./assets/logo_new_1.png" alt="Logo"></a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#collections">Collections</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                <a href="/profile.html"><i class="fas fa-user"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <section class="page-header">
+        <div class="header-content">
+            <h1>SETTINGS</h1>
+            <p>Manage your account preferences and settings</p>
+        </div>
+    </section>
+
+    <div class="breadcrumb">
+        <a href="/">Home</a><span>/</span><a href="/profile.html">Profile</a><span>/</span><span>Settings</span>
+    </div>
+
+    <div class="settings-container">
+        <aside class="settings-sidebar">
+            <ul class="settings-menu">
+                <li><a href="#" class="menu-link active" data-section="account"><i class="fas fa-user-circle"></i> Account</a></li>
+                <li><a href="#" class="menu-link" data-section="security"><i class="fas fa-shield-alt"></i> Security</a></li>
+                <li><a href="#" class="menu-link" data-section="notifications"><i class="fas fa-bell"></i> Notifications</a></li>
+                <li><a href="#" class="menu-link" data-section="privacy"><i class="fas fa-lock"></i> Privacy</a></li>
+                <li><a href="#" class="menu-link" data-section="preferences"><i class="fas fa-cog"></i> Preferences</a></li>
+            </ul>
+        </aside>
+
+        <main class="settings-content">
+            <section id="account" class="settings-section active">
+                <div class="section-header">
+                    <h2>ACCOUNT SETTINGS</h2>
+                    <p>Manage your personal information</p>
+                </div>
+                <div class="profile-photo-section">
+                    <div class="profile-photo"><i class="fas fa-user"></i></div>
+                    <div>
+                        <button class="btn primary"><i class="fas fa-upload"></i> Upload Photo</button>
+                        <button class="btn" style="margin-top: 1rem;"><i class="fas fa-trash"></i> Remove</button>
+                    </div>
+                </div>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>FIRST NAME</label>
+                            <input type="text" value="John">
+                        </div>
+                        <div class="form-group">
+                            <label>LAST NAME</label>
+                            <input type="text" value="Doe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>EMAIL</label>
+                        <input type="email" value="john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>PHONE</label>
+                        <input type="tel" value="+91 98765 43210">
+                    </div>
+                    <button type="submit" class="btn primary"><i class="fas fa-save"></i> Save Changes</button>
+                </form>
+            </section>
+
+            <section id="security" class="settings-section">
+                <div class="section-header">
+                    <h2>SECURITY SETTINGS</h2>
+                    <p>Keep your account safe</p>
+                </div>
+                <div class="security-item">
+                    <div>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">Password</h4>
+                        <p style="opacity: 0.7;">Last changed 45 days ago</p>
+                    </div>
+                    <button class="btn primary"><i class="fas fa-key"></i> Change</button>
+                </div>
+                <div class="security-item">
+                    <div>
+                        <h4 style="color: var(--primary-blue); margin-bottom: 0.5rem;">Two-Factor Authentication</h4>
+                        <p style="opacity: 0.7;">Add extra security</p>
+                    </div>
+                    <button class="btn primary">Enable</button>
+                </div>
+                <h3 style="margin: 2rem 0 1rem; color: var(--primary-blue); letter-spacing: 2px;">ACTIVE SESSIONS</h3>
+                <div class="security-item">
+                    <div>
+                        <h4 style="color: var(--primary-blue);"><i class="fas fa-desktop"></i> Chrome on Windows</h4>
+                        <p style="opacity: 0.7;">Kolkata, India • Active now</p>
+                    </div>
+                    <span style="padding: 0.5rem 1rem; background: #d4edda; color: #155724; border-radius: 20px; font-size: 0.85rem;">Active</span>
+                </div>
+                <button class="btn danger" style="margin-top: 2rem;"><i class="fas fa-power-off"></i> Sign Out All</button>
+            </section>
+
+            <section id="notifications" class="settings-section">
+                <div class="section-header">
+                    <h2>NOTIFICATIONS</h2>
+                    <p>Choose what you want to receive</p>
+                </div>
+                <div class="toggle-switch">
+                    <div class="toggle-info">
+                        <h4>Order Updates</h4>
+                        <p>Get notified about orders</p>
+                    </div>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-switch">
+                    <div class="toggle-info">
+                        <h4>Promotional Emails</h4>
+                        <p>Exclusive offers and sales</p>
+                    </div>
+                    <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                </div>
+                <div class="toggle-switch">
+                    <div class="toggle-info">
+                        <h4>Newsletter</h4>
+                        <p>Monthly updates</p>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <button class="btn primary" style="margin-top: 2rem;"><i class="fas fa-save"></i> Save</button>
+            </section>
+
+            <section id="privacy" class="settings-section">
+                <div class="section-header">
+                    <h2>PRIVACY SETTINGS</h2>
+                    <p>Control your data</p>
+                </div>
+                <div class="toggle-switch">
+                    <div class="toggle-info">
+                        <h4>Profile Visibility</h4>
+                        <p>Show your profile</p>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <div class="toggle-switch">
+                    <div class="toggle-info">
+                        <h4>Data Sharing</h4>
+                        <p>Share with partners</p>
+                    </div>
+                    <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                </div>
+                <h3 style="margin: 2rem 0 1rem; color: var(--primary-blue); letter-spacing: 2px;">DATA MANAGEMENT</h3>
+                <div class="security-item">
+                    <div>
+                        <h4 style="color: var(--primary-blue);">Download Your Data</h4>
+                        <p style="opacity: 0.7;">Get a copy of all data</p>
+                    </div>
+                    <button class="btn"><i class="fas fa-download"></i> Request</button>
+                </div>
+                <div class="security-item">
+                    <div>
+                        <h4 style="color: var(--primary-blue);">Clear History</h4>
+                        <p style="opacity: 0.7;">Remove search history</p>
+                    </div>
+                    <button class="btn"><i class="fas fa-eraser"></i> Clear</button>
+                </div>
+            </section>
+
+            <section id="preferences" class="settings-section">
+                <div class="section-header">
+                    <h2>PREFERENCES</h2>
+                    <p>Customize your experience</p>
+                </div>
+                <form>
+                    <div class="form-group">
+                        <label>LANGUAGE</label>
+                        <select>
+                            <option>English</option>
+                            <option>Hindi</option>
+                            <option>Bengali</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>CURRENCY</label>
+                        <select>
+                            <option>INR (₹)</option>
+                            <option>USD ($)</option>
+                        </select>
+                    </div>
+                    <div class="toggle-switch">
+                        <div class="toggle-info">
+                            <h4>Dark Mode</h4>
+                            <p>Use dark theme</p>
+                        </div>
+                        <label class="switch"><input type="checkbox"><span class="slider"></span></label>
+                    </div>
+                    <button type="submit" class="btn primary" style="margin-top: 2rem;"><i class="fas fa-save"></i> Save</button>
+                </form>
+                <div class="danger-zone">
+                    <h3>DANGER ZONE</h3>
+                    <p>Once deleted, there is no going back</p>
+                    <button class="btn danger"><i class="fas fa-trash-alt"></i> Delete Account</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <div class="footer-container">
+            <div>
+                <h4 style="margin-bottom: 1rem; letter-spacing: 2px;">ABOUT US</h4>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8;">Our Story</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none; opacity: 0.8;">Craftsmanship</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1rem; letter-spacing: 2px;">CONTACT</h4>
+                <ul style="list-style: none;">
+                    <li style="margin-bottom: 0.8rem;"><a href="#" style="color: white; text-decoration: none; opacity: 0.8;">Contact Us</a></li>
+                    <li><a href="#" style="color: white; text-decoration: none; opacity: 0.8;">FAQ</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const sections = document.querySelectorAll('.settings-section');
+        menuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                menuLinks.forEach(l => l.classList.remove('active'));
+                link.classList.add('active');
+                sections.forEach(s => s.classList.remove('active'));
+                const target = link.getAttribute('data-section');
+                document.getElementById(target).classList.add('active');
+            });
+        });
+
+        document.querySelectorAll('form').forEach(form => {
+            form.addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert('Settings saved successfully!');
+            });
+        });
+
+        document.querySelectorAll('.btn.danger').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                if (btn.textContent.includes('Delete Account')) {
+                    if (confirm('Are you sure? This cannot be undone.')) {
+                        alert('Account deletion initiated.');
+                    }
+                } else if (btn.textContent.includes('Sign Out All')) {
+                    if (confirm('Sign out from all devices?')) {
+                        alert('Signed out successfully!');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

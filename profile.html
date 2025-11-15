@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>My Profile - ETTHNICOAST</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #EBDED4;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --light-peach: #F8E3D2;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--dark-black);
+            overflow-x: hidden;
+            background: #f9f9f9;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-black);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons a {
+            color: var(--dark-black);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        /* Profile Container */
+        .profile-container {
+            margin-top: 100px;
+            max-width: 1400px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 3rem 2rem;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            min-height: calc(100vh - 100px);
+        }
+
+        /* Sidebar */
+        .profile-sidebar {
+            background: var(--white);
+            padding: 2rem;
+            height: fit-content;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 120px;
+        }
+
+        .profile-header {
+            text-align: center;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--secondary-peach);
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--light-peach);
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+        }
+
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-email {
+            font-size: 0.85rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+        }
+
+        .profile-menu {
+            list-style: none;
+            margin-top: 2rem;
+        }
+
+        .profile-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-menu a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            text-decoration: none;
+            color: var(--dark-black);
+            transition: all 0.3s ease;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            letter-spacing: 0.5px;
+        }
+
+        .profile-menu a:hover,
+        .profile-menu a.active {
+            background: var(--light-peach);
+            color: var(--primary-blue);
+        }
+
+        .profile-menu i {
+            width: 20px;
+            font-size: 1.1rem;
+        }
+
+        /* Main Content */
+        .profile-content {
+            background: var(--white);
+            padding: 3rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.95rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+            margin-bottom: 3rem;
+        }
+
+        /* Form Styles */
+        .profile-form {
+            max-width: 700px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--secondary-peach);
+            background: var(--white);
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            color: var(--dark-black);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(7, 32, 63, 0.1);
+        }
+
+        .save-button {
+            padding: 1rem 3rem;
+            background: var(--secondary-peach);
+            color: var(--primary-blue);
+            border: 2px solid var(--secondary-peach);
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 400;
+        }
+
+        .save-button:hover {
+            background: transparent;
+            color: var(--secondary-peach);
+            border-color: var(--secondary-peach);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(235, 222, 212, 0.3);
+        }
+
+        /* Orders */
+        .orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .order-card {
+            border: 1px solid var(--secondary-peach);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .order-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--light-peach);
+        }
+
+        .order-id {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+        }
+
+        .order-status {
+            padding: 0.5rem 1rem;
+            background: var(--light-peach);
+            color: var(--primary-blue);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        .order-status.delivered {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .order-items {
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid var(--light-peach);
+        }
+
+        .order-item {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background: var(--light-peach);
+            transition: all 0.3s ease;
+        }
+
+        .order-item:hover {
+            background: var(--secondary-peach);
+        }
+
+        .order-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .order-item img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border: 1px solid var(--secondary-peach);
+        }
+
+        .order-item-info {
+            flex: 1;
+        }
+
+        .order-item-info h5 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .order-item-info p {
+            font-size: 0.9rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+            margin-bottom: 0.3rem;
+        }
+
+        .item-price {
+            font-size: 1.1rem !important;
+            font-weight: 400;
+            opacity: 1 !important;
+            color: var(--primary-blue) !important;
+            margin-top: 0.5rem;
+        }
+
+        .order-actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .order-action-btn {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--secondary-peach);
+            background: transparent;
+            color: var(--primary-blue);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .order-action-btn:hover {
+            background: var(--light-peach);
+        }
+
+        .order-action-btn.primary {
+            background: var(--secondary-peach);
+            border-color: var(--secondary-peach);
+        }
+
+        .order-action-btn.primary:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .order-action-btn.cancel {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .order-action-btn.cancel:hover {
+            background: #dc3545;
+            color: var(--white);
+        }
+
+        .order-details {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 2rem;
+        }
+
+        .order-detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .order-detail-label {
+            font-size: 0.85rem;
+            color: var(--dark-black);
+            opacity: 0.6;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+        }
+
+        .order-detail-value {
+            font-size: 1rem;
+            color: var(--dark-black);
+            font-weight: 400;
+        }
+
+        /* Wishlist */
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .wishlist-card {
+            border: 1px solid var(--secondary-peach);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .wishlist-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .wishlist-image {
+            width: 100%;
+            height: 250px;
+            background: var(--light-peach);
+            overflow: hidden;
+            position: relative;
+        }
+
+        .wishlist-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .remove-wishlist {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            width: 35px;
+            height: 35px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--primary-blue);
+        }
+
+        .remove-wishlist:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .wishlist-info {
+            padding: 1.5rem;
+        }
+
+        .wishlist-info h4 {
+            font-size: 1rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .wishlist-price {
+            font-size: 1.1rem;
+            color: var(--dark-black);
+            font-weight: 400;
+        }
+
+        /* Addresses */
+        .addresses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .address-card {
+            border: 1px solid var(--secondary-peach);
+            padding: 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .address-card:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .address-card.default {
+            border-color: var(--primary-blue);
+            border-width: 2px;
+        }
+
+        .default-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.3rem 0.8rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .address-name {
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .address-details {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .address-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .address-actions button {
+            padding: 0.7rem 1.5rem;
+            border: 1px solid var(--secondary-peach);
+            background: transparent;
+            color: var(--primary-blue);
+            font-family: 'Georgia', serif;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .address-actions button:hover {
+            background: var(--light-peach);
+        }
+
+        .add-address-btn {
+            padding: 1rem 2rem;
+            background: var(--secondary-peach);
+            color: var(--primary-blue);
+            border: none;
+            font-family: 'Georgia', serif;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-bottom: 2rem;
+        }
+
+        .add-address-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 5rem 2rem;
+        }
+
+        .empty-icon {
+            font-size: 5rem;
+            color: var(--secondary-peach);
+            margin-bottom: 2rem;
+        }
+
+        .empty-title {
+            font-size: 1.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .empty-text {
+            font-size: 1rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 5rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .profile-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .profile-sidebar {
+                position: relative;
+                top: 0;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .order-details {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .profile-content {
+                padding: 2rem 1.5rem;
+            }
+
+            .wishlist-grid,
+            .addresses-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 50px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#collections">Collections</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                <a href="/profile.html"><i class="fas fa-user"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Container -->
+    <div class="profile-container">
+        <!-- Sidebar -->
+        <aside class="profile-sidebar">
+            <div class="profile-header">
+                <div class="profile-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="profile-name">John Doe</div>
+                <div class="profile-email">john.doe@example.com</div>
+            </div>
+            <ul class="profile-menu">
+                <li><a href="#" class="menu-link active" data-section="account"><i class="fas fa-user-circle"></i> My Account</a></li>
+                <li><a href="/orders.html" class="menu-link" data-section="orders"><i class="fas fa-box"></i> My Orders</a></li>
+                <li><a href="/wishlist.html" class="menu-link" data-section="wishlist"><i class="fas fa-heart"></i> My Wishlist</a></li>
+                <li><a href="#" class="menu-link" data-section="addresses"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
+                <li><a href="#" class="menu-link" data-section="settings"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="/"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="profile-content">
+            <!-- Account Section -->
+            <section class="content-section active" id="account">
+                <h2 class="section-title">MY ACCOUNT</h2>
+                <p class="section-subtitle">Manage your personal information</p>
+                <form class="profile-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>FIRST NAME</label>
+                            <input type="text" value="John">
+                        </div>
+                        <div class="form-group">
+                            <label>LAST NAME</label>
+                            <input type="text" value="Doe">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>EMAIL ADDRESS</label>
+                        <input type="email" value="john.doe@example.com">
+                    </div>
+                    <div class="form-group">
+                        <label>PHONE NUMBER</label>
+                        <input type="tel" value="+91 98765 43210">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>DATE OF BIRTH</label>
+                            <input type="date" value="1990-01-15">
+                        </div>
+                        <div class="form-group">
+                            <label>GENDER</label>
+                            <select>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="save-button">SAVE CHANGES</button>
+                </form>
+            </section>
+
+            <!-- Orders Section -->
+            <section class="content-section" id="orders">
+                <h2 class="section-title">MY ORDERS</h2>
+                <p class="section-subtitle">Track and manage your orders</p>
+                <div class="orders-list">
+                    <div class="order-card">
+                        <div class="order-header">
+                            <span class="order-id">Order #EC2024001</span>
+                            <span class="order-status delivered">Delivered</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=100&q=80" alt="Silver Ring">
+                                <div class="order-item-info">
+                                    <h5>Eternal Elegance Ring</h5>
+                                    <p>Size: 7 | Quantity: 1</p>
+                                    <p class="item-price">₹2,499</p>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=100&q=80" alt="Silver Necklace">
+                                <div class="order-item-info">
+                                    <h5>Classic Chain Necklace</h5>
+                                    <p>Length: 18" | Quantity: 1</p>
+                                    <p class="item-price">₹2,499</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Order Date</span>
+                                <span class="order-detail-value">15 Nov 2024</span>
+                            </div>
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Delivered On</span>
+                                <span class="order-detail-value">20 Nov 2024</span>
+                            </div>
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Total Amount</span>
+                                <span class="order-detail-value">₹4,998</span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <button class="order-action-btn">View Details</button>
+                            <button class="order-action-btn">Download Invoice</button>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="order-header">
+                            <span class="order-id">Order #EC2024002</span>
+                            <span class="order-status">In Transit</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=100&q=80" alt="Silver Earrings">
+                                <div class="order-item-info">
+                                    <h5>Pearl Drop Earrings</h5>
+                                    <p>Style: Drop | Quantity: 1</p>
+                                    <p class="item-price">₹1,899</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Order Date</span>
+                                <span class="order-detail-value">12 Nov 2024</span>
+                            </div>
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Expected Delivery</span>
+                                <span class="order-detail-value">18 Nov 2024</span>
+                            </div>
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Total Amount</span>
+                                <span class="order-detail-value">₹1,899</span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <button class="order-action-btn primary">Track Order</button>
+                            <button class="order-action-btn">View Details</button>
+                        </div>
+                    </div>
+
+                    <div class="order-card">
+                        <div class="order-header">
+                            <span class="order-id">Order #EC2024003</span>
+                            <span class="order-status">Processing</span>
+                        </div>
+                        <div class="order-items">
+                            <div class="order-item">
+                                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=100&q=80" alt="Silver Bracelet">
+                                <div class="order-item-info">
+                                    <h5>Silver Chain Bracelet</h5>
+                                    <p>Size: Medium | Quantity: 1</p>
+                                    <p class="item-price">₹2,799</p>
+                                </div>
+                            </div>
+                            <div class="order-item">
+                                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=100&q=80" alt="Silver Ring">
+                                <div class="order-item-info">
+                                    <h5>Diamond Accent Ring</h5>
+                                    <p>Size: 6 | Quantity: 1</p>
+                                    <p class="item-price">₹3,498</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="order-details">
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Order Date</span>
+                                <span class="order-detail-value">10 Nov 2024</span>
+                            </div>
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Expected Delivery</span>
+                                <span class="order-detail-value">17 Nov 2024</span>
+                            </div>
+                            <div class="order-detail-item">
+                                <span class="order-detail-label">Total Amount</span>
+                                <span class="order-detail-value">₹6,297</span>
+                            </div>
+                        </div>
+                        <div class="order-actions">
+                            <button class="order-action-btn">View Details</button>
+                            <button class="order-action-btn cancel">Cancel Order</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Wishlist Section -->
+            <section class="content-section" id="wishlist">
+                <h2 class="section-title">MY WISHLIST</h2>
+                <p class="section-subtitle">Your saved items</p>
+                <div class="wishlist-grid">
+                    <div class="wishlist-card">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Silver Ring">
+                            <button class="remove-wishlist"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="wishlist-info">
+                            <h4>ETERNAL ELEGANCE RING</h4>
+                            <p class="wishlist-price">₹2,499</p>
+                        </div>
+                    </div>
+                    <div class="wishlist-card">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=80" alt="Silver Necklace">
+                            <button class="remove-wishlist"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="wishlist-info">
+                            <h4>CLASSIC CHAIN NECKLACE</h4>
+                            <p class="wishlist-price">₹3,999</p>
+                        </div>
+                    </div>
+                    <div class="wishlist-card">
+                        <div class="wishlist-image">
+                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Silver Bracelet">
+                            <button class="remove-wishlist"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="wishlist-info">
+                            <h4>SILVER CHAIN BRACELET</h4>
+                            <p class="wishlist-price">₹2,799</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Addresses Section -->
+            <section class="content-section" id="addresses">
+                <h2 class="section-title">MY ADDRESSES</h2>
+                <p class="section-subtitle">Manage your delivery addresses</p>
+                <button class="add-address-btn"><i class="fas fa-plus"></i> Add New Address</button>
+                <div class="addresses-grid">
+                    <div class="address-card default">
+                        <div class="default-badge">DEFAULT</div>
+                        <div class="address-name">Home</div>
+                        <div class="address-details">
+                            John Doe<br>
+                            123 Park Street, Apartment 4B<br>
+                            Kolkata, West Bengal 700016<br>
+                            India<br>
+                            Phone: +91 98765 43210
+                        </div>
+                        <div class="address-actions">
+                            <button>Edit</button>
+                            <button>Remove</button>
+                        </div>
+                    </div>
+                    <div class="address-card">
+                        <div class="address-name">Office</div>
+                        <div class="address-details">
+                            John Doe<br>
+                            45 Business District<br>
+                            Salt Lake, Kolkata 700091<br>
+                            West Bengal, India<br>
+                            Phone: +91 98765 43210
+                        </div>
+                        <div class="address-actions">
+                            <button>Edit</button>
+                            <button>Remove</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Settings Section -->
+            <section class="content-section" id="settings">
+                <h2 class="section-title">SETTINGS</h2>
+                <p class="section-subtitle">Manage your account preferences</p>
+                <form class="profile-form">
+                    <div class="form-group">
+                        <label>CHANGE PASSWORD</label>
+                        <input type="password" placeholder="Current Password">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>NEW PASSWORD</label>
+                            <input type="password" placeholder="New Password">
+                        </div>
+                        <div class="form-group">
+                            <label>CONFIRM PASSWORD</label>
+                            <input type="password" placeholder="Confirm Password">
+                        </div>
+                    </div>
+                    <button type="submit" class="save-button">UPDATE PASSWORD</button>
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>ABOUT US</h4>
+                <ul>
+                    <li><a href="/about.html">Our Story</a></li>
+                    <li><a href="/about.html">Craftsmanship</a></li>
+                    <li><a href="/about.html">Sustainability</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CUSTOMER CARE</h4>
+                <ul>
+                    <li><a href="/contact.html">Contact Us</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CONNECT</h4>
+                <ul>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>NEWSLETTER</h4>
+                <p>Subscribe to receive exclusive offers and updates</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Profile menu navigation
+        const menuLinks = document.querySelectorAll('.menu-link');
+        const contentSections = document.querySelectorAll('.content-section');
+
+        menuLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                // Remove active class from all links and sections
+                menuLinks.forEach(l => l.classList.remove('active'));
+                contentSections.forEach(s => s.classList.remove('active'));
+                
+                // Add active class to clicked link
+                link.classList.add('active');
+                
+                // Show corresponding section
+                const sectionId = link.getAttribute('data-section');
+                document.getElementById(sectionId).classList.add('active');
+                
+                // Scroll to top on mobile
+                if (window.innerWidth <= 968) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Remove wishlist items
+        document.querySelectorAll('.remove-wishlist').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (confirm('Remove this item from wishlist?')) {
+                    btn.closest('.wishlist-card').remove();
+                }
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'var(--white)';
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

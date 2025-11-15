@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>My Wishlist - ETTHNICOAST</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #EBDED4;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --light-peach: #F8E3D2;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--dark-black);
+            overflow-x: hidden;
+            background: #f9f9f9;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-black);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons a {
+            color: var(--dark-black);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        /* Page Header */
+        .page-header {
+            margin-top: 80px;
+            padding: 4rem 2rem 2rem;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
+            color: var(--white);
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 6px;
+            margin-bottom: 1rem;
+        }
+
+        .header-left p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            letter-spacing: 1px;
+        }
+
+        .wishlist-count {
+            font-size: 4rem;
+            font-weight: 300;
+            text-align: right;
+        }
+
+        .wishlist-count span {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            display: block;
+            margin-top: 0.5rem;
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            background: var(--white);
+        }
+
+        .breadcrumb a {
+            color: var(--dark-black);
+            text-decoration: none;
+            opacity: 0.7;
+            transition: opacity 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            opacity: 1;
+            color: var(--primary-blue);
+        }
+
+        .breadcrumb span {
+            margin: 0 0.5rem;
+            opacity: 0.5;
+        }
+
+        /* Wishlist Container */
+        .wishlist-container {
+            max-width: 1400px;
+            margin: 3rem auto 5rem;
+            padding: 0 2rem;
+        }
+
+        .wishlist-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .action-btn {
+            padding: 0.8rem 1.5rem;
+            border: 1px solid var(--secondary-peach);
+            background: transparent;
+            color: var(--primary-blue);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .action-btn:hover {
+            background: var(--light-peach);
+        }
+
+        .action-btn.danger {
+            border-color: #dc3545;
+            color: #dc3545;
+        }
+
+        .action-btn.danger:hover {
+            background: #dc3545;
+            color: var(--white);
+        }
+
+        /* Wishlist Grid */
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .wishlist-card {
+            background: var(--white);
+            overflow: hidden;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .wishlist-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .wishlist-image {
+            width: 100%;
+            height: 350px;
+            overflow: hidden;
+            position: relative;
+            background: var(--light-peach);
+        }
+
+        .wishlist-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .wishlist-card:hover .wishlist-image img {
+            transform: scale(1.1);
+        }
+
+        .wishlist-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.4rem 1rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            z-index: 2;
+        }
+
+        .wishlist-actions-overlay {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 2;
+        }
+
+        .icon-btn {
+            width: 45px;
+            height: 45px;
+            background: var(--white);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .icon-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .icon-btn.remove:hover {
+            background: #dc3545;
+            color: var(--white);
+        }
+
+        .wishlist-info {
+            padding: 1.5rem;
+        }
+
+        .wishlist-category {
+            font-size: 0.85rem;
+            color: var(--dark-black);
+            opacity: 0.6;
+            letter-spacing: 1px;
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .wishlist-name {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .wishlist-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            color: #FFD700;
+            font-size: 0.9rem;
+        }
+
+        .rating-count {
+            font-size: 0.85rem;
+            color: var(--dark-black);
+            opacity: 0.6;
+        }
+
+        .wishlist-price {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: 400;
+            color: var(--primary-blue);
+        }
+
+        .original-price {
+            font-size: 1.1rem;
+            color: var(--dark-black);
+            opacity: 0.5;
+            text-decoration: line-through;
+        }
+
+        .discount-badge {
+            background: #4CAF50;
+            color: white;
+            padding: 0.3rem 0.6rem;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+        }
+
+        .wishlist-description {
+            font-size: 0.9rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 0.8rem;
+        }
+
+        .add-to-cart-btn {
+            flex: 1;
+            padding: 1rem;
+            background: var(--secondary-peach);
+            color: var(--primary-blue);
+            border: 2px solid var(--secondary-peach);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .add-to-cart-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+        }
+
+        .view-details-btn {
+            padding: 1rem 1.5rem;
+            background: transparent;
+            color: var(--primary-blue);
+            border: 2px solid var(--secondary-peach);
+            font-family: 'Georgia', serif;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-details-btn:hover {
+            background: var(--light-peach);
+        }
+
+        /* Stock Status */
+        .stock-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--light-peach);
+        }
+
+        .stock-status.in-stock {
+            color: #4CAF50;
+        }
+
+        .stock-status.low-stock {
+            color: #FF9800;
+        }
+
+        .stock-status.out-of-stock {
+            color: #dc3545;
+        }
+
+        /* Empty State */
+        .empty-state {
+            background: var(--white);
+            padding: 5rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+        }
+
+        .empty-icon {
+            font-size: 6rem;
+            color: var(--secondary-peach);
+            margin-bottom: 2rem;
+        }
+
+        .empty-title {
+            font-size: 2rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .empty-text {
+            font-size: 1.1rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+            margin-bottom: 2rem;
+        }
+
+        .shop-now-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--secondary-peach);
+            color: var(--primary-blue);
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 1rem;
+            transition: all 0.4s ease;
+            border: 2px solid var(--secondary-peach);
+        }
+
+        .shop-now-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            border-color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(7, 32, 63, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .wishlist-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 2rem;
+                text-align: center;
+            }
+
+            .wishlist-count {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .header-left h1 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            .wishlist-count {
+                font-size: 3rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .wishlist-actions {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .action-buttons {
+                flex-direction: column;
+            }
+
+            .action-btn {
+                justify-content: center;
+            }
+
+            .card-actions {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo img {
+                height: 50px;
+            }
+
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .wishlist-image {
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="logo">
+                <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="/">Home</a></li>
+                <li><a href="/#collections">Collections</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="fas fa-shopping-bag"></i></a>
+                <a href="/profile.html"><i class="fas fa-user"></i></a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1>MY WISHLIST</h1>
+                <p>Your favorite silver jewelry pieces</p>
+            </div>
+            <div class="wishlist-count">
+                <div id="itemCount">6</div>
+                <span>Items Saved</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <a href="/">Home</a>
+        <span>/</span>
+        <a href="/profile.html">Profile</a>
+        <span>/</span>
+        <span>My Wishlist</span>
+    </div>
+
+    <!-- Wishlist Container -->
+    <div class="wishlist-container">
+        <div class="wishlist-actions">
+            <div class="action-buttons">
+                <button class="action-btn" onclick="moveAllToCart()">
+                    <i class="fas fa-shopping-cart"></i> Move All to Cart
+                </button>
+                <button class="action-btn" onclick="shareWishlist()">
+                    <i class="fas fa-share-alt"></i> Share Wishlist
+                </button>
+            </div>
+            <div class="action-buttons">
+                <button class="action-btn danger" onclick="clearWishlist()">
+                    <i class="fas fa-trash"></i> Clear All
+                </button>
+            </div>
+        </div>
+
+        <div class="wishlist-grid" id="wishlistGrid">
+            <!-- Wishlist Card 1 -->
+            <div class="wishlist-card">
+                <div class="wishlist-image">
+                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Silver Ring">
+                    <div class="wishlist-badge">NEW ARRIVAL</div>
+                    <div class="wishlist-actions-overlay">
+                        <button class="icon-btn remove" onclick="removeFromWishlist(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="icon-btn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="wishlist-info">
+                    <div class="wishlist-category">Rings</div>
+                    <h3 class="wishlist-name">Eternal Elegance Ring</h3>
+                    <div class="wishlist-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(124 reviews)</span>
+                    </div>
+                    <div class="stock-status in-stock">
+                        <i class="fas fa-check-circle"></i> In Stock
+                    </div>
+                    <div class="wishlist-price">
+                        <span class="current-price">₹2,499</span>
+                        <span class="original-price">₹3,499</span>
+                        <span class="discount-badge">30% OFF</span>
+                    </div>
+                    <p class="wishlist-description">
+                        Exquisite 925 sterling silver ring with intricate design, perfect for everyday elegance.
+                    </p>
+                    <div class="card-actions">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="view-details-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishlist Card 2 -->
+            <div class="wishlist-card">
+                <div class="wishlist-image">
+                    <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=600&q=80" alt="Silver Necklace">
+                    <div class="wishlist-badge">BESTSELLER</div>
+                    <div class="wishlist-actions-overlay">
+                        <button class="icon-btn remove" onclick="removeFromWishlist(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="icon-btn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="wishlist-info">
+                    <div class="wishlist-category">Necklaces</div>
+                    <h3 class="wishlist-name">Classic Chain Necklace</h3>
+                    <div class="wishlist-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(89 reviews)</span>
+                    </div>
+                    <div class="stock-status in-stock">
+                        <i class="fas fa-check-circle"></i> In Stock
+                    </div>
+                    <div class="wishlist-price">
+                        <span class="current-price">₹3,999</span>
+                    </div>
+                    <p class="wishlist-description">
+                        Timeless 925 sterling silver chain necklace with delicate craftsmanship and adjustable length.
+                    </p>
+                    <div class="card-actions">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="view-details-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishlist Card 3 -->
+            <div class="wishlist-card">
+                <div class="wishlist-image">
+                    <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80" alt="Silver Earrings">
+                    <div class="wishlist-actions-overlay">
+                        <button class="icon-btn remove" onclick="removeFromWishlist(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="icon-btn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="wishlist-info">
+                    <div class="wishlist-category">Earrings</div>
+                    <h3 class="wishlist-name">Pearl Drop Earrings</h3>
+                    <div class="wishlist-rating">
+                        <div class="stars">★★★★☆</div>
+                        <span class="rating-count">(56 reviews)</span>
+                    </div>
+                    <div class="stock-status low-stock">
+                        <i class="fas fa-exclamation-circle"></i> Only 3 left
+                    </div>
+                    <div class="wishlist-price">
+                        <span class="current-price">₹1,899</span>
+                        <span class="original-price">₹2,299</span>
+                        <span class="discount-badge">17% OFF</span>
+                    </div>
+                    <p class="wishlist-description">
+                        Elegant pearl drop earrings in 925 sterling silver, featuring lustrous pearls and secure hooks.
+                    </p>
+                    <div class="card-actions">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="view-details-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishlist Card 4 -->
+            <div class="wishlist-card">
+                <div class="wishlist-image">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Silver Bracelet">
+                    <div class="wishlist-badge">TRENDING</div>
+                    <div class="wishlist-actions-overlay">
+                        <button class="icon-btn remove" onclick="removeFromWishlist(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="icon-btn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="wishlist-info">
+                    <div class="wishlist-category">Bracelets</div>
+                    <h3 class="wishlist-name">Silver Chain Bracelet</h3>
+                    <div class="wishlist-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(142 reviews)</span>
+                    </div>
+                    <div class="stock-status in-stock">
+                        <i class="fas fa-check-circle"></i> In Stock
+                    </div>
+                    <div class="wishlist-price">
+                        <span class="current-price">₹2,799</span>
+                        <span class="original-price">₹3,499</span>
+                        <span class="discount-badge">20% OFF</span>
+                    </div>
+                    <p class="wishlist-description">
+                        Sophisticated 925 sterling silver chain bracelet with adjustable clasp for perfect fit.
+                    </p>
+                    <div class="card-actions">
+                        <button class="add-to-cart-btn">
+                            <i class="fas fa-shopping-cart"></i> Add to Cart
+                        </button>
+                        <button class="view-details-btn">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishlist Card 5 -->
+            <div class="wishlist-card">
+                <div class="wishlist-image">
+                    <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80" alt="Silver Pendant">
+                    <div class="wishlist-actions-overlay">
+                        <button class="icon-btn remove" onclick="removeFromWishlist(this)">
+                            <i class="fas fa-times"></i>
+                        </button>
+                        <button class="icon-btn">
+                            <i class="fas fa-share-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="wishlist-info">
+                    <div class="wishlist-category">Pendants</div>
+                    <h3 class="wishlist-name">Heart Pendant Necklace</h3>
+                    <div class="wishlist-rating">
+                        <div class="stars">★★★★★</div>
+                        <span class="rating-count">(98 reviews)</span>
+                    </div>
+                    <div class="stock-status in-stock">
+                        <i class="fas fa-check-circle"></i> In Stock
+                    </div>
+                    <div class="wishlist-price">
+                        <span class="current-price">₹3,299</span>
+                    </div>
+                    <p class="wishlist-description">
+                        Beautiful heart-shaped pendant in 925
