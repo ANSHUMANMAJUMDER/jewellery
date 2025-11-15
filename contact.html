@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - ETTHNICOAST</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #EBDED4;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --light-peach: #F8E3D2;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--dark-black);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-black);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons a {
+            color: var(--dark-black);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .contact-hero {
+            margin-top: 80px;
+            height: 50vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M20,50 Q40,20 60,50 T100,50" stroke="rgba(255,255,255,0.03)" fill="none" stroke-width="2"/></svg>');
+            opacity: 0.3;
+        }
+
+        .contact-hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .contact-hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .contact-hero p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        /* Contact Main Section */
+        .contact-main {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+        }
+
+        /* Contact Form */
+        .contact-form-section h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-form-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.85;
+            margin-bottom: 3rem;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid var(--secondary-peach);
+            background: var(--white);
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            color: var(--dark-black);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(7, 32, 63, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            padding: 1.2rem;
+            background: var(--secondary-peach);
+            color: var(--primary-blue);
+            border: 2px solid var(--secondary-peach);
+            font-family: 'Georgia', serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            font-weight: 400;
+        }
+
+        .submit-button:hover {
+            background: transparent;
+            color: var(--secondary-peach);
+            border-color: var(--secondary-peach);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(235, 222, 212, 0.3);
+        }
+
+        /* Contact Info */
+        .contact-info h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+        }
+
+        .info-card {
+            background: var(--light-peach);
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .info-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--dark-black);
+            opacity: 0.85;
+        }
+
+        .info-card a {
+            color: var(--primary-blue);
+            text-decoration: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .info-card a:hover {
+            opacity: 0.7;
+        }
+
+        /* Hours Section */
+        .hours-section {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 6rem 2rem;
+        }
+
+        .hours-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .hours-container h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 3rem;
+        }
+
+        .hours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hours-item {
+            padding: 2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .hours-item:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: var(--secondary-peach);
+        }
+
+        .hours-item h4 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+        }
+
+        .hours-item p {
+            font-size: 1rem;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+
+        /* Map Section */
+        .map-section {
+            padding: 6rem 2rem;
+            background: var(--secondary-peach);
+        }
+
+        .map-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .map-container h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+        }
+
+        .map-container p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.85;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .map-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a3d6e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .faq-container h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .faq-item {
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--secondary-peach);
+            padding-bottom: 2rem;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-question {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            opacity: 0.7;
+        }
+
+        .faq-answer {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.85;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            background: #4CAF50;
+            color: white;
+            padding: 1rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
+        }
+
+        .success-message.show {
+            display: block;
+            animation: fadeInUp 0.5s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 4rem;
+            }
+
+            .hours-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(48deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .contact-hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .contact-form-section h2,
+            .contact-info h2,
+            .hours-container h2,
+            .map-container h2,
+            .faq-container h2 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .map-placeholder {
+                height: 300px;
+                font-size: 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .contact-hero h1 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
+            .contact-form-section h2,
+            .contact-info h2,
+            .hours-container h2,
+            .map-container h2,
+            .faq-container h2 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .info-card {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+                     <a href="/" class="logo">
+    <img src="./assets/logo_1.png" alt="Ethnicoast Logo">
+</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#collections">Collections</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html" class="active">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a>🔍</a>
+                <a>🛍️</a>
+                <a>👤</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="contact-hero">
+        <div class="contact-hero-content">
+            <h1>GET IN TOUCH</h1>
+            <p>WE'RE HERE TO HELP</p>
+        </div>
+    </section>
+
+    <!-- Contact Main Section -->
+    <section class="contact-main">
+        <div class="contact-grid">
+            <!-- Contact Form -->
+            <div class="contact-form-section">
+                <h2>SEND US A MESSAGE</h2>
+                <p>Have a question or special request? Fill out the form below and our team will get back to you within 24 hours.</p>
+                
+                <div class="success-message" id="successMessage">
+                    Thank you! Your message has been sent successfully.
+                </div>
+
+                <form id="contactForm">
+                    <div class="form-group">
+                        <label for="name">FULL NAME *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">EMAIL ADDRESS *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">PHONE NUMBER</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="subject">SUBJECT *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="">Select a subject</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="product">Product Question</option>
+                            <option value="order">Order Status</option>
+                            <option value="custom">Custom Design</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">MESSAGE *</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-button">SEND MESSAGE</button>
+                </form>
+            </div>
+
+            <!-- Contact Info -->
+            <div class="contact-info">
+                <h2>CONTACT INFO</h2>
+
+                <div class="info-card">
+                    <div class="info-icon">📍</div>
+                    <h3>VISIT US</h3>
+                    <p>123 Luxury Avenue<br>Beverly Hills, CA 90210<br>United States</p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📧</div>
+                    <h3>EMAIL</h3>
+                    <p>
+                        <a href="mailto:info@etthnicoast.com">info@etthnicoast.com</a><br>
+                        <a href="mailto:support@etthnicoast.com">support@etthnicoast.com</a>
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">📞</div>
+                    <h3>PHONE</h3>
+                    <p>
+                        <a href="tel:+18001234567">+1 (800) 123-4567</a><br>
+                        Monday - Saturday: 9 AM - 6 PM PST
+                    </p>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-icon">💬</div>
+                    <h3>SOCIAL MEDIA</h3>
+                    <p>Follow us on Instagram, Facebook, and Pinterest for the latest collections and behind-the-scenes content.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hours Section -->
+    <section class="hours-section">
+        <div class="hours-container">
+            <h2>SHOWROOM HOURS</h2>
+            <div class="hours-grid">
+                <div class="hours-item">
+                    <h4>WEEKDAYS</h4>
+                    <p>Monday - Friday<br>10:00 AM - 7:00 PM</p>
+                </div>
+                <div class="hours-item">
+                    <h4>WEEKEND</h4>
+                    <p>Saturday<br>11:00 AM - 6:00 PM<br><br>Sunday<br>Closed</p>
+                </div>
+                <div class="hours-item">
+                    <h4>APPOINTMENTS</h4>
+                    <p>Private consultations available by appointment<br>Email or call to schedule</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <section class="map-section">
+        <div class="map-container">
+            <h2>FIND US</h2>
+            <p>Visit our flagship showroom to experience our collections in person. Our expert consultants are ready to help you find the perfect piece.</p>
+            <div class="map-placeholder">
+                📍 MAP LOCATION
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="faq-container">
+            <h2>FREQUENTLY ASKED QUESTIONS</h2>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you offer custom designs?
+                </div>
+                <div class="faq-answer">
+                    Yes! We specialize in creating bespoke jewelry pieces. Contact us to schedule a consultation with our design team.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What is your return policy?
+                </div>
+                <div class="faq-answer">
+                    We offer a 30-day return policy for all unworn items in their original condition. Custom pieces are final sale.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    Do you ship internationally?
+                </div>
+                <div class="faq-answer">
+                    Yes, we ship worldwide with complimentary shipping on all orders. Delivery times vary by location.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    How do I care for my jewelry?
+                </div>
+                <div class="faq-answer">
+                    Each piece comes with detailed care instructions. We also offer professional cleaning and maintenance services.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <div class="faq-question">
+                    What materials do you use?
+                </div>
+                <div class="faq-answer">
+                    We use only the finest precious metals and ethically sourced gemstones, including 18k gold, platinum, and certified diamonds.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>ABOUT US</h4>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html">Craftsmanship</a></li>
+                    <li><a href="about.html">Sustainability</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CUSTOMER CARE</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a>Shipping Info</a></li>
+                    <li><a>Returns</a></li>
+                    <li><a>FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CONNECT</h4>
+                <ul>
+                    <li><a>Instagram</a></li>
+                    <li><a>Facebook</a></li>
+                    <li><a>Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>NEWSLETTER</h4>
+                <p>Subscribe to receive exclusive offers and updates</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        const successMessage = document.getElementById('successMessage');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Show success message
+            successMessage.classList.add('show');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide success message after 5 seconds
+            setTimeout(() => {
+                successMessage.classList.remove('show');
+            }, 5000);
+            
+            // Scroll to top to show message
+            window.scrollTo({
+                top: document.querySelector('.contact-main').offsetTop - 100,
+                behavior: 'smooth'
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'var(--white)';
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>

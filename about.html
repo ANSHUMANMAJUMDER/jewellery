@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - ETTHNICOAST</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #EBDED4;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --light-peach: #F8E3D2;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            color: var(--dark-black);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--white);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 300;
+            letter-spacing: 3px;
+            color: var(--primary-blue);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-black);
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-blue);
+        }
+
+        .nav-icons {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-icons a {
+            color: var(--dark-black);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .nav-icons a:hover {
+            color: var(--primary-blue);
+        }
+
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .about-hero {
+            margin-top: 80px;
+            height: 60vh;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><path d="M20,50 Q40,20 60,50 T100,50" stroke="rgba(255,255,255,0.03)" fill="none" stroke-width="2"/></svg>');
+            opacity: 0.3;
+        }
+
+        .about-hero-content {
+            text-align: center;
+            color: var(--white);
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .about-hero h1 {
+            font-size: 4rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+        }
+
+        .about-hero p {
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            margin-bottom: 4rem;
+        }
+
+        .story-image {
+            width: 100%;
+            height: 500px;
+            background: var(--secondary-peach);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(7, 32, 63, 0.1) 0%, rgba(235, 222, 212, 0.3) 100%);
+        }
+
+        .story-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+        }
+
+        .story-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.85;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Values Section */
+        .values-section {
+            background: var(--light-peach);
+            padding: 6rem 2rem;
+        }
+
+        .values-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .values-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 4rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .value-card {
+            background: var(--white);
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 2rem;
+            background: var(--primary-blue);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-size: 2rem;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .value-card p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--dark-black);
+            opacity: 0.8;
+        }
+
+        /* Craftsmanship Section */
+        .craftsmanship-section {
+            padding: 6rem 2rem;
+            background: var(--white);
+        }
+
+        .craftsmanship-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .craftsmanship-header {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+        }
+
+        .craftsmanship-header h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .craftsmanship-header p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.85;
+        }
+
+        .craftsmanship-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .craft-feature {
+            padding: 2rem;
+            border: 1px solid var(--secondary-peach);
+            transition: all 0.3s ease;
+        }
+
+        .craft-feature:hover {
+            background: var(--light-peach);
+            border-color: var(--primary-blue);
+        }
+
+        .craft-feature h4 {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .craft-feature p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: var(--dark-black);
+            opacity: 0.8;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 6rem 2rem;
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .team-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .team-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: 1.5rem;
+        }
+
+        .team-subtitle {
+            text-align: center;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+            opacity: 0.9;
+            margin-bottom: 4rem;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .team-member {
+            text-align: center;
+        }
+
+        .team-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: var(--secondary-peach);
+            margin: 0 auto 1.5rem;
+            border: 3px solid var(--white);
+        }
+
+        .team-member h4 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+        }
+
+        .team-member p {
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+            opacity: 0.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 6rem 2rem;
+            background: var(--secondary-peach);
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 2rem;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.85;
+            margin-bottom: 3rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            transition: all 0.4s ease;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--primary-blue);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(7, 32, 63, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            opacity: 1;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 968px) {
+            .story-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .story-image {
+                height: 400px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 80px;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
+                padding: 2rem 0;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hamburger.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .hamburger.active span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .about-hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: 4px;
+            }
+
+            .about-hero p {
+                font-size: 1rem;
+            }
+
+            .story-content h2,
+            .values-title,
+            .craftsmanship-header h2,
+            .team-title,
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+
+            .nav-container {
+                padding: 1rem;
+            }
+
+            .team-photo {
+                width: 150px;
+                height: 150px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .about-hero h1 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            .logo {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.85rem;
+            }
+
+            .story-content h2,
+            .values-title,
+            .craftsmanship-header h2,
+            .team-title,
+            .cta-content h2 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+        }
+           /* .logo img {
+    height: 100px; 
+    object-fit: contain;
+} */
+
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+                    <a href="/" class="logo">
+    <img src="./assets/logo_1.png" alt="Ethnicoast Logo">
+</a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#collections">Collections</a></li>
+                <li><a href="about.html" class="active">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <div class="nav-icons">
+                <a>🔍</a>
+                <a>🛍️</a>
+                <a>👤</a>
+            </div>
+            <div class="hamburger" id="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="about-hero">
+        <div class="about-hero-content">
+            <h1>OUR STORY</h1>
+            <p>CRAFTING TIMELESS BEAUTY SINCE 2020</p>
+        </div>
+    </section>
+
+    <!-- Story Section -->
+    <section class="story-section">
+        <div class="story-grid">
+            <div class="story-image"></div>
+            <div class="story-content">
+                <h2>THE BEGINNING</h2>
+                <p>Etthnicoast was born from a passion for creating jewelry that transcends time and trends. Our journey began with a simple vision: to craft pieces that tell stories, celebrate individuality, and honor the artistry of fine jewelry making.</p>
+                <p>Every piece we create is a testament to our commitment to excellence, combining traditional craftsmanship with contemporary design sensibilities.</p>
+            </div>
+        </div>
+
+        <div class="story-grid">
+            <div class="story-content">
+                <h2>OUR PHILOSOPHY</h2>
+                <p>We believe that jewelry is more than just an accessory—it's a form of self-expression, a connection to memories, and a legacy to pass down through generations.</p>
+                <p>Our philosophy centers on creating pieces that resonate with your personal story, designed to be cherished for a lifetime and beyond.</p>
+            </div>
+            <div class="story-image"></div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="values-container">
+            <h2 class="values-title">OUR VALUES</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">💎</div>
+                    <h3>QUALITY</h3>
+                    <p>We source only the finest materials and work with master craftsmen to ensure every piece meets our exacting standards of excellence.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🌿</div>
+                    <h3>SUSTAINABILITY</h3>
+                    <p>Our commitment to ethical sourcing and sustainable practices ensures that beauty doesn't come at the cost of our planet.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">✨</div>
+                    <h3>AUTHENTICITY</h3>
+                    <p>Each design reflects genuine artistry and attention to detail, creating pieces that are as unique as the people who wear them.</p>
+                </div>
+                <div class="value-card">
+                    <div class="value-icon">🤝</div>
+                    <h3>INTEGRITY</h3>
+                    <p>We build lasting relationships with our customers through transparency, honesty, and unwavering commitment to their satisfaction.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Craftsmanship Section -->
+    <section class="craftsmanship-section">
+        <div class="craftsmanship-container">
+            <div class="craftsmanship-header">
+                <h2>EXCEPTIONAL CRAFTSMANSHIP</h2>
+                <p>Every Etthnicoast piece is a masterwork of precision and artistry. Our artisans bring decades of experience and an unwavering commitment to perfection in every creation.</p>
+            </div>
+            <div class="craftsmanship-features">
+                <div class="craft-feature">
+                    <h4>Hand-Selected Materials</h4>
+                    <p>We personally inspect and select each gemstone and precious metal to ensure uncompromising quality.</p>
+                </div>
+                <div class="craft-feature">
+                    <h4>Artisan Techniques</h4>
+                    <p>Traditional methods passed down through generations combine with modern innovation.</p>
+                </div>
+                <div class="craft-feature">
+                    <h4>Meticulous Detail</h4>
+                    <p>Every curve, setting, and finish is perfected through hours of dedicated craftsmanship.</p>
+                </div>
+                <div class="craft-feature">
+                    <h4>Quality Assurance</h4>
+                    <p>Multiple inspection stages ensure every piece meets our highest standards before reaching you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="team-container">
+            <h2 class="team-title">MEET OUR TEAM</h2>
+            <p class="team-subtitle">The artisans and visionaries behind Etthnicoast</p>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="team-photo"></div>
+                    <h4>SOPHIA ANDERSON</h4>
+                    <p>Founder & Creative Director</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo"></div>
+                    <h4>MARCUS CHEN</h4>
+                    <p>Master Jeweler</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo"></div>
+                    <h4>ELENA RODRIGUEZ</h4>
+                    <p>Design Lead</p>
+                </div>
+                <div class="team-member">
+                    <div class="team-photo"></div>
+                    <h4>JAMES WILLIAMS</h4>
+                    <p>Quality Director</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2>DISCOVER OUR COLLECTION</h2>
+            <p>Experience the artistry and elegance that defines Etthnicoast. Each piece is waiting to become part of your story.</p>
+            <a href="index.html#collections" class="cta-button">EXPLORE COLLECTIONS</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h4>ABOUT US</h4>
+                <ul>
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html">Craftsmanship</a></li>
+                    <li><a href="about.html">Sustainability</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CUSTOMER CARE</h4>
+                <ul>
+                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a>Shipping Info</a></li>
+                    <li><a>Returns</a></li>
+                    <li><a>FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CONNECT</h4>
+                <ul>
+                    <li><a>Instagram</a></li>
+                    <li><a>Facebook</a></li>
+                    <li><a>Pinterest</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>NEWSLETTER</h4>
+                <p>Subscribe to receive exclusive offers and updates</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Navbar background on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.style.background = 'rgba(255, 255, 255, 0.98)';
+                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
+            } else {
+                nav.style.background = 'var(--white)';
+                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+</html>
