@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - ETTHNICOAST</title>
+    <title>Contact Us - ETHNICOAST</title>
     <style>
         * {
             margin: 0;
@@ -27,7 +26,6 @@
             overflow-x: hidden;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -47,12 +45,11 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--primary-blue);
-            text-decoration: none;
+        .logo img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
 
         .nav-links {
@@ -105,11 +102,11 @@
             transition: all 0.3s ease;
         }
 
-        /* Hero Section */
         .contact-hero {
             margin-top: 80px;
             height: 50vh;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
+            background: linear-gradient(135deg, rgba(7, 32, 63, 0.95) 0%, rgba(10, 45, 84, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=1600&h=900&fit=crop') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -148,7 +145,6 @@
             animation: fadeInUp 1s ease 0.3s both;
         }
 
-        /* Contact Main Section */
         .contact-main {
             padding: 6rem 2rem;
             max-width: 1400px;
@@ -161,7 +157,6 @@
             gap: 5rem;
         }
 
-        /* Contact Form */
         .contact-form-section h2 {
             font-size: 2.5rem;
             font-weight: 300;
@@ -170,7 +165,7 @@
             margin-bottom: 1.5rem;
         }
 
-        .contact-form-section p {
+        .contact-form-section > p {
             font-size: 1rem;
             line-height: 1.8;
             color: var(--dark-black);
@@ -180,6 +175,7 @@
 
         .form-group {
             margin-bottom: 2rem;
+            position: relative;
         }
 
         .form-group label {
@@ -191,17 +187,34 @@
             font-weight: 400;
         }
 
+        .form-group i {
+            position: absolute;
+            right: 1rem;
+            top: 3.2rem;
+            color: var(--primary-blue);
+            opacity: 0.5;
+            transition: opacity 0.3s ease;
+        }
+
+        .form-group input:focus ~ i,
+        .form-group textarea:focus ~ i,
+        .form-group select:focus ~ i {
+            opacity: 1;
+        }
+
         .form-group input,
         .form-group textarea,
         .form-group select {
             width: 100%;
             padding: 1rem;
-            border: 1px solid var(--secondary-peach);
+            padding-right: 3rem;
+            border: 2px solid var(--secondary-peach);
             background: var(--white);
             font-family: 'Georgia', serif;
             font-size: 1rem;
             color: var(--dark-black);
             transition: all 0.3s ease;
+            border-radius: 4px;
         }
 
         .form-group input:focus,
@@ -220,26 +233,29 @@
         .submit-button {
             width: 100%;
             padding: 1.2rem;
-            background: var(--secondary-peach);
-            color: var(--primary-blue);
-            border: 2px solid var(--secondary-peach);
+            background: var(--primary-blue);
+            color: var(--white);
+            border: 2px solid var(--primary-blue);
             font-family: 'Georgia', serif;
             font-size: 1rem;
             letter-spacing: 2px;
             cursor: pointer;
             transition: all 0.4s ease;
             font-weight: 400;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
         }
 
         .submit-button:hover {
             background: transparent;
-            color: var(--secondary-peach);
-            border-color: var(--secondary-peach);
+            color: var(--primary-blue);
             transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(235, 222, 212, 0.3);
+            box-shadow: 0 10px 30px rgba(7, 32, 63, 0.3);
         }
 
-        /* Contact Info */
         .contact-info h2 {
             font-size: 2.5rem;
             font-weight: 300;
@@ -253,24 +269,31 @@
             padding: 2.5rem;
             margin-bottom: 2rem;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-blue);
         }
 
         .info-card:hover {
-            transform: translateY(-5px);
+            transform: translateX(5px);
             box-shadow: 0 15px 30px rgba(0,0,0,0.1);
         }
 
         .info-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary-blue);
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             margin-bottom: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+
+        .info-card:hover .info-icon {
+            transform: scale(1.1) rotate(5deg);
         }
 
         .info-card h3 {
@@ -292,13 +315,37 @@
             color: var(--primary-blue);
             text-decoration: none;
             transition: opacity 0.3s ease;
+            font-weight: 500;
         }
 
         .info-card a:hover {
             opacity: 0.7;
+            text-decoration: underline;
         }
 
-        /* Hours Section */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-blue);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--dark-black);
+            transform: translateY(-3px);
+        }
+
         .hours-section {
             background: var(--primary-blue);
             color: var(--white);
@@ -320,22 +367,48 @@
 
         .hours-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 3rem;
-            max-width: 900px;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .hours-item {
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 2px solid rgba(255,255,255,0.1);
             transition: all 0.3s ease;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hours-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--secondary-peach);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .hours-item:hover::before {
+            transform: scaleX(1);
         }
 
         .hours-item:hover {
             background: rgba(255,255,255,0.1);
             border-color: var(--secondary-peach);
+            transform: translateY(-5px);
+        }
+
+        .hours-item i {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--secondary-peach);
         }
 
         .hours-item h4 {
@@ -351,7 +424,6 @@
             line-height: 1.8;
         }
 
-        /* Map Section */
         .map-section {
             padding: 6rem 2rem;
             background: var(--secondary-peach);
@@ -371,7 +443,7 @@
             margin-bottom: 2rem;
         }
 
-        .map-container p {
+        .map-container > p {
             font-size: 1.1rem;
             line-height: 1.8;
             color: var(--dark-black);
@@ -384,17 +456,52 @@
 
         .map-placeholder {
             width: 100%;
-            height: 400px;
+            height: 450px;
             background: linear-gradient(135deg, var(--primary-blue) 0%, #0a3d6e 100%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
             color: var(--white);
-            font-size: 1.5rem;
-            letter-spacing: 2px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            position: relative;
+            overflow: hidden;
         }
 
-        /* FAQ Section */
+        .map-placeholder::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            animation: mapGrid 20s linear infinite;
+        }
+
+        @keyframes mapGrid {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(30px, 30px); }
+        }
+
+        .map-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+
+        .map-placeholder p {
+            font-size: 1.5rem;
+            letter-spacing: 2px;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
         .faq-section {
             padding: 6rem 2rem;
             background: var(--white);
@@ -415,29 +522,43 @@
         }
 
         .faq-item {
-            margin-bottom: 2rem;
-            border-bottom: 1px solid var(--secondary-peach);
-            padding-bottom: 2rem;
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--secondary-peach);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        .faq-item:last-child {
-            border-bottom: none;
+        .faq-item:hover {
+            border-color: var(--primary-blue);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .faq-question {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             font-weight: 400;
             letter-spacing: 1px;
             color: var(--primary-blue);
-            margin-bottom: 1rem;
+            padding: 1.5rem 2rem;
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            background: var(--light-peach);
+            transition: background 0.3s ease;
         }
 
         .faq-question:hover {
-            opacity: 0.7;
+            background: var(--secondary-peach);
+        }
+
+        .faq-question i {
+            transition: transform 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
         }
 
         .faq-answer {
@@ -445,9 +566,41 @@
             line-height: 1.8;
             color: var(--dark-black);
             opacity: 0.85;
+            padding: 0 2rem;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
 
-        /* Footer */
+        .faq-item.active .faq-answer {
+            padding: 1.5rem 2rem;
+            max-height: 300px;
+        }
+
+        .success-message {
+            display: none;
+            background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+            color: white;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .success-message i {
+            margin-right: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .success-message.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: fadeInUp 0.5s ease;
+        }
+
         footer {
             background: var(--primary-blue);
             color: var(--white);
@@ -497,23 +650,6 @@
             font-size: 0.9rem;
         }
 
-        /* Success Message */
-        .success-message {
-            display: none;
-            background: #4CAF50;
-            color: white;
-            padding: 1rem;
-            margin-bottom: 2rem;
-            text-align: center;
-            letter-spacing: 1px;
-        }
-
-        .success-message.show {
-            display: block;
-            animation: fadeInUp 0.5s ease;
-        }
-
-        /* Animations */
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -525,7 +661,6 @@
             }
         }
 
-        /* Mobile Responsive */
         @media (max-width: 968px) {
             .contact-grid {
                 grid-template-columns: 1fr;
@@ -560,7 +695,7 @@
             }
 
             .hamburger.active span:nth-child(1) {
-                transform: rotate(48deg) translate(8px, 8px);
+                transform: rotate(45deg) translate(8px, 8px);
             }
 
             .hamburger.active span:nth-child(2) {
@@ -590,6 +725,13 @@
 
             .map-placeholder {
                 height: 300px;
+            }
+
+            .map-placeholder i {
+                font-size: 3rem;
+            }
+
+            .map-placeholder p {
                 font-size: 1.2rem;
             }
         }
@@ -600,9 +742,8 @@
                 letter-spacing: 3px;
             }
 
-            .logo {
-                font-size: 1.4rem;
-                letter-spacing: 2px;
+            .logo img {
+                height: 50px;
             }
 
             .contact-form-section h2,
@@ -617,34 +758,39 @@
             .info-card {
                 padding: 1.5rem;
             }
-        }
-        .logo img {
-   height: 70px;  /* adjust as per navbar height */
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
 
+            .faq-question {
+                font-size: 1rem;
+                padding: 1rem 1.5rem;
+            }
+
+            .faq-answer {
+                padding: 0 1.5rem;
+            }
+
+            .faq-item.active .faq-answer {
+                padding: 1rem 1.5rem;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
     <nav>
         <div class="nav-container">
-                     <a href="/" class="logo">
-    <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
-</a>
+            <a href="/" class="logo">
+                <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#collections">Collections</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html" class="active">Contact</a></li>
             </ul>
-           <div class="nav-icons">
-    <a href="#"><i class="fas fa-search"></i></a>
-   <a href="./orders.html"><i class="fas fa-shopping-bag"></i></a>
+            <div class="nav-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="./orders.html"><i class="fas fa-shopping-bag"></i></a>
                 <a href="./profile.html"><i class="fas fa-user"></i></a>
-</div>
+            </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -653,7 +799,6 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="contact-hero">
         <div class="contact-hero-content">
             <h1>GET IN TOUCH</h1>
@@ -661,32 +806,34 @@
         </div>
     </section>
 
-    <!-- Contact Main Section -->
     <section class="contact-main">
         <div class="contact-grid">
-            <!-- Contact Form -->
             <div class="contact-form-section">
                 <h2>SEND US A MESSAGE</h2>
                 <p>Have a question or special request? Fill out the form below and our team will get back to you within 24 hours.</p>
                 
                 <div class="success-message" id="successMessage">
-                    Thank you! Your message has been sent successfully.
+                    <i class="fas fa-check-circle"></i>
+                    <span>Thank you! Your message has been sent successfully.</span>
                 </div>
 
                 <form id="contactForm">
                     <div class="form-group">
                         <label for="name">FULL NAME *</label>
                         <input type="text" id="name" name="name" required>
+                        <i class="fas fa-user"></i>
                     </div>
 
                     <div class="form-group">
                         <label for="email">EMAIL ADDRESS *</label>
                         <input type="email" id="email" name="email" required>
+                        <i class="fas fa-envelope"></i>
                     </div>
 
                     <div class="form-group">
                         <label for="phone">PHONE NUMBER</label>
                         <input type="tel" id="phone" name="phone">
+                        <i class="fas fa-phone"></i>
                     </div>
 
                     <div class="form-group">
@@ -699,38 +846,42 @@
                             <option value="custom">Custom Design</option>
                             <option value="other">Other</option>
                         </select>
+                        <i class="fas fa-chevron-down"></i>
                     </div>
 
                     <div class="form-group">
                         <label for="message">MESSAGE *</label>
                         <textarea id="message" name="message" required></textarea>
+                        <i class="fas fa-comment-dots"></i>
                     </div>
 
-                    <button type="submit" class="submit-button">SEND MESSAGE</button>
+                    <button type="submit" class="submit-button">
+                        <i class="fas fa-paper-plane"></i>
+                        SEND MESSAGE
+                    </button>
                 </form>
             </div>
 
-            <!-- Contact Info -->
             <div class="contact-info">
                 <h2>CONTACT INFO</h2>
 
                 <div class="info-card">
-                    <div class="info-icon">📍</div>
+                    <div class="info-icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h3>VISIT US</h3>
                     <p>123 Luxury Avenue<br>Beverly Hills, CA 90210<br>United States</p>
                 </div>
 
                 <div class="info-card">
-                    <div class="info-icon">📧</div>
+                    <div class="info-icon"><i class="fas fa-envelope"></i></div>
                     <h3>EMAIL</h3>
                     <p>
-                        <a href="mailto:info@etthnicoast.com">info@etthnicoast.com</a><br>
-                        <a href="mailto:support@etthnicoast.com">support@etthnicoast.com</a>
+                        <a href="mailto:info@ethnicoast.com">info@ethnicoast.com</a><br>
+                        <a href="mailto:support@ethnicoast.com">support@ethnicoast.com</a>
                     </p>
                 </div>
 
                 <div class="info-card">
-                    <div class="info-icon">📞</div>
+                    <div class="info-icon"><i class="fas fa-phone-alt"></i></div>
                     <h3>PHONE</h3>
                     <p>
                         <a href="tel:+18001234567">+1 (800) 123-4567</a><br>
@@ -739,28 +890,36 @@
                 </div>
 
                 <div class="info-card">
-                    <div class="info-icon">💬</div>
+                    <div class="info-icon"><i class="fas fa-share-alt"></i></div>
                     <h3>SOCIAL MEDIA</h3>
-                    <p>Follow us on Instagram, Facebook, and Pinterest for the latest collections and behind-the-scenes content.</p>
+                    <p>Follow us for the latest collections and updates</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Hours Section -->
     <section class="hours-section">
         <div class="hours-container">
             <h2>SHOWROOM HOURS</h2>
             <div class="hours-grid">
                 <div class="hours-item">
+                    <i class="fas fa-calendar-week"></i>
                     <h4>WEEKDAYS</h4>
                     <p>Monday - Friday<br>10:00 AM - 7:00 PM</p>
                 </div>
                 <div class="hours-item">
+                    <i class="fas fa-calendar-day"></i>
                     <h4>WEEKEND</h4>
                     <p>Saturday<br>11:00 AM - 6:00 PM<br><br>Sunday<br>Closed</p>
                 </div>
                 <div class="hours-item">
+                    <i class="fas fa-clock"></i>
                     <h4>APPOINTMENTS</h4>
                     <p>Private consultations available by appointment<br>Email or call to schedule</p>
                 </div>
@@ -768,25 +927,25 @@
         </div>
     </section>
 
-    <!-- Map Section -->
     <section class="map-section">
         <div class="map-container">
             <h2>FIND US</h2>
             <p>Visit our flagship showroom to experience our collections in person. Our expert consultants are ready to help you find the perfect piece.</p>
             <div class="map-placeholder">
-                📍 MAP LOCATION
+                <i class="fas fa-map-marked-alt"></i>
+                <p>MAP LOCATION</p>
             </div>
         </div>
     </section>
 
-    <!-- FAQ Section -->
     <section class="faq-section">
         <div class="faq-container">
             <h2>FREQUENTLY ASKED QUESTIONS</h2>
 
             <div class="faq-item">
                 <div class="faq-question">
-                    Do you offer custom designs?
+                    <span>Do you offer custom designs?</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
                     Yes! We specialize in creating bespoke jewelry pieces. Contact us to schedule a consultation with our design team.
@@ -795,7 +954,8 @@
 
             <div class="faq-item">
                 <div class="faq-question">
-                    What is your return policy?
+                    <span>What is your return policy?</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
                     We offer a 30-day return policy for all unworn items in their original condition. Custom pieces are final sale.
@@ -804,7 +964,8 @@
 
             <div class="faq-item">
                 <div class="faq-question">
-                    Do you ship internationally?
+                    <span>Do you ship internationally?</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
                     Yes, we ship worldwide with complimentary shipping on all orders. Delivery times vary by location.
@@ -813,7 +974,8 @@
 
             <div class="faq-item">
                 <div class="faq-question">
-                    How do I care for my jewelry?
+                    <span>How do I care for my jewelry?</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
                     Each piece comes with detailed care instructions. We also offer professional cleaning and maintenance services.
@@ -822,7 +984,8 @@
 
             <div class="faq-item">
                 <div class="faq-question">
-                    What materials do you use?
+                    <span>What materials do you use?</span>
+                    <i class="fas fa-chevron-down"></i>
                 </div>
                 <div class="faq-answer">
                     We use only the finest precious metals and ethically sourced gemstones, including 18k gold, platinum, and certified diamonds.
@@ -831,7 +994,6 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -865,12 +1027,11 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
+            <p>&copy; 2024 ETHNICOAST. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
         const navLinks = document.getElementById('navLinks');
 
@@ -879,7 +1040,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // Close menu when clicking on a link
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
@@ -887,32 +1047,42 @@
             });
         });
 
-        // Form submission
+        const faqItems = document.querySelectorAll('.faq-item');
+        
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            
+            question.addEventListener('click', () => {
+                const isActive = item.classList.contains('active');
+                
+                faqItems.forEach(faq => faq.classList.remove('active'));
+                
+                if (!isActive) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
         const contactForm = document.getElementById('contactForm');
         const successMessage = document.getElementById('successMessage');
 
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            // Show success message
             successMessage.classList.add('show');
             
-            // Reset form
             contactForm.reset();
             
-            // Hide success message after 5 seconds
             setTimeout(() => {
                 successMessage.classList.remove('show');
             }, 5000);
             
-            // Scroll to top to show message
             window.scrollTo({
                 top: document.querySelector('.contact-main').offsetTop - 100,
                 behavior: 'smooth'
             });
         });
 
-        // Navbar background on scroll
         window.addEventListener('scroll', () => {
             const nav = document.querySelector('nav');
             if (window.scrollY > 100) {

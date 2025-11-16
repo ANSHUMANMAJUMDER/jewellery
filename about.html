@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
-    <title>About Us - ETTHNICOAST</title>
+    <title>About Us - ETHNICOAST</title>
     <style>
         * {
             margin: 0;
@@ -47,12 +46,11 @@
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--primary-blue);
-            text-decoration: none;
+        .logo img {
+            height: 70px;
+            width: auto;
+            object-fit: contain;
+            display: block;
         }
 
         .nav-links {
@@ -109,7 +107,8 @@
         .about-hero {
             margin-top: 80px;
             height: 60vh;
-            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
+            background: linear-gradient(135deg, rgba(7, 32, 63, 0.9) 0%, rgba(10, 45, 84, 0.9) 100%),
+                        url('https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1600&h=900&fit=crop') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -166,9 +165,21 @@
         .story-image {
             width: 100%;
             height: 500px;
-            background: var(--secondary-peach);
             position: relative;
             overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .story-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .story-image:hover img {
+            transform: scale(1.05);
         }
 
         .story-image::after {
@@ -178,7 +189,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, rgba(7, 32, 63, 0.1) 0%, rgba(235, 222, 212, 0.3) 100%);
+            background: linear-gradient(135deg, rgba(7, 32, 63, 0.1) 0%, rgba(235, 222, 212, 0.2) 100%);
         }
 
         .story-content h2 {
@@ -228,24 +239,30 @@
             padding: 3rem 2rem;
             text-align: center;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 8px;
         }
 
         .value-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
         }
 
         .value-icon {
             width: 80px;
             height: 80px;
             margin: 0 auto 2rem;
-            background: var(--primary-blue);
+            background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--white);
             font-size: 2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .value-card:hover .value-icon {
+            transform: rotate(360deg);
         }
 
         .value-card h3 {
@@ -303,14 +320,24 @@
         }
 
         .craft-feature {
-            padding: 2rem;
+            padding: 2.5rem 2rem;
             border: 1px solid var(--secondary-peach);
             transition: all 0.3s ease;
+            border-radius: 8px;
+            text-align: center;
         }
 
         .craft-feature:hover {
             background: var(--light-peach);
             border-color: var(--primary-blue);
+            transform: translateY(-5px);
+        }
+
+        .craft-feature i {
+            font-size: 2.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+            display: block;
         }
 
         .craft-feature h4 {
@@ -364,15 +391,27 @@
 
         .team-member {
             text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
         }
 
         .team-photo {
             width: 200px;
             height: 200px;
             border-radius: 50%;
-            background: var(--secondary-peach);
             margin: 0 auto 1.5rem;
-            border: 3px solid var(--white);
+            border: 4px solid var(--white);
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .team-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         .team-member h4 {
@@ -424,6 +463,7 @@
             font-size: 0.95rem;
             transition: all 0.4s ease;
             border: 2px solid var(--primary-blue);
+            border-radius: 4px;
         }
 
         .cta-button:hover {
@@ -574,9 +614,8 @@
                 letter-spacing: 3px;
             }
 
-            .logo {
-                font-size: 1.4rem;
-                letter-spacing: 2px;
+            .logo img {
+                height: 50px;
             }
 
             .cta-button {
@@ -593,23 +632,15 @@
                 letter-spacing: 2px;
             }
         }
-    .logo img {
-   height: 70px;  /* adjust as per navbar height */
-    width: auto;
-    object-fit: contain;
-    display: block;
-}
-
-
     </style>
 </head>
 <body>
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
-                    <a href="/" class="logo">
-    <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
-</a>
+            <a href="/" class="logo">
+                <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
+            </a>
             <ul class="nav-links" id="navLinks">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="index.html#collections">Collections</a></li>
@@ -617,10 +648,10 @@
                 <li><a href="contact.html">Contact</a></li>
             </ul>
             <div class="nav-icons">
-    <a href="#"><i class="fas fa-search"></i></a>
-    <a href="./orders.html"><i class="fas fa-shopping-bag"></i></a>
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="./orders.html"><i class="fas fa-shopping-bag"></i></a>
                 <a href="./profile.html"><i class="fas fa-user"></i></a>
-</div>
+            </div>
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
@@ -640,10 +671,12 @@
     <!-- Story Section -->
     <section class="story-section">
         <div class="story-grid">
-            <div class="story-image"></div>
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&h=800&fit=crop" alt="Handcrafted Jewelry">
+            </div>
             <div class="story-content">
                 <h2>THE BEGINNING</h2>
-                <p>Etthnicoast was born from a passion for creating jewelry that transcends time and trends. Our journey began with a simple vision: to craft pieces that tell stories, celebrate individuality, and honor the artistry of fine jewelry making.</p>
+                <p>Ethnicoast was born from a passion for creating jewelry that transcends time and trends. Our journey began with a simple vision: to craft pieces that tell stories, celebrate individuality, and honor the artistry of fine jewelry making.</p>
                 <p>Every piece we create is a testament to our commitment to excellence, combining traditional craftsmanship with contemporary design sensibilities.</p>
             </div>
         </div>
@@ -654,7 +687,9 @@
                 <p>We believe that jewelry is more than just an accessory—it's a form of self-expression, a connection to memories, and a legacy to pass down through generations.</p>
                 <p>Our philosophy centers on creating pieces that resonate with your personal story, designed to be cherished for a lifetime and beyond.</p>
             </div>
-            <div class="story-image"></div>
+            <div class="story-image">
+                <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=800&h=800&fit=crop" alt="Jewelry Philosophy">
+            </div>
         </div>
     </section>
 
@@ -664,22 +699,22 @@
             <h2 class="values-title">OUR VALUES</h2>
             <div class="values-grid">
                 <div class="value-card">
-                    <div class="value-icon">💎</div>
+                    <div class="value-icon"><i class="fas fa-gem"></i></div>
                     <h3>QUALITY</h3>
                     <p>We source only the finest materials and work with master craftsmen to ensure every piece meets our exacting standards of excellence.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🌿</div>
+                    <div class="value-icon"><i class="fas fa-leaf"></i></div>
                     <h3>SUSTAINABILITY</h3>
                     <p>Our commitment to ethical sourcing and sustainable practices ensures that beauty doesn't come at the cost of our planet.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">✨</div>
+                    <div class="value-icon"><i class="fas fa-certificate"></i></div>
                     <h3>AUTHENTICITY</h3>
                     <p>Each design reflects genuine artistry and attention to detail, creating pieces that are as unique as the people who wear them.</p>
                 </div>
                 <div class="value-card">
-                    <div class="value-icon">🤝</div>
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
                     <h3>INTEGRITY</h3>
                     <p>We build lasting relationships with our customers through transparency, honesty, and unwavering commitment to their satisfaction.</p>
                 </div>
@@ -692,22 +727,26 @@
         <div class="craftsmanship-container">
             <div class="craftsmanship-header">
                 <h2>EXCEPTIONAL CRAFTSMANSHIP</h2>
-                <p>Every Etthnicoast piece is a masterwork of precision and artistry. Our artisans bring decades of experience and an unwavering commitment to perfection in every creation.</p>
+                <p>Every Ethnicoast piece is a masterwork of precision and artistry. Our artisans bring decades of experience and an unwavering commitment to perfection in every creation.</p>
             </div>
             <div class="craftsmanship-features">
                 <div class="craft-feature">
+                    <i class="fas fa-hand-sparkles"></i>
                     <h4>Hand-Selected Materials</h4>
                     <p>We personally inspect and select each gemstone and precious metal to ensure uncompromising quality.</p>
                 </div>
                 <div class="craft-feature">
+                    <i class="fas fa-hammer"></i>
                     <h4>Artisan Techniques</h4>
                     <p>Traditional methods passed down through generations combine with modern innovation.</p>
                 </div>
                 <div class="craft-feature">
+                    <i class="fas fa-microscope"></i>
                     <h4>Meticulous Detail</h4>
                     <p>Every curve, setting, and finish is perfected through hours of dedicated craftsmanship.</p>
                 </div>
                 <div class="craft-feature">
+                    <i class="fas fa-shield-alt"></i>
                     <h4>Quality Assurance</h4>
                     <p>Multiple inspection stages ensure every piece meets our highest standards before reaching you.</p>
                 </div>
@@ -719,26 +758,34 @@
     <section class="team-section">
         <div class="team-container">
             <h2 class="team-title">MEET OUR TEAM</h2>
-            <p class="team-subtitle">The artisans and visionaries behind Etthnicoast</p>
+            <p class="team-subtitle">The artisans and visionaries behind Ethnicoast</p>
             <div class="team-grid">
                 <div class="team-member">
-                    <div class="team-photo"></div>
-                    <h4>SOPHIA ANDERSON</h4>
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=400&fit=crop" alt="Priya Sharma">
+                    </div>
+                    <h4>PRIYA SHARMA</h4>
                     <p>Founder & Creative Director</p>
                 </div>
                 <div class="team-member">
-                    <div class="team-photo"></div>
-                    <h4>MARCUS CHEN</h4>
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=400&h=400&fit=crop" alt="Arjun Patel">
+                    </div>
+                    <h4>ARJUN PATEL</h4>
                     <p>Master Jeweler</p>
                 </div>
                 <div class="team-member">
-                    <div class="team-photo"></div>
-                    <h4>ELENA RODRIGUEZ</h4>
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=400&h=400&fit=crop" alt="Ananya Reddy">
+                    </div>
+                    <h4>ANANYA REDDY</h4>
                     <p>Design Lead</p>
                 </div>
                 <div class="team-member">
-                    <div class="team-photo"></div>
-                    <h4>JAMES WILLIAMS</h4>
+                    <div class="team-photo">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Rohan Mehta">
+                    </div>
+                    <h4>ROHAN MEHTA</h4>
                     <p>Quality Director</p>
                 </div>
             </div>
@@ -749,7 +796,7 @@
     <section class="cta-section">
         <div class="cta-content">
             <h2>DISCOVER OUR COLLECTION</h2>
-            <p>Experience the artistry and elegance that defines Etthnicoast. Each piece is waiting to become part of your story.</p>
+            <p>Experience the artistry and elegance that defines Ethnicoast. Each piece is waiting to become part of your story.</p>
             <a href="index.html#collections" class="cta-button">EXPLORE COLLECTIONS</a>
         </div>
     </section>
@@ -788,7 +835,7 @@
             </div>
         </div>
         <div class="footer-bottom">
-            <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
+            <p>&copy; 2024 ETHNICOAST. All rights reserved.</p>
         </div>
     </footer>
 
