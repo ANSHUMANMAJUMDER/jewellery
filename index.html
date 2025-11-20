@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* Top Bar with Social Media */
         .top-bar {
             position: fixed;
             top: 0;
@@ -56,6 +55,7 @@
             color: var(--dark-black);
             font-size: 1rem;
             transition: color 0.3s ease;
+            text-decoration: none;
         }
 
         .social-media-top a:hover {
@@ -82,13 +82,13 @@
             color: var(--dark-black);
             font-size: 1.1rem;
             transition: color 0.3s ease;
+            text-decoration: none;
         }
 
         .top-bar-right a:hover {
             color: var(--primary-blue);
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 76px;
@@ -173,7 +173,6 @@
             transition: all 0.3s ease;
         }
 
-        /* Hero Slider Section */
         .hero-slider-section {
             margin-top: 136px;
             position: relative;
@@ -233,7 +232,6 @@
             font-weight: 300;
             letter-spacing: 8px;
             margin-bottom: 1.5rem;
-            animation: fadeInUp 1s ease;
         }
 
         .slide-content p {
@@ -243,7 +241,6 @@
             opacity: 0.9;
         }
 
-        /* Slider Controls */
         .slider-btn {
             position: absolute;
             top: 50%;
@@ -273,7 +270,6 @@
             right: 2rem;
         }
 
-        /* Slider Dots */
         .slider-dots {
             position: absolute;
             bottom: 2rem;
@@ -299,13 +295,11 @@
             border-radius: 6px;
         }
 
-        /* Auto-Moving Promo Strip */
         .promo-strip {
             background: var(--primary-blue);
             color: var(--white);
             padding: 0.8rem 0;
             overflow: hidden;
-            position: relative;
         }
 
         .promo-content {
@@ -321,15 +315,10 @@
         }
 
         @keyframes scroll {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-100%);
-            }
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
         }
 
-        /* Brand Promises - Enhanced Design */
         .brand-promises {
             background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
             padding: 3rem 2rem;
@@ -398,17 +387,16 @@
             color: var(--dark-black);
         }
 
-        /* Collection Range Slider - Enhanced Design */
         .collection-range-section {
             padding: 5rem 2rem;
             background: var(--white);
-            position: relative;
         }
 
         .collection-range-container {
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
+            padding: 0 60px;
         }
 
         .collection-cards-wrapper {
@@ -418,65 +406,72 @@
 
         .collection-cards {
             display: flex;
-            gap: 2rem;
+            gap: 1.5rem;
             transition: transform 0.5s ease;
         }
 
         .collection-range-card {
-            min-width: 280px;
-            height: 350px;
-            position: relative;
-            overflow: hidden;
-            border-radius: 15px;
+            min-width: 180px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
+            transition: all 0.3s ease;
         }
 
         .collection-range-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            transform: translateY(-5px);
         }
 
-        .collection-range-card img {
+        .collection-card-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f5f5f5;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .collection-range-card:hover .collection-card-image {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(7,32,63,0.2);
+        }
+
+        .collection-card-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.6s ease;
         }
 
-        .collection-range-card:hover img {
-            transform: scale(1.15);
+        .collection-range-card:hover .collection-card-image img {
+            transform: scale(1.1);
         }
 
         .collection-range-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 2rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(7,32,63,0.95) 100%);
-            display: flex;
-            align-items: flex-end;
+            text-align: center;
+            padding-top: 1rem;
         }
 
         .collection-range-overlay h3 {
-            font-size: 1.5rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--white);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
         }
 
         .collection-nav-btn {
             position: absolute;
-            top: 50%;
+            top: 40%;
             transform: translateY(-50%);
             background: var(--white);
             border: 2px solid var(--primary-blue);
             color: var(--primary-blue);
-            width: 50px;
-            height: 50px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             cursor: pointer;
             z-index: 10;
@@ -484,22 +479,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .collection-nav-btn:hover {
             background: var(--primary-blue);
             color: var(--white);
-            transform: translateY(-50%) scale(1.1);
+        }
+
+        .collection-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
         }
 
         .collection-nav-btn.prev {
-            left: -25px;
+            left: 0;
         }
 
         .collection-nav-btn.next {
-            right: -25px;
+            right: 0;
         }
 
         .collection-range-link {
@@ -514,18 +512,30 @@
             border-radius: 50px;
             transition: all 0.4s ease;
             border: 2px solid var(--primary-blue);
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
         }
 
         .collection-range-link:hover {
             background: transparent;
             color: var(--primary-blue);
-            box-shadow: 0 5px 20px rgba(7,32,63,0.2);
         }
 
-        /* General Banner - Enhanced Design */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+            margin-bottom: 4rem;
+        }
+
         .general-banner {
             padding: 0;
             background: var(--white);
@@ -570,7 +580,6 @@
             letter-spacing: 6px;
             color: var(--white);
             margin-bottom: 1.5rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         .general-banner-overlay p {
@@ -596,28 +605,8 @@
         .cta-button:hover {
             background: transparent;
             color: var(--secondary-peach);
-            transform: translateY(-3px);
         }
 
-        /* Section Titles */
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            text-align: center;
-            font-size: 1rem;
-            color: var(--dark-black);
-            opacity: 0.7;
-            margin-bottom: 4rem;
-        }
-
-        /* For Him & For Her Section */
         .gender-section {
             padding: 5rem 2rem;
             background: var(--white);
@@ -628,25 +617,25 @@
             margin: 0 auto;
         }
 
-        /* UPDATED: stack vertically with alternating alignment */
         .gender-grid {
             display: flex;
             flex-direction: column;
+            gap: 4rem;
+        }
+
+        .gender-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             gap: 3rem;
+            align-items: center;
         }
 
-        .gender-link {
-            display: block;
-            max-width: 700px;
-            width: 100%;
+        .gender-row.reverse {
+            direction: rtl;
         }
 
-        .gender-left {
-            align-self: flex-start;
-        }
-
-        .gender-right {
-            align-self: flex-end;
+        .gender-row.reverse > * {
+            direction: ltr;
         }
 
         .gender-card {
@@ -699,7 +688,33 @@
             opacity: 0.9;
         }
 
-        /* New Arrivals Banner */
+        .gender-text {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .gender-text h3 {
+            font-size: 2.5rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--primary-blue);
+            margin-bottom: 1.5rem;
+        }
+
+        .gender-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--dark-black);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+        }
+
+        .gender-text .cta-button {
+            align-self: flex-start;
+        }
+
         .new-arrivals-banner {
             padding: 4rem 2rem;
             background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--light-peach) 100%);
@@ -742,39 +757,46 @@
             object-fit: cover;
         }
 
-        /* Gifting Banner */
-        .gifting-banner {
-            padding: 5rem 2rem;
-            background: var(--white);
-        }
-
-        /* Shop by Lifestyle */
         .lifestyle-section {
             padding: 5rem 2rem;
-            background: var(--light-peach);
+            background: var(--white);
+            position: relative;
         }
 
         .lifestyle-container {
-            max-width: 1400px;
+            max-width: 1600px;
             margin: 0 auto;
+            position: relative;
+        }
+
+        .lifestyle-slider-wrapper {
+            overflow: hidden;
+            position: relative;
+            width: calc(300px * 3 + 48px);
+            margin: 0 auto;
+            perspective: 1000px;
         }
 
         .lifestyle-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            display: flex;
+            gap: 0;
+            transition: transform 0.5s ease-out;
+            width: fit-content;
         }
 
         .lifestyle-card {
-            position: relative;
+            flex-shrink: 0;
+            width: 300px;
             height: 400px;
+            margin-right: 24px;
+            position: relative;
             overflow: hidden;
             cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .lifestyle-card:hover {
-            transform: translateY(-10px);
+            border-radius: 12px;
+            transition: all 0.5s ease-out;
+            opacity: 0.2;
+            transform: scale(0.75);
+            transform-origin: center;
         }
 
         .lifestyle-card img {
@@ -785,7 +807,47 @@
         }
 
         .lifestyle-card:hover img {
-            transform: scale(1.1);
+            transform: scale(1.05);
+        }
+
+        /* Center Card Styles */
+        .lifestyle-card.center-card {
+            opacity: 1;
+            transform: scale(1.05) rotate(0deg) skewX(0deg) !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            z-index: 10;
+        }
+
+        /* Left Adjacent Card */
+        .lifestyle-card.left-adjacent {
+            opacity: 0.8;
+            transform: scale(0.95) rotate(-3deg) skewX(-3deg);
+            z-index: 5;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Far Left Card */
+        .lifestyle-card.far-left {
+            opacity: 0.4;
+            transform: scale(0.85) rotate(-5deg) skewX(-5deg);
+            z-index: 1;
+            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Right Adjacent Card */
+        .lifestyle-card.right-adjacent {
+            opacity: 0.8;
+            transform: scale(0.95) rotate(3deg) skewX(3deg);
+            z-index: 5;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Far Right Card */
+        .lifestyle-card.far-right {
+            opacity: 0.4;
+            transform: scale(0.85) rotate(5deg) skewX(5deg);
+            z-index: 1;
+            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
         }
 
         .lifestyle-overlay {
@@ -793,25 +855,72 @@
             bottom: 0;
             left: 0;
             width: 100%;
-            padding: 2rem;
-            background: linear-gradient(180deg, transparent 0%, rgba(7,32,63,0.9) 100%);
+            height: 100%;
+            background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 3rem;
+            transition: background 0.3s ease;
+        }
+
+        .lifestyle-card:hover .lifestyle-overlay {
+            background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+        }
+
+        .lifestyle-info {
+            text-align: center;
         }
 
         .lifestyle-info h3 {
-            font-size: 1.8rem;
-            font-weight: 300;
-            letter-spacing: 3px;
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 5px;
             color: var(--white);
-            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+            font-family: 'Arial', sans-serif;
         }
 
-        .lifestyle-info p {
-            font-size: 0.9rem;
-            color: var(--white);
-            opacity: 0.9;
+        .lifestyle-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 20;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
         }
 
-        /* Ethnicoast World */
+        .lifestyle-nav-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .lifestyle-nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .lifestyle-nav-btn.prev {
+            left: 59px;
+        }
+
+        .lifestyle-nav-btn.next {
+            right: 73px;
+        }
+
         .world-section {
             padding: 5rem 2rem;
             background: var(--white);
@@ -874,10 +983,9 @@
             opacity: 0.9;
         }
 
-        /* Bestsellers */
-        .bestsellers {
+        .bestsellers-section {
             padding: 5rem 2rem;
-            background: var(--light-peach);
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
         }
 
         .bestsellers-container {
@@ -885,212 +993,150 @@
             margin: 0 auto;
         }
 
-        /* BESTSELLERS (Bluestone Promise Style) */
-.bestsellers-bluestone {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    max-width: 1400px;
-    margin: 6rem auto;
-    gap: 3rem;
-    padding: 2rem;
-    align-items: center;
-}
-
-/* LEFT SIDE TITLE */
-
-/* REELS SECTION */
-/* INSTAGRAM REELS SECTION */
-.insta-reels-section {
-    padding: 5rem 2rem;
-    background: var(--white);
-}
-
-.insta-reels-header {
-    text-align: center;
-    margin-bottom: 3rem;
-}
-
-.insta-reels-grid {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-}
-
-/* Responsive adjust */
-@media (max-width: 600px) {
-    .insta-reels-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-
-
-.bs-title {
-    font-size: 3.5rem;
-    font-weight: 300;
-    color: var(--primary-blue);
-    line-height: 1.1;
-}
-
-.bs-title span {
-    font-size: 5rem;
-    font-weight: 600;
-    color: var(--primary-blue);
-}
-
-.bs-sub {
-    font-size: 1.1rem;
-    color: #666;
-    margin-top: 1rem;
-}
-
-/* RIGHT SIDE BOX */
-.bestseller-right {
-    background: #ffffff;
-    border: 1px solid #d7d7d7;
-    padding: 2.5rem;
-    border-radius: 15px;
-}
-
-/* GRID */
-.bs-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 2.2rem;
-}
-
-/* ITEMS */
-.bs-item {
-    text-align: center;
-}
-
-.bs-circle {
-    width: 110px;
-    height: 110px;
-    background: #07203F;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto 1rem;
-    transition: 0.3s ease;
-}
-
-.bs-circle img {
-    width: 48px;
-    height: 48px;
-    filter: brightness(0) invert(1);
-}
-
-.bs-item-title {
-    font-size: 1.1rem;
-    color: var(--primary-blue);
-    font-weight: 600;
-    margin-top: 0.8rem;
-}
-
-.bs-item-text {
-    font-size: 0.95rem;
-    color: #555;
-    line-height: 1.4;
-}
-
-/* Hover Animation */
-.bs-item:hover .bs-circle {
-    transform: translateY(-8px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
-}
-
-/* Scroll Reveal Animation */
-.bs-reveal {
-    opacity: 0;
-    transform: translateY(60px);
-    transition: all 1s ease;
-}
-
-.bs-reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Responsive */
-@media (max-width: 992px) {
-    .bestsellers-bluestone {
-        grid-template-columns: 1fr;
-        text-align: center;
-    }
-
-    .bs-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 576px) {
-    .bs-grid {
-        grid-template-columns: 1fr;
-    }
-}
-
-
-        .product-grid {
+        .bestsellers-grid {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
         }
 
-        .product-card {
+        .bestseller-card {
             background: var(--white);
-            transition: transform 0.3s ease;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 300px;
+            border-radius: 15px;
             overflow: hidden;
-            background: #f9f9f9;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateX(100px);
+            animation: fadeInRight 0.8s ease forwards;
         }
 
-        .product-image img {
+        .bestseller-card:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .bestseller-card:nth-child(2) {
+            animation-delay: 0.3s;
+        }
+
+        .bestseller-card:nth-child(3) {
+            animation-delay: 0.5s;
+        }
+
+        .bestseller-card:nth-child(4) {
+            animation-delay: 0.7s;
+        }
+
+        .bestseller-card:nth-child(5) {
+            animation-delay: 0.9s;
+        }
+
+        .bestseller-card:nth-child(6) {
+            animation-delay: 1.1s;
+        }
+
+        @keyframes fadeInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .bestseller-card.scroll-animate {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+
+        .bestseller-card.scroll-animate.animate {
+            animation: fadeInRight 0.8s ease forwards;
+        }
+
+        .bestseller-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+
+        .bestseller-image {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .bestseller-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: transform 0.6s ease;
         }
 
-        .product-details {
-            padding: 1.5rem;
+        .bestseller-card:hover .bestseller-image img {
+            transform: scale(1.1);
+        }
+
+        .bestseller-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--gold);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .bestseller-info {
+            padding: 2rem;
             text-align: center;
         }
 
-        .product-details h4 {
-            font-size: 1rem;
+        .bestseller-info h3 {
+            font-size: 1.3rem;
             font-weight: 400;
-            letter-spacing: 1.5px;
+            letter-spacing: 2px;
             color: var(--primary-blue);
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
         }
 
-        .product-price {
-            font-size: 1.2rem;
+        .bestseller-info p {
+            font-size: 0.95rem;
             color: var(--dark-black);
+            opacity: 0.7;
+            line-height: 1.6;
         }
 
-        /* Shop by Price */
-        .price-section {
+        .insta-reels-section {
             padding: 5rem 2rem;
             background: var(--white);
+        }
+
+        .insta-reels-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .price-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, #9B7E6B 0%, #8B6F5C 100%);
         }
 
         .price-container {
             max-width: 1400px;
             margin: 0 auto;
+        }
+
+        .price-section .section-title {
+            color: var(--white);
+        }
+
+        .price-section .section-subtitle {
+            color: var(--white);
+            opacity: 0.9;
         }
 
         .price-grid {
@@ -1100,25 +1146,51 @@
         }
 
         .price-card {
-            background: var(--light-peach);
-            padding: 3rem 2rem;
+            background: var(--white);
+            padding: 0;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
+            transition: all 0.4s ease;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
         }
 
         .price-card:hover {
             transform: translateY(-10px);
-            border-color: var(--primary-blue);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+        }
+
+        .price-card-image {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .price-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .price-card:hover .price-card-image img {
+            transform: scale(1.1);
+        }
+
+        .price-card-content {
+            padding: 2rem 1.5rem;
+            background: var(--white);
         }
 
         .price-card h3 {
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
             color: var(--primary-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         .price-card p {
@@ -1127,7 +1199,6 @@
             opacity: 0.7;
         }
 
-        /* Ethnicoast Values */
         .values-section {
             padding: 5rem 2rem;
             background: var(--primary-blue);
@@ -1176,7 +1247,6 @@
             line-height: 1.6;
         }
 
-        /* Partners Section */
         .partners-section {
             padding: 4rem 2rem;
             background: var(--light-peach);
@@ -1209,7 +1279,6 @@
             transform: scale(1.05);
         }
 
-        /* Reviews Section */
         .reviews-section {
             padding: 5rem 2rem;
             background: var(--white);
@@ -1252,7 +1321,6 @@
             color: var(--primary-blue);
         }
 
-        /* Footer */
         footer {
             background: var(--primary-blue);
             color: var(--white);
@@ -1324,22 +1392,24 @@
             font-size: 0.9rem;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
+        /* Responsive Styles */
         @media (max-width: 1024px) {
-            .gender-grid {
+            .gender-row {
+                grid-template-columns: 1fr;
                 gap: 2rem;
+            }
+
+            .gender-row.reverse {
+                direction: ltr;
+            }
+
+            .gender-text {
+                order: -1;
+                text-align: center;
+            }
+
+            .gender-text .cta-button {
+                align-self: center;
             }
 
             .world-grid {
@@ -1351,23 +1421,56 @@
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .product-grid,
             .price-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .top-bar-container {
-                grid-template-columns: auto 1fr auto;
+            .banner-container {
+                grid-template-columns: 1fr;
             }
 
-            .social-media-top {
-                gap: 0.8rem;
+            .banner-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .collection-card-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .collection-range-card {
+                min-width: 150px;
+            }
+
+            .collection-nav-btn.prev {
+                left: -15px;
+            }
+
+            .collection-nav-btn.next {
+                right: -15px;
+            }
+
+            .bestsellers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .partners-grid {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 768px) {
             .top-bar-container {
                 padding: 0.8rem 1rem;
+                grid-template-columns: auto 1fr auto;
+            }
+
+            .social-media-top {
+                gap: 0.8rem;
             }
 
             .social-media-top a {
@@ -1376,6 +1479,10 @@
 
             .logo-center img {
                 height: 50px;
+            }
+
+            .top-bar-right {
+                gap: 1rem;
             }
 
             .top-bar-right a {
@@ -1435,7 +1542,6 @@
             }
 
             .promises-container {
-                display: grid;
                 grid-template-columns: repeat(2, 1fr);
                 gap: 1.5rem;
             }
@@ -1457,14 +1563,22 @@
                 padding: 3rem 1rem;
             }
 
+            .collection-range-container {
+                padding: 0 50px;
+            }
+
+            .collection-card-image {
+                width: 140px;
+                height: 140px;
+            }
+
             .collection-range-card {
-                min-width: 220px;
-                height: 280px;
+                min-width: 140px;
             }
 
             .collection-range-overlay h3 {
-                font-size: 1.2rem;
-                letter-spacing: 2px;
+                font-size: 0.95rem;
+                letter-spacing: 1.5px;
             }
 
             .collection-nav-btn {
@@ -1474,11 +1588,11 @@
             }
 
             .collection-nav-btn.prev {
-                left: 5px;
+                left: 0;
             }
 
             .collection-nav-btn.next {
-                right: 5px;
+                right: 0;
             }
 
             .collection-range-link {
@@ -1499,47 +1613,278 @@
                 font-size: 1rem;
             }
 
-            .banner-container {
-                grid-template-columns: 1fr;
-            }
-
             .banner-image {
                 height: 300px;
             }
 
+            .banner-content h2 {
+                font-size: 2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .section-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .gender-card {
+                height: 400px;
+            }
+
+            .gender-text h3 {
+                font-size: 2rem;
+            }
+
+            .gender-text p {
+                font-size: 1rem;
+            }
+
+            .lifestyle-slider-wrapper {
+                width: 100%;
+            }
+
             .lifestyle-grid,
-            .product-grid,
             .price-grid,
             .values-grid,
-            .reviews-grid {
+            .reviews-grid,
+            .bestsellers-grid {
                 grid-template-columns: 1fr;
             }
 
+            .lifestyle-card {
+                width: 100%;
+                height: 500px;
+                margin-right: 0;
+            }
+
+            .lifestyle-info h3 {
+                font-size: 2rem;
+            }
+
+            .lifestyle-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .lifestyle-nav-btn.prev {
+                left: 10px;
+            }
+
+            .lifestyle-nav-btn.next {
+                right: 10px;
+            }
+
+            .world-card {
+                height: 400px;
+            }
+
+            .world-info h3 {
+                font-size: 2rem;
+            }
+
             .partners-grid {
-                grid-template-columns: repeat(3, 1fr);
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+            }
+
+            .partner-logo {
+                padding: 1.5rem;
+                height: 100px;
             }
 
             .footer-container {
                 grid-template-columns: 1fr;
             }
 
-            /* Make both gender cards full-width on mobile */
-            .gender-link {
-                max-width: 100%;
-                align-self: stretch;
+            .insta-reels-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bestseller-image {
+                height: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .top-bar-container {
+                padding: 0.6rem 0.8rem;
+            }
+
+            .logo-center img {
+                height: 40px;
+            }
+
+            .top-bar-right {
+                gap: 0.8rem;
+            }
+
+            .social-media-top {
+                gap: 0.5rem;
+            }
+
+            .social-media-top a,
+            .top-bar-right a {
+                font-size: 0.85rem;
+            }
+
+            .hero-slider-section {
+                height: 40vh;
+            }
+
+            .slide-content h1 {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .slide-content p {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.8rem;
+            }
+
+            .promo-content span {
+                font-size: 0.75rem;
+            }
+
+            .promises-container {
+                grid-template-columns: 1fr;
+            }
+
+            .collection-range-container {
+                padding: 0 45px;
+            }
+
+            .collection-card-image {
+                width: 120px;
+                height: 120px;
+            }
+
+            .collection-range-card {
+                min-width: 120px;
+            }
+
+            .collection-cards {
+                gap: 1rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .section-subtitle {
+                font-size: 0.85rem;
+            }
+
+            .gender-card {
+                height: 350px;
+            }
+
+            .gender-text h3 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .gender-text p {
+                font-size: 0.95rem;
+            }
+
+            .banner-content h2 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .banner-content p {
+                font-size: 0.95rem;
+            }
+
+            .banner-image {
+                height: 250px;
+            }
+
+            .lifestyle-slider-wrapper {
+                width: 100%;
+            }
+
+            .lifestyle-card {
+                width: 100%;
+                height: 300px;
+                margin-right: 0;
+            }
+
+            .lifestyle-info h3 {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .lifestyle-nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 0.9rem;
+            }
+
+            .lifestyle-nav-btn.prev {
+                left: 5px;
+            }
+
+            .lifestyle-nav-btn.next {
+                right: 5px;
+            }
+
+            .world-card {
+                height: 350px;
+            }
+
+            .world-info h3 {
+                font-size: 1.8rem;
+                letter-spacing: 2px;
+            }
+
+            .bestseller-image {
+                height: 250px;
+            }
+
+            .bestseller-info h3 {
+                font-size: 1.1rem;
+            }
+
+            .bestseller-info p {
+                font-size: 0.85rem;
+            }
+
+            .price-card h3 {
+                font-size: 1.5rem;
+            }
+
+            .partners-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .value-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .value-card h3 {
+                font-size: 1rem;
+            }
+
+            .value-card p {
+                font-size: 0.85rem;
             }
         }
     </style>
 </head>
-<script async src="https://www.instagram.com/embed.js"></script>
-<script>
-    window.addEventListener("load", function() {
-        if (window.instgrm) instgrm.Embeds.process();
-    });
-</script>
-
 <body>
-    <!-- Top Bar with Social Media -->
+    <!-- Top Bar -->
     <div class="top-bar">
         <div class="top-bar-container">
             <div class="social-media-top">
@@ -1586,7 +1931,7 @@
         </div>
     </nav>
 
-    <!-- Hero Slider Section -->
+    <!-- Hero Slider -->
     <section class="hero-slider-section">
         <div class="hero-slider">
             <div class="slide active">
@@ -1631,7 +1976,6 @@
             </div>
         </div>
         
-        <!-- Slider Controls -->
         <button class="slider-btn prev-btn" onclick="changeSlide(-1)">
             <i class="fas fa-chevron-left"></i>
         </button>
@@ -1639,7 +1983,6 @@
             <i class="fas fa-chevron-right"></i>
         </button>
         
-        <!-- Slider Dots -->
         <div class="slider-dots">
             <span class="dot active" onclick="goToSlide(0)"></span>
             <span class="dot" onclick="goToSlide(1)"></span>
@@ -1649,7 +1992,7 @@
         </div>
     </section>
 
-    <!-- Auto-Moving Promo Strip -->
+    <!-- Promo Strip -->
     <div class="promo-strip">
         <div class="promo-content">
             <span>PREMIUM JEWELRY</span>
@@ -1671,7 +2014,7 @@
         </div>
     </div>
 
-    <!-- Brand Values + Promises Bar -->
+    <!-- Brand Promises -->
     <div class="brand-promises">
         <div class="promises-container">
             <div class="promise-item">
@@ -1703,39 +2046,59 @@
             <div class="collection-cards-wrapper">
                 <div class="collection-cards" id="collectionCards">
                     <div class="collection-range-card">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80" alt="Rings Collection">
+                        <div class="collection-card-image">
+                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80" alt="Rings">
+                        </div>
                         <div class="collection-range-overlay">
-                            <h3>RINGS</h3>
+                            <h3>Rings</h3>
                         </div>
                     </div>
                     <div class="collection-range-card">
-                        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400&q=80" alt="Necklaces Collection">
+                        <div class="collection-card-image">
+                            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=400&q=80" alt="Pendants">
+                        </div>
                         <div class="collection-range-overlay">
-                            <h3>NECKLACES</h3>
+                            <h3>Pendants</h3>
                         </div>
                     </div>
                     <div class="collection-range-card">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" alt="Earrings Collection">
+                        <div class="collection-card-image">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" alt="Earrings">
+                        </div>
                         <div class="collection-range-overlay">
-                            <h3>EARRINGS</h3>
+                            <h3>Earrings</h3>
                         </div>
                     </div>
                     <div class="collection-range-card">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Bracelets Collection">
+                        <div class="collection-card-image">
+                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Bracelets">
+                        </div>
                         <div class="collection-range-overlay">
-                            <h3>BRACELETS</h3>
+                            <h3>Bracelets</h3>
                         </div>
                     </div>
                     <div class="collection-range-card">
-                        <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400&q=80" alt="Pendants Collection">
+                        <div class="collection-card-image">
+                            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=400&q=80" alt="Anklets">
+                        </div>
                         <div class="collection-range-overlay">
-                            <h3>PENDANTS</h3>
+                            <h3>Anklets</h3>
                         </div>
                     </div>
                     <div class="collection-range-card">
-                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Anklets Collection">
+                        <div class="collection-card-image">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=400&q=80" alt="Sets">
+                        </div>
                         <div class="collection-range-overlay">
-                            <h3>ANKLETS</h3>
+                            <h3>Sets</h3>
+                        </div>
+                    </div>
+                    <div class="collection-range-card">
+                        <div class="collection-card-image">
+                            <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400&q=80" alt="Men">
+                        </div>
+                        <div class="collection-range-overlay">
+                            <h3>Men in Silver</h3>
                         </div>
                     </div>
                 </div>
@@ -1745,14 +2108,16 @@
                 <i class="fas fa-chevron-right"></i>
             </button>
             
-            <a href="#collections" class="collection-range-link">Collection Range</a>
+            <div style="text-align: center;">
+                <a href="#collections" class="collection-range-link">Collection Range</a>
+            </div>
         </div>
     </section>
 
-    <!-- General/Seasonal Banner -->
+    <!-- General Banner -->
     <section class="general-banner">
         <div class="general-banner-container">
-            <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1400&q=80" alt="General Banner">
+            <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1400&q=80" alt="Banner">
             <div class="general-banner-overlay">
                 <h2>SEASONAL COLLECTION</h2>
                 <p>Discover our exclusive seasonal collection</p>
@@ -1761,37 +2126,47 @@
         </div>
     </section>
 
-    <!-- For Her & For Him Section (UPDATED LAYOUT) -->
+    <!-- Gender Section -->
     <section class="gender-section">
         <div class="gender-container">
             <h2 class="section-title">SHOP BY GENDER</h2>
             <p class="section-subtitle">Discover collections crafted for every style</p>
             <div class="gender-grid">
-                <!-- FOR HIM - top, left aligned -->
-                <a href="/men.html" class="gender-link gender-left" style="text-decoration: none; color: inherit;">
-                    <div class="gender-card" id="men">
+                <!-- For Him - Image Left, Text Right -->
+                <div class="gender-row" id="men">
+                    <div class="gender-card">
                         <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80" alt="For Him">
                         <div class="gender-overlay">
                             <div class="gender-info">
                                 <h3>FOR HIM</h3>
-                                <p>Bold and refined designs for gentlemen</p>
+                                <p>Bold and refined designs</p>
                             </div>
                         </div>
                     </div>
-                </a>
+                    <div class="gender-text">
+                        <h3>FOR HIM</h3>
+                        <p>Discover our exclusive collection of silver jewelry designed for the modern gentleman. Each piece combines timeless elegance with contemporary style, crafted to perfection from premium 925 sterling silver.</p>
+                        <a href="/men.html" class="cta-button">EXPLORE MEN'S COLLECTION</a>
+                    </div>
+                </div>
 
-                <!-- FOR HER - below, right aligned -->
-                <a href="/women.html" class="gender-link gender-right" style="text-decoration: none; color: inherit;">
-                    <div class="gender-card" id="women">
+                <!-- For Her - Text Left, Image Right -->
+                <div class="gender-row reverse" id="women">
+                    <div class="gender-text">
+                        <h3>FOR HER</h3>
+                        <p>Explore our stunning range of silver jewelry crafted for the elegant woman. From delicate everyday pieces to statement designs, each creation embodies sophistication and grace, made with the finest quality silver.</p>
+                        <a href="/women.html" class="cta-button">EXPLORE WOMEN'S COLLECTION</a>
+                    </div>
+                    <div class="gender-card">
                         <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80" alt="For Her">
                         <div class="gender-overlay">
                             <div class="gender-info">
                                 <h3>FOR HER</h3>
-                                <p>Elegant silver pieces for the modern woman</p>
+                                <p>Elegant designs for every occasion</p>
                             </div>
                         </div>
                     </div>
-                </a>
+                </div>
             </div>
         </div>
     </section>
@@ -1811,7 +2186,7 @@
     </section>
 
     <!-- Gifting Banner -->
-    <section class="gifting-banner">
+    <section class="new-arrivals-banner">
         <div class="banner-container">
             <div class="banner-image">
                 <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=800&q=80" alt="Gifting">
@@ -1829,31 +2204,105 @@
         <div class="lifestyle-container">
             <h2 class="section-title">SHOP BY LIFESTYLE</h2>
             <p class="section-subtitle">For every you</p>
-            <div class="lifestyle-grid">
-                <div class="lifestyle-card">
-                    <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=600&q=80" alt="Office Wear">
-                    <div class="lifestyle-overlay">
-                        <div class="lifestyle-info">
-                            <h3>OFFICE WEAR</h3>
-                            <p>Professional elegance</p>
+            
+            <button class="lifestyle-nav-btn prev" id="lifestylePrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <div class="lifestyle-slider-wrapper">
+                <div class="lifestyle-grid" id="lifestyleGrid">
+                    <div class="lifestyle-card">
+                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80" alt="Daily Wear">
+                        <div class="lifestyle-overlay">
+                            <div class="lifestyle-info">
+                                <h3>DAILY WEAR</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lifestyle-card">
+                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" alt="Office Wear">
+                        <div class="lifestyle-overlay">
+                            <div class="lifestyle-info">
+                                <h3>OFFICE WEAR</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lifestyle-card">
+                        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" alt="Party Wear">
+                        <div class="lifestyle-overlay">
+                            <div class="lifestyle-info">
+                                <h3>PARTY WEAR</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lifestyle-card">
+                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" alt="Day Out">
+                        <div class="lifestyle-overlay">
+                            <div class="lifestyle-info">
+                                <h3>DAY OUT</h3>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lifestyle-card">
+                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" alt="Festive">
+                        <div class="lifestyle-overlay">
+                            <div class="lifestyle-info">
+                                <h3>FESTIVE</h3>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="lifestyle-card">
-                    <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=600&q=80" alt="Party Wear">
-                    <div class="lifestyle-overlay">
-                        <div class="lifestyle-info">
-                            <h3>PARTY WEAR</h3>
-                            <p>Glamorous statements</p>
+            </div>
+            
+            <button class="lifestyle-nav-btn next" id="lifestyleNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- Ethnicoast World -->
+    <section class="world-section">
+        <div class="world-container">
+            <h2 class="section-title">ETTHNICOAST WORLD</h2>
+            <p class="section-subtitle">Explore our exquisite collections</p>
+
+            <div class="world-grid">
+                <div class="world-card">
+                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1000&q=80" alt="Silver">
+                    <div class="world-overlay">
+                        <div class="world-info">
+                            <h3>SILVER</h3>
+                            <p>Pure 925 Sterling Silver</p>
                         </div>
                     </div>
                 </div>
-                <div class="lifestyle-card">
-                    <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=600&q=80" alt="Casuals">
-                    <div class="lifestyle-overlay">
-                        <div class="lifestyle-info">
-                            <h3>CASUALS</h3>
-                            <p>Everyday chic</p>
+
+                <div class="world-card">
+                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1000&q=80" alt="Gold Plated">
+                    <div class="world-overlay">
+                        <div class="world-info">
+                            <h3>GOLD PLATED</h3>
+                            <p>Luxury Layered Shine</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="world-card">
+                    <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&q=80" alt="XOXO">
+                    <div class="world-overlay">
+                        <div class="world-info">
+                            <h3>XOXO</h3>
+                            <p>Younger • Trendier • Everyday Styles</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="world-card">
+                    <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=1000&q=80" alt="XOXO">
+                    <div class="world-overlay">
+                        <div class="world-info">
+                            <h3>XOXO</h3>
+                            <p>Minimal & Modern Elegance</p>
                         </div>
                     </div>
                 </div>
@@ -1861,261 +2310,150 @@
         </div>
     </section>
 
-    <!-- Ethnicoast World -->
-    <!-- <section class="world-section">
-        <div class="world-container">
-            <h2 class="section-title">ETTHNICOAST WORLD</h2>
-            <p class="section-subtitle">Explore our exquisite collections</p>
-            <div class="world-grid">
-                <div class="world-card">
-                    <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80" alt="Silver Collection">
-                    <div class="world-overlay">
-                        <div class="world-info">
-                            <h3>SILVER</h3>
-                            <p>Pure 925 sterling silver craftsmanship</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="world-card">
-                    <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=800&q=80" alt="Gold Plated">
-                    <div class="world-overlay">
-                        <div class="world-info">
-                            <h3>GOLD PLATED</h3>
-                            <p>Luxury meets affordability</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section> -->
-
-
-    <!-- Ethnicoast World (UPDATED TANISHQ STYLE) -->
-<section class="world-section">
-    <div class="world-container">
-        <h2 class="section-title">ETTHNICOAST WORLD</h2>
-        <p class="section-subtitle">Explore our exquisite collections</p>
-
-        <div class="world-grid">
-
-            <!-- Top Left -->
-            <div class="world-card">
-                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1000&q=80" alt="Silver">
-                <div class="world-overlay">
-                    <div class="world-info">
-                        <h3>SILVER</h3>
-                        <p>Pure 925 Sterling Silver</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Top Right -->
-            <div class="world-card">
-                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1000&q=80" alt="Gold Plated">
-                <div class="world-overlay">
-                    <div class="world-info">
-                        <h3>GOLD PLATED</h3>
-                        <p>Luxury Layered Shine</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Left -->
-            <div class="world-card">
-                <img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?w=1000&q=80" alt="XOXO">
-                <div class="world-overlay">
-                    <div class="world-info">
-                        <h3>XOXO</h3>
-                        <p>Younger • Trendier • Everyday Styles</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bottom Right -->
-            <div class="world-card">
-                <img src="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=1000&q=80" alt="XOXO">
-                <div class="world-overlay">
-                    <div class="world-info">
-                        <h3>XOXO</h3>
-                        <p>Minimal & Modern Elegance</p>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
-
     <!-- Bestsellers -->
-    <!-- <section class="bestsellers">
+    <section class="bestsellers-section">
         <div class="bestsellers-container">
-            <h2 class="section-title">BESTSELLERS</h2>
-            <p class="section-subtitle">Our most loved pieces</p>
-            <div class="product-grid">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Product 1">
+            <h2 class="section-title">OUR BESTSELLERS</h2>
+            <p class="section-subtitle">The most loved pieces from Etthnicoast</p>
+
+            <div class="bestsellers-grid">
+                <div class="bestseller-card scroll-animate">
+                    <div class="bestseller-image">
+                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80" alt="Top Seller">
+                        <div class="bestseller-badge">TOP SELLER</div>
                     </div>
-                    <div class="product-details">
-                        <h4>ELEGANT RING</h4>
-                        <p class="product-price">₹2,499</p>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=500&q=80" alt="Product 2">
-                    </div>
-                    <div class="product-details">
-                        <h4>CHAIN NECKLACE</h4>
-                        <p class="product-price">₹3,999</p>
+                    <div class="bestseller-info">
+                        <h3>Elegant Ring Collection</h3>
+                        <p>Most purchased jewellery of the month. Timeless designs that never go out of style.</p>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=500&q=80" alt="Product 3">
+
+                <div class="bestseller-card scroll-animate">
+                    <div class="bestseller-image">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80" alt="Fan Favourite">
+                        <div class="bestseller-badge">FAN FAVOURITE</div>
                     </div>
-                    <div class="product-details">
-                        <h4>PEARL EARRINGS</h4>
-                        <p class="product-price">₹1,899</p>
+                    <div class="bestseller-info">
+                        <h3>Statement Earrings</h3>
+                        <p>Loved for timeless minimal design. Perfect for every occasion and style.</p>
                     </div>
                 </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Product 4">
+
+                <div class="bestseller-card scroll-animate">
+                    <div class="bestseller-image">
+                        <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=600&q=80" alt="Most Gifted">
+                        <div class="bestseller-badge">MOST GIFTED</div>
                     </div>
-                    <div class="product-details">
-                        <h4>SILVER BRACELET</h4>
-                        <p class="product-price">₹2,799</p>
+                    <div class="bestseller-info">
+                        <h3>Pendant Designs</h3>
+                        <p>Perfect for gifting moments. Show your love with these beautiful pieces.</p>
+                    </div>
+                </div>
+
+                <div class="bestseller-card scroll-animate">
+                    <div class="bestseller-image">
+                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Trending Now">
+                        <div class="bestseller-badge">TRENDING</div>
+                    </div>
+                    <div class="bestseller-info">
+                        <h3>Modern Bracelets</h3>
+                        <p>Fast-moving bestselling pieces. Stay ahead of the fashion curve.</p>
+                    </div>
+                </div>
+
+                <div class="bestseller-card scroll-animate">
+                    <div class="bestseller-image">
+                        <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=600&q=80" alt="Top Rated">
+                        <div class="bestseller-badge">TOP RATED</div>
+                    </div>
+                    <div class="bestseller-info">
+                        <h3>Anklet Collection</h3>
+                        <p>Highest rated by customers. Quality and style combined perfectly.</p>
+                    </div>
+                </div>
+
+                <div class="bestseller-card scroll-animate">
+                    <div class="bestseller-image">
+                        <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=600&q=80" alt="Hot Pick">
+                        <div class="bestseller-badge">HOT PICK</div>
+                    </div>
+                    <div class="bestseller-info">
+                        <h3>Designer Sets</h3>
+                        <p>Most loved new arrivals. Complete your look with matching sets.</p>
                     </div>
                 </div>
             </div>
         </div>
-    </section> -->
+    </section>
 
-
-    <!-- BESTSELLERS (Bluestone Promise Styled Section) -->
-<section class="bestsellers-bluestone">
-    <div class="bestseller-left">
-        <h2 class="bs-title">Our <br><span>Bestsellers</span></h2>
-        <p class="bs-sub">The most loved pieces from Etthnicoast</p>
-    </div>
-
-    <div class="bestseller-right bs-reveal">
-        <div class="bs-grid">
-
-            <div class="bs-item">
-                <div class="bs-circle">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2583/2583175.png">
-                </div>
-                <h4 class="bs-item-title">Top Seller</h4>
-                <p class="bs-item-text">Most purchased jewellery of the month</p>
-            </div>
-
-            <div class="bs-item">
-                <div class="bs-circle">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1828/1828884.png">
-                </div>
-                <h4 class="bs-item-title">Fan Favourite</h4>
-                <p class="bs-item-text">Loved for timeless minimal design</p>
-            </div>
-
-            <div class="bs-item">
-                <div class="bs-circle">
-                    <img src="https://cdn-icons-png.flaticon.com/512/992/992703.png">
-                </div>
-                <h4 class="bs-item-title">Most Gifted</h4>
-                <p class="bs-item-text">Perfect for gifting moments</p>
-            </div>
-
-            <div class="bs-item">
-                <div class="bs-circle">
-                    <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png">
-                </div>
-                <h4 class="bs-item-title">Trending Now</h4>
-                <p class="bs-item-text">Fast-moving bestselling pieces</p>
-            </div>
-
-            <div class="bs-item">
-                <div class="bs-circle">
-                    <img src="https://cdn-icons-png.flaticon.com/512/709/709790.png">
-                </div>
-                <h4 class="bs-item-title">Top Rated</h4>
-                <p class="bs-item-text">Highest rated by customers</p>
-            </div>
-
-            <div class="bs-item">
-                <div class="bs-circle">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1040/1040230.png">
-                </div>
-                <h4 class="bs-item-title">Hot Pick</h4>
-                <p class="bs-item-text">Most loved new arrivals</p>
-            </div>
-
+    <!-- Instagram Reels -->
+    <section class="insta-reels-section">
+        <div class="insta-reels-header">
+            <h2 class="section-title">REELS</h2>
+            <p class="section-subtitle">See our Jewellery in Motion</p>
         </div>
-    </div>
-</section>
 
+        <div class="insta-reels-grid">
+            <blockquote 
+                class="instagram-media" 
+                data-instgrm-permalink="https://www.instagram.com/reel/C9-JdcAMNWj/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ=="
+                data-instgrm-version="14"
+                style="background:#FFF; border:0; margin:0; padding:0;">
+            </blockquote>
 
-<!-- reels section --> 
-<!-- INSTAGRAM REELS SECTION -->
-<section class="insta-reels-section">
-    <div class="insta-reels-header">
-        <h2 class="section-title">REELS</h2>
-        <p class="section-subtitle">See our Jewellery in Motion</p>
-    </div>
+            <blockquote 
+                class="instagram-media" 
+                data-instgrm-permalink="https://www.instagram.com/reel/DAZClKQsyYK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                data-instgrm-version="14"
+                style="background:#FFF; border:0; margin:0; padding:0;">
+            </blockquote>
 
-    <div class="insta-reels-grid">
-
-        <!-- Reel 1 -->
-        <blockquote 
-            class="instagram-media" 
-            data-instgrm-permalink="https://www.instagram.com/reel/C9-JdcAMNWj/?utm_source=ig_web_copy_link&igsh=NTc4MTIwNjQ2YQ=="
-            data-instgrm-version="14"
-            style="background:#FFF; border:0; margin:0; padding:0;">
-        </blockquote>
-
-        <!-- Reel 2 -->
-        <blockquote 
-            class="instagram-media" 
-            data-instgrm-permalink="https://www.instagram.com/reel/DAZClKQsyYK/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-            data-instgrm-version="14"
-            style="background:#FFF; border:0; margin:0; padding:0;">
-        </blockquote>
-
-        <!-- Reel 3 -->
-        <blockquote 
-            class="instagram-media" 
-            data-instgrm-permalink="https://www.instagram.com/reel/C-ptTPIvf5p/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
-            data-instgrm-version="14"
-            style="background:#FFF; border:0; margin:0; padding:0;">
-        </blockquote>
-
-    </div>
-</section>
-
-
+            <blockquote 
+                class="instagram-media" 
+                data-instgrm-permalink="https://www.instagram.com/reel/C-ptTPIvf5p/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                data-instgrm-version="14"
+                style="background:#FFF; border:0; margin:0; padding:0;">
+            </blockquote>
+        </div>
+    </section>
 
     <!-- Shop by Price -->
     <section class="price-section">
         <div class="price-container">
-            <h2 class="section-title">SHOP BY PRICE</h2>
-            <p class="section-subtitle">Find jewelry within your budget</p>
+            <h2 class="section-title">Shop by Price</h2>
+            <p class="section-subtitle">For every occasion & gifting needs</p>
             <div class="price-grid">
                 <div class="price-card">
-                    <h3>Under ₹1,000</h3>
-                    <p>Affordable elegance</p>
+                    <div class="price-card-image">
+                        <img src="https://images.unsplash.com/photo-1549062572-544a64fb0c56?w=600&q=80" alt="Upto ₹2000">
+                    </div>
+                    <div class="price-card-content">
+                        <h3>Upto ₹2000</h3>
+                    </div>
                 </div>
                 <div class="price-card">
-                    <h3>₹1,000 - ₹3,000</h3>
-                    <p>Mid-range luxury</p>
+                    <div class="price-card-image">
+                        <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=600&q=80" alt="₹2000 to ₹4000">
+                    </div>
+                    <div class="price-card-content">
+                        <h3>₹2000 to ₹4000</h3>
+                    </div>
                 </div>
                 <div class="price-card">
-                    <h3>₹3,000 - ₹5,000</h3>
-                    <p>Premium collection</p>
+                    <div class="price-card-image">
+                        <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80" alt="₹4000 to ₹5000">
+                    </div>
+                    <div class="price-card-content">
+                        <h3>₹4000 to ₹5000</h3>
+                    </div>
                 </div>
                 <div class="price-card">
-                    <h3>Above ₹5,000</h3>
-                    <p>Exclusive pieces</p>
+                    <div class="price-card-image">
+                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80" alt="Above ₹5000">
+                    </div>
+                    <div class="price-card-content">
+                        <h3>Above ₹5000</h3>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2187,6 +2525,16 @@
                     <p class="review-text">"Best silver jewelry store! Great customer service and authentic products. Love my new necklace!"</p>
                     <p class="review-author">- Anjali Patel</p>
                 </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Amazing quality and beautiful designs. The pieces are exactly as shown. Highly recommend!"</p>
+                    <p class="review-author">- Rahul Sharma</p>
+                </div>
+                <div class="review-card">
+                    <div class="review-rating">★★★★★</div>
+                    <p class="review-text">"Perfect gift for my wife. She absolutely loved the earrings. Will definitely shop again!"</p>
+                    <p class="review-author">- Vikram Singh</p>
+                </div>
             </div>
         </div>
     </section>
@@ -2236,7 +2584,7 @@
         </div>
     </footer>
 
-
+    <script async src="https://www.instagram.com/embed.js"></script>
     <script>
         // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
@@ -2245,6 +2593,17 @@
         hamburger.addEventListener('click', () => {
             hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
+            
+            const spans = hamburger.querySelectorAll('span');
+            if (hamburger.classList.contains('active')) {
+                spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
+                spans[1].style.opacity = '0';
+                spans[2].style.transform = 'rotate(-45deg) translate(8px, -8px)';
+            } else {
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
+            }
         });
 
         // Close menu when clicking on a link
@@ -2252,6 +2611,10 @@
             link.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
+                const spans = hamburger.querySelectorAll('span');
+                spans[0].style.transform = 'none';
+                spans[1].style.opacity = '1';
+                spans[2].style.transform = 'none';
             });
         });
 
@@ -2284,21 +2647,7 @@
             }
         });
 
-        // Hamburger animation
-        hamburger.addEventListener('click', () => {
-            const spans = hamburger.querySelectorAll('span');
-            if (hamburger.classList.contains('active')) {
-                spans[0].style.transform = 'rotate(45deg) translate(8px, 8px)';
-                spans[1].style.opacity = '0';
-                spans[2].style.transform = 'rotate(-45deg) translate(8px, -8px)';
-            } else {
-                spans[0].style.transform = 'none';
-                spans[1].style.opacity = '1';
-                spans[2].style.transform = 'none';
-            }
-        });
-
-        // Hero Slider Functionality
+        // Hero Slider
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
@@ -2339,50 +2688,180 @@
         const collectionCards = document.getElementById('collectionCards');
         const collectionPrev = document.getElementById('collectionPrev');
         const collectionNext = document.getElementById('collectionNext');
+        const collectionWrapper = document.querySelector('.collection-cards-wrapper');
         let collectionPosition = 0;
-        const cardWidth = 280 + 32; // card width + gap
+
+        function updateCollectionButtons() {
+            const maxScroll = collectionCards.scrollWidth - collectionWrapper.offsetWidth;
+            collectionPrev.style.opacity = collectionPosition <= 0 ? '0.5' : '1';
+            collectionNext.style.opacity = Math.abs(collectionPosition) >= maxScroll ? '0.5' : '1';
+            collectionPrev.style.pointerEvents = collectionPosition <= 0 ? 'none' : 'auto';
+            collectionNext.style.pointerEvents = Math.abs(collectionPosition) >= maxScroll ? 'none' : 'auto';
+        }
 
         collectionNext.addEventListener('click', () => {
-            const maxScroll = -(collectionCards.children.length * cardWidth - collectionCards.parentElement.offsetWidth);
+            const cardWidth = document.querySelector('.collection-range-card').offsetWidth;
+            const gap = 24; // gap between cards
+            const scrollAmount = cardWidth + gap;
+            const maxScroll = -(collectionCards.scrollWidth - collectionWrapper.offsetWidth);
+            
             if (collectionPosition > maxScroll) {
-                collectionPosition -= cardWidth;
+                collectionPosition -= scrollAmount * 2;
+                if (collectionPosition < maxScroll) {
+                    collectionPosition = maxScroll;
+                }
                 collectionCards.style.transform = `translateX(${collectionPosition}px)`;
+                updateCollectionButtons();
             }
         });
 
         collectionPrev.addEventListener('click', () => {
+            const cardWidth = document.querySelector('.collection-range-card').offsetWidth;
+            const gap = 24; // gap between cards
+            const scrollAmount = cardWidth + gap;
+            
             if (collectionPosition < 0) {
-                collectionPosition += cardWidth;
+                collectionPosition += scrollAmount * 2;
+                if (collectionPosition > 0) {
+                    collectionPosition = 0;
+                }
                 collectionCards.style.transform = `translateX(${collectionPosition}px)`;
+                updateCollectionButtons();
             }
         });
-    </script>
-    <script>
-function bsRevealScroll() {
-    let elements = document.querySelectorAll(".bs-reveal");
-    elements.forEach(el => {
-        if (el.getBoundingClientRect().top < window.innerHeight - 150) {
-            el.classList.add("active");
+
+        updateCollectionButtons();
+
+        window.addEventListener('resize', () => {
+            collectionPosition = 0;
+            collectionCards.style.transform = `translateX(0px)`;
+            updateCollectionButtons();
+        });
+
+        // Instagram embed load
+        window.addEventListener("load", function() {
+            if (window.instgrm) instgrm.Embeds.process();
+        });
+
+        // Lifestyle Carousel with Dynamic Slant Effect
+        const lifestyleGrid = document.getElementById('lifestyleGrid');
+        const lifestylePrev = document.getElementById('lifestylePrev');
+        const lifestyleNext = document.getElementById('lifestyleNext');
+
+        const LIFESTYLE_ITEM_WIDTH = 300;
+        const LIFESTYLE_MARGIN = 24;
+        const LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
+
+        const lifestyleItems = [
+            { name: "DAILY WEAR", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80" },
+            { name: "OFFICE WEAR", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" },
+            { name: "PARTY WEAR", image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" },
+            { name: "DAY OUT", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" },
+            { name: "FESTIVE", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" }
+        ];
+
+        let lifestyleTrackItems = [];
+        let lifestyleCurrentIndex = lifestyleItems.length;
+        const lifestyleTotalItems = lifestyleItems.length;
+
+        function renderLifestyleCarousel() {
+            lifestyleGrid.innerHTML = '';
+            lifestyleTrackItems = [];
+
+            // Triple the items for infinite loop
+            const duplicatedItems = [...lifestyleItems, ...lifestyleItems, ...lifestyleItems];
+
+            duplicatedItems.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'lifestyle-card';
+                card.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <div class="lifestyle-overlay">
+                        <div class="lifestyle-info">
+                            <h3>${item.name}</h3>
+                        </div>
+                    </div>
+                `;
+                lifestyleGrid.appendChild(card);
+                lifestyleTrackItems.push(card);
+            });
+
+            updateLifestyleCarousel(false);
         }
-    });
-}
-window.addEventListener("scroll", bsRevealScroll);
-bsRevealScroll();
-</script>
 
+        function updateLifestyleCarousel(useTransition = true) {
+            // Handle infinite loop
+            if (lifestyleCurrentIndex >= lifestyleTrackItems.length - lifestyleTotalItems) {
+                lifestyleCurrentIndex = lifestyleTotalItems;
+                lifestyleGrid.style.transition = 'none';
+            } else if (lifestyleCurrentIndex < lifestyleTotalItems) {
+                lifestyleCurrentIndex = lifestyleTrackItems.length - (lifestyleTotalItems * 2);
+                lifestyleGrid.style.transition = 'none';
+            }
 
-<script>
-document.querySelectorAll('.reel-card video').forEach(video => {
-    video.muted = true;
-    video.play();
+            // Calculate center position
+            const centerCardIndex = lifestyleCurrentIndex + 1;
+            const centerOffset = (LIFESTYLE_FULL_WIDTH * 1.5) - (LIFESTYLE_ITEM_WIDTH / 2) - LIFESTYLE_MARGIN;
+            const translateX = -(centerCardIndex * LIFESTYLE_FULL_WIDTH) + centerOffset;
 
-    video.addEventListener('click', () => {
-        if (video.paused) video.play();
-        else video.pause();
-    });
-});
-</script>
+            if (useTransition) {
+                setTimeout(() => {
+                    lifestyleGrid.style.transition = 'transform 0.5s ease-out';
+                }, 50);
+            }
+            lifestyleGrid.style.transform = `translateX(${translateX}px)`;
 
+            // Apply dynamic styling
+            lifestyleTrackItems.forEach((item, index) => {
+                item.classList.remove('center-card', 'left-adjacent', 'right-adjacent', 'far-left', 'far-right');
 
+                if (index === centerCardIndex) {
+                    item.classList.add('center-card');
+                } else if (index === centerCardIndex - 1) {
+                    item.classList.add('left-adjacent');
+                } else if (index === centerCardIndex - 2) {
+                    item.classList.add('far-left');
+                } else if (index === centerCardIndex + 1) {
+                    item.classList.add('right-adjacent');
+                } else if (index === centerCardIndex + 2) {
+                    item.classList.add('far-right');
+                }
+            });
+        }
+
+        function scrollLifestyleCarousel(direction) {
+            if (direction === 'next') {
+                lifestyleCurrentIndex++;
+            } else if (direction === 'prev') {
+                lifestyleCurrentIndex--;
+            }
+            updateLifestyleCarousel(true);
+        }
+
+        lifestylePrev.addEventListener('click', () => scrollLifestyleCarousel('prev'));
+        lifestyleNext.addEventListener('click', () => scrollLifestyleCarousel('next'));
+
+        // Initialize lifestyle carousel
+        renderLifestyleCarousel();
+
+        // Scroll Animation for Bestsellers
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all bestseller cards
+        document.querySelectorAll('.bestseller-card.scroll-animate').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>

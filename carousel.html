@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Slanted Carousel</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configure Tailwind to use Inter font -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Define fixed constants for geometry */
+        :root {
+            /* Item width (300px) + Margin Right (24px) = 324px */
+            --item-full-width: 324px; 
+            --item-width: 300px;
+        }
+
+        /* Carousel Container is now the fixed viewport, hiding overflow */
+        #carouselContainer {
+            /* Keep it 3 cards wide for focusing on the center, but styling 5 cards total */
+            width: calc(var(--item-full-width) * 3); 
+            perspective: 1000px; /* Gives a slight 3D depth for better transform visuals */
+        }
+        
+        /* Carousel Track has smooth transitions for the controlled movement */
+        #carouselTrack {
+            transition: transform 0.5s ease-out; 
+        }
+
+        /* Base styling for all items (Dormant State) */
+        .carousel-item {
+            flex-shrink: 0;
+            width: var(--item-width);
+            height: 400px; 
+            margin-right: 1.5rem; 
+            position: relative;
+            cursor: pointer;
+            transition: all 0.5s ease-out; /* Apply transition to all transforms */
+            border-radius: 0.75rem; 
+            overflow: hidden;
+            /* Default dormant style (for cards far off-screen) */
+            opacity: 0.2;
+            transform: scale(0.75);
+            transform-origin: center;
+        }
+
+        /* --- Dynamic Styles Applied by JS --- */
+        /* Center Card: Straight, large, and prominent */
+        .center-card {
+            opacity: 1;
+            transform: scale(1.05) rotate(0deg) skewX(0deg) !important;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); 
+            z-index: 10;
+        }
+
+        /* Left Adjacent Card (index - 1): Slanted LEFT, moderate scale/opacity */
+        .left-adjacent {
+            opacity: 0.8;
+            /* Reversed: negative rotation and skew to lean left */
+            transform: scale(0.95) rotate(-3deg) skewX(-3deg); 
+            z-index: 5;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Far Left Card (index - 2): More slanted LEFT, small scale, low opacity */
+        .far-left {
+            opacity: 0.4;
+            /* Reversed: more negative rotation and skew */
+            transform: scale(0.85) rotate(-5deg) skewX(-5deg); 
+            z-index: 1;
+            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Right Adjacent Card (index + 1): Slanted RIGHT, moderate scale/opacity */
+        .right-adjacent {
+            opacity: 0.8;
+            /* Positive rotation and skew to lean right */
+            transform: scale(0.95) rotate(3deg) skewX(3deg); 
+            z-index: 5;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Far Right Card (index + 2): More slanted RIGHT, small scale, low opacity */
+        .far-right {
+            opacity: 0.4;
+            /* More positive rotation and skew */
+            transform: scale(0.85) rotate(5deg) skewX(5deg); 
+            z-index: 1;
+            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Button styling for better visibility on the white background */
+        .nav-button {
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .nav-button:hover {
+            background-color: #f3f4f6;
+            transform: translateY(-50%) scale(1.1);
+        }
+        .nav-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+
+        /* Responsive adjustments for smaller screens */
+        @media (max-width: 1024px) {
+            :root {
+                --item-full-width: 270px; /* 250px item + 16px margin */
+                --item-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans antialiased flex items-center justify-center p-4">
+
+    <div class="max-w-7xl mx-auto py-12 w-full">
+        <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center sm:text-5xl">
+            Shop By Category
+        </h2>
+        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
+            Experience the dynamic carousel. The center card is straight and enlarged!
+        </p>
+
+        <!-- Carousel Wrapper - Used for relative positioning of buttons and centering the container -->
+        <div class="relative flex justify-center">
+            
+            <!-- Carousel Container - This is the viewport (only 3 items wide) -->
+            <div id="carouselContainer" class="overflow-hidden rounded-2xl bg-white shadow-2xl p-4 border border-gray-200">
+                <!-- Carousel Track - This element moves via translateX -->
+                <div id="carouselTrack" class="flex w-fit">
+                    <!-- Items will be inserted here by JavaScript -->
+                </div>
+            </div>
+
+            <!-- Navigation Buttons -->
+            <!-- Left Button: Changed -left-16 to -left-4 -->
+            <button id="prevBtn" class="nav-button absolute top-1/2 -left-4 -translate-y-1/2 bg-white p-3 rounded-full z-20 border border-gray-300 hidden md:block">
+                <!-- Lucide Arrow Left Icon (Inline SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            
+            <!-- Right Button: Changed -right-16 to -right-4 -->
+            <button id="nextBtn" class="nav-button absolute top-1/2 -right-4 -translate-y-1/2 bg-white p-3 rounded-full z-20 border border-gray-300 hidden md:block">
+                <!-- Lucide Arrow Right Icon (Inline SVG) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+
+        </div>
+        
+        <!-- Mobile Navigation (below the carousel) -->
+        <div class="flex justify-center space-x-4 mt-8 md:hidden">
+            <button id="prevBtnMobile" class="nav-button bg-white p-3 rounded-full border border-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <button id="nextBtnMobile" class="nav-button bg-white p-3 rounded-full border border-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Configuration Constants ---
+        const ITEM_WIDTH = 300; // Must match CSS --item-width
+        const MARGIN_RIGHT = 24; // Must match CSS 1.5rem (1.5 * 16)
+        const ITEM_FULL_WIDTH = ITEM_WIDTH + MARGIN_RIGHT;
+
+        // --- Data and State ---
+        const categories = [
+            { name: "WEDDING WEAR", color: "from-pink-500 to-red-500", imageUrl: "https://placehold.co/300x400/805ad5/ffffff?text=Wedding+Collection" },
+            { name: "DAILY WEAR", color: "from-yellow-500 to-orange-500", imageUrl: "https://placehold.co/300x400/f6ad55/ffffff?text=Daily+Essentials" },
+            { name: "OFFICE WEAR", color: "from-blue-500 to-cyan-500", imageUrl: "https://placehold.co/300x400/4c51bf/ffffff?text=Office+Elegant" },
+            { name: "PARTY WEAR", color: "from-purple-500 to-indigo-500", imageUrl: "https://placehold.co/300x400/7f9cf5/ffffff?text=Party+Glam" },
+            { name: "DAY OUT", color: "from-green-500 to-teal-500", imageUrl: "https://placehold.co/300x400/38a169/ffffff?text=Day+Out+Chic" },
+            { name: "DATE NIGHT", color: "from-red-500 to-pink-500", imageUrl: "https://placehold.co/300x400/e53e3e/ffffff?text=Date+Night+Sparkle" },
+        ];
+
+        const carouselContainer = document.getElementById('carouselContainer');
+        const track = document.getElementById('carouselTrack');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const prevBtnMobile = document.getElementById('prevBtnMobile');
+        const nextBtnMobile = document.getElementById('nextBtnMobile');
+
+        let trackItems = []; // Array to hold all rendered item elements
+        // Start centered on the first item of the duplicated set (index 0 is left-adjacent)
+        let currentIndex = categories.length; 
+        const totalItems = categories.length;
+
+        /**
+         * Renders the carousel items into the track. Duplicates the data for infinite loop effect.
+         */
+        function renderCarousel(data) {
+            track.innerHTML = ''; 
+            trackItems = [];
+            
+            // Duplicate the array content three times (A, B, C) where B is the main loop section
+            const duplicatedData = [...data, ...data, ...data];
+
+            duplicatedData.forEach(item => {
+                const itemDiv = document.createElement('div');
+                itemDiv.className = 'carousel-item bg-white shadow-lg';
+                
+                itemDiv.innerHTML = `
+                    <div class="h-full w-full bg-cover bg-center">
+                        <img src="${item.imageUrl}" onerror="this.onerror=null;this.src='https://placehold.co/300x400/374151/ffffff?text=Image+Unavailable';" alt="${item.name}" class="w-full h-full object-cover transition duration-300"/>
+                        <div class="absolute inset-0 flex items-end justify-center">
+                            <div class="w-full p-4 bg-gradient-to-t ${item.color} from-opacity-90 to-opacity-10 text-white text-center">
+                                <h3 class="text-xl font-bold tracking-wider">${item.name}</h3>
+                                <a href="#" class="text-sm opacity-80 hover:opacity-100 transition duration-150">Shop Now &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                track.appendChild(itemDiv);
+                trackItems.push(itemDiv);
+            });
+            
+            updateCarousel(false); // Initial positioning without transition
+        }
+
+
+        /**
+         * Updates the carousel position and applies dynamic styling based on the current center item.
+         * @param {boolean} useTransition - Whether to use the CSS transition property for smooth movement.
+         */
+        function updateCarousel(useTransition = true) {
+            // 1. Handle Infinity Loop (Warping)
+            // If we move into the cloned set (C), instantly jump back to the main set (B)
+            if (currentIndex >= trackItems.length - totalItems) {
+                currentIndex = totalItems;
+                // Temporarily disable transition for the jump
+                track.style.transition = 'none';
+            // If we move into the first cloned set (A), instantly jump forward to the main set (B)
+            } else if (currentIndex < totalItems) {
+                currentIndex = trackItems.length - (totalItems * 2);
+                // Temporarily disable transition for the jump
+                track.style.transition = 'none';
+            }
+
+            // 2. Calculate and Apply Translation
+            // We want the item at currentIndex + 1 to be the center card.
+            const centerCardIndex = currentIndex + 1;
+            
+            // Offset calculation to center the item at centerCardIndex
+            // Offset = (1.5 * ITEM_FULL_WIDTH) - (ITEM_WIDTH / 2) - MARGIN_RIGHT
+            const centerOffset = (ITEM_FULL_WIDTH * 1.5) - (ITEM_WIDTH / 2) - MARGIN_RIGHT;
+            const translateX = -(centerCardIndex * ITEM_FULL_WIDTH) + centerOffset;
+
+            // Apply transition property if required, then translate
+            if (useTransition) {
+                // Re-enable transition after a brief moment if it was disabled in step 1
+                setTimeout(() => { track.style.transition = 'transform 0.5s ease-out'; }, 50); 
+            }
+            track.style.transform = `translateX(${translateX}px)`;
+
+
+            // 3. Apply Dynamic Styling (Skew/Scale)
+            trackItems.forEach((item, index) => {
+                // Clear existing dynamic classes
+                item.classList.remove('center-card', 'left-adjacent', 'right-adjacent', 'far-left', 'far-right');
+                
+                if (index === centerCardIndex) {
+                    item.classList.add('center-card');
+                } else if (index === centerCardIndex - 1) {
+                    item.classList.add('left-adjacent');
+                } else if (index === centerCardIndex - 2) {
+                    item.classList.add('far-left');
+                } else if (index === centerCardIndex + 1) {
+                    item.classList.add('right-adjacent');
+                } else if (index === centerCardIndex + 2) {
+                    item.classList.add('far-right');
+                }
+                // Cards further away than 2 positions will retain the default dormant style from CSS: .carousel-item
+            });
+        }
+
+        // --- Scrolling Function ---
+        function scrollCarousel(direction) {
+            if (direction === 'next') {
+                currentIndex++;
+            } else if (direction === 'prev') {
+                currentIndex--;
+            }
+            updateCarousel(true);
+        }
+
+        // --- Event Listeners and Initialization ---
+        
+        // Desktop buttons
+        prevBtn.addEventListener('click', () => scrollCarousel('prev'));
+        nextBtn.addEventListener('click', () => scrollCarousel('next'));
+        
+        // Mobile buttons
+        prevBtnMobile.addEventListener('click', () => scrollCarousel('prev'));
+        nextBtnMobile.addEventListener('click', () => scrollCarousel('next'));
+
+
+        window.onload = function() {
+            // Note: We rely on CSS variables for sizing, but this function ensures
+            // all items are rendered and the initial position is set correctly.
+            renderCarousel(categories);
+        };
+    </script>
+</body>
+</html>
