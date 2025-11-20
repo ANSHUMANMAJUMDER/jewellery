@@ -1507,7 +1507,7 @@
             gap: 3rem;
             margin-top: 3rem;
         }
-
+/* 
         .bestseller-card {
             background: var(--white);
             border-radius: 15px;
@@ -1518,13 +1518,13 @@
             opacity: 0;
             transform: translateX(100px);
             animation: fadeInRight 0.8s ease forwards;
-        }
+        } */
 
-        .bestseller-card:nth-child(1) {
+        /* .bestseller-card:nth-child(1) {
             animation-delay: 0.1s;
-        }
+        } */
 
-        .bestseller-card:nth-child(2) {
+        /* .bestseller-card:nth-child(2) {
             animation-delay: 0.3s;
         }
 
@@ -1542,23 +1542,83 @@
 
         .bestseller-card:nth-child(6) {
             animation-delay: 1.1s;
-        }
+        } */
 
-        @keyframes fadeInRight {
+        /* @keyframes fadeInRight {
             to {
                 opacity: 1;
                 transform: translateX(0);
             }
-        }
+        } */
 
-        .bestseller-card.scroll-animate {
+        /* .bestseller-card.scroll-animate {
             opacity: 0;
             transform: translateX(100px);
-        }
+        } */
 
-        .bestseller-card.scroll-animate.animate {
+        /* .bestseller-card.scroll-animate.animate {
             animation: fadeInRight 0.8s ease forwards;
-        }
+        } */
+
+        .bestseller-card {
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+
+    /* initial state (before scroll into view) */
+    opacity: 0;
+    transform: translateX(-40px) translateY(20px);
+}
+
+/* base class for scroll animation */
+.bestseller-card.scroll-animate {
+    opacity: 0;
+    transform: translateX(-40px) translateY(20px);
+}
+
+/* when IntersectionObserver adds .animate */
+.bestseller-card.scroll-animate.animate {
+    animation: bestsellerFloatIn 0.7s ease-out forwards;
+}
+
+/* staggered delays */
+.bestseller-card.scroll-animate:nth-child(1).animate {
+    animation-delay: 0.05s;
+}
+.bestseller-card.scroll-animate:nth-child(2).animate {
+    animation-delay: 0.15s;
+}
+.bestseller-card.scroll-animate:nth-child(3).animate {
+    animation-delay: 0.25s;
+}
+.bestseller-card.scroll-animate:nth-child(4).animate {
+    animation-delay: 0.35s;
+}
+.bestseller-card.scroll-animate:nth-child(5).animate {
+    animation-delay: 0.45s;
+}
+.bestseller-card.scroll-animate:nth-child(6).animate {
+    animation-delay: 0.55s;
+}
+
+/* float-in-from-left with soft lift */
+@keyframes bestsellerFloatIn {
+    0% {
+        opacity: 0;
+        transform: translateX(-40px) translateY(20px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateX(0) translateY(-4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0) translateY(0);
+    }
+}
 
         .bestseller-card:hover {
             transform: translateY(-10px);
