@@ -1674,7 +1674,7 @@
             opacity: 0.7;
             line-height: 1.6;
         }
-
+/* 
         .insta-reels-section {
             padding: 5rem 2rem;
             background: var(--white);
@@ -1686,7 +1686,141 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 2.5rem;
-        }
+        } */
+
+        /* Instagram Reels */
+.insta-reels-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, #fdf5f0 0%, #ffffff 100%);
+}
+
+.insta-reels-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.insta-reels-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.insta-reels-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(260px, 1fr));
+    gap: 2.5rem;
+    align-items: stretch;
+}
+
+/* outer card */
+.insta-reel-card {
+    background: var(--white);
+    border-radius: 20px;
+    padding: 1.2rem;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+/* scroll animation class (added via JS) */
+.insta-reel-card.animate {
+    animation: reelFloatUp 0.7s ease-out forwards;
+}
+
+/* staggered delays */
+.insta-reel-card:nth-child(1).animate { animation-delay: 0.05s; }
+.insta-reel-card:nth-child(2).animate { animation-delay: 0.15s; }
+.insta-reel-card:nth-child(3).animate { animation-delay: 0.25s; }
+
+.insta-reel-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+}
+
+/* the reel area with fixed ratio */
+.insta-reel-frame {
+    border-radius: 16px;
+    overflow: hidden;
+    background: #000;
+    aspect-ratio: 9 / 16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.insta-reel-frame:hover {
+    transform: scale(1.01);
+}
+
+/* make Instagram embed fill our frame properly */
+.insta-reel-frame .instagram-media {
+    max-width: 100% !important;
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+/* float-up animation */
+@keyframes reelFloatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .insta-reels-section {
+        padding: 4rem 1.5rem;
+    }
+
+    .insta-reels-grid {
+        grid-template-columns: repeat(2, minmax(240px, 1fr));
+        gap: 2rem;
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .insta-reels-section {
+        padding: 3.5rem 1.2rem;
+    }
+
+    .insta-reels-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8rem;
+    }
+
+    .insta-reel-card {
+        max-width: 420px;
+        margin: 0 auto;
+    }
+}
+
+/* Small mobile */
+@media (max-width: 480px) {
+    .insta-reels-section {
+        padding: 3rem 1rem;
+    }
+
+    .insta-reel-card {
+        padding: 1rem;
+        border-radius: 16px;
+    }
+
+    .insta-reel-frame {
+        border-radius: 12px;
+    }
+}
+
 
         .price-section {
             padding: 5rem 2rem;
@@ -2918,7 +3052,7 @@
     </section>
 
     <!-- Instagram Reels -->
-    <section class="insta-reels-section">
+    <!-- <section class="insta-reels-section">
         <div class="insta-reels-header">
             <h2 class="section-title">REELS</h2>
             <p class="section-subtitle">See our Jewellery in Motion</p>
@@ -2946,7 +3080,53 @@
                 style="background:#FFF; border:0; margin:0; padding:0;">
             </blockquote>
         </div>
-    </section>
+    </section> -->
+
+
+    <!-- Instagram Reels -->
+<section class="insta-reels-section">
+    <div class="insta-reels-inner">
+        <div class="insta-reels-header">
+            <h2 class="section-title">REELS</h2>
+            <p class="section-subtitle">See our Jewellery in Motion</p>
+        </div>
+
+        <div class="insta-reels-grid">
+            <div class="insta-reel-card scroll-animate">
+                <div class="insta-reel-frame">
+                    <blockquote
+                        class="instagram-media"
+                        data-instgrm-permalink="https://www.instagram.com/reel/DRPSMn6E-Su/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                        data-instgrm-version="14"
+                        style="background:#FFF; border:0; margin:0; padding:0; width:100%;"
+                    ></blockquote>
+                </div>
+            </div>
+
+            <div class="insta-reel-card scroll-animate">
+                <div class="insta-reel-frame">
+                    <blockquote
+                        class="instagram-media"
+                        data-instgrm-permalink="https://www.instagram.com/reel/DRPBkeMjL15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                        data-instgrm-version="14"
+                        style="background:#FFF; border:0; margin:0; padding:0; width:100%;"
+                    ></blockquote>
+                </div>
+            </div>
+
+            <div class="insta-reel-card scroll-animate">
+                <div class="insta-reel-frame">
+                    <blockquote
+                        class="instagram-media"
+                        data-instgrm-permalink="https://www.instagram.com/reel/DROl8xpkgKQ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                        data-instgrm-version="14"
+                        style="background:#FFF; border:0; margin:0; padding:0; width:100%;"
+                    ></blockquote>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
     <!-- Shop by Price -->
     <section class="price-section">
@@ -3466,6 +3646,10 @@ window.addEventListener('resize', () => {
         document.querySelectorAll('.bestseller-card.scroll-animate').forEach(card => {
             observer.observe(card);
         });
+
+        document.querySelectorAll('.insta-reel-card.scroll-animate').forEach(card => {
+    observer.observe(card);
+});
     </script>
 </body>
 </html>
