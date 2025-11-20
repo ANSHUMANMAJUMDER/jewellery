@@ -757,169 +757,249 @@
             object-fit: cover;
         }
 
+          .lifestyle-section {
+        padding: 5rem 2rem;
+        background: var(--white);
+        position: relative;
+    }
+
+    .lifestyle-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .lifestyle-slider-wrapper {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        max-width: 1300px; /* overall max width */
+        margin: 0 auto;
+        perspective: 1000px;
+    }
+
+    .lifestyle-grid {
+        display: flex;
+        gap: 0;
+        transition: transform 0.5s ease-out;
+        width: fit-content;
+    }
+
+    .lifestyle-card {
+        flex-shrink: 0;
+        /* 5 cards on desktop: (100% - 4*24px) / 5 */
+        width: calc((100% - 96px) / 5);
+        max-width: 300px;
+        height: 400px;
+        margin-right: 24px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: all 0.5s ease-out;
+        opacity: 0.2;
+        transform: scale(0.75);
+        transform-origin: center;
+        background: #ddd;
+    }
+
+    .lifestyle-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+        display: block;
+    }
+
+    .lifestyle-card:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Center Card Styles */
+    .lifestyle-card.center-card {
+        opacity: 1;
+        transform: scale(1.05) rotate(0deg) skewX(0deg) !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        z-index: 10;
+    }
+
+    /* Left Adjacent Card */
+    .lifestyle-card.left-adjacent {
+        opacity: 0.8;
+        transform: scale(0.95) rotate(-3deg) skewX(-3deg);
+        z-index: 5;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Far Left Card */
+    .lifestyle-card.far-left {
+        opacity: 0.4;
+        transform: scale(0.85) rotate(-5deg) skewX(-5deg);
+        z-index: 1;
+        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Right Adjacent Card */
+    .lifestyle-card.right-adjacent {
+        opacity: 0.8;
+        transform: scale(0.95) rotate(3deg) skewX(3deg);
+        z-index: 5;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Far Right Card */
+    .lifestyle-card.far-right {
+        opacity: 0.4;
+        transform: scale(0.85) rotate(5deg) skewX(5deg);
+        z-index: 1;
+        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .lifestyle-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 3rem;
+        transition: background 0.3s ease;
+    }
+
+    .lifestyle-card:hover .lifestyle-overlay {
+        background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    .lifestyle-info h3 {
+        font-size: 2rem;
+        font-weight: 400;
+        letter-spacing: 5px;
+        color: var(--white);
+        text-transform: uppercase;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+    }
+
+    .lifestyle-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid var(--primary-blue);
+        color: var(--primary-blue);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 20;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .lifestyle-nav-btn:hover {
+        background: var(--primary-blue);
+        color: var(--white);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .lifestyle-nav-btn.prev {
+        left: 40px;
+    }
+
+    .lifestyle-nav-btn.next {
+        right: 40px;
+    }
+
+    .section-title {
+        margin: 0;
+        font-size: 2.2rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .section-subtitle {
+        margin-top: 0.5rem;
+        margin-bottom: 2.5rem;
+        font-size: 1rem;
+        color: #666;
+        text-align: center;
+    }
+
+    /* TABLET: show 3 cards */
+    @media (max-width: 1024px) {
         .lifestyle-section {
-            padding: 5rem 2rem;
-            background: var(--white);
-            position: relative;
+            padding: 3rem 1rem;
         }
-
-        .lifestyle-container {
-            max-width: 1600px;
-            margin: 0 auto;
-            position: relative;
-        }
-
         .lifestyle-slider-wrapper {
-            overflow: hidden;
-            position: relative;
-            width: calc(300px * 3 + 48px);
-            margin: 0 auto;
-            perspective: 1000px;
+            max-width: 100%;
         }
-
-        .lifestyle-grid {
-            display: flex;
-            gap: 0;
-            transition: transform 0.5s ease-out;
-            width: fit-content;
-        }
-
         .lifestyle-card {
-            flex-shrink: 0;
-            width: 300px;
-            height: 400px;
-            margin-right: 24px;
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            border-radius: 12px;
-            transition: all 0.5s ease-out;
-            opacity: 0.2;
-            transform: scale(0.75);
-            transform-origin: center;
+            width: calc((100% - 48px) / 3); /* 3 cards, 2 gaps */
+            height: 340px;
         }
-
-        .lifestyle-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .lifestyle-card:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Center Card Styles */
-        .lifestyle-card.center-card {
-            opacity: 1;
-            transform: scale(1.05) rotate(0deg) skewX(0deg) !important;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-            z-index: 10;
-        }
-
-        /* Left Adjacent Card */
-        .lifestyle-card.left-adjacent {
-            opacity: 0.8;
-            transform: scale(0.95) rotate(-3deg) skewX(-3deg);
-            z-index: 5;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Far Left Card */
-        .lifestyle-card.far-left {
-            opacity: 0.4;
-            transform: scale(0.85) rotate(-5deg) skewX(-5deg);
-            z-index: 1;
-            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Right Adjacent Card */
-        .lifestyle-card.right-adjacent {
-            opacity: 0.8;
-            transform: scale(0.95) rotate(3deg) skewX(3deg);
-            z-index: 5;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Far Right Card */
-        .lifestyle-card.far-right {
-            opacity: 0.4;
-            transform: scale(0.85) rotate(5deg) skewX(5deg);
-            z-index: 1;
-            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
-        }
-
-        .lifestyle-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding-bottom: 3rem;
-            transition: background 0.3s ease;
-        }
-
-        .lifestyle-card:hover .lifestyle-overlay {
-            background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
-        }
-
-        .lifestyle-info {
-            text-align: center;
-        }
-
-        .lifestyle-info h3 {
-            font-size: 2rem;
-            font-weight: 400;
-            letter-spacing: 5px;
-            color: var(--white);
-            text-transform: uppercase;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-            font-family: 'Arial', sans-serif;
-        }
-
-        .lifestyle-nav-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            border: 2px solid var(--primary-blue);
-            color: var(--primary-blue);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 20;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-        }
-
-        .lifestyle-nav-btn:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-            transform: translateY(-50%) scale(1.1);
-        }
-
-        .lifestyle-nav-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
         .lifestyle-nav-btn.prev {
-            left: 59px;
+            left: 20px;
         }
-
         .lifestyle-nav-btn.next {
-            right: 73px;
+            right: 20px;
         }
+    }
+
+    /* SMALL TABLET / LARGE MOBILE: show 2 cards */
+    @media (max-width: 768px) {
+        .lifestyle-card {
+            width: calc((100% - 24px) / 2); /* 2 cards, 1 gap */
+            height: 320px;
+        }
+        .lifestyle-info h3 {
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+        }
+        .lifestyle-nav-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+        .lifestyle-nav-btn.prev {
+            left: 10px;
+        }
+        .lifestyle-nav-btn.next {
+            right: 10px;
+        }
+    }
+
+    /* MOBILE: 1 card full width */
+    @media (max-width: 480px) {
+        .lifestyle-card {
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+            margin-right: 16px;
+        }
+        .lifestyle-info h3 {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        .lifestyle-nav-btn {
+            top: auto;
+            bottom: 10px;
+            transform: none;
+        }
+        .lifestyle-nav-btn.prev {
+            left: 10px;
+        }
+        .lifestyle-nav-btn.next {
+            right: 10px;
+        }
+    }
 
         .world-section {
             padding: 5rem 2rem;
@@ -2201,64 +2281,25 @@
 
     <!-- Shop by Lifestyle -->
     <section class="lifestyle-section">
-        <div class="lifestyle-container">
-            <h2 class="section-title">SHOP BY LIFESTYLE</h2>
-            <p class="section-subtitle">For every you</p>
-            
-            <button class="lifestyle-nav-btn prev" id="lifestylePrev">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            
-            <div class="lifestyle-slider-wrapper">
-                <div class="lifestyle-grid" id="lifestyleGrid">
-                    <div class="lifestyle-card">
-                        <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80" alt="Daily Wear">
-                        <div class="lifestyle-overlay">
-                            <div class="lifestyle-info">
-                                <h3>DAILY WEAR</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lifestyle-card">
-                        <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" alt="Office Wear">
-                        <div class="lifestyle-overlay">
-                            <div class="lifestyle-info">
-                                <h3>OFFICE WEAR</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lifestyle-card">
-                        <img src="https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" alt="Party Wear">
-                        <div class="lifestyle-overlay">
-                            <div class="lifestyle-info">
-                                <h3>PARTY WEAR</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lifestyle-card">
-                        <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" alt="Day Out">
-                        <div class="lifestyle-overlay">
-                            <div class="lifestyle-info">
-                                <h3>DAY OUT</h3>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lifestyle-card">
-                        <img src="https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" alt="Festive">
-                        <div class="lifestyle-overlay">
-                            <div class="lifestyle-info">
-                                <h3>FESTIVE</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <button class="lifestyle-nav-btn next" id="lifestyleNext">
-                <i class="fas fa-chevron-right"></i>
-            </button>
+    <div class="lifestyle-container">
+
+        <h2 class="section-title">SHOP BY LIFESTYLE</h2>
+        <p class="section-subtitle">For every you</p>
+
+        <button class="lifestyle-nav-btn prev" id="lifestylePrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="lifestyle-slider-wrapper">
+            <div class="lifestyle-grid" id="lifestyleGrid"></div>
         </div>
-    </section>
+
+        <button class="lifestyle-nav-btn next" id="lifestyleNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+    </div>
+</section>
 
     <!-- Ethnicoast World -->
     <section class="world-section">
@@ -2743,106 +2784,121 @@
             if (window.instgrm) instgrm.Embeds.process();
         });
 
-        // Lifestyle Carousel with Dynamic Slant Effect
-        const lifestyleGrid = document.getElementById('lifestyleGrid');
-        const lifestylePrev = document.getElementById('lifestylePrev');
-        const lifestyleNext = document.getElementById('lifestyleNext');
+       // Lifestyle Carousel with Dynamic Slant Effect
+const lifestyleGrid = document.getElementById('lifestyleGrid');
+const lifestylePrev = document.getElementById('lifestylePrev');
+const lifestyleNext = document.getElementById('lifestyleNext');
+const lifestyleWrapper = document.querySelector('.lifestyle-slider-wrapper');
 
-        const LIFESTYLE_ITEM_WIDTH = 300;
-        const LIFESTYLE_MARGIN = 24;
-        const LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
+let LIFESTYLE_ITEM_WIDTH = 300;
+let LIFESTYLE_MARGIN = 24;
+let LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
 
-        const lifestyleItems = [
-            { name: "DAILY WEAR", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80" },
-            { name: "OFFICE WEAR", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" },
-            { name: "PARTY WEAR", image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" },
-            { name: "DAY OUT", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" },
-            { name: "FESTIVE", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" }
-        ];
+const lifestyleItems = [
+    { name: "DAILY WEAR", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80" },
+    { name: "OFFICE WEAR", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" },
+    { name: "PARTY WEAR", image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" },
+    { name: "DAY OUT", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" },
+    { name: "FESTIVE", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" }
+];
 
-        let lifestyleTrackItems = [];
-        let lifestyleCurrentIndex = lifestyleItems.length;
-        const lifestyleTotalItems = lifestyleItems.length;
+let lifestyleTrackItems = [];
+let lifestyleCurrentIndex = lifestyleItems.length;
+const lifestyleTotalItems = lifestyleItems.length;
 
-        function renderLifestyleCarousel() {
-            lifestyleGrid.innerHTML = '';
-            lifestyleTrackItems = [];
+function renderLifestyleCarousel() {
+    lifestyleGrid.innerHTML = '';
+    lifestyleTrackItems = [];
 
-            // Triple the items for infinite loop
-            const duplicatedItems = [...lifestyleItems, ...lifestyleItems, ...lifestyleItems];
+    const duplicatedItems = [...lifestyleItems, ...lifestyleItems, ...lifestyleItems];
 
-            duplicatedItems.forEach(item => {
-                const card = document.createElement('div');
-                card.className = 'lifestyle-card';
-                card.innerHTML = `
-                    <img src="${item.image}" alt="${item.name}">
-                    <div class="lifestyle-overlay">
-                        <div class="lifestyle-info">
-                            <h3>${item.name}</h3>
-                        </div>
-                    </div>
-                `;
-                lifestyleGrid.appendChild(card);
-                lifestyleTrackItems.push(card);
-            });
+    duplicatedItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'lifestyle-card';
+        card.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="lifestyle-overlay">
+                <div class="lifestyle-info"><h3>${item.name}</h3></div>
+            </div>
+        `;
+        lifestyleGrid.appendChild(card);
+        lifestyleTrackItems.push(card);
+    });
 
-            updateLifestyleCarousel(false);
+    // Update width values based on rendered card (for responsiveness)
+    if (lifestyleTrackItems[0]) {
+        LIFESTYLE_ITEM_WIDTH = lifestyleTrackItems[0].offsetWidth;
+    }
+    const cardStyle = getComputedStyle(lifestyleTrackItems[0]);
+    const mr = parseInt(cardStyle.marginRight, 10);
+    if (!isNaN(mr)) {
+        LIFESTYLE_MARGIN = mr;
+    }
+    LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
+
+    updateLifestyleCarousel(false);
+}
+
+function updateLifestyleCarousel(useTransition = true) {
+    // recalc item sizes in case of resize
+    if (lifestyleTrackItems[0]) {
+        LIFESTYLE_ITEM_WIDTH = lifestyleTrackItems[0].offsetWidth;
+        const cardStyle = getComputedStyle(lifestyleTrackItems[0]);
+        const mr = parseInt(cardStyle.marginRight, 10);
+        if (!isNaN(mr)) {
+            LIFESTYLE_MARGIN = mr;
         }
+        LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
+    }
 
-        function updateLifestyleCarousel(useTransition = true) {
-            // Handle infinite loop
-            if (lifestyleCurrentIndex >= lifestyleTrackItems.length - lifestyleTotalItems) {
-                lifestyleCurrentIndex = lifestyleTotalItems;
-                lifestyleGrid.style.transition = 'none';
-            } else if (lifestyleCurrentIndex < lifestyleTotalItems) {
-                lifestyleCurrentIndex = lifestyleTrackItems.length - (lifestyleTotalItems * 2);
-                lifestyleGrid.style.transition = 'none';
-            }
+    // Infinite-like looping boundaries
+    if (lifestyleCurrentIndex >= lifestyleTrackItems.length - lifestyleTotalItems) {
+        lifestyleCurrentIndex = lifestyleTotalItems;
+        lifestyleGrid.style.transition = 'none';
+    } 
+    else if (lifestyleCurrentIndex < lifestyleTotalItems) {
+        lifestyleCurrentIndex = lifestyleTrackItems.length - (lifestyleTotalItems * 2);
+        lifestyleGrid.style.transition = 'none';
+    }
 
-            // Calculate center position
-            const centerCardIndex = lifestyleCurrentIndex + 1;
-            const centerOffset = (LIFESTYLE_FULL_WIDTH * 1.5) - (LIFESTYLE_ITEM_WIDTH / 2) - LIFESTYLE_MARGIN;
-            const translateX = -(centerCardIndex * LIFESTYLE_FULL_WIDTH) + centerOffset;
+    const centerCardIndex = lifestyleCurrentIndex + 1; // center among visible
 
-            if (useTransition) {
-                setTimeout(() => {
-                    lifestyleGrid.style.transition = 'transform 0.5s ease-out';
-                }, 50);
-            }
-            lifestyleGrid.style.transform = `translateX(${translateX}px)`;
+    const wrapperWidth = lifestyleWrapper.offsetWidth;
+    const centerOffset = (wrapperWidth - LIFESTYLE_ITEM_WIDTH) / 2;
+    const translateX = -(centerCardIndex * LIFESTYLE_FULL_WIDTH) + centerOffset;
 
-            // Apply dynamic styling
-            lifestyleTrackItems.forEach((item, index) => {
-                item.classList.remove('center-card', 'left-adjacent', 'right-adjacent', 'far-left', 'far-right');
+    if (useTransition) {
+        setTimeout(() => {
+            lifestyleGrid.style.transition = 'transform 0.5s ease-out';
+        }, 50);
+    }
 
-                if (index === centerCardIndex) {
-                    item.classList.add('center-card');
-                } else if (index === centerCardIndex - 1) {
-                    item.classList.add('left-adjacent');
-                } else if (index === centerCardIndex - 2) {
-                    item.classList.add('far-left');
-                } else if (index === centerCardIndex + 1) {
-                    item.classList.add('right-adjacent');
-                } else if (index === centerCardIndex + 2) {
-                    item.classList.add('far-right');
-                }
-            });
-        }
+    lifestyleGrid.style.transform = `translateX(${translateX}px)`;
 
-        function scrollLifestyleCarousel(direction) {
-            if (direction === 'next') {
-                lifestyleCurrentIndex++;
-            } else if (direction === 'prev') {
-                lifestyleCurrentIndex--;
-            }
-            updateLifestyleCarousel(true);
-        }
+    lifestyleTrackItems.forEach((item, index) => {
+        item.classList.remove('center-card','left-adjacent','right-adjacent','far-left','far-right');
 
-        lifestylePrev.addEventListener('click', () => scrollLifestyleCarousel('prev'));
-        lifestyleNext.addEventListener('click', () => scrollLifestyleCarousel('next'));
+        if (index === centerCardIndex) item.classList.add('center-card');
+        else if (index === centerCardIndex - 1) item.classList.add('left-adjacent');
+        else if (index === centerCardIndex - 2) item.classList.add('far-left');
+        else if (index === centerCardIndex + 1) item.classList.add('right-adjacent');
+        else if (index === centerCardIndex + 2) item.classList.add('far-right');
+    });
+}
 
-        // Initialize lifestyle carousel
-        renderLifestyleCarousel();
+function scrollLifestyleCarousel(direction) {
+    lifestyleCurrentIndex += direction === 'next' ? 1 : -1;
+    updateLifestyleCarousel(true);
+}
+
+lifestylePrev.addEventListener('click', () => scrollLifestyleCarousel('prev'));
+lifestyleNext.addEventListener('click', () => scrollLifestyleCarousel('next'));
+
+window.addEventListener('resize', () => {
+    updateLifestyleCarousel(false);
+});
+
+renderLifestyleCarousel();
 
         // Scroll Animation for Bestsellers
         const observerOptions = {

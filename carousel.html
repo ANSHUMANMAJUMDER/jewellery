@@ -1,320 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dynamic Slanted Carousel</title>
-    <!-- Load Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Configure Tailwind to use Inter font -->
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                }
-            }
-        }
-    </script>
-    <style>
-        /* Define fixed constants for geometry */
-        :root {
-            /* Item width (300px) + Margin Right (24px) = 324px */
-            --item-full-width: 324px; 
-            --item-width: 300px;
-        }
+<meta charset="UTF-8">
+<title>Lifestyle Preview</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-        /* Carousel Container is now the fixed viewport, hiding overflow */
-        #carouselContainer {
-            /* Keep it 3 cards wide for focusing on the center, but styling 5 cards total */
-            width: calc(var(--item-full-width) * 3); 
-            perspective: 1000px; /* Gives a slight 3D depth for better transform visuals */
-        }
-        
-        /* Carousel Track has smooth transitions for the controlled movement */
-        #carouselTrack {
-            transition: transform 0.5s ease-out; 
-        }
+<style>
+    :root {
+        --primary-blue: #0033cc;
+        --white: #ffffff;
+    }
 
-        /* Base styling for all items (Dormant State) */
-        .carousel-item {
-            flex-shrink: 0;
-            width: var(--item-width);
-            height: 400px; 
-            margin-right: 1.5rem; 
-            position: relative;
-            cursor: pointer;
-            transition: all 0.5s ease-out; /* Apply transition to all transforms */
-            border-radius: 0.75rem; 
-            overflow: hidden;
-            /* Default dormant style (for cards far off-screen) */
-            opacity: 0.2;
-            transform: scale(0.75);
-            transform-origin: center;
-        }
+    body{
+        background:#f4f4f4;
+        font-family:Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+    }
 
-        /* --- Dynamic Styles Applied by JS --- */
-        /* Center Card: Straight, large, and prominent */
-        .center-card {
-            opacity: 1;
-            transform: scale(1.05) rotate(0deg) skewX(0deg) !important;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4); 
-            z-index: 10;
-        }
+    .lifestyle-section {
+        padding: 5rem 2rem;
+        background: var(--white);
+        position: relative;
+    }
 
-        /* Left Adjacent Card (index - 1): Slanted LEFT, moderate scale/opacity */
-        .left-adjacent {
-            opacity: 0.8;
-            /* Reversed: negative rotation and skew to lean left */
-            transform: scale(0.95) rotate(-3deg) skewX(-3deg); 
-            z-index: 5;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Far Left Card (index - 2): More slanted LEFT, small scale, low opacity */
-        .far-left {
-            opacity: 0.4;
-            /* Reversed: more negative rotation and skew */
-            transform: scale(0.85) rotate(-5deg) skewX(-5deg); 
-            z-index: 1;
-            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
-        }
+    .lifestyle-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        position: relative;
+    }
 
-        /* Right Adjacent Card (index + 1): Slanted RIGHT, moderate scale/opacity */
-        .right-adjacent {
-            opacity: 0.8;
-            /* Positive rotation and skew to lean right */
-            transform: scale(0.95) rotate(3deg) skewX(3deg); 
-            z-index: 5;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Far Right Card (index + 2): More slanted RIGHT, small scale, low opacity */
-        .far-right {
-            opacity: 0.4;
-            /* More positive rotation and skew */
-            transform: scale(0.85) rotate(5deg) skewX(5deg); 
-            z-index: 1;
-            box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
-        }
+    .lifestyle-slider-wrapper {
+        overflow: hidden;
+        position: relative;
+        width: 100%;
+        max-width: 1300px; /* overall max width */
+        margin: 0 auto;
+        perspective: 1000px;
+    }
 
-        /* Button styling for better visibility on the white background */
-        .nav-button {
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        }
-        .nav-button:hover {
-            background-color: #f3f4f6;
-            transform: translateY(-50%) scale(1.1);
-        }
-        .nav-button:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-            box-shadow: none;
-        }
+    .lifestyle-grid {
+        display: flex;
+        gap: 0;
+        transition: transform 0.5s ease-out;
+        width: fit-content;
+    }
 
-        /* Responsive adjustments for smaller screens */
-        @media (max-width: 1024px) {
-            :root {
-                --item-full-width: 270px; /* 250px item + 16px margin */
-                --item-width: 250px;
-            }
+    .lifestyle-card {
+        flex-shrink: 0;
+        /* 5 cards on desktop: (100% - 4*24px) / 5 */
+        width: calc((100% - 96px) / 5);
+        max-width: 300px;
+        height: 400px;
+        margin-right: 24px;
+        position: relative;
+        overflow: hidden;
+        cursor: pointer;
+        border-radius: 12px;
+        transition: all 0.5s ease-out;
+        opacity: 0.2;
+        transform: scale(0.75);
+        transform-origin: center;
+        background: #ddd;
+    }
+
+    .lifestyle-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+        display: block;
+    }
+
+    .lifestyle-card:hover img {
+        transform: scale(1.05);
+    }
+
+    /* Center Card Styles */
+    .lifestyle-card.center-card {
+        opacity: 1;
+        transform: scale(1.05) rotate(0deg) skewX(0deg) !important;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+        z-index: 10;
+    }
+
+    /* Left Adjacent Card */
+    .lifestyle-card.left-adjacent {
+        opacity: 0.8;
+        transform: scale(0.95) rotate(-3deg) skewX(-3deg);
+        z-index: 5;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Far Left Card */
+    .lifestyle-card.far-left {
+        opacity: 0.4;
+        transform: scale(0.85) rotate(-5deg) skewX(-5deg);
+        z-index: 1;
+        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Right Adjacent Card */
+    .lifestyle-card.right-adjacent {
+        opacity: 0.8;
+        transform: scale(0.95) rotate(3deg) skewX(3deg);
+        z-index: 5;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Far Right Card */
+    .lifestyle-card.far-right {
+        opacity: 0.4;
+        transform: scale(0.85) rotate(5deg) skewX(5deg);
+        z-index: 1;
+        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
+    }
+
+    .lifestyle-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        padding-bottom: 3rem;
+        transition: background 0.3s ease;
+    }
+
+    .lifestyle-card:hover .lifestyle-overlay {
+        background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
+    }
+
+    .lifestyle-info h3 {
+        font-size: 2rem;
+        font-weight: 400;
+        letter-spacing: 5px;
+        color: var(--white);
+        text-transform: uppercase;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+        font-family: 'Arial', sans-serif;
+        text-align: center;
+    }
+
+    .lifestyle-nav-btn {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid var(--primary-blue);
+        color: var(--primary-blue);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        z-index: 20;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.2rem;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+    }
+
+    .lifestyle-nav-btn:hover {
+        background: var(--primary-blue);
+        color: var(--white);
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .lifestyle-nav-btn.prev {
+        left: 40px;
+    }
+
+    .lifestyle-nav-btn.next {
+        right: 40px;
+    }
+
+    .section-title {
+        margin: 0;
+        font-size: 2.2rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    .section-subtitle {
+        margin-top: 0.5rem;
+        margin-bottom: 2.5rem;
+        font-size: 1rem;
+        color: #666;
+        text-align: center;
+    }
+
+    /* TABLET: show 3 cards */
+    @media (max-width: 1024px) {
+        .lifestyle-section {
+            padding: 3rem 1rem;
         }
-    </style>
+        .lifestyle-slider-wrapper {
+            max-width: 100%;
+        }
+        .lifestyle-card {
+            width: calc((100% - 48px) / 3); /* 3 cards, 2 gaps */
+            height: 340px;
+        }
+        .lifestyle-nav-btn.prev {
+            left: 20px;
+        }
+        .lifestyle-nav-btn.next {
+            right: 20px;
+        }
+    }
+
+    /* SMALL TABLET / LARGE MOBILE: show 2 cards */
+    @media (max-width: 768px) {
+        .lifestyle-card {
+            width: calc((100% - 24px) / 2); /* 2 cards, 1 gap */
+            height: 320px;
+        }
+        .lifestyle-info h3 {
+            font-size: 1.4rem;
+            letter-spacing: 3px;
+        }
+        .lifestyle-nav-btn {
+            width: 40px;
+            height: 40px;
+            font-size: 1rem;
+        }
+        .lifestyle-nav-btn.prev {
+            left: 10px;
+        }
+        .lifestyle-nav-btn.next {
+            right: 10px;
+        }
+    }
+
+    /* MOBILE: 1 card full width */
+    @media (max-width: 480px) {
+        .lifestyle-card {
+            width: 100%;
+            max-width: 100%;
+            height: 300px;
+            margin-right: 16px;
+        }
+        .lifestyle-info h3 {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+        .lifestyle-nav-btn {
+            top: auto;
+            bottom: 10px;
+            transform: none;
+        }
+        .lifestyle-nav-btn.prev {
+            left: 10px;
+        }
+        .lifestyle-nav-btn.next {
+            right: 10px;
+        }
+    }
+</style>
 </head>
-<body class="bg-gray-50 min-h-screen font-sans antialiased flex items-center justify-center p-4">
 
-    <div class="max-w-7xl mx-auto py-12 w-full">
-        <h2 class="text-4xl font-extrabold text-gray-900 mb-8 text-center sm:text-5xl">
-            Shop By Category
-        </h2>
-        <p class="text-center text-gray-600 mb-12 max-w-2xl mx-auto">
-            Experience the dynamic carousel. The center card is straight and enlarged!
-        </p>
+<body>
 
-        <!-- Carousel Wrapper - Used for relative positioning of buttons and centering the container -->
-        <div class="relative flex justify-center">
-            
-            <!-- Carousel Container - This is the viewport (only 3 items wide) -->
-            <div id="carouselContainer" class="overflow-hidden rounded-2xl bg-white shadow-2xl p-4 border border-gray-200">
-                <!-- Carousel Track - This element moves via translateX -->
-                <div id="carouselTrack" class="flex w-fit">
-                    <!-- Items will be inserted here by JavaScript -->
-                </div>
-            </div>
+<section class="lifestyle-section">
+    <div class="lifestyle-container">
 
-            <!-- Navigation Buttons -->
-            <!-- Left Button: Changed -left-16 to -left-4 -->
-            <button id="prevBtn" class="nav-button absolute top-1/2 -left-4 -translate-y-1/2 bg-white p-3 rounded-full z-20 border border-gray-300 hidden md:block">
-                <!-- Lucide Arrow Left Icon (Inline SVG) -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            
-            <!-- Right Button: Changed -right-16 to -right-4 -->
-            <button id="nextBtn" class="nav-button absolute top-1/2 -right-4 -translate-y-1/2 bg-white p-3 rounded-full z-20 border border-gray-300 hidden md:block">
-                <!-- Lucide Arrow Right Icon (Inline SVG) -->
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
+        <h2 class="section-title">SHOP BY LIFESTYLE</h2>
+        <p class="section-subtitle">For every you</p>
 
+        <button class="lifestyle-nav-btn prev" id="lifestylePrev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="lifestyle-slider-wrapper">
+            <div class="lifestyle-grid" id="lifestyleGrid"></div>
         </div>
-        
-        <!-- Mobile Navigation (below the carousel) -->
-        <div class="flex justify-center space-x-4 mt-8 md:hidden">
-            <button id="prevBtnMobile" class="nav-button bg-white p-3 rounded-full border border-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
-            </button>
-            <button id="nextBtnMobile" class="nav-button bg-white p-3 rounded-full border border-gray-300">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
-            </button>
-        </div>
+
+        <button class="lifestyle-nav-btn next" id="lifestyleNext">
+            <i class="fas fa-chevron-right"></i>
+        </button>
 
     </div>
+</section>
 
-    <script>
-        // --- Configuration Constants ---
-        const ITEM_WIDTH = 300; // Must match CSS --item-width
-        const MARGIN_RIGHT = 24; // Must match CSS 1.5rem (1.5 * 16)
-        const ITEM_FULL_WIDTH = ITEM_WIDTH + MARGIN_RIGHT;
+<script>
+// Lifestyle Carousel with Dynamic Slant Effect
+const lifestyleGrid = document.getElementById('lifestyleGrid');
+const lifestylePrev = document.getElementById('lifestylePrev');
+const lifestyleNext = document.getElementById('lifestyleNext');
+const lifestyleWrapper = document.querySelector('.lifestyle-slider-wrapper');
 
-        // --- Data and State ---
-        const categories = [
-            { name: "WEDDING WEAR", color: "from-pink-500 to-red-500", imageUrl: "https://placehold.co/300x400/805ad5/ffffff?text=Wedding+Collection" },
-            { name: "DAILY WEAR", color: "from-yellow-500 to-orange-500", imageUrl: "https://placehold.co/300x400/f6ad55/ffffff?text=Daily+Essentials" },
-            { name: "OFFICE WEAR", color: "from-blue-500 to-cyan-500", imageUrl: "https://placehold.co/300x400/4c51bf/ffffff?text=Office+Elegant" },
-            { name: "PARTY WEAR", color: "from-purple-500 to-indigo-500", imageUrl: "https://placehold.co/300x400/7f9cf5/ffffff?text=Party+Glam" },
-            { name: "DAY OUT", color: "from-green-500 to-teal-500", imageUrl: "https://placehold.co/300x400/38a169/ffffff?text=Day+Out+Chic" },
-            { name: "DATE NIGHT", color: "from-red-500 to-pink-500", imageUrl: "https://placehold.co/300x400/e53e3e/ffffff?text=Date+Night+Sparkle" },
-        ];
+let LIFESTYLE_ITEM_WIDTH = 300;
+let LIFESTYLE_MARGIN = 24;
+let LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
 
-        const carouselContainer = document.getElementById('carouselContainer');
-        const track = document.getElementById('carouselTrack');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        const prevBtnMobile = document.getElementById('prevBtnMobile');
-        const nextBtnMobile = document.getElementById('nextBtnMobile');
+const lifestyleItems = [
+    { name: "DAILY WEAR", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80" },
+    { name: "OFFICE WEAR", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" },
+    { name: "PARTY WEAR", image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" },
+    { name: "DAY OUT", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" },
+    { name: "FESTIVE", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" }
+];
 
-        let trackItems = []; // Array to hold all rendered item elements
-        // Start centered on the first item of the duplicated set (index 0 is left-adjacent)
-        let currentIndex = categories.length; 
-        const totalItems = categories.length;
+let lifestyleTrackItems = [];
+let lifestyleCurrentIndex = lifestyleItems.length;
+const lifestyleTotalItems = lifestyleItems.length;
 
-        /**
-         * Renders the carousel items into the track. Duplicates the data for infinite loop effect.
-         */
-        function renderCarousel(data) {
-            track.innerHTML = ''; 
-            trackItems = [];
-            
-            // Duplicate the array content three times (A, B, C) where B is the main loop section
-            const duplicatedData = [...data, ...data, ...data];
+function renderLifestyleCarousel() {
+    lifestyleGrid.innerHTML = '';
+    lifestyleTrackItems = [];
 
-            duplicatedData.forEach(item => {
-                const itemDiv = document.createElement('div');
-                itemDiv.className = 'carousel-item bg-white shadow-lg';
-                
-                itemDiv.innerHTML = `
-                    <div class="h-full w-full bg-cover bg-center">
-                        <img src="${item.imageUrl}" onerror="this.onerror=null;this.src='https://placehold.co/300x400/374151/ffffff?text=Image+Unavailable';" alt="${item.name}" class="w-full h-full object-cover transition duration-300"/>
-                        <div class="absolute inset-0 flex items-end justify-center">
-                            <div class="w-full p-4 bg-gradient-to-t ${item.color} from-opacity-90 to-opacity-10 text-white text-center">
-                                <h3 class="text-xl font-bold tracking-wider">${item.name}</h3>
-                                <a href="#" class="text-sm opacity-80 hover:opacity-100 transition duration-150">Shop Now &rarr;</a>
-                            </div>
-                        </div>
-                    </div>
-                `;
-                
-                track.appendChild(itemDiv);
-                trackItems.push(itemDiv);
-            });
-            
-            updateCarousel(false); // Initial positioning without transition
+    const duplicatedItems = [...lifestyleItems, ...lifestyleItems, ...lifestyleItems];
+
+    duplicatedItems.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'lifestyle-card';
+        card.innerHTML = `
+            <img src="${item.image}" alt="${item.name}">
+            <div class="lifestyle-overlay">
+                <div class="lifestyle-info"><h3>${item.name}</h3></div>
+            </div>
+        `;
+        lifestyleGrid.appendChild(card);
+        lifestyleTrackItems.push(card);
+    });
+
+    // Update width values based on rendered card (for responsiveness)
+    if (lifestyleTrackItems[0]) {
+        LIFESTYLE_ITEM_WIDTH = lifestyleTrackItems[0].offsetWidth;
+    }
+    const cardStyle = getComputedStyle(lifestyleTrackItems[0]);
+    const mr = parseInt(cardStyle.marginRight, 10);
+    if (!isNaN(mr)) {
+        LIFESTYLE_MARGIN = mr;
+    }
+    LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
+
+    updateLifestyleCarousel(false);
+}
+
+function updateLifestyleCarousel(useTransition = true) {
+    // recalc item sizes in case of resize
+    if (lifestyleTrackItems[0]) {
+        LIFESTYLE_ITEM_WIDTH = lifestyleTrackItems[0].offsetWidth;
+        const cardStyle = getComputedStyle(lifestyleTrackItems[0]);
+        const mr = parseInt(cardStyle.marginRight, 10);
+        if (!isNaN(mr)) {
+            LIFESTYLE_MARGIN = mr;
         }
+        LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
+    }
 
+    // Infinite-like looping boundaries
+    if (lifestyleCurrentIndex >= lifestyleTrackItems.length - lifestyleTotalItems) {
+        lifestyleCurrentIndex = lifestyleTotalItems;
+        lifestyleGrid.style.transition = 'none';
+    } 
+    else if (lifestyleCurrentIndex < lifestyleTotalItems) {
+        lifestyleCurrentIndex = lifestyleTrackItems.length - (lifestyleTotalItems * 2);
+        lifestyleGrid.style.transition = 'none';
+    }
 
-        /**
-         * Updates the carousel position and applies dynamic styling based on the current center item.
-         * @param {boolean} useTransition - Whether to use the CSS transition property for smooth movement.
-         */
-        function updateCarousel(useTransition = true) {
-            // 1. Handle Infinity Loop (Warping)
-            // If we move into the cloned set (C), instantly jump back to the main set (B)
-            if (currentIndex >= trackItems.length - totalItems) {
-                currentIndex = totalItems;
-                // Temporarily disable transition for the jump
-                track.style.transition = 'none';
-            // If we move into the first cloned set (A), instantly jump forward to the main set (B)
-            } else if (currentIndex < totalItems) {
-                currentIndex = trackItems.length - (totalItems * 2);
-                // Temporarily disable transition for the jump
-                track.style.transition = 'none';
-            }
+    const centerCardIndex = lifestyleCurrentIndex + 1; // center among visible
 
-            // 2. Calculate and Apply Translation
-            // We want the item at currentIndex + 1 to be the center card.
-            const centerCardIndex = currentIndex + 1;
-            
-            // Offset calculation to center the item at centerCardIndex
-            // Offset = (1.5 * ITEM_FULL_WIDTH) - (ITEM_WIDTH / 2) - MARGIN_RIGHT
-            const centerOffset = (ITEM_FULL_WIDTH * 1.5) - (ITEM_WIDTH / 2) - MARGIN_RIGHT;
-            const translateX = -(centerCardIndex * ITEM_FULL_WIDTH) + centerOffset;
+    const wrapperWidth = lifestyleWrapper.offsetWidth;
+    const centerOffset = (wrapperWidth - LIFESTYLE_ITEM_WIDTH) / 2;
+    const translateX = -(centerCardIndex * LIFESTYLE_FULL_WIDTH) + centerOffset;
 
-            // Apply transition property if required, then translate
-            if (useTransition) {
-                // Re-enable transition after a brief moment if it was disabled in step 1
-                setTimeout(() => { track.style.transition = 'transform 0.5s ease-out'; }, 50); 
-            }
-            track.style.transform = `translateX(${translateX}px)`;
+    if (useTransition) {
+        setTimeout(() => {
+            lifestyleGrid.style.transition = 'transform 0.5s ease-out';
+        }, 50);
+    }
 
+    lifestyleGrid.style.transform = `translateX(${translateX}px)`;
 
-            // 3. Apply Dynamic Styling (Skew/Scale)
-            trackItems.forEach((item, index) => {
-                // Clear existing dynamic classes
-                item.classList.remove('center-card', 'left-adjacent', 'right-adjacent', 'far-left', 'far-right');
-                
-                if (index === centerCardIndex) {
-                    item.classList.add('center-card');
-                } else if (index === centerCardIndex - 1) {
-                    item.classList.add('left-adjacent');
-                } else if (index === centerCardIndex - 2) {
-                    item.classList.add('far-left');
-                } else if (index === centerCardIndex + 1) {
-                    item.classList.add('right-adjacent');
-                } else if (index === centerCardIndex + 2) {
-                    item.classList.add('far-right');
-                }
-                // Cards further away than 2 positions will retain the default dormant style from CSS: .carousel-item
-            });
-        }
+    lifestyleTrackItems.forEach((item, index) => {
+        item.classList.remove('center-card','left-adjacent','right-adjacent','far-left','far-right');
 
-        // --- Scrolling Function ---
-        function scrollCarousel(direction) {
-            if (direction === 'next') {
-                currentIndex++;
-            } else if (direction === 'prev') {
-                currentIndex--;
-            }
-            updateCarousel(true);
-        }
+        if (index === centerCardIndex) item.classList.add('center-card');
+        else if (index === centerCardIndex - 1) item.classList.add('left-adjacent');
+        else if (index === centerCardIndex - 2) item.classList.add('far-left');
+        else if (index === centerCardIndex + 1) item.classList.add('right-adjacent');
+        else if (index === centerCardIndex + 2) item.classList.add('far-right');
+    });
+}
 
-        // --- Event Listeners and Initialization ---
-        
-        // Desktop buttons
-        prevBtn.addEventListener('click', () => scrollCarousel('prev'));
-        nextBtn.addEventListener('click', () => scrollCarousel('next'));
-        
-        // Mobile buttons
-        prevBtnMobile.addEventListener('click', () => scrollCarousel('prev'));
-        nextBtnMobile.addEventListener('click', () => scrollCarousel('next'));
+function scrollLifestyleCarousel(direction) {
+    lifestyleCurrentIndex += direction === 'next' ? 1 : -1;
+    updateLifestyleCarousel(true);
+}
 
+lifestylePrev.addEventListener('click', () => scrollLifestyleCarousel('prev'));
+lifestyleNext.addEventListener('click', () => scrollLifestyleCarousel('next'));
 
-        window.onload = function() {
-            // Note: We rely on CSS variables for sizing, but this function ensures
-            // all items are rendered and the initial position is set correctly.
-            renderCarousel(categories);
-        };
-    </script>
+window.addEventListener('resize', () => {
+    updateLifestyleCarousel(false);
+});
+
+renderLifestyleCarousel();
+</script>
+
 </body>
 </html>
