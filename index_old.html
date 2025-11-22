@@ -474,7 +474,6 @@
             text-transform: uppercase;
         }
 
-        /* Desktop / Tablet layout */
         .hotspot-layout {
             display: grid;
             grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
@@ -562,7 +561,7 @@
             transform: translate(-50%, -50%) scale(1.1);
         }
 
-        /* Right side – product details panel */
+        /* Right side – product details panel, Hazoorilal-style */
         .hotspot-details-panel {
             background: var(--white);
             border-radius: 2px;
@@ -680,79 +679,10 @@
             color: rgba(2,0,13,0.45);
         }
 
-        /* ===== Mobile-only hotspot list (NEW) ===== */
-        .hotspot-mobile-list {
-            display: none; /* hidden on desktop by default */
-            max-width: 700px;
-            margin: 0 auto;
-            gap: 1.25rem;
-            flex-direction: column;
-        }
-
-        .hotspot-mobile-card {
-            background: var(--white);
-            border-radius: 2px;
-            padding: 1.6rem 1.8rem 1.5rem;
-            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
-        }
-
-        .hotspot-mobile-label {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: rgba(2,0,13,0.5);
-            margin-bottom: 0.5rem;
-        }
-
-        .hotspot-mobile-title {
-            font-size: 1.1rem;
-            letter-spacing: 0.5px;
-            color: var(--primary-blue);
-            margin-bottom: 0.2rem;
-        }
-
-        .hotspot-mobile-meta {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            color: rgba(2,0,13,0.6);
-            margin-bottom: 0.75rem;
-        }
-
-        .hotspot-mobile-description {
-            font-size: 0.9rem;
-            line-height: 1.6;
-            color: rgba(2,0,13,0.8);
-            margin-bottom: 0.9rem;
-        }
-
-        .hotspot-mobile-bottom {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 0.75rem;
-        }
-
-        .hotspot-mobile-price {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--gold);
-        }
-
-        .hotspot-mobile-actions {
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .hotspot-mobile-actions .product-btn {
-            padding: 0.6rem 1.2rem;
-            font-size: 0.75rem;
-        }
-
-        /* Responsive adjustments */
+        /* Mobile Styles */
         @media (max-width: 1024px) {
             .hotspot-layout {
-                grid-template-columns: 1fr 1fr;
+                grid-template-columns: 1fr;
                 gap: 3rem;
             }
         }
@@ -902,13 +832,16 @@
                 letter-spacing: 3px;
             }
 
-            /* MOBILE: hide desktop hotspot layout, show list */
-            .hotspot-layout {
-                display: none;
+            .hotspot-details-panel {
+                padding: 2rem 1.75rem 1.75rem;
             }
 
-            .hotspot-mobile-list {
-                display: flex;
+            .hotspot-product-title {
+                font-size: 1.3rem;
+            }
+
+            .hotspot-product-description {
+                font-size: 0.9rem;
             }
 
             .hotspot-dot {
@@ -947,10 +880,6 @@
 
             .hotspot-title p {
                 font-size: 0.85rem;
-            }
-
-            .hotspot-mobile-card {
-                padding: 1.4rem 1.3rem 1.3rem;
             }
         }
 
@@ -1276,7 +1205,7 @@
         <p>Experience the finest craftsmanship in silver jewelry. Each piece is meticulously handcrafted to bring you timeless elegance and contemporary style. Our collections are designed to celebrate your unique beauty and individual style.</p>
     </div>
 
-    <!-- Hotspot Shopping Section -->
+    <!-- Hotspot Shopping Section (Hazoorilal-style) -->
     <section class="hotspot-section">
         <div class="hotspot-container">
             <div class="hotspot-title">
@@ -1284,7 +1213,6 @@
                 <p>Tap the hotspots to explore the highlighted pieces</p>
             </div>
             
-            <!-- Desktop / Tablet layout -->
             <div class="hotspot-layout">
                 <!-- Left: Model + hotspots -->
                 <div class="hotspot-image-wrapper">
@@ -1362,78 +1290,6 @@
                     </p>
                 </div>
             </div>
-
-            <!-- Mobile-only list version -->
-            <div class="hotspot-mobile-list">
-                <!-- Necklace card -->
-                <div class="hotspot-mobile-card">
-                    <div class="hotspot-mobile-label">Necklace</div>
-                    <div class="hotspot-mobile-title">Ivy Diamond Necklace</div>
-                    <div class="hotspot-mobile-meta">Statement Piece</div>
-                    <div class="hotspot-mobile-description">
-                        A radiant neckpiece that sits gracefully along the collarbone, crafted to elevate every evening ensemble.
-                    </div>
-                    <div class="hotspot-mobile-bottom">
-                        <div class="hotspot-mobile-price">₹92,900</div>
-                        <div class="hotspot-mobile-actions">
-                            <a href="#" class="product-btn primary">Shop</a>
-                            <a href="#" class="product-btn secondary">Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Earrings card -->
-                <div class="hotspot-mobile-card">
-                    <div class="hotspot-mobile-label">Earrings</div>
-                    <div class="hotspot-mobile-title">Celeste Drop Earrings</div>
-                    <div class="hotspot-mobile-meta">Fine Detailing</div>
-                    <div class="hotspot-mobile-description">
-                        Delicate drops that frame the face with light, pairing effortlessly with both bridal and cocktail looks.
-                    </div>
-                    <div class="hotspot-mobile-bottom">
-                        <div class="hotspot-mobile-price">₹48,500</div>
-                        <div class="hotspot-mobile-actions">
-                            <a href="#" class="product-btn primary">Shop</a>
-                            <a href="#" class="product-btn secondary">Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Ring card -->
-                <div class="hotspot-mobile-card">
-                    <div class="hotspot-mobile-label">Ring</div>
-                    <div class="hotspot-mobile-title">Aurora Stack Ring</div>
-                    <div class="hotspot-mobile-meta">Everyday Luxe</div>
-                    <div class="hotspot-mobile-description">
-                        A versatile ring designed for layering, subtle enough for daily wear yet striking in its shimmer.
-                    </div>
-                    <div class="hotspot-mobile-bottom">
-                        <div class="hotspot-mobile-price">₹27,400</div>
-                        <div class="hotspot-mobile-actions">
-                            <a href="#" class="product-btn primary">Shop</a>
-                            <a href="#" class="product-btn secondary">Details</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Bracelet card -->
-                <div class="hotspot-mobile-card">
-                    <div class="hotspot-mobile-label">Bracelet</div>
-                    <div class="hotspot-mobile-title">Seren Chain Bracelet</div>
-                    <div class="hotspot-mobile-meta">Modern Classic</div>
-                    <div class="hotspot-mobile-description">
-                        A fluid chain bracelet that wraps the wrist in a soft glow, perfect for stacking or wearing solo.
-                    </div>
-                    <div class="hotspot-mobile-bottom">
-                        <div class="hotspot-mobile-price">₹39,950</div>
-                        <div class="hotspot-mobile-actions">
-                            <a href="#" class="product-btn primary">Shop</a>
-                            <a href="#" class="product-btn secondary">Details</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
@@ -1588,7 +1444,7 @@
         showSlide(0);
 
         // ==========================
-        // Hotspot Interaction
+        // Hotspot Interaction (NEW)
         // ==========================
         const hotspots = document.querySelectorAll('.hotspot');
         const lookBadge = document.getElementById('lookBadge');
@@ -1614,6 +1470,7 @@
             if (lookPrice) lookPrice.textContent = price;
         }
 
+        // Attach listeners
         hotspots.forEach(hotspot => {
             hotspot.addEventListener('click', () => {
                 activateHotspot(hotspot);
@@ -1626,6 +1483,7 @@
             }
         });
 
+        // Set initial active hotspot (necklace) if available
         const defaultHotspot = document.querySelector('.hotspot[data-product="necklace"]') || hotspots[0];
         if (defaultHotspot) {
             activateHotspot(defaultHotspot);
