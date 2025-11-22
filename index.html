@@ -521,74 +521,7 @@
             100% { transform: translateX(-100%); }
         }
 
-        .brand-promises {
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            padding: 3rem 2rem;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-        }
-
-        .promises-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-        }
-
-        .promise-item {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1rem;
-            text-align: center;
-            padding: 2rem 1rem;
-            background: var(--white);
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .promise-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary-blue), var(--secondary-peach));
-            transform: scaleX(0);
-            transition: transform 0.4s ease;
-        }
-
-        .promise-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
-        }
-
-        .promise-item:hover::before {
-            transform: scaleX(1);
-        }
-
-        .promise-item i {
-            font-size: 2.5rem;
-            color: var(--primary-blue);
-            transition: all 0.3s ease;
-        }
-
-        .promise-item:hover i {
-            color: var(--gold);
-            transform: scale(1.1);
-        }
-
-        .promise-item span {
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            color: var(--dark-black);
-        }
-
+       
       /* Collection Range Slider */
 .collection-range-section {
     padding: 5rem 2rem;
@@ -756,6 +689,43 @@
 /* Mobile adjustments */
 @media (max-width: 480px) {
     .collection-range-container {
+        padding: 0 1rem;
+    }
+
+    .collection-cards-wrapper {
+        overflow: visible;
+    }
+
+    .collection-cards {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        transform: none !important;
+        transition: none;
+    }
+
+    .collection-card-image {
+        width: 100%;
+        max-width: 150px;
+        height: 150px;
+        margin: 0 auto;
+    }
+
+    .collection-range-card {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .collection-nav-btn {
+        display: none;
+    }
+
+    .collection-range-link {
+        margin-top: 2rem;
+    }
+}
+/* @media (max-width: 480px) {
+    .collection-range-container {
         padding: 0 35px;
     }
 
@@ -785,7 +755,7 @@
     .collection-nav-btn.next {
         right: 0;
     }
-}
+} */
 
 
         .section-title {
@@ -2239,27 +2209,7 @@
                 right: 1rem;
             }
 
-            .brand-promises {
-                padding: 2rem 1rem;
-            }
-
-            .promises-container {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .promise-item {
-                padding: 1.5rem 0.5rem;
-                gap: 0.8rem;
-            }
-
-            .promise-item i {
-                font-size: 2rem;
-            }
-
-            .promise-item span {
-                font-size: 0.85rem;
-            }
+      
 
             .collection-range-section {
                 padding: 3rem 1rem;
@@ -2719,7 +2669,7 @@
     </div>
 
     <!-- Brand Promises -->
-    <div class="brand-promises">
+    <!-- <div class="brand-promises">
         <div class="promises-container">
             <div class="promise-item">
                 <i class="fas fa-certificate"></i>
@@ -2738,7 +2688,7 @@
                 <span>Free Shipping</span>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Collection Range Slider -->
     <section class="collection-range-section">
