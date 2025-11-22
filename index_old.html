@@ -440,10 +440,12 @@
             opacity: 0.8;
         }
 
-        /* Hotspot Section */
+        /* ===========================
+           HOTSPOT SHOPPING SECTION
+           =========================== */
         .hotspot-section {
-            padding: 6rem 2rem;
-            background: linear-gradient(135deg, var(--light-peach) 0%, var(--secondary-peach) 100%);
+            padding: 6rem 2rem 6.5rem;
+            background: linear-gradient(135deg, #f8f3ec 0%, #fdf9f5 100%);
         }
 
         .hotspot-container {
@@ -453,7 +455,7 @@
 
         .hotspot-title {
             text-align: center;
-            margin-bottom: 4rem;
+            margin-bottom: 3.5rem;
         }
 
         .hotspot-title h2 {
@@ -461,21 +463,23 @@
             font-weight: 300;
             letter-spacing: 5px;
             color: var(--primary-blue);
-            margin-bottom: 1rem;
+            margin-bottom: 0.75rem;
         }
 
         .hotspot-title p {
-            font-size: 1rem;
+            font-size: 0.9rem;
             color: var(--dark-black);
             opacity: 0.7;
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        .hotspot-content {
+        /* Desktop / Tablet layout */
+        .hotspot-layout {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
             gap: 4rem;
-            align-items: start;
+            align-items: center;
         }
 
         .hotspot-image-wrapper {
@@ -484,18 +488,18 @@
             aspect-ratio: 3/4;
             overflow: hidden;
             border-radius: 2px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.18);
         }
 
         .hotspot-main-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.3s ease;
+            transition: transform 0.5s ease;
         }
 
         .hotspot-image-wrapper:hover .hotspot-main-image {
-            transform: scale(1.02);
+            transform: scale(1.03);
         }
 
         .hotspot {
@@ -514,7 +518,7 @@
             transform: translate(-50%, -50%);
             width: 40px;
             height: 40px;
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 255, 255, 0.96);
             border: 2px solid var(--primary-blue);
             border-radius: 50%;
             display: flex;
@@ -558,99 +562,198 @@
             transform: translate(-50%, -50%) scale(1.1);
         }
 
-        .hotspot-products {
-            position: relative;
-            min-height: 400px;
-        }
-
-        .product-cards {
-            display: none;
-            grid-template-columns: 1fr;
-            gap: 1.5rem;
-            opacity: 0;
-            animation: fadeIn 0.5s forwards;
-        }
-
-        .product-cards.active {
-            display: grid;
-        }
-
-        @keyframes fadeIn {
-            to {
-                opacity: 1;
-            }
-        }
-
-        .product-card {
+        /* Right side – product details panel */
+        .hotspot-details-panel {
             background: var(--white);
             border-radius: 2px;
+            padding: 2.5rem 2.75rem 2.25rem;
+            box-shadow: 0 20px 55px rgba(0,0,0,0.12);
+            max-width: 480px;
+            margin: 0 auto;
+            position: relative;
             overflow: hidden;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            cursor: pointer;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        .hotspot-details-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 6px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--gold), transparent);
+            opacity: 0.7;
         }
 
-        .product-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .product-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .product-card h3 {
-            padding: 1rem 1.5rem 0.5rem;
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
+        .hotspot-eyebrow {
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
             color: var(--primary-blue);
+            opacity: 0.7;
+            margin-bottom: 0.75rem;
         }
 
-        .product-card .price {
-            padding: 0 1.5rem;
-            font-size: 1.1rem;
-            color: var(--gold);
-            font-weight: 600;
+        .hotspot-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(7,32,63,0.25);
+            margin-bottom: 1.5rem;
+        }
+
+        .hotspot-product-title {
+            font-size: 1.45rem;
+            letter-spacing: 1px;
+            font-weight: 400;
+            color: var(--primary-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .hotspot-product-meta {
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(2,0,13,0.65);
             margin-bottom: 1rem;
         }
 
+        .hotspot-product-description {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(2,0,13,0.8);
+            margin-bottom: 1.75rem;
+        }
+
+        .hotspot-product-price {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 1.75rem;
+        }
+
+        .hotspot-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-bottom: 1.5rem;
+        }
+
         .product-btn {
-            width: calc(100% - 3rem);
-            margin: 0 1.5rem 1.5rem;
-            padding: 0.8rem;
+            flex: 0 0 auto;
+            padding: 0.8rem 1.8rem;
             background: transparent;
             border: 1px solid var(--primary-blue);
             color: var(--primary-blue);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 2px;
             text-transform: uppercase;
             cursor: pointer;
             transition: all 0.3s ease;
             font-family: 'Georgia', serif;
+            text-decoration: none;
         }
 
-        .product-btn:hover {
+        .product-btn.primary {
             background: var(--primary-blue);
             color: var(--white);
         }
 
-        /* Mobile Styles */
-        @media (max-width: 1024px) {
-            .hotspot-content {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
+        .product-btn.primary:hover {
+            background: #050f21;
+            border-color: #050f21;
+        }
 
-            .product-cards {
-                grid-template-columns: repeat(3, 1fr);
+        .product-btn.secondary {
+            background: transparent;
+            border-color: rgba(7,32,63,0.4);
+            color: rgba(7,32,63,0.9);
+        }
+
+        .product-btn.secondary:hover {
+            background: rgba(7,32,63,0.03);
+        }
+
+        .hotspot-hint {
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(2,0,13,0.45);
+        }
+
+        /* ===== Mobile-only hotspot list (NEW) ===== */
+        .hotspot-mobile-list {
+            display: none; /* hidden on desktop by default */
+            max-width: 700px;
+            margin: 0 auto;
+            gap: 1.25rem;
+            flex-direction: column;
+        }
+
+        .hotspot-mobile-card {
+            background: var(--white);
+            border-radius: 2px;
+            padding: 1.6rem 1.8rem 1.5rem;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+        }
+
+        .hotspot-mobile-label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(2,0,13,0.5);
+            margin-bottom: 0.5rem;
+        }
+
+        .hotspot-mobile-title {
+            font-size: 1.1rem;
+            letter-spacing: 0.5px;
+            color: var(--primary-blue);
+            margin-bottom: 0.2rem;
+        }
+
+        .hotspot-mobile-meta {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: rgba(2,0,13,0.6);
+            margin-bottom: 0.75rem;
+        }
+
+        .hotspot-mobile-description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: rgba(2,0,13,0.8);
+            margin-bottom: 0.9rem;
+        }
+
+        .hotspot-mobile-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+        }
+
+        .hotspot-mobile-price {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--gold);
+        }
+
+        .hotspot-mobile-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .hotspot-mobile-actions .product-btn {
+            padding: 0.6rem 1.2rem;
+            font-size: 0.75rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .hotspot-layout {
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
             }
         }
 
@@ -799,9 +902,13 @@
                 letter-spacing: 3px;
             }
 
-            .product-cards {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
+            /* MOBILE: hide desktop hotspot layout, show list */
+            .hotspot-layout {
+                display: none;
+            }
+
+            .hotspot-mobile-list {
+                display: flex;
             }
 
             .hotspot-dot {
@@ -834,16 +941,16 @@
                 font-size: 0.9rem;
             }
 
-            .product-cards {
-                grid-template-columns: 1fr;
-            }
-
             .hotspot-title h2 {
                 font-size: 1.5rem;
             }
 
             .hotspot-title p {
                 font-size: 0.85rem;
+            }
+
+            .hotspot-mobile-card {
+                padding: 1.4rem 1.3rem 1.3rem;
             }
         }
 
@@ -1174,129 +1281,159 @@
         <div class="hotspot-container">
             <div class="hotspot-title">
                 <h2>SHOP THE LOOK</h2>
-                <p>Click on the hotspots to explore similar pieces</p>
+                <p>Tap the hotspots to explore the highlighted pieces</p>
             </div>
             
-            <div class="hotspot-content">
+            <!-- Desktop / Tablet layout -->
+            <div class="hotspot-layout">
+                <!-- Left: Model + hotspots -->
                 <div class="hotspot-image-wrapper">
                     <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" alt="Model wearing jewelry" class="hotspot-main-image">
                     
                     <!-- Hotspot 1 - Necklace -->
-                    <div class="hotspot" style="top: 35%; left: 48%;" data-product="necklace">
+                    <div class="hotspot" 
+                         style="top: 35%; left: 48%;" 
+                         data-product="necklace"
+                         data-title="Ivy Diamond Necklace"
+                         data-category="Necklace • Statement Piece"
+                         data-description="A radiant neckpiece that sits gracefully along the collarbone, crafted to elevate every evening ensemble."
+                         data-price="₹92,900"
+                         data-badge="Focus: Necklace">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                     
                     <!-- Hotspot 2 - Earrings -->
-                    <div class="hotspot" style="top: 22%; left: 40%;" data-product="earrings">
+                    <div class="hotspot" 
+                         style="top: 22%; left: 40%;" 
+                         data-product="earrings"
+                         data-title="Celeste Drop Earrings"
+                         data-category="Earrings • Fine Detailing"
+                         data-description="Delicate drops that frame the face with light, pairing effortlessly with both bridal and cocktail looks."
+                         data-price="₹48,500"
+                         data-badge="Focus: Earrings">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                     
                     <!-- Hotspot 3 - Ring -->
-                    <div class="hotspot" style="top: 65%; left: 35%;" data-product="ring">
+                    <div class="hotspot" 
+                         style="top: 65%; left: 35%;" 
+                         data-product="ring"
+                         data-title="Aurora Stack Ring"
+                         data-category="Ring • Everyday Luxe"
+                         data-description="A versatile ring designed for layering, subtle enough for daily wear yet striking in its shimmer."
+                         data-price="₹27,400"
+                         data-badge="Focus: Ring">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                     
                     <!-- Hotspot 4 - Bracelet -->
-                    <div class="hotspot" style="top: 58%; left: 28%;" data-product="bracelet">
+                    <div class="hotspot" 
+                         style="top: 58%; left: 28%;" 
+                         data-product="bracelet"
+                         data-title="Seren Chain Bracelet"
+                         data-category="Bracelet • Modern Classic"
+                         data-description="A fluid chain bracelet that wraps the wrist in a soft glow, perfect for stacking or wearing solo."
+                         data-price="₹39,950"
+                         data-badge="Focus: Bracelet">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                 </div>
                 
-                <!-- Product Cards Container -->
-                <div class="hotspot-products">
-                    <!-- Necklace Products -->
-                    <div class="product-cards" id="necklace-products">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=400&q=80" alt="Silver Necklace 1">
-                            <h3>Elegant Chain Necklace</h3>
-                            <p class="price">₹2,999</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=400&q=80" alt="Silver Necklace 2">
-                            <h3>Statement Pendant</h3>
-                            <p class="price">₹3,499</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=400&q=80" alt="Silver Necklace 3">
-                            <h3>Layered Necklace Set</h3>
-                            <p class="price">₹4,299</p>
-                            <button class="product-btn">View Details</button>
+                <!-- Right: Single hero product card -->
+                <div class="hotspot-details-panel">
+                    <p class="hotspot-eyebrow" id="lookBadge">Focus: Necklace</p>
+                    <div class="hotspot-divider"></div>
+                    <h3 class="hotspot-product-title" id="lookTitle">Ivy Diamond Necklace</h3>
+                    <p class="hotspot-product-meta" id="lookCategory">Necklace • Statement Piece</p>
+                    <p class="hotspot-product-description" id="lookDescription">
+                        A radiant neckpiece that sits gracefully along the collarbone, crafted to elevate every evening ensemble.
+                    </p>
+                    <p class="hotspot-product-price" id="lookPrice">₹92,900</p>
+                    <div class="hotspot-buttons">
+                        <a href="#" class="product-btn primary">Shop Now</a>
+                        <a href="#" class="product-btn secondary">Price on Request</a>
+                    </div>
+                    <p class="hotspot-hint">
+                        Tap the <strong>+</strong> icons on the image to change the highlighted piece.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Mobile-only list version -->
+            <div class="hotspot-mobile-list">
+                <!-- Necklace card -->
+                <div class="hotspot-mobile-card">
+                    <div class="hotspot-mobile-label">Necklace</div>
+                    <div class="hotspot-mobile-title">Ivy Diamond Necklace</div>
+                    <div class="hotspot-mobile-meta">Statement Piece</div>
+                    <div class="hotspot-mobile-description">
+                        A radiant neckpiece that sits gracefully along the collarbone, crafted to elevate every evening ensemble.
+                    </div>
+                    <div class="hotspot-mobile-bottom">
+                        <div class="hotspot-mobile-price">₹92,900</div>
+                        <div class="hotspot-mobile-actions">
+                            <a href="#" class="product-btn primary">Shop</a>
+                            <a href="#" class="product-btn secondary">Details</a>
                         </div>
                     </div>
-                    
-                    <!-- Earrings Products -->
-                    <div class="product-cards" id="earrings-products">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1535556116002-6281ff3e9f99?w=400&q=80" alt="Silver Earrings 1">
-                            <h3>Drop Earrings</h3>
-                            <p class="price">₹1,799</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1562155847-c05f7386b204?w=400&q=80" alt="Silver Earrings 2">
-                            <h3>Stud Earrings</h3>
-                            <p class="price">₹1,299</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?w=400&q=80" alt="Silver Earrings 3">
-                            <h3>Hoop Earrings</h3>
-                            <p class="price">₹1,999</p>
-                            <button class="product-btn">View Details</button>
+                </div>
+
+                <!-- Earrings card -->
+                <div class="hotspot-mobile-card">
+                    <div class="hotspot-mobile-label">Earrings</div>
+                    <div class="hotspot-mobile-title">Celeste Drop Earrings</div>
+                    <div class="hotspot-mobile-meta">Fine Detailing</div>
+                    <div class="hotspot-mobile-description">
+                        Delicate drops that frame the face with light, pairing effortlessly with both bridal and cocktail looks.
+                    </div>
+                    <div class="hotspot-mobile-bottom">
+                        <div class="hotspot-mobile-price">₹48,500</div>
+                        <div class="hotspot-mobile-actions">
+                            <a href="#" class="product-btn primary">Shop</a>
+                            <a href="#" class="product-btn secondary">Details</a>
                         </div>
                     </div>
-                    
-                    <!-- Ring Products -->
-                    <div class="product-cards" id="ring-products">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=400&q=80" alt="Silver Ring 1">
-                            <h3>Classic Band Ring</h3>
-                            <p class="price">₹1,499</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=400&q=80" alt="Silver Ring 2">
-                            <h3>Stone Accent Ring</h3>
-                            <p class="price">₹2,199</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Silver Ring 3">
-                            <h3>Stackable Ring Set</h3>
-                            <p class="price">₹2,799</p>
-                            <button class="product-btn">View Details</button>
+                </div>
+
+                <!-- Ring card -->
+                <div class="hotspot-mobile-card">
+                    <div class="hotspot-mobile-label">Ring</div>
+                    <div class="hotspot-mobile-title">Aurora Stack Ring</div>
+                    <div class="hotspot-mobile-meta">Everyday Luxe</div>
+                    <div class="hotspot-mobile-description">
+                        A versatile ring designed for layering, subtle enough for daily wear yet striking in its shimmer.
+                    </div>
+                    <div class="hotspot-mobile-bottom">
+                        <div class="hotspot-mobile-price">₹27,400</div>
+                        <div class="hotspot-mobile-actions">
+                            <a href="#" class="product-btn primary">Shop</a>
+                            <a href="#" class="product-btn secondary">Details</a>
                         </div>
                     </div>
-                    
-                    <!-- Bracelet Products -->
-                    <div class="product-cards" id="bracelet-products">
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=400&q=80" alt="Silver Bracelet 1">
-                            <h3>Chain Bracelet</h3>
-                            <p class="price">₹1,899</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1573408301185-9146fe634ad0?w=400&q=80" alt="Silver Bracelet 2">
-                            <h3>Charm Bracelet</h3>
-                            <p class="price">₹2,399</p>
-                            <button class="product-btn">View Details</button>
-                        </div>
-                        <div class="product-card">
-                            <img src="https://images.unsplash.com/photo-1612540811233-0c31a41fa9f3?w=400&q=80" alt="Silver Bracelet 3">
-                            <h3>Bangle Set</h3>
-                            <p class="price">₹3,199</p>
-                            <button class="product-btn">View Details</button>
+                </div>
+
+                <!-- Bracelet card -->
+                <div class="hotspot-mobile-card">
+                    <div class="hotspot-mobile-label">Bracelet</div>
+                    <div class="hotspot-mobile-title">Seren Chain Bracelet</div>
+                    <div class="hotspot-mobile-meta">Modern Classic</div>
+                    <div class="hotspot-mobile-description">
+                        A fluid chain bracelet that wraps the wrist in a soft glow, perfect for stacking or wearing solo.
+                    </div>
+                    <div class="hotspot-mobile-bottom">
+                        <div class="hotspot-mobile-price">₹39,950</div>
+                        <div class="hotspot-mobile-actions">
+                            <a href="#" class="product-btn primary">Shop</a>
+                            <a href="#" class="product-btn secondary">Details</a>
                         </div>
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
 
@@ -1450,42 +1587,49 @@
 
         showSlide(0);
 
+        // ==========================
         // Hotspot Interaction
+        // ==========================
         const hotspots = document.querySelectorAll('.hotspot');
-        const productCards = document.querySelectorAll('.product-cards');
+        const lookBadge = document.getElementById('lookBadge');
+        const lookTitle = document.getElementById('lookTitle');
+        const lookCategory = document.getElementById('lookCategory');
+        const lookDescription = document.getElementById('lookDescription');
+        const lookPrice = document.getElementById('lookPrice');
 
-        // Initially show necklace products
-        document.getElementById('necklace-products').classList.add('active');
-        document.querySelector('[data-product="necklace"]').classList.add('active');
+        function activateHotspot(hotspot) {
+            hotspots.forEach(h => h.classList.remove('active'));
+            hotspot.classList.add('active');
+
+            const title = hotspot.dataset.title || '';
+            const badge = hotspot.dataset.badge || 'Featured Look';
+            const category = hotspot.dataset.category || '';
+            const description = hotspot.dataset.description || '';
+            const price = hotspot.dataset.price || '';
+
+            if (lookBadge) lookBadge.textContent = badge;
+            if (lookTitle) lookTitle.textContent = title;
+            if (lookCategory) lookCategory.textContent = category;
+            if (lookDescription) lookDescription.textContent = description;
+            if (lookPrice) lookPrice.textContent = price;
+        }
 
         hotspots.forEach(hotspot => {
-            hotspot.addEventListener('click', function() {
-                const productType = this.getAttribute('data-product');
-                
-                // Remove active class from all hotspots and product cards
-                hotspots.forEach(h => h.classList.remove('active'));
-                productCards.forEach(pc => pc.classList.remove('active'));
-                
-                // Add active class to clicked hotspot
-                this.classList.add('active');
-                
-                // Show corresponding products
-                document.getElementById(`${productType}-products`).classList.add('active');
+            hotspot.addEventListener('click', () => {
+                activateHotspot(hotspot);
             });
 
-            // Also trigger on hover for desktop
             if (window.innerWidth > 768) {
-                hotspot.addEventListener('mouseenter', function() {
-                    const productType = this.getAttribute('data-product');
-                    
-                    hotspots.forEach(h => h.classList.remove('active'));
-                    productCards.forEach(pc => pc.classList.remove('active'));
-                    
-                    this.classList.add('active');
-                    document.getElementById(`${productType}-products`).classList.add('active');
+                hotspot.addEventListener('mouseenter', () => {
+                    activateHotspot(hotspot);
                 });
             }
         });
+
+        const defaultHotspot = document.querySelector('.hotspot[data-product="necklace"]') || hotspots[0];
+        if (defaultHotspot) {
+            activateHotspot(defaultHotspot);
+        }
     </script>
 </body>
 </html>
