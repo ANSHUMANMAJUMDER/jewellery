@@ -1714,34 +1714,50 @@
             }
         }
 
-        /* Collection Range - Small Mobile */
+     /* Collection Range - Small Mobile */
         @media (max-width: 480px) {
+            .collection-range-section {
+                padding: 3rem 0.5rem;
+            }
+
             .collection-range-container {
-                padding: 0 1rem;
+                padding: 0 0.5rem;
             }
 
             .collection-cards-wrapper {
                 overflow: visible;
+                padding: 0;
             }
 
             .collection-cards {
                 display: grid;
                 grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
+                gap: 1rem;
                 transform: none !important;
                 transition: none;
             }
 
             .collection-card-image {
                 width: 100%;
-                max-width: 150px;
-                height: 150px;
+                max-width: 130px;
+                height: 130px;
                 margin: 0 auto;
+                border: 2px solid transparent;
             }
 
             .collection-range-card {
                 min-width: auto;
                 width: 100%;
+                padding: 0.5rem;
+            }
+
+            .collection-range-overlay {
+                padding-top: 0.75rem;
+            }
+
+            .collection-range-overlay h3 {
+                font-size: 0.85rem;
+                letter-spacing: 1px;
             }
 
             .collection-nav-btn {
@@ -1749,10 +1765,11 @@
             }
 
             .collection-range-link {
-                margin-top: 2rem;
+                margin-top: 1.5rem;
+                padding: 0.7rem 2rem;
+                font-size: 0.8rem;
             }
         }
-
         /* ============================================================
            SHARED SECTION STYLES
            ============================================================ */
