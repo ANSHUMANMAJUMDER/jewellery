@@ -3073,62 +3073,27 @@
         }
 
      /* Bestsellers Section - Mobile */
+/* Bestsellers Section - Mobile (≤ 768px) */
 @media (max-width: 768px) {
+
     .bestsellers-section {
-        padding: 3rem 1rem 2.5rem; /* less vertical padding */
+        padding: 2.5rem 1rem;
     }
 
     .bestsellers-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 per row for compact look */
-        gap: 1.2rem;                           /* tighter space between cards */
-        margin-top: 2rem;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important; /* FORCE 2 columns */
+        gap: 1rem;
+        margin-top: 1.5rem;
     }
 
     .bestseller-card {
-        border-radius: 12px;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+        border-radius: 10px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     }
 
     .bestseller-image {
-        height: 220px; /* smaller image height */
-    }
-
-    .bestseller-info {
-        padding: 1.2rem 1rem;
-    }
-
-    .bestseller-info h3 {
-        font-size: 1.05rem;
-        letter-spacing: 1.5px;
-        margin-bottom: 0.35rem;
-    }
-
-    .bestseller-info p {
-        font-size: 0.85rem;
-        line-height: 1.5;
-    }
-
-    .bestseller-badge {
-        top: 12px;
-        right: 12px;
-        padding: 0.35rem 0.75rem;
-        font-size: 0.75rem;
-    }
-}
-
-/* Bestsellers Section - Small Mobile */
-@media (max-width: 480px) {
-    .bestsellers-section {
-        padding: 2.2rem 0.8rem 2rem;
-    }
-
-    .bestsellers-grid {
-        grid-template-columns: 1fr;   /* 1 per row on very small screens */
-        gap: 1rem;
-    }
-
-    .bestseller-image {
-        height: 190px; /* even smaller */
+        height: 160px !important;  /* MUCH smaller */
     }
 
     .bestseller-info {
@@ -3136,13 +3101,51 @@
     }
 
     .bestseller-info h3 {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+        letter-spacing: 1px;
     }
 
     .bestseller-info p {
-        font-size: 0.8rem;
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+
+    .bestseller-badge {
+        top: 10px;
+        right: 10px;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+    }
+
+    .bestseller-info p {
+        display: none !important;
     }
 }
+
+/* Bestsellers Section - Small Mobile (≤ 480px) */
+@media (max-width: 480px) {
+    .bestsellers-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* still 2 columns */
+        gap: 0.8rem;
+    }
+
+    .bestseller-image {
+        height: 135px !important; /* even smaller */
+    }
+
+    .bestseller-info h3 {
+        font-size: 0.9rem;
+    }
+
+    .bestseller-info p {
+        font-size: 0.75rem;
+    }
+    .bestseller-info p {
+        display: none !important;
+    }
+}
+
 
 
         /* ============================================================
