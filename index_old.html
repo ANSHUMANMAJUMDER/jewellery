@@ -27,7 +27,6 @@
             overflow-x: hidden;
         }
 
-        /* Single Navigation Bar - Overlay Style */
         nav {
             position: fixed;
             top: 0;
@@ -58,7 +57,6 @@
             padding: 1rem 3rem;
         }
 
-        /* Left Section - Social Icons */
         .nav-left {
             display: flex;
             gap: 1.5rem;
@@ -87,7 +85,6 @@
             color: var(--primary-blue);
         }
 
-        /* Center - Logo */
         .nav-center {
             display: flex;
             justify-content: center;
@@ -105,7 +102,6 @@
             width: auto;
         }
 
-        /* Right Section - Icons */
         .nav-right {
             display: flex;
             gap: 1.5rem;
@@ -134,7 +130,6 @@
             color: var(--primary-blue);
         }
 
-        /* Navigation Links Row */
         .nav-links-container {
             grid-column: 1 / -1;
             display: flex;
@@ -257,7 +252,6 @@
             background: var(--primary-blue);
         }
 
-        /* Hero Section - Full Height */
         .hero-slider-section {
             margin-top: 0;
             position: relative;
@@ -416,33 +410,8 @@
             width: 8px;
         }
 
-        /* Content Section */
-        .content {
-            padding: 4rem 2rem;
-            text-align: center;
-            min-height: 50vh;
-        }
+       
 
-        .content h2 {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 5px;
-            color: var(--primary-blue);
-            margin-bottom: 2rem;
-        }
-
-        .content p {
-            font-size: 1rem;
-            line-height: 1.8;
-            max-width: 800px;
-            margin: 0 auto;
-            color: var(--dark-black);
-            opacity: 0.8;
-        }
-
-        /* ===========================
-           HOTSPOT SHOPPING SECTION
-           =========================== */
         .hotspot-section {
             padding: 6rem 2rem 6.5rem;
             background: linear-gradient(135deg, #f8f3ec 0%, #fdf9f5 100%);
@@ -561,7 +530,6 @@
             transform: translate(-50%, -50%) scale(1.1);
         }
 
-        /* Right side – product details panel, Hazoorilal-style */
         .hotspot-details-panel {
             background: var(--white);
             border-radius: 2px;
@@ -679,7 +647,275 @@
             color: rgba(2,0,13,0.45);
         }
 
-        /* Mobile Styles */
+        .hotspot-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2, 0, 13, 0.95);
+            z-index: 3000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .hotspot-modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 4px;
+            position: relative;
+            transform: scale(0.9) translateY(30px);
+            transition: transform 0.3s ease;
+        }
+
+        .hotspot-modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: transparent;
+            border: none;
+            color: var(--primary-blue);
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .modal-product-image {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+        }
+
+        .modal-product-details {
+            padding: 2rem 1.75rem 1.75rem;
+        }
+
+        .modal-eyebrow {
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            opacity: 0.7;
+            margin-bottom: 0.75rem;
+        }
+
+        .modal-divider {
+            width: 60px;
+            height: 1px;
+            background: rgba(7,32,63,0.25);
+            margin-bottom: 1.25rem;
+        }
+
+        .modal-product-title {
+            font-size: 1.35rem;
+            letter-spacing: 1px;
+            font-weight: 400;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .modal-product-meta {
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(2,0,13,0.65);
+            margin-bottom: 1rem;
+        }
+
+        .modal-product-description {
+            font-size: 0.9rem;
+            line-height: 1.7;
+            color: rgba(2,0,13,0.8);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-product-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .modal-buttons .product-btn {
+            width: 100%;
+            text-align: center;
+            padding: 1rem 1.5rem;
+        }
+
+        .search-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: rgba(2, 0, 13, 0.98);
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.4s ease;
+        }
+
+        .search-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .search-container {
+            width: 90%;
+            max-width: 800px;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.4s ease;
+        }
+
+        .search-overlay.active .search-container {
+            transform: translateY(0);
+        }
+
+        .search-input-wrapper {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1.5rem 4rem 1.5rem 2rem;
+            font-size: 2rem;
+            font-family: 'Georgia', serif;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            outline: none;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+        }
+
+        .search-input:focus {
+            border-bottom-color: var(--gold);
+        }
+
+        .search-icon-btn {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .search-icon-btn:hover {
+            color: var(--gold);
+        }
+
+        .search-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: var(--white);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .search-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: rotate(90deg);
+        }
+
+        .search-suggestions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .search-suggestion-item {
+            padding: 1rem 1.5rem;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .search-suggestion-item:hover {
+            background: rgba(212, 175, 55, 0.1);
+            border-color: var(--gold);
+            color: var(--gold);
+            transform: translateY(-3px);
+        }
+
+        .search-label {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
         @media (max-width: 1024px) {
             .hotspot-layout {
                 grid-template-columns: 1fr;
@@ -832,16 +1068,17 @@
                 letter-spacing: 3px;
             }
 
+            .hotspot-title p {
+                font-size: 0.8rem;
+            }
+
             .hotspot-details-panel {
-                padding: 2rem 1.75rem 1.75rem;
+                display: none;
             }
 
-            .hotspot-product-title {
-                font-size: 1.3rem;
-            }
-
-            .hotspot-product-description {
-                font-size: 0.9rem;
+            .hotspot-layout {
+                grid-template-columns: 1fr;
+                gap: 0;
             }
 
             .hotspot-dot {
@@ -853,6 +1090,77 @@
             .hotspot-pulse {
                 width: 35px;
                 height: 35px;
+            }
+
+            .search-input {
+                font-size: 1.5rem;
+                padding: 1.2rem 3.5rem 1.2rem 1.5rem;
+            }
+
+            .search-close {
+                top: 1rem;
+                right: 1rem;
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+
+            .search-suggestions {
+                grid-template-columns: 1fr;
+            }
+
+            .video-section {
+                padding: 4rem 1.5rem;
+            }
+
+            .video-title h2 {
+                font-size: 2rem;
+                letter-spacing: 3px;
+            }
+
+            .video-title p {
+                font-size: 0.8rem;
+            }
+
+            .video-slider-wrapper {
+                aspect-ratio: 4/5;
+            }
+
+            .video-overlay {
+                padding: 2rem 1.5rem;
+            }
+
+            .video-overlay h3 {
+                font-size: 1.5rem;
+                letter-spacing: 2px;
+            }
+
+            .video-overlay p {
+                font-size: 0.85rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .video-cta {
+                padding: 0.8rem 2rem;
+                font-size: 0.75rem;
+            }
+
+            .video-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 0.9rem;
+            }
+
+            .video-nav-btn.prev {
+                left: 1rem;
+            }
+
+            .video-nav-btn.next {
+                right: 1rem;
+            }
+
+            .video-slider-dots {
+                bottom: 1.5rem;
             }
         }
 
@@ -881,6 +1189,35 @@
             .hotspot-title p {
                 font-size: 0.85rem;
             }
+
+            .modal-content {
+                width: 95%;
+                max-height: 90vh;
+            }
+
+            .modal-product-image {
+                height: 240px;
+            }
+
+            .modal-product-details {
+                padding: 1.5rem 1.25rem;
+            }
+
+            .video-section {
+                padding: 3rem 1rem;
+            }
+
+            .video-title h2 {
+                font-size: 1.5rem;
+            }
+
+            .video-overlay h3 {
+                font-size: 1.2rem;
+            }
+
+            .video-overlay p {
+                font-size: 0.8rem;
+            }
         }
 
         .hamburger.active span:nth-child(1) {
@@ -895,200 +1232,256 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
 
-        /* Search Bar Overlay */
-        .search-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background: rgba(2, 0, 13, 0.98);
-            z-index: 2000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s ease;
-        }
+        
+/* CSR – Animal Welfare Initiative Banner */
+.csr-banner {
+    background: linear-gradient(135deg, var(--primary-blue) 0%, #0a2d54 100%);
+    padding: 2rem 1.5rem; /* compact height */
+    position: relative;
+    overflow: hidden;
+}
 
-        .search-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
+/* Soft abstract wave pattern */
+.csr-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url('data:image/svg+xml,<svg width="160" height="160" xmlns="http://www.w3.org/2000/svg"><path d="M20 80 Q 60 20, 100 80 T 180 80" stroke="rgba(255,255,255,0.03)" stroke-width="2" fill="none"/></svg>');
+    opacity: 0.4;
+}
 
-        .search-container {
-            width: 90%;
-            max-width: 800px;
-            position: relative;
-            transform: translateY(30px);
-            transition: transform 0.4s ease;
-        }
+/* Soft animal image blended on right-bottom */
+.csr-banner::after {
+    content: '';
+    position: absolute;
+    right: -40px;
+    bottom: -50px;
+    width: 220px;
+    height: 220px;
+    background: url('https://images.unsplash.com/photo-1517840933442-d2d1a05edb84?w=400&q=60') center/cover no-repeat;
+    opacity: 0.10;
+    filter: grayscale(100%);
+    pointer-events: none;
+}
 
-        .search-overlay.active .search-container {
-            transform: translateY(0);
-        }
+.csr-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
 
-        .search-input-wrapper {
-            position: relative;
-            margin-bottom: 2rem;
-        }
+/* Icon */
+.csr-icon {
+    width: 65px;
+    height: 65px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    backdrop-filter: blur(8px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1.5px solid rgba(255,255,255,0.2);
+}
 
-        .search-input {
-            width: 100%;
-            padding: 1.5rem 4rem 1.5rem 2rem;
-            font-size: 2rem;
-            font-family: 'Georgia', serif;
-            background: transparent;
-            border: none;
-            border-bottom: 2px solid rgba(255, 255, 255, 0.3);
-            color: var(--white);
-            outline: none;
-            transition: all 0.3s ease;
-            letter-spacing: 2px;
-        }
+.csr-icon i {
+    color: var(--white);
+    font-size: 1.8rem;
+    animation: csrFloat 3s ease-in-out infinite;
+}
 
-        .search-input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-            font-weight: 300;
-        }
+@keyframes csrFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-7px); }
+}
 
-        .search-input:focus {
-            border-bottom-color: var(--gold);
-        }
+/* Text */
+.csr-content {
+    text-align: center;
+}
 
-        .search-icon-btn {
-            position: absolute;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background: transparent;
-            border: none;
-            color: var(--white);
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 1rem;
-            transition: all 0.3s ease;
-        }
+.csr-content h3 {
+    font-size: 1.45rem;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: var(--white);
+    margin-bottom: 0.35rem;
+    text-transform: uppercase;
+}
 
-        .search-icon-btn:hover {
-            color: var(--gold);
-        }
+.csr-content p {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.92);
+    max-width: 650px;
+    margin: 0 auto 0.75rem;
+    line-height: 1.55;
+}
 
-        .search-close {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: transparent;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: var(--white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+/* Impact stats row */
+.csr-stats {
+    display: flex;
+    justify-content: center;
+    gap: 1.75rem;
+    margin-top: 0.4rem;
+    flex-wrap: wrap;
+}
 
-        .search-close:hover {
-            background: rgba(255, 255, 255, 0.1);
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: rotate(90deg);
-        }
+.csr-stat {
+    text-align: left;
+    min-width: 135px;
+}
 
-        .search-suggestions {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1rem;
-            margin-top: 2rem;
-        }
+.csr-stat-value {
+    display: block;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+}
 
-        .search-suggestion-item {
-            padding: 1rem 1.5rem;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--white);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
+.csr-stat-label {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: rgba(255,255,255,0.75);
+}
 
-        .search-suggestion-item:hover {
-            background: rgba(212, 175, 55, 0.1);
-            border-color: var(--gold);
-            color: var(--gold);
-            transform: translateY(-3px);
-        }
+/* Button */
+.csr-cta {
+    display: flex;
+}
 
-        .search-label {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 1rem;
-            display: block;
-        }
+.csr-btn {
+    padding: 0.75rem 2.1rem;
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.5);
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
 
-        @media (max-width: 768px) {
-            .search-input {
-                font-size: 1.5rem;
-                padding: 1.2rem 3.5rem 1.2rem 1.5rem;
-            }
+.csr-btn:hover {
+    background: var(--white);
+    color: var(--primary-blue);
+    border-color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.2);
+}
 
-            .search-close {
-                top: 1rem;
-                right: 1rem;
-                width: 40px;
-                height: 40px;
-                font-size: 1.2rem;
-            }
+/* RESPONSIVE */
+@media (max-width: 900px) {
+    .csr-container {
+        grid-template-columns: auto 1fr;
+    }
+    .csr-cta {
+        grid-column: 1 / -1;
+        justify-content: center;
+        margin-top: 0.7rem;
+    }
+}
 
-            .search-suggestions {
-                grid-template-columns: 1fr;
-            }
-        }
+@media (max-width: 768px) {
+    .csr-banner {
+        padding: 1.7rem 1rem;
+    }
+
+    .csr-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 1.2rem;
+    }
+
+    .csr-icon {
+        margin: 0 auto;
+        width: 60px;
+        height: 60px;
+    }
+
+    .csr-icon i {
+        font-size: 1.6rem;
+    }
+
+    .csr-content h3 {
+        font-size: 1.25rem;
+    }
+
+    .csr-content p {
+        font-size: 0.85rem;
+    }
+
+    .csr-stats {
+        justify-content: center;
+        margin-top: 0.6rem;
+    }
+
+    .csr-stat {
+        text-align: center;
+        min-width: 120px;
+    }
+
+    .csr-btn {
+        padding: 0.6rem 1.8rem;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .csr-banner {
+        padding: 1.5rem 0.8rem;
+    }
+
+    .csr-icon {
+        width: 55px;
+        height: 55px;
+    }
+
+    .csr-icon i {
+        font-size: 1.4rem;
+    }
+
+    .csr-content h3 {
+        font-size: 1.15rem;
+    }
+}
+
+
     </style>
 </head>
 <body>
-    <!-- Single Navigation Bar -->
     <nav id="navbar">
         <div class="nav-container">
-            <!-- Left - Social Icons -->
             <div class="nav-left">
                 <a href="#"><i class="fab fa-instagram"></i></a>
                 <a href="#"><i class="fab fa-facebook"></i></a>
                 <a href="#"><i class="fab fa-pinterest"></i></a>
             </div>
 
-            <!-- Center - Logo -->
             <div class="nav-center">
                 <a href="/" class="nav-logo">
                     <img id="navLogo" src="./assets/etthnicoast.png" alt="Ethnicoast Logo">
                 </a>
             </div>
 
-            <!-- Right - Icons -->
             <div class="nav-right">
                 <a href="#" id="searchToggle"><i class="fas fa-search"></i></a>
                 <a href="./orders.html"><i class="fas fa-shopping-bag"></i></a>
                 <a href="./profile.html"><i class="fas fa-user"></i></a>
             </div>
 
-            <!-- Hamburger Menu -->
             <div class="hamburger" id="hamburger">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
 
-            <!-- Navigation Links -->
             <div class="nav-links-container" id="navLinksContainer">
                 <ul class="nav-links">
                     <li><a href="/women.html">For Her</a></li>
@@ -1108,7 +1501,6 @@
         </div>
     </nav>
 
-    <!-- Search Overlay -->
     <div class="search-overlay" id="searchOverlay">
         <button class="search-close" id="searchClose">
             <i class="fas fa-times"></i>
@@ -1138,7 +1530,6 @@
         </div>
     </div>
 
-    <!-- Hero Slider -->
     <section class="hero-slider-section">
         <div class="hero-slider">
             <div class="slide active">
@@ -1199,13 +1590,8 @@
         </div>
     </section>
 
-    <!-- Content -->
-    <div class="content">
-        <h2>DISCOVER OUR COLLECTIONS</h2>
-        <p>Experience the finest craftsmanship in silver jewelry. Each piece is meticulously handcrafted to bring you timeless elegance and contemporary style. Our collections are designed to celebrate your unique beauty and individual style.</p>
-    </div>
+    
 
-    <!-- Hotspot Shopping Section (Hazoorilal-style) -->
     <section class="hotspot-section">
         <div class="hotspot-container">
             <div class="hotspot-title">
@@ -1214,11 +1600,9 @@
             </div>
             
             <div class="hotspot-layout">
-                <!-- Left: Model + hotspots -->
                 <div class="hotspot-image-wrapper">
                     <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?w=800&q=80" alt="Model wearing jewelry" class="hotspot-main-image">
                     
-                    <!-- Hotspot 1 - Necklace -->
                     <div class="hotspot" 
                          style="top: 35%; left: 48%;" 
                          data-product="necklace"
@@ -1226,12 +1610,12 @@
                          data-category="Necklace • Statement Piece"
                          data-description="A radiant neckpiece that sits gracefully along the collarbone, crafted to elevate every evening ensemble."
                          data-price="₹92,900"
-                         data-badge="Focus: Necklace">
+                         data-badge="Focus: Necklace"
+                         data-image="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=600&q=80">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                     
-                    <!-- Hotspot 2 - Earrings -->
                     <div class="hotspot" 
                          style="top: 22%; left: 40%;" 
                          data-product="earrings"
@@ -1239,12 +1623,12 @@
                          data-category="Earrings • Fine Detailing"
                          data-description="Delicate drops that frame the face with light, pairing effortlessly with both bridal and cocktail looks."
                          data-price="₹48,500"
-                         data-badge="Focus: Earrings">
+                         data-badge="Focus: Earrings"
+                         data-image="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=600&q=80">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                     
-                    <!-- Hotspot 3 - Ring -->
                     <div class="hotspot" 
                          style="top: 65%; left: 35%;" 
                          data-product="ring"
@@ -1252,12 +1636,12 @@
                          data-category="Ring • Everyday Luxe"
                          data-description="A versatile ring designed for layering, subtle enough for daily wear yet striking in its shimmer."
                          data-price="₹27,400"
-                         data-badge="Focus: Ring">
+                         data-badge="Focus: Ring"
+                         data-image="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=600&q=80">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                     
-                    <!-- Hotspot 4 - Bracelet -->
                     <div class="hotspot" 
                          style="top: 58%; left: 28%;" 
                          data-product="bracelet"
@@ -1265,13 +1649,13 @@
                          data-category="Bracelet • Modern Classic"
                          data-description="A fluid chain bracelet that wraps the wrist in a soft glow, perfect for stacking or wearing solo."
                          data-price="₹39,950"
-                         data-badge="Focus: Bracelet">
+                         data-badge="Focus: Bracelet"
+                         data-image="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=600&q=80">
                         <span class="hotspot-pulse"></span>
                         <span class="hotspot-dot">+</span>
                     </div>
                 </div>
                 
-                <!-- Right: Single hero product card -->
                 <div class="hotspot-details-panel">
                     <p class="hotspot-eyebrow" id="lookBadge">Focus: Necklace</p>
                     <div class="hotspot-divider"></div>
@@ -1293,8 +1677,72 @@
         </div>
     </section>
 
+    <!-- Charity Impact Banner -->
+  <section class="csr-banner">
+    <div class="csr-container">
+        
+        <div class="csr-icon">
+            <i class="fas fa-paw"></i>
+        </div>
+
+        <div class="csr-content">
+            <h3>Our Animal Welfare Initiative</h3>
+            <p>
+                A portion of every purchase supports animal rescue, medical care, 
+                and long-term conservation programs. Your jewelry becomes part of their story.
+            </p>
+
+            <div class="csr-stats">
+                <div class="csr-stat">
+                    <span class="csr-stat-value">1,200+</span>
+                    <span class="csr-stat-label">Animals Fed Monthly</span>
+                </div>
+                <div class="csr-stat">
+                    <span class="csr-stat-value">40+</span>
+                    <span class="csr-stat-label">Shelters Supported</span>
+                </div>
+                <div class="csr-stat">
+                    <span class="csr-stat-value">10%</span>
+                    <span class="csr-stat-label">Profit to Welfare</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="csr-cta">
+            <a href="#" class="csr-btn">Learn More</a>
+        </div>
+
+    </div>
+</section>
+
+
+
+
+
+
+
+    <div class="hotspot-modal" id="hotspotModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">
+                <i class="fas fa-times"></i>
+            </button>
+            <img id="modalImage" src="" alt="Product" class="modal-product-image">
+            <div class="modal-product-details">
+                <p class="modal-eyebrow" id="modalBadge">Featured Look</p>
+                <div class="modal-divider"></div>
+                <h3 class="modal-product-title" id="modalTitle">Product Name</h3>
+                <p class="modal-product-meta" id="modalCategory">Category</p>
+                <p class="modal-product-description" id="modalDescription">Description</p>
+                <p class="modal-product-price" id="modalPrice">Price</p>
+                <div class="modal-buttons">
+                    <a href="#" class="product-btn primary">Shop Now</a>
+                    <a href="#" class="product-btn secondary">Price on Request</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // Search Overlay Toggle
         const searchToggle = document.getElementById('searchToggle');
         const searchOverlay = document.getElementById('searchOverlay');
         const searchClose = document.getElementById('searchClose');
@@ -1311,7 +1759,6 @@
             searchInput.value = '';
         });
 
-        // Close search on escape key
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape' && searchOverlay.classList.contains('active')) {
                 searchOverlay.classList.remove('active');
@@ -1319,7 +1766,6 @@
             }
         });
 
-        // Close search when clicking outside
         searchOverlay.addEventListener('click', (e) => {
             if (e.target === searchOverlay) {
                 searchOverlay.classList.remove('active');
@@ -1327,7 +1773,6 @@
             }
         });
 
-        // Scroll effect for navigation + logo swap + hover effect
         let isHovering = false;
         
         window.addEventListener('scroll', function() {
@@ -1347,7 +1792,6 @@
             }
         });
 
-        // Hover effect for navbar
         const navbar = document.getElementById('navbar');
         const navLogo = document.getElementById('navLogo');
 
@@ -1365,7 +1809,6 @@
             }
         });
 
-        // Mobile menu toggle
         const hamburger = document.getElementById('hamburger');
         const navLinksContainer = document.getElementById('navLinksContainer');
 
@@ -1406,7 +1849,6 @@
             }
         });
 
-        // Hero Slider
         let currentSlide = 0;
         const slides = document.querySelectorAll('.slide');
         const dots = document.querySelectorAll('.dot');
@@ -1415,20 +1857,17 @@
         function showSlide(index) {
             slides.forEach(slide => slide.classList.remove('active'));
             dots.forEach(dot => dot.classList.remove('active'));
-
             slides[index].classList.add('active');
             dots[index].classList.add('active');
         }
 
         function changeSlide(direction) {
             currentSlide += direction;
-            
             if (currentSlide >= totalSlides) {
                 currentSlide = 0;
             } else if (currentSlide < 0) {
                 currentSlide = totalSlides - 1;
             }
-            
             showSlide(currentSlide);
         }
 
@@ -1443,15 +1882,21 @@
 
         showSlide(0);
 
-        // ==========================
-        // Hotspot Interaction (NEW)
-        // ==========================
         const hotspots = document.querySelectorAll('.hotspot');
         const lookBadge = document.getElementById('lookBadge');
         const lookTitle = document.getElementById('lookTitle');
         const lookCategory = document.getElementById('lookCategory');
         const lookDescription = document.getElementById('lookDescription');
         const lookPrice = document.getElementById('lookPrice');
+
+        const hotspotModal = document.getElementById('hotspotModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalImage = document.getElementById('modalImage');
+        const modalBadge = document.getElementById('modalBadge');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalCategory = document.getElementById('modalCategory');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalPrice = document.getElementById('modalPrice');
 
         function activateHotspot(hotspot) {
             hotspots.forEach(h => h.classList.remove('active'));
@@ -1462,17 +1907,35 @@
             const category = hotspot.dataset.category || '';
             const description = hotspot.dataset.description || '';
             const price = hotspot.dataset.price || '';
+            const image = hotspot.dataset.image || '';
 
             if (lookBadge) lookBadge.textContent = badge;
             if (lookTitle) lookTitle.textContent = title;
             if (lookCategory) lookCategory.textContent = category;
             if (lookDescription) lookDescription.textContent = description;
             if (lookPrice) lookPrice.textContent = price;
+
+            if (window.innerWidth <= 768) {
+                if (modalImage) modalImage.src = image;
+                if (modalBadge) modalBadge.textContent = badge;
+                if (modalTitle) modalTitle.textContent = title;
+                if (modalCategory) modalCategory.textContent = category;
+                if (modalDescription) modalDescription.textContent = description;
+                if (modalPrice) modalPrice.textContent = price;
+                
+                hotspotModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
         }
 
-        // Attach listeners
+        function closeModal() {
+            hotspotModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
         hotspots.forEach(hotspot => {
-            hotspot.addEventListener('click', () => {
+            hotspot.addEventListener('click', (e) => {
+                e.preventDefault();
                 activateHotspot(hotspot);
             });
 
@@ -1483,11 +1946,112 @@
             }
         });
 
-        // Set initial active hotspot (necklace) if available
-        const defaultHotspot = document.querySelector('.hotspot[data-product="necklace"]') || hotspots[0];
-        if (defaultHotspot) {
-            activateHotspot(defaultHotspot);
+        if (modalClose) {
+            modalClose.addEventListener('click', closeModal);
         }
+
+        if (hotspotModal) {
+            hotspotModal.addEventListener('click', (e) => {
+                if (e.target === hotspotModal) {
+                    closeModal();
+                }
+            });
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && hotspotModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        if (window.innerWidth > 768) {
+            const defaultHotspot = document.querySelector('.hotspot[data-product="necklace"]') || hotspots[0];
+            if (defaultHotspot) {
+                hotspots.forEach(h => h.classList.remove('active'));
+                defaultHotspot.classList.add('active');
+                
+                const title = defaultHotspot.dataset.title || '';
+                const badge = defaultHotspot.dataset.badge || 'Featured Look';
+                const category = defaultHotspot.dataset.category || '';
+                const description = defaultHotspot.dataset.description || '';
+                const price = defaultHotspot.dataset.price || '';
+
+                if (lookBadge) lookBadge.textContent = badge;
+                if (lookTitle) lookTitle.textContent = title;
+                if (lookCategory) lookCategory.textContent = category;
+                if (lookDescription) lookDescription.textContent = description;
+                if (lookPrice) lookPrice.textContent = price;
+            }
+        }
+
+        window.addEventListener('resize', () => {
+            if (window.innerWidth > 768 && hotspotModal.classList.contains('active')) {
+                closeModal();
+            }
+        });
+
+        // Video Slider Functionality
+        let currentVideoSlide = 0;
+        const videoSlides = document.querySelectorAll('.video-slide');
+        const videoDots = document.querySelectorAll('.video-dot');
+        const totalVideoSlides = videoSlides.length;
+        const videoPrevBtn = document.getElementById('videoPrev');
+        const videoNextBtn = document.getElementById('videoNext');
+
+        function showVideoSlide(index) {
+            videoSlides.forEach((slide, i) => {
+                const video = slide.querySelector('video');
+                if (i === index) {
+                    slide.classList.add('active');
+                    video.play();
+                } else {
+                    slide.classList.remove('active');
+                    video.pause();
+                    video.currentTime = 0;
+                }
+            });
+
+            videoDots.forEach((dot, i) => {
+                if (i === index) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function changeVideoSlide(direction) {
+            currentVideoSlide += direction;
+            
+            if (currentVideoSlide >= totalVideoSlides) {
+                currentVideoSlide = 0;
+            } else if (currentVideoSlide < 0) {
+                currentVideoSlide = totalVideoSlides - 1;
+            }
+            
+            showVideoSlide(currentVideoSlide);
+        }
+
+        function goToVideoSlide(index) {
+            currentVideoSlide = index;
+            showVideoSlide(currentVideoSlide);
+        }
+
+        if (videoPrevBtn) {
+            videoPrevBtn.addEventListener('click', () => changeVideoSlide(-1));
+        }
+
+        if (videoNextBtn) {
+            videoNextBtn.addEventListener('click', () => changeVideoSlide(1));
+        }
+
+        // Auto-advance video slider every 8 seconds
+        setInterval(() => {
+            changeVideoSlide(1);
+        }, 8000);
+
+        // Initialize video slider
+        showVideoSlide(0);
     </script>
 </body>
 </html>

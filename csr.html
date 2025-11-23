@@ -1308,6 +1308,249 @@
         }
 
         /* ============================================================
+           OPTIONAL BANNER SECTION (ELEGANT LUXURY STYLE)
+           ============================================================ */
+        .optional-banner {
+            padding: 0;
+            background: var(--white);
+            margin: 5rem 0;
+            overflow: hidden;
+        }
+
+        .optional-banner-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 500px;
+        }
+
+        .optional-banner-left {
+            background: #07203F;
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .optional-banner-left::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(235, 222, 212, 0.08) 0%, transparent 70%);
+            animation: subtlePulse 10s ease-in-out infinite;
+        }
+
+        @keyframes subtlePulse {
+            0%, 100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+            50% {
+                transform: scale(1.1);
+                opacity: 0.7;
+            }
+        }
+
+        .optional-banner-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .optional-banner-content h2 {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 5px;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-family: 'Georgia', serif;
+        }
+
+        .optional-banner-content p {
+            font-size: 1.15rem;
+            color: #EBDED4;
+            opacity: 0.95;
+            line-height: 1.8;
+            margin-bottom: 2.5rem;
+        }
+
+        .optional-banner-content .cta-button {
+            background: #F8E3D2;
+            color: #07203F;
+            border: 2px solid #F8E3D2;
+            font-weight: 500;
+            letter-spacing: 2px;
+            transition: all 0.4s ease;
+        }
+
+        .optional-banner-content .cta-button:hover {
+            background: transparent;
+            color: #F8E3D2;
+            border-color: #F8E3D2;
+        }
+
+        .optional-banner-right {
+            position: relative;
+            overflow: hidden;
+            background: #EBDED4;
+        }
+
+        .optional-banner-right img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+
+        .optional-banner-container:hover .optional-banner-right img {
+            transform: scale(1.05);
+        }
+
+        .optional-banner-badge {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: #07203F;
+            color: #F8E3D2;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            box-shadow: 0 10px 30px rgba(7, 32, 63, 0.3);
+            animation: elegantFloat 4s ease-in-out infinite;
+            font-family: 'Georgia', serif;
+        }
+
+        @keyframes elegantFloat {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-8px);
+            }
+        }
+
+        /* Optional Banner - Tablet */
+        @media (max-width: 1024px) {
+            .optional-banner-container {
+                min-height: 450px;
+            }
+
+            .optional-banner-left {
+                padding: 3rem;
+            }
+
+            .optional-banner-content h2 {
+                font-size: 2.8rem;
+                letter-spacing: 3px;
+            }
+
+            .optional-banner-content p {
+                font-size: 1.05rem;
+            }
+
+            .optional-banner-badge {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.8rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Optional Banner - Mobile */
+        @media (max-width: 768px) {
+            .optional-banner {
+                margin: 3rem 0;
+            }
+
+            .optional-banner-container {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+
+            .optional-banner-left {
+                padding: 3rem 2rem;
+                min-height: 350px;
+            }
+
+            .optional-banner-content h2 {
+                font-size: 2.2rem;
+                letter-spacing: 2px;
+                margin-bottom: 1.2rem;
+            }
+
+            .optional-banner-content p {
+                font-size: 1rem;
+                line-height: 1.6;
+                margin-bottom: 2rem;
+            }
+
+            .optional-banner-content .cta-button {
+                padding: 0.9rem 2.5rem;
+                font-size: 0.85rem;
+            }
+
+            .optional-banner-right {
+                height: 300px;
+            }
+
+            .optional-banner-badge {
+                top: 1.5rem;
+                right: 1.5rem;
+                padding: 0.7rem 1.3rem;
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        /* Optional Banner - Small Mobile */
+        @media (max-width: 480px) {
+            .optional-banner {
+                margin: 2rem 0;
+            }
+
+            .optional-banner-left {
+                padding: 2.5rem 1.5rem;
+                min-height: 320px;
+            }
+
+            .optional-banner-content h2 {
+                font-size: 1.8rem;
+                letter-spacing: 1.5px;
+                margin-bottom: 1rem;
+            }
+
+            .optional-banner-content p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+                margin-bottom: 1.8rem;
+            }
+
+            .optional-banner-content .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.8rem;
+            }
+
+            .optional-banner-right {
+                height: 250px;
+            }
+
+            .optional-banner-badge {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.6rem 1.2rem;
+                font-size: 0.7rem;
+                letter-spacing: 1.5px;
+            }
+        }
+
+        /* ============================================================
            GIFTING BANNER SECTION - STYLE 2 (Full Width Overlay)
            ============================================================ */
         .gifting-banner {
@@ -3195,6 +3438,25 @@
             </div>
             <div class="banner-image">
                 <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=800&q=80" alt="New Arrivals">
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         OPTIONAL BANNER (SPLIT DESIGN WITH ANIMATION)
+         ============================================================ -->
+    <section class="optional-banner">
+        <div class="optional-banner-container">
+            <div class="optional-banner-left">
+                <div class="optional-banner-content">
+                    <h2>EXCLUSIVE COLLECTION</h2>
+                    <p>Discover our handpicked selection of premium silver jewelry. Limited edition pieces crafted with passion and precision.</p>
+                    <a href="#" class="cta-button">EXPLORE COLLECTION</a>
+                </div>
+            </div>
+            <div class="optional-banner-right">
+                <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80" alt="Exclusive Collection">
+                <div class="optional-banner-badge">NEW</div>
             </div>
         </div>
     </section>
