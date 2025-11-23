@@ -2847,82 +2847,94 @@
         }
 
         /* World Section - Mobile */
-        @media (max-width: 768px) {
-            .world-section {
-                padding: 3rem 1.5rem;
-            }
+/* World Section - Mobile (≤ 768px) */
+@media (max-width: 768px) {
+    .world-section {
+        padding: 3rem 1rem;
+    }
 
-            .world-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-                gap: 1rem;
-            }
+    .world-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 equal columns */
+        grid-template-rows: auto;        /* OVERRIDE tablet rows */
+        grid-auto-rows: 170px;           /* base height for small cards */
+        gap: 1rem;
+        align-items: stretch;
+    }
 
-            .world-card {
-                grid-column: span 1 !important;
-                grid-row: span 1 !important;
-                height: 280px;
-            }
+    /* reset desktop/tablet spans */
+    .world-card {
+        grid-column: auto !important;
+        grid-row: auto !important;
+        height: 100%;
+    }
 
-            .world-card:nth-child(1),
-            .world-card:nth-child(3) {
-                height: 350px;
-            }
+    /* layout like screenshot:
+       1 = top-left, 2 = tall right, 3 = bottom-left */
+    .world-card:nth-child(1) {
+        grid-column: 1;
+        grid-row: 1;
+        height: 170px;                  /* small card */
+    }
 
-            .world-overlay {
-                padding: 1.5rem;
-            }
+    .world-card:nth-child(2) {
+        grid-column: 2;
+        grid-row: 1 / span 2;           /* tall right box */
+        height: 340px;                  /* ≈ 2 × small */
+    }
 
-            .world-info h3 {
-                font-size: 1.6rem;
-                letter-spacing: 2px;
-            }
+    .world-card:nth-child(3) {
+        grid-column: 1;
+        grid-row: 2;
+        height: 170px;                  /* small card */
+    }
 
-            .world-card:nth-child(1) .world-info h3,
-            .world-card:nth-child(3) .world-info h3 {
-                font-size: 1.8rem;
-            }
+    .world-overlay {
+        padding: 1.2rem;
+    }
 
-            .world-info p {
-                font-size: 0.9rem;
-            }
-        }
+    .world-info h3 {
+        font-size: 1.3rem;
+        letter-spacing: 2px;
+    }
 
-        /* World Section - Small Mobile */
-        @media (max-width: 480px) {
-            .world-section {
-                padding: 2.5rem 1rem;
-            }
+    .world-info p {
+        font-size: 0.9rem;
+    }
+}
 
-            .world-card {
-                height: 250px;
-                border-radius: 12px;
-            }
+/* Very Small Mobile (≤ 480px) */
+@media (max-width: 480px) {
+    .world-section {
+        padding: 2.5rem 0.8rem;
+    }
 
-            .world-card:nth-child(1),
-            .world-card:nth-child(3) {
-                height: 300px;
-            }
+    .world-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;      /* again, override */
+        grid-auto-rows: 150px;         /* slightly smaller */
+        gap: 0.8rem;
+    }
 
-            .world-overlay {
-                padding: 1.2rem;
-            }
+    .world-card:nth-child(1),
+    .world-card:nth-child(3) {
+        height: 150px;
+    }
 
-            .world-info h3 {
-                font-size: 1.4rem;
-                letter-spacing: 1.5px;
-                margin-bottom: 0.6rem;
-            }
+    .world-card:nth-child(2) {
+        height: 300px;
+    }
 
-            .world-card:nth-child(1) .world-info h3,
-            .world-card:nth-child(3) .world-info h3 {
-                font-size: 1.6rem;
-            }
+    .world-info h3 {
+        font-size: 1.15rem;
+        letter-spacing: 1.5px;
+    }
 
-            .world-info p {
-                font-size: 0.85rem;
-            }
-        }
+    .world-info p {
+        font-size: 0.85rem;
+    }
+}
+
 
         /* ============================================================
            BESTSELLERS SECTION
@@ -3060,31 +3072,78 @@
             }
         }
 
-        /* Bestsellers Section - Mobile */
-        @media (max-width: 768px) {
-            .bestsellers-grid {
-                grid-template-columns: 1fr;
-            }
+     /* Bestsellers Section - Mobile */
+@media (max-width: 768px) {
+    .bestsellers-section {
+        padding: 3rem 1rem 2.5rem; /* less vertical padding */
+    }
 
-            .bestseller-image {
-                height: 300px;
-            }
-        }
+    .bestsellers-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 per row for compact look */
+        gap: 1.2rem;                           /* tighter space between cards */
+        margin-top: 2rem;
+    }
 
-        /* Bestsellers Section - Small Mobile */
-        @media (max-width: 480px) {
-            .bestseller-image {
-                height: 250px;
-            }
+    .bestseller-card {
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
 
-            .bestseller-info h3 {
-                font-size: 1.1rem;
-            }
+    .bestseller-image {
+        height: 220px; /* smaller image height */
+    }
 
-            .bestseller-info p {
-                font-size: 0.85rem;
-            }
-        }
+    .bestseller-info {
+        padding: 1.2rem 1rem;
+    }
+
+    .bestseller-info h3 {
+        font-size: 1.05rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 0.35rem;
+    }
+
+    .bestseller-info p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .bestseller-badge {
+        top: 12px;
+        right: 12px;
+        padding: 0.35rem 0.75rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Bestsellers Section - Small Mobile */
+@media (max-width: 480px) {
+    .bestsellers-section {
+        padding: 2.2rem 0.8rem 2rem;
+    }
+
+    .bestsellers-grid {
+        grid-template-columns: 1fr;   /* 1 per row on very small screens */
+        gap: 1rem;
+    }
+
+    .bestseller-image {
+        height: 190px; /* even smaller */
+    }
+
+    .bestseller-info {
+        padding: 1rem;
+    }
+
+    .bestseller-info h3 {
+        font-size: 1rem;
+    }
+
+    .bestseller-info p {
+        font-size: 0.8rem;
+    }
+}
+
 
         /* ============================================================
            JEWELRY SHOTS VIDEO SECTION
