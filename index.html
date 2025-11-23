@@ -677,21 +677,38 @@
             visibility: visible;
         }
 
-        .modal-content {
-            background: var(--white);
-            width: 90%;
-            max-width: 500px;
-            max-height: 85vh;
-            overflow-y: auto;
-            border-radius: 4px;
-            position: relative;
-            transform: scale(0.9) translateY(30px);
-            transition: transform 0.3s ease;
-        }
+       .modal-content {
+    background: var(--white);
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-radius: 12px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(40px) scale(0.9);
+}
 
-        .hotspot-modal.active .modal-content {
-            transform: scale(1) translateY(0);
-        }
+/* When modal becomes active, play a “pop in” animation */
+.hotspot-modal.active .modal-content {
+    animation: hotspotModalPop 0.35s ease-out forwards;
+}
+
+/* Slight bounce + fade */
+@keyframes hotspotModalPop {
+    0% {
+        opacity: 0;
+        transform: translateY(40px) scale(0.9);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-6px) scale(1.02);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
 
         .modal-close {
             position: absolute;
