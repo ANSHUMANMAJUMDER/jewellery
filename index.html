@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>ETTHNICOAST - Premium Silver Jewelry</title>
     <style>
@@ -21,14 +25,101 @@
             --dark-black: #02000D;
             --white: #FFFFFF;
             --light-peach: #F8E3D2;
-            --gold: #D4AF37;
+           --font-primary: 'Cormorant Garamond', 'Garamond', 'Times New Roman', serif;
+           --font-secondary: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
+  
 
         body {
-            font-family: 'Georgia', serif;
+            font-family: var(--font-secondary);
             color: var(--dark-black);
             overflow-x: hidden;
         }
+
+        
+/* Make sure all basic text elements pick Lato by default */
+body,
+p,
+span,
+small,
+label,
+input,
+textarea,
+select,
+button {
+    font-family: var(--font-secondary);
+}
+
+/* NAVIGATION – LATO */
+nav,
+.nav-left a,
+.nav-right a,
+.nav-links a,
+.dropdown-menu a,
+.search-suggestion-item,
+.search-label {
+    font-family: var(--font-secondary);
+}
+
+/* BUTTONS – LATO */
+button,
+.cta-button,
+.product-btn,
+.csr-btn,
+.collection-range-link,
+.video-cta,
+.lifestyle-nav-btn,
+.collection-nav-btn,
+.slider-btn,
+.video-nav-btn,
+.search-icon-btn,
+.search-close {
+    font-family: var(--font-secondary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+/* PRIMARY TITLES / COLLECTION / USP – GARAMOND */
+h1,
+h2,
+h3,
+.section-title,
+.hotspot-title h2,
+.hotspot-product-title,
+.modal-product-title,
+.collection-range-overlay h3,
+.lifestyle-info h3,
+.gender-text h3,
+.gender-info h3,
+.general-banner-overlay h2,
+.gifting-banner-overlay h2,
+.banner-content h2,
+.csr-content h3,
+.world-section .section-title,
+.video-title h2 {
+    font-family: var(--font-primary);
+}
+
+/* Subtitles / USP-style copy – make them more elegant in Garamond */
+.section-subtitle,
+.hotspot-eyebrow,
+.modal-eyebrow,
+.csr-stat-value {
+    font-family: var(--font-primary);
+}
+
+/* Keep small meta / labels clean in Lato */
+.hotspot-product-meta,
+.modal-product-meta,
+.csr-stat-label,
+.promo-content span,
+.gender-text p,
+.gender-info p,
+.gifting-banner-overlay p,
+.general-banner-overlay p,
+.banner-content p {
+    font-family: var(--font-secondary);
+}
 
         /* ============================================================
            NAVBAR SECTION with hotspot 
@@ -85,7 +176,7 @@
         }
 
         .nav-left a:hover {
-            color: var(--gold);
+            color: var(--dark-black);
         }
 
         nav.scrolled .nav-left a:hover,
@@ -130,7 +221,7 @@
         }
 
         .nav-right a:hover {
-            color: var(--gold);
+            color: var(--dark-black);
         }
 
         nav.scrolled .nav-right a:hover,
@@ -186,7 +277,7 @@
         }
 
         .nav-links a:hover {
-            color: var(--gold);
+            color: var(--dark-black);
         }
 
         nav.scrolled .nav-links a:hover,
@@ -420,31 +511,31 @@
 
        
 
-        .hotspot-section {
-            padding: 6rem 2rem 6.5rem;
+  .hotspot-section {
+            padding: 4rem 2rem;
             background: linear-gradient(135deg, #f8f3ec 0%, #fdf9f5 100%);
         }
 
         .hotspot-container {
-            max-width: 1400px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
         .hotspot-title {
             text-align: center;
-            margin-bottom: 3.5rem;
+            margin-bottom: 2.5rem;
         }
 
         .hotspot-title h2 {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 300;
-            letter-spacing: 5px;
+            letter-spacing: 4px;
             color: var(--primary-blue);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
         .hotspot-title p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--dark-black);
             opacity: 0.7;
             letter-spacing: 2px;
@@ -453,11 +544,10 @@
 
         .hotspot-layout {
             display: grid;
-            grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
-            gap: 4rem;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 0.85fr);
+            gap: 2.5rem;
             align-items: center;
         }
-
         .hotspot-image-wrapper {
             position: relative;
             width: 100%;
@@ -520,6 +610,21 @@
             z-index: 1;
         }
 
+        .hotspot-detail-image-wrapper {
+    width: 100%;
+    border-radius: 14px;
+    overflow: hidden;
+    margin-bottom: 1.75rem;
+}
+
+.hotspot-detail-image {
+    width: 100%;
+    display: block;
+    object-fit: cover;
+    max-height: 260px;
+}
+
+
         @keyframes pulse {
             0% {
                 transform: translate(-50%, -50%) scale(1);
@@ -556,7 +661,7 @@
             left: 0;
             width: 6px;
             height: 100%;
-            background: linear-gradient(180deg, var(--gold), transparent);
+            background: linear-gradient(180deg, var(--dark-black), transparent);
             opacity: 0.7;
         }
 
@@ -1491,6 +1596,19 @@
             gap: 3rem;
             animation: scroll 30s linear infinite;
         }
+        .promo-content a {
+    text-decoration: none;       /* Remove underline */
+    color: inherit;              /* Keep same text color */
+    cursor: pointer;             /* Remove link pointer if you want */
+}
+
+.promo-content a:visited,
+.promo-content a:hover,
+.promo-content a:active {
+    text-decoration: none;
+    color: inherit;
+}
+
 
         .promo-content span {
             font-size: 0.85rem;
@@ -2018,6 +2136,7 @@
         .gender-text .cta-button {
             align-self: flex-start;
         }
+    
 
         /* Gender Section - Tablet */
         @media (max-width: 1024px) {
@@ -2071,6 +2190,21 @@
             }
         }
 
+
+        @media (min-width: 992px) {
+    .gender-row.reverse > div:nth-child(2) {
+        text-align: right;
+    }
+
+    .gender-row.reverse > div:nth-child(2) h3,
+    .gender-row.reverse > div:nth-child(2) p,
+    .gender-row.reverse > div:nth-child(2) a {
+        text-align: right;
+        margin-left: auto;
+        display: block;
+    }
+}
+
         /* ============================================================
            NEW ARRIVALS BANNER SECTION - STYLE 1 (Modern Banner Style)
            ============================================================ */
@@ -2117,9 +2251,9 @@
         }
 
         .banner-content .cta-button {
-            background: #e94560;
+            background: var(--secondary-peach);
             color: var(--white);
-            border: 2px solid #e94560;
+            border: 2px solid var(--secondary-peach);
             padding: 1rem 3rem;
             text-transform: uppercase;
             font-weight: 500;
@@ -2127,8 +2261,8 @@
 
         .banner-content .cta-button:hover {
             background: transparent;
-            color: #e94560;
-            border-color: #e94560;
+            color: var(--secondary-peach);
+            border-color: var(--secondary-peach);
         }
 
         .banner-image {
@@ -2706,147 +2840,145 @@
         }
 
         /* ============================================================
-           WORLD SECTION (MASONRY LAYOUT)
-           ============================================================ */
-        .world-section {
-            padding: 5rem 2rem;
-            background: var(--white);
-        }
+   WORLD SECTION (MASONRY LAYOUT)
+   ============================================================ */
+.world-section {
+    padding: 5rem 2rem;
+    background: var(--white);
+}
 
-        .world-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+.world-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
 
-        .world-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            grid-template-rows: repeat(3, 250px);
-            gap: 1.5rem;
-            grid-auto-flow: dense;
-        }
+.world-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 1rem;
+    grid-auto-rows: 180px;
+}
 
-        .world-card {
-            position: relative;
-            overflow: hidden;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            border-radius: 15px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+.world-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-        .world-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-        }
+.world-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+}
 
-        /* Masonry Layout - Different Sizes */
-        .world-card:nth-child(1) {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
+/* Masonry Layout - Different Sizes */
+.world-card:nth-child(1) {
+    grid-column: span 5;
+    grid-row: span 2;
+}
 
-        .world-card:nth-child(2) {
-            grid-column: span 2;
-            grid-row: span 1;
-        }
+.world-card:nth-child(2) {
+    grid-column: span 7;
+    grid-row: span 2;
+}
 
-        .world-card:nth-child(3) {
-            grid-column: span 2;
-            grid-row: span 2;
-        }
+.world-card:nth-child(3) {
+    grid-column: span 7;
+    grid-row: span 2;
+}
 
-        .world-card:nth-child(4) {
-            grid-column: span 2;
-            grid-row: span 1;
-        }
+.world-card:nth-child(4) {
+    grid-column: span 5;
+    grid-row: span 2;
+}
 
-        .world-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
+.world-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
 
-        .world-card:hover img {
-            transform: scale(1.1);
-        }
+.world-card:hover img {
+    transform: scale(1.1);
+}
 
-        .world-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(180deg, transparent 40%, rgba(7,32,63,0.85) 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            padding: 2rem;
-            transition: background 0.3s ease;
-        }
+.world-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, transparent 40%, rgba(7,32,63,0.85) 100%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2rem;
+    transition: background 0.3s ease;
+}
 
-        .world-card:hover .world-overlay {
-            background: linear-gradient(180deg, transparent 30%, rgba(7,32,63,0.9) 100%);
-        }
+.world-card:hover .world-overlay {
+    background: linear-gradient(180deg, transparent 30%, rgba(7,32,63,0.9) 100%);
+}
 
-        .world-info h3 {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 4px;
-            color: var(--white);
-            margin-bottom: 0.8rem;
-        }
+.world-info h3 {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: var(--white);
+    margin-bottom: 0.8rem;
+}
 
-        .world-card:nth-child(1) .world-info h3,
-        .world-card:nth-child(3) .world-info h3 {
-            font-size: 2.5rem;
-        }
+.world-card:nth-child(1) .world-info h3,
+.world-card:nth-child(3) .world-info h3 {
+    font-size: 2.5rem;
+}
 
-        .world-info p {
-            font-size: 0.95rem;
-            color: var(--white);
-            opacity: 0.9;
-        }
+.world-info p {
+    font-size: 0.95rem;
+    color: var(--white);
+    opacity: 0.9;
+}
 
-        /* World Section - Tablet */
-        @media (max-width: 1024px) {
-            .world-grid {
-                grid-template-columns: repeat(2, 1fr);
-                grid-template-rows: repeat(4, 220px);
-                gap: 1.2rem;
-            }
+/* World Section - Tablet */
+@media (max-width: 1024px) {
+    .world-grid {
+        grid-template-columns: repeat(8, 1fr);
+        gap: 1rem;
+        grid-auto-rows: 160px;
+    }
 
-            .world-card:nth-child(1) {
-                grid-column: span 2;
-                grid-row: span 2;
-            }
+    .world-card:nth-child(1) {
+        grid-column: span 4;
+        grid-row: span 2;
+    }
 
-            .world-card:nth-child(2) {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
+    .world-card:nth-child(2) {
+        grid-column: span 4;
+        grid-row: span 2;
+    }
 
-            .world-card:nth-child(3) {
-                grid-column: span 1;
-                grid-row: span 1;
-            }
+    .world-card:nth-child(3) {
+        grid-column: span 4;
+        grid-row: span 2;
+    }
 
-            .world-card:nth-child(4) {
-                grid-column: span 2;
-                grid-row: span 1;
-            }
+    .world-card:nth-child(4) {
+        grid-column: span 4;
+        grid-row: span 2;
+    }
 
-            .world-info h3 {
-                font-size: 1.8rem;
-            }
+    .world-info h3 {
+        font-size: 1.8rem;
+    }
 
-            .world-card:nth-child(1) .world-info h3 {
-                font-size: 2.2rem;
-            }
-        }
+    .world-card:nth-child(1) .world-info h3 {
+        font-size: 2.2rem;
+    }
+}
 
-        /* World Section - Mobile */
 /* World Section - Mobile (≤ 768px) */
 @media (max-width: 768px) {
     .world-section {
@@ -2855,38 +2987,35 @@
 
     .world-grid {
         display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr)); /* 2 equal columns */
-        grid-template-rows: auto;        /* OVERRIDE tablet rows */
-        grid-auto-rows: 170px;           /* base height for small cards */
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        grid-template-rows: auto;
+        grid-auto-rows: 170px;
         gap: 1rem;
         align-items: stretch;
     }
 
-    /* reset desktop/tablet spans */
     .world-card {
         grid-column: auto !important;
         grid-row: auto !important;
         height: 100%;
     }
 
-    /* layout like screenshot:
-       1 = top-left, 2 = tall right, 3 = bottom-left */
     .world-card:nth-child(1) {
         grid-column: 1;
         grid-row: 1;
-        height: 170px;                  /* small card */
+        height: 170px;
     }
 
     .world-card:nth-child(2) {
         grid-column: 2;
-        grid-row: 1 / span 2;           /* tall right box */
-        height: 340px;                  /* ≈ 2 × small */
+        grid-row: 1 / span 2;
+        height: 340px;
     }
 
     .world-card:nth-child(3) {
         grid-column: 1;
         grid-row: 2;
-        height: 170px;                  /* small card */
+        height: 170px;
     }
 
     .world-overlay {
@@ -2911,8 +3040,8 @@
 
     .world-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
-        grid-template-rows: auto;      /* again, override */
-        grid-auto-rows: 150px;         /* slightly smaller */
+        grid-template-rows: auto;
+        grid-auto-rows: 150px;
         gap: 0.8rem;
     }
 
@@ -2941,7 +3070,8 @@
            ============================================================ */
         .bestsellers-section {
             padding: 5rem 2rem;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+            /* background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); */
+             background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--white) 100%);
         }
 
         .bestsellers-container {
@@ -3036,7 +3166,7 @@
             position: absolute;
             top: 20px;
             right: 20px;
-            background: var(--gold);
+            background: var(--dark-black);
             color: var(--white);
             padding: 0.5rem 1rem;
             border-radius: 25px;
@@ -3565,152 +3695,151 @@
 }
 
 
-        /* ============================================================
-           PRICE SECTION
-           ============================================================ */
-        .price-section {
-            padding: 5rem 2rem;
-            background: linear-gradient(135deg, #9B7E6B 0%, #8B6F5C 100%);
-        }
 
-        .price-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+/* ============================================================
+   PRICE SECTION (Compact & Premium)
+   ============================================================ */
+.price-section {
+    padding: 3.5rem 1.5rem; /* reduced */
+    background: linear-gradient(135deg, #9B7E6B 0%, #8B6F5C 100%);
+}
 
-        .price-section .section-title {
-            color: var(--white);
-        }
+.price-container {
+    max-width: 1200px;  /* smaller width */
+    margin: 0 auto;
+}
 
-        .price-section .section-subtitle {
-            color: var(--white);
-            opacity: 0.9;
-        }
+.price-section .section-title {
+    color: var(--white);
+    margin-bottom: 0.4rem;
+    text-transform: uppercase;
+}
 
-        .price-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-        }
+.price-section .section-subtitle {
+    color: var(--white);
+    opacity: 0.9;
+    margin-bottom: 2rem;
+}
 
-        .price-card {
-            background: var(--white);
-            padding: 0;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            border: none;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
+/* Compact Grid */
+.price-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem; /* reduced */
+}
 
-        .price-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-        }
+/* Card */
+.price-card {
+    background: var(--white);
+    border-radius: 12px;     /* smaller radius */
+    overflow: hidden;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.12); /* lighter */
+}
 
-        .price-card-image {
-            width: 100%;
-            height: 280px;
-            overflow: hidden;
-            position: relative;
-        }
+.price-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.18);
+}
 
-        .price-card-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
+/* Image */
+.price-card-image {
+    width: 100%;
+    height: 200px; /* reduced from 280px */
+    overflow: hidden;
+}
 
-        .price-card:hover .price-card-image img {
-            transform: scale(1.1);
-        }
+.price-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
 
-        .price-card-content {
-            padding: 2rem 1.5rem;
-            background: var(--white);
-        }
+.price-card:hover .price-card-image img {
+    transform: scale(1.08);
+}
 
-        .price-card h3 {
-            font-size: 1.5rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
+/* Content */
+.price-card-content {
+    padding: 1.2rem 1rem; /* smaller padding */
+}
 
-        .price-card p {
-            font-size: 0.9rem;
-            color: var(--dark-black);
-            opacity: 0.7;
-        }
+.price-card h3 {
+    font-size: 1.1rem;    /* smaller */
+    font-weight: 500;
+    letter-spacing: 1px;
+    color: var(--primary-blue);
+    margin-bottom: 0.4rem;
+}
 
-        /* Price Section - Tablet */
-        @media (max-width: 1024px) {
-            .price-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+.price-card p {
+    font-size: 0.8rem;    /* reduced */
+    color: var(--dark-black);
+    opacity: 0.7;
+    line-height: 1.4;
+}
 
-        /* Price Section - Mobile */
-     /* Price Section - Mobile (≤ 768px) */
-@media (max-width: 768px) {
-
-    .price-section {
-        padding: 3rem 1rem;
-    }
-
+/* Tablet */
+@media (max-width: 1024px) {
     .price-grid {
-        grid-template-columns: repeat(2, 1fr);   /* 2 columns instead of 1 */
-        gap: 1.2rem;
-        margin-top: 1.5rem;
-    }
-
-    .price-card {
-        border-radius: 12px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.12);
+        grid-template-columns: repeat(3, 1fr); /* more compact */
     }
 
     .price-card-image {
-        height: 160px;     /* shrink image height */
-    }
-
-    .price-card-content {
-        padding: 1rem;      /* compact padding */
-    }
-
-    .price-card h3 {
-        font-size: 1rem;
-        margin-bottom: 0.3rem;
-        letter-spacing: 1px;
-    }
-
-    .price-card p {
-        font-size: 0.75rem;
-        line-height: 1.4;
+        height: 170px;
     }
 }
 
-/* Price Section - Small Mobile (≤ 480px) */
-@media (max-width: 480px) {
+/* Mobile (≤ 768px) */
+@media (max-width: 768px) {
 
     .price-section {
-        padding: 2.3rem 0.8rem;
+        padding: 2.8rem 1rem;
     }
 
     .price-grid {
-        grid-template-columns: repeat(2, 1fr);   /* still 2 columns */
-        gap: 0.8rem;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
     }
 
     .price-card-image {
-        height: 135px;     /* even smaller */
+        height: 140px;
     }
 
     .price-card-content {
-        padding: 0.8rem;
+        padding: 0.9rem;
+    }
+
+    .price-card h3 {
+        font-size: 0.95rem;
+        margin-bottom: 0.25rem;
+    }
+
+    .price-card p {
+        font-size: 0.72rem;
+    }
+}
+
+/* Small Mobile (≤ 480px) */
+@media (max-width: 480px) {
+
+    .price-section {
+        padding: 2.2rem 0.8rem;
+    }
+
+    .price-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.7rem;
+    }
+
+    .price-card-image {
+        height: 120px; /* smaller */
+    }
+
+    .price-card-content {
+        padding: 0.7rem;
     }
 
     .price-card h3 {
@@ -3718,336 +3847,303 @@
     }
 
     .price-card p {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
     }
 }
 
-     
-        /* ============================================================
-           OPTIONAL BANNER SECTION (ELEGANT LUXURY STYLE)
-           ============================================================ */
-        .optional-banner {
-            padding: 0;
-            background: var(--white);
-            margin: 5rem 0;
-            overflow: hidden;
-        }
 
-        .optional-banner-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            min-height: 500px;
-        }
+       
+       /* ============================================================
+   OPTIONAL BANNER — ULTRA COMPACT VERSION
+   ============================================================ */
+.optional-banner {
+    padding: 0;
+    background: var(--white);
+    margin: 1.5rem 0; 
+    overflow: hidden;
+}
 
-        .optional-banner-left {
-            background: #07203F;
-            padding: 4rem;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
+.optional-banner-container {
+    max-width: 900px;  /* Much narrower */
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.85fr 1fr;
+    min-height: 180px;  /* Significantly reduced */
+}
 
-        .optional-banner-left::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(235, 222, 212, 0.08) 0%, transparent 70%);
-            animation: subtlePulse 10s ease-in-out infinite;
-        }
+/* LEFT SIDE */
+.optional-banner-left {
+    background: #07203F;
+    padding: 1.2rem 1.5rem; /* Reduced padding */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
 
-        @keyframes subtlePulse {
-            0%, 100% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-            50% {
-                transform: scale(1.1);
-                opacity: 0.7;
-            }
-        }
+.optional-banner-left::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -30%;
+    width: 150%;
+    height: 150%;
+    background: radial-gradient(circle, rgba(235,222,212,0.05) 0%, transparent 70%);
+}
 
-        .optional-banner-content {
-            position: relative;
-            z-index: 2;
-        }
+/* CONTENT */
+.optional-banner-content h2 {
+    font-size: 1.3rem; /* Smaller heading */
+    font-weight: 300;
+    letter-spacing: 1.5px;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+}
 
-        .optional-banner-content h2 {
-            font-size: 3.5rem;
-            font-weight: 300;
-            letter-spacing: 5px;
-            color: var(--white);
-            margin-bottom: 1.5rem;
-            line-height: 1.2;
-            font-family: 'Georgia', serif;
-        }
+.optional-banner-content p {
+    font-size: 0.75rem; /* Smaller text */
+    color: #EBDED4;
+    line-height: 1.35;
+    opacity: 0.9;
+    margin-bottom: 0.8rem;
+}
 
-        .optional-banner-content p {
-            font-size: 1.15rem;
-            color: #EBDED4;
-            opacity: 0.95;
-            line-height: 1.8;
-            margin-bottom: 2.5rem;
-        }
+.optional-banner-content .cta-button {
+    padding: 0.5rem 1.3rem; /* Smaller button */
+    font-size: 0.7rem;
+    background: #F8E3D2;
+    color: #07203F;
+    border: 2px solid #F8E3D2;
+    text-decoration: none;
+    display: inline-block;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+}
 
-        .optional-banner-content .cta-button {
-            background: #F8E3D2;
-            color: #07203F;
-            border: 2px solid #F8E3D2;
-            font-weight: 500;
-            letter-spacing: 2px;
-            transition: all 0.4s ease;
-        }
+.optional-banner-content .cta-button:hover {
+    background: transparent;
+    color: #F8E3D2;
+}
 
-        .optional-banner-content .cta-button:hover {
-            background: transparent;
-            color: #F8E3D2;
-            border-color: #F8E3D2;
-        }
+/* RIGHT SIDE */
+.optional-banner-right {
+    position: relative;
+    overflow: hidden;
+    height: 180px; /* Fixed height */
+}
 
-        .optional-banner-right {
-            position: relative;
-            overflow: hidden;
-            background: #EBDED4;
-        }
+.optional-banner-right img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        .optional-banner-right img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.8s ease;
-        }
+/* BADGE */
+.optional-banner-badge {
+    position: absolute;
+    top: 0.6rem;
+    right: 0.6rem;
+    background: #07203F;
+    color: #F8E3D2;
+    padding: 0.35rem 0.8rem;
+    font-size: 0.55rem;
+    border-radius: 3px;
+    letter-spacing: 1.5px;
+    font-weight: 600;
+}
 
-        .optional-banner-container:hover .optional-banner-right img {
-            transform: scale(1.05);
-        }
+/* ===========================
+   TABLET
+   =========================== */
+@media (max-width: 1024px) {
 
-        .optional-banner-badge {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            background: #07203F;
-            color: #F8E3D2;
-            padding: 1rem 2rem;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: 400;
-            letter-spacing: 3px;
-            box-shadow: 0 10px 30px rgba(7, 32, 63, 0.3);
-            animation: elegantFloat 4s ease-in-out infinite;
-            font-family: 'Georgia', serif;
-        }
+    .optional-banner-container {
+        max-width: 750px;
+        min-height: 160px;
+        grid-template-columns: 1fr 1fr;
+    }
 
-        @keyframes elegantFloat {
-            0%, 100% {
-                transform: translateY(0);
-            }
-            50% {
-                transform: translateY(-8px);
-            }
-        }
+    .optional-banner-content h2 {
+        font-size: 1.2rem;
+    }
 
-        /* Optional Banner - Tablet */
-        @media (max-width: 1024px) {
-            .optional-banner-container {
-                min-height: 450px;
-            }
+    .optional-banner-content p {
+        font-size: 0.7rem;
+    }
 
-            .optional-banner-left {
-                padding: 3rem;
-            }
+    .optional-banner-right {
+        height: 160px;
+    }
+}
 
-            .optional-banner-content h2 {
-                font-size: 2.8rem;
-                letter-spacing: 3px;
-            }
+/* ===========================
+   MOBILE
+   =========================== */
+@media (max-width: 768px) {
 
-            .optional-banner-content p {
-                font-size: 1.05rem;
-            }
+    .optional-banner {
+        margin: 1.5rem 0;
+    }
 
-            .optional-banner-badge {
-                padding: 0.8rem 1.5rem;
-                font-size: 0.8rem;
-                letter-spacing: 2px;
-            }
-        }
+    .optional-banner-container {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        max-width: 100%;
+    }
 
-        /* Optional Banner - Mobile */
-        @media (max-width: 768px) {
-            .optional-banner {
-                margin: 3rem 0;
-            }
+    .optional-banner-left {
+        padding: 1.2rem 1rem; 
+    }
 
-            .optional-banner-container {
-                grid-template-columns: 1fr;
-                min-height: auto;
-            }
+    .optional-banner-content h2 {
+        font-size: 1.1rem;
+        margin-bottom: 0.3rem;
+    }
 
-            .optional-banner-left {
-                padding: 3rem 2rem;
-                min-height: 350px;
-            }
+    .optional-banner-content p {
+        font-size: 0.7rem;
+        margin-bottom: 0.7rem;
+    }
 
-            .optional-banner-content h2 {
-                font-size: 2.2rem;
-                letter-spacing: 2px;
-                margin-bottom: 1.2rem;
-            }
+    .optional-banner-right {
+        height: 150px; /* Smaller mobile height */
+    }
 
-            .optional-banner-content p {
-                font-size: 1rem;
-                line-height: 1.6;
-                margin-bottom: 2rem;
-            }
+    .optional-banner-badge {
+        top: 0.5rem;
+        right: 0.5rem;
+        font-size: 0.55rem;
+        padding: 0.3rem 0.7rem;
+    }
+}
 
-            .optional-banner-content .cta-button {
-                padding: 0.9rem 2.5rem;
-                font-size: 0.85rem;
-            }
+/* ===========================
+   SMALL MOBILE
+   =========================== */
+@media (max-width: 480px) {
 
-            .optional-banner-right {
-                height: 300px;
-            }
+    .optional-banner-left {
+        padding: 1rem 0.9rem;
+    }
 
-            .optional-banner-badge {
-                top: 1.5rem;
-                right: 1.5rem;
-                padding: 0.7rem 1.3rem;
-                font-size: 0.75rem;
-                letter-spacing: 2px;
-            }
-        }
+    .optional-banner-content h2 {
+        font-size: 1rem;
+    }
 
-        /* Optional Banner - Small Mobile */
-        @media (max-width: 480px) {
-            .optional-banner {
-                margin: 2rem 0;
-            }
+    .optional-banner-content p {
+        font-size: 0.65rem;
+    }
 
-            .optional-banner-left {
-                padding: 2.5rem 1.5rem;
-                min-height: 320px;
-            }
+    .optional-banner-right {
+        height: 130px;
+    }
 
-            .optional-banner-content h2 {
-                font-size: 1.8rem;
-                letter-spacing: 1.5px;
-                margin-bottom: 1rem;
-            }
-
-            .optional-banner-content p {
-                font-size: 0.9rem;
-                line-height: 1.5;
-                margin-bottom: 1.8rem;
-            }
-
-            .optional-banner-content .cta-button {
-                padding: 0.8rem 2rem;
-                font-size: 0.8rem;
-            }
-
-            .optional-banner-right {
-                height: 250px;
-            }
-
-            .optional-banner-badge {
-                top: 1rem;
-                right: 1rem;
-                padding: 0.6rem 1.2rem;
-                font-size: 0.7rem;
-                letter-spacing: 1.5px;
-            }
-        }
+    .optional-banner-badge {
+        font-size: 0.5rem;
+        padding: 0.3rem 0.7rem;
+    }
+}
 
 
         /* ============================================================
            VALUES SECTION
            ============================================================ */
         .values-section {
-            padding: 5rem 2rem;
-            background: var(--primary-blue);
-            color: var(--white);
-        }
+    padding: 3.5rem 1.5rem; /* smaller */
+    background: var(--primary-blue);
+    color: var(--white);
+}
 
-        .values-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+.values-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
 
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 3rem;
-            margin-top: 4rem;
-        }
+.values-section .section-title {
+    margin-bottom: 0.5rem; /* tighter */
+}
 
-        .value-card {
-            text-align: center;
-        }
+.values-section .section-subtitle {
+    margin-bottom: 2.5rem; /* reduced */
+}
 
-        .value-icon {
-            width: 70px;
-            height: 70px;
-            margin: 0 auto 1.5rem;
-            background: var(--secondary-peach);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-blue);
-            font-size: 2rem;
-        }
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem; /* reduced */
+}
 
-        .value-card h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 1rem;
-        }
+.value-card {
+    text-align: center;
+    padding: 1rem 0.5rem;
+}
 
-        .value-card p {
-            font-size: 0.95rem;
-            opacity: 0.9;
-            line-height: 1.6;
-        }
+.value-icon {
+    width: 55px;        /* smaller */
+    height: 55px;
+    margin: 0 auto 1rem;
+    background: var(--secondary-peach);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-blue);
+    font-size: 1.5rem;   /* reduced */
+}
 
-        /* Values Section - Tablet */
-        @media (max-width: 1024px) {
-            .values-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
+.value-card h3 {
+    font-size: 1rem;       /* smaller */
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.7rem;
+}
 
-        /* Values Section - Mobile */
-        @media (max-width: 768px) {
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+.value-card p {
+    font-size: 0.85rem;    /* smaller */
+    opacity: 0.9;
+    line-height: 1.45;
+}
 
-        /* Values Section - Small Mobile */
-        @media (max-width: 480px) {
-            .value-icon {
-                width: 60px;
-                height: 60px;
-                font-size: 1.5rem;
-            }
+/* Tablet */
+@media (max-width: 1024px) {
+    .values-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
 
-            .value-card h3 {
-                font-size: 1rem;
-            }
+/* Mobile */
+@media (max-width: 768px) {
+    .values-section {
+        padding: 3rem 1.2rem;
+    }
 
-            .value-card p {
-                font-size: 0.85rem;
-            }
-        }
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+
+    .value-card {
+        padding: 0.5rem 0.2rem;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .value-icon {
+        width: 50px;
+        height: 50px;
+        font-size: 1.3rem;
+    }
+
+    .value-card h3 {
+        font-size: 0.95rem;
+    }
+
+    .value-card p {
+        font-size: 0.8rem;
+    }
+}
 
           /* ============================================================
            ANIMAL WELFARE SECTION
@@ -4621,26 +4717,28 @@
     <!-- ============================================================
          PROMO STRIP
          ============================================================ -->
-    <div class="promo-strip">
-        <div class="promo-content">
-            <span>PREMIUM JEWELRY</span>
-            <span>•</span>
-            <span>EASY EXCHANGE</span>
-            <span>•</span>
-            <span>LIFETIME WARRANTY</span>
-            <span>•</span>
-            <span>FREE SHIPPING</span>
-            <span>•</span>
-            <span>PREMIUM JEWELRY</span>
-            <span>•</span>
-            <span>EASY EXCHANGE</span>
-            <span>•</span>
-            <span>LIFETIME WARRANTY</span>
-            <span>•</span>
-            <span>FREE SHIPPING</span>
-            <span>•</span>
-        </div>
+   <div class="promo-strip">
+    <div class="promo-content">
+        <a href="/"><span>PREMIUM JEWELRY</span></a>
+        <span>•</span>
+        <a href="/"><span>EASY EXCHANGE</span></a>
+        <span>•</span>
+        <a href="/"><span>LIFETIME WARRANTY</span></a>
+        <span>•</span>
+        <a href="/"><span>FREE SHIPPING</span></a>
+        <span>•</span>
+
+        <a href="/"><span>PREMIUM JEWELRY</span></a>
+        <span>•</span>
+        <a href="/"><span>EASY EXCHANGE</span></a>
+        <span>•</span>
+        <a href="/"><span>LIFETIME WARRANTY</span></a>
+        <span>•</span>
+        <a href="/"><span>FREE SHIPPING</span></a>
+        <span>•</span>
     </div>
+</div>
+
 
     <!-- ============================================================
          COLLECTION RANGE SLIDER
@@ -4773,7 +4871,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="gender-text">
+                    <div class="gender-text" >
                         <h3>FOR HER</h3>
                         <p>Explore our stunning range of silver jewelry crafted for the elegant woman. From delicate everyday pieces to statement designs, each creation embodies sophistication and grace, made with the finest quality silver.</p>
                         <a href="/women.html" class="cta-button">EXPLORE WOMEN'S COLLECTION</a>
@@ -5108,34 +5206,41 @@
     <!-- ============================================================
          VALUES SECTION
          ============================================================ -->
-    <section class="values-section">
-        <div class="values-container">
-            <h2 class="section-title" style="color: var(--white);">ETTHNICOAST VALUES</h2>
-            <p class="section-subtitle" style="color: var(--white); opacity: 0.9;">What makes us special</p>
-            <div class="values-grid">
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-certificate"></i></div>
-                    <h3>PURITY GUARANTEE</h3>
-                    <p>100% hallmarked 925 sterling silver</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-eye"></i></div>
-                    <h3>TRANSPARENCY</h3>
-                    <p>Clear pricing, no hidden costs</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                    <h3>TRUST</h3>
-                    <p>Trusted by thousands of customers</p>
-                </div>
-                <div class="value-card">
-                    <div class="value-icon"><i class="fas fa-gem"></i></div>
-                    <h3>QUALITY</h3>
-                    <p>Premium craftsmanship guaranteed</p>
-                </div>
+  
+<section class="values-section">
+    <div class="values-container">
+
+        <h2 class="section-title" style="color: var(--white);">ETTHNICOAST VALUES</h2>
+        <p class="section-subtitle" style="color: var(--white); opacity: 0.9;">What makes us special</p>
+
+        <div class="values-grid">
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-certificate"></i></div>
+                <h3>PURITY GUARANTEE</h3>
+                <p>100% hallmarked 925 sterling silver</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-eye"></i></div>
+                <h3>TRANSPARENCY</h3>
+                <p>Clear pricing, no hidden costs</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                <h3>TRUST</h3>
+                <p>Trusted by thousands of customers</p>
+            </div>
+
+            <div class="value-card">
+                <div class="value-icon"><i class="fas fa-gem"></i></div>
+                <h3>QUALITY</h3>
+                <p>Premium craftsmanship guaranteed</p>
             </div>
         </div>
-    </section>
+
+    </div>
+</section>
 
 
     <!-- ============================================================
@@ -5301,6 +5406,12 @@
                 </div>
                 
                 <div class="hotspot-details-panel">
+                    <div class="hotspot-detail-image-wrapper">
+            <img id="lookImage"
+                 src=""
+                 alt="Selected jewelry piece"
+                 class="hotspot-detail-image">
+        </div>
                     <p class="hotspot-eyebrow" id="lookBadge">Focus: Necklace</p>
                     <div class="hotspot-divider"></div>
                     <h3 class="hotspot-product-title" id="lookTitle">Ivy Diamond Necklace</h3>
@@ -6043,7 +6154,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const lookCategory = document.getElementById('lookCategory');
         const lookDescription = document.getElementById('lookDescription');
         const lookPrice = document.getElementById('lookPrice');
-
+        const lookImage = document.getElementById('lookImage');
         const hotspotModal = document.getElementById('hotspotModal');
         const modalClose = document.getElementById('modalClose');
         const modalImage = document.getElementById('modalImage');
@@ -6069,7 +6180,7 @@ document.addEventListener("DOMContentLoaded", () => {
             if (lookCategory) lookCategory.textContent = category;
             if (lookDescription) lookDescription.textContent = description;
             if (lookPrice) lookPrice.textContent = price;
-
+            if (lookImage && image) lookImage.src = image;
             if (window.innerWidth <= 768) {
                 if (modalImage) modalImage.src = image;
                 if (modalBadge) modalBadge.textContent = badge;
@@ -6077,7 +6188,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 if (modalCategory) modalCategory.textContent = category;
                 if (modalDescription) modalDescription.textContent = description;
                 if (modalPrice) modalPrice.textContent = price;
-                
+                 if (lookImage && image) lookImage.src = image; // NEW
                 hotspotModal.classList.add('active');
                 document.body.style.overflow = 'hidden';
             }
@@ -6130,12 +6241,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const category = defaultHotspot.dataset.category || '';
                 const description = defaultHotspot.dataset.description || '';
                 const price = defaultHotspot.dataset.price || '';
-
+                 const image = defaultHotspot.dataset.image || ''; // NE
                 if (lookBadge) lookBadge.textContent = badge;
                 if (lookTitle) lookTitle.textContent = title;
                 if (lookCategory) lookCategory.textContent = category;
                 if (lookDescription) lookDescription.textContent = description;
-                if (lookPrice) lookPrice.textContent = price;
+                 if (lookImage && image) lookImage.src = image; // NEW
             }
         }
 
