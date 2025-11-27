@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Palmonas-Style Smooth Slider</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 100%;
+      max-width: 1200px;
+      height: 600px;
+      overflow: hidden;
+      perspective: 2000px;
+    }
+
+    .slider-track {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide {
+      position: absolute;
+      width: 385px;
+    height: 455px;
+      border-radius: 0;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+      transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      cursor: pointer;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      user-select: none;
+    }
+
+    /* Center active slide */
+    .slide.active {
+      transform: translateX(0) scale(1);
+      opacity: 1;
+      z-index: 10;
+      filter: brightness(1);
+    }
+
+    /* Left adjacent slide */
+    .slide.prev {
+      transform: translateX(-330px) scale(0.88) rotateY(15deg);
+      opacity: 0.95;
+      z-index: 5;
+      filter: brightness(0.9);
+    }
+
+    /* Right adjacent slide */
+    .slide.next {
+      transform: translateX(330px) scale(0.88) rotateY(-15deg);
+      opacity: 0.95;
+      z-index: 5;
+      filter: brightness(0.9);
+    }
+
+    /* Far left slide */
+    .slide.far-prev {
+      transform: translateX(-580px) scale(0.76) rotateY(25deg);
+      opacity: 0.85;
+      z-index: 2;
+      filter: brightness(0.8);
+    }
+
+    /* Far right slide */
+    .slide.far-next {
+      transform: translateX(580px) scale(0.76) rotateY(-25deg);
+      opacity: 0.85;
+      z-index: 2;
+      filter: brightness(0.8);
+    }
+
+    /* Hidden slides */
+    .slide.hidden {
+      transform: translateX(-1000px) scale(0.5);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    .slide.hidden-right {
+      transform: translateX(1000px) scale(0.5);
+      opacity: 0;
+      z-index: 1;
+    }
+
+    /* Navigation arrows */
+    .nav-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      border: none;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 20;
+      transition: all 0.3s ease;
+    }
+
+    .nav-arrow:hover {
+      transform: translateY(-50%) scale(1.1);
+      background: #fff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-arrow:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .nav-arrow.prev-arrow {
+      left: 30px;
+    }
+
+    .nav-arrow.next-arrow {
+      right: 30px;
+    }
+
+    .nav-arrow i {
+      font-size: 22px;
+      color: #333;
+    }
+
+    /* Pagination dots */
+    .pagination {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 12px;
+      z-index: 20;
+    }
+
+    .pagination .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.5);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .pagination .dot.active {
+      width: 30px;
+      border-radius: 5px;
+      background: #fff;
+    }
+
+    .pagination .dot:hover {
+      background: rgba(255, 255, 255, 0.8);
+    }
+
+    @media (max-width: 900px) {
+      .slide {
+        width: 400px;
+        height: 320px;
+      }
+
+      .slide.prev {
+        transform: translateX(-350px) scale(0.8);
+      }
+
+      .slide.next {
+        transform: translateX(350px) scale(0.8);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .slider-container {
+        height: 500px;
+      }
+
+      .slide {
+        width: 320px;
+        height: 260px;
+      }
+
+      .slide.prev,
+      .slide.next {
+        transform: translateX(-280px) scale(0.75);
+        opacity: 0.4;
+      }
+
+      .slide.next {
+        transform: translateX(280px) scale(0.75);
+      }
+
+      .nav-arrow {
+        width: 50px;
+        height: 50px;
+      }
+
+      .nav-arrow.prev-arrow {
+        left: 15px;
+      }
+
+      .nav-arrow.next-arrow {
+        right: 15px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="slider-container">
+  <div class="slider-track">
+    <!-- Slides - replace with your images -->
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/3760852/pexels-photo-3760852.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Slide 1">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/3760855/pexels-photo-3760855.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Slide 2">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/3760854/pexels-photo-3760854.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Slide 3">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/3760853/pexels-photo-3760853.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Slide 4">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/3760856/pexels-photo-3760856.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Slide 5">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/3760857/pexels-photo-3760857.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Slide 6">
+    </div>
+    <div class="slide">
+      <img src="https://images.pexels.com/photos/3760858/pexels-photo-3760858.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Slide 7">
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <button class="nav-arrow prev-arrow">
+    <i class="fa-solid fa-chevron-left"></i>
+  </button>
+  <button class="nav-arrow next-arrow">
+    <i class="fa-solid fa-chevron-right"></i>
+  </button>
+
+  <!-- Pagination dots -->
+  <div class="pagination"></div>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const prevBtn = document.querySelector('.prev-arrow');
+  const nextBtn = document.querySelector('.next-arrow');
+  const pagination = document.querySelector('.pagination');
+
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+
+  // Create pagination dots
+  slides.forEach((_, index) => {
+    const dot = document.createElement('div');
+    dot.classList.add('dot');
+    if (index === 0) dot.classList.add('active');
+    dot.addEventListener('click', () => goToSlide(index));
+    pagination.appendChild(dot);
+  });
+
+  const dots = document.querySelectorAll('.dot');
+
+  function updateSlider() {
+    slides.forEach((slide, index) => {
+      slide.classList.remove('active', 'prev', 'next', 'far-prev', 'far-next', 'hidden', 'hidden-right');
+
+      const diff = index - currentIndex;
+
+      if (diff === 0) {
+        slide.classList.add('active');
+      } else if (diff === 1 || diff === -(totalSlides - 1)) {
+        slide.classList.add('next');
+      } else if (diff === -1 || diff === totalSlides - 1) {
+        slide.classList.add('prev');
+      } else if (diff === 2 || diff === -(totalSlides - 2)) {
+        slide.classList.add('far-next');
+      } else if (diff === -2 || diff === totalSlides - 2) {
+        slide.classList.add('far-prev');
+      } else if (diff > 0) {
+        slide.classList.add('hidden-right');
+      } else {
+        slide.classList.add('hidden');
+      }
+    });
+
+    // Update pagination
+    dots.forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentIndex);
+    });
+  }
+
+  function goToSlide(index) {
+    currentIndex = index;
+    updateSlider();
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateSlider();
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateSlider();
+  }
+
+  // Event listeners
+  nextBtn.addEventListener('click', nextSlide);
+  prevBtn.addEventListener('click', prevSlide);
+
+  // Keyboard navigation
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowLeft') prevSlide();
+    if (e.key === 'ArrowRight') nextSlide();
+  });
+
+  // Auto-play (optional - uncomment to enable)
+  // setInterval(nextSlide, 4000);
+
+  // Initial render
+  updateSlider();
+</script>
+
+</body>
+</html>
