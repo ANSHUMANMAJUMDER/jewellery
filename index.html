@@ -1710,7 +1710,8 @@ h3,
 
         .collection-nav-btn {
             position: absolute;
-            top: 50%;
+            top: 44%;
+            right: 18px; 
             transform: translateY(-50%);
             background: var(--white);
             border: 2px solid var(--primary-blue);
@@ -1738,11 +1739,12 @@ h3,
         }
 
         .collection-nav-btn.prev {
-            left: 10px;
+            left: 31px;
         }
 
         .collection-nav-btn.next {
-            right: 10px;
+            right: 31px;
+            
         }
 
         .collection-range-link {
@@ -1832,62 +1834,68 @@ h3,
             }
         }
 
-     /* Collection Range - Small Mobile */
-        @media (max-width: 480px) {
-            .collection-range-section {
-                padding: 3rem 0.5rem;
-            }
+    /* Collection Range - Small Mobile */
+@media (max-width: 480px) {
 
-            .collection-range-container {
-                padding: 0 0.5rem;
-            }
+    .collection-range-section {
+        padding: 2rem 0.3rem;
+    }
 
-            .collection-cards-wrapper {
-                overflow: visible;
-                padding: 0;
-            }
+    .collection-range-container {
+        padding: 0 0.3rem;
+    }
 
-            .collection-cards {
-                display: grid;
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-                transform: none !important;
-                transition: none;
-            }
+    /* Horizontal scroll */
+    .collection-cards-wrapper {
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
+        scroll-snap-type: x mandatory;
+        padding-bottom: 0.5rem;
+    }
 
-            .collection-card-image {
-                width: 100%;
-                max-width: 130px;
-                height: 130px;
-                margin: 0 auto;
-                border: 2px solid transparent;
-            }
+    .collection-cards {
+        display: flex;
+        gap: 0.6rem; /* reduced spacing */
+        transform: none !important;
+        transition: none;
+    }
 
-            .collection-range-card {
-                min-width: auto;
-                width: 100%;
-                padding: 0.5rem;
-            }
+    /* Smaller cards */
+    .collection-range-card {
+        min-width: 120px;   /* smaller width */
+        flex: 0 0 auto;
+        padding: 0.3rem;    /* reduced padding */
+        scroll-snap-align: start;
+    }
 
-            .collection-range-overlay {
-                padding-top: 0.75rem;
-            }
+    .collection-card-image {
+        max-width: 110px;   /* smaller image */
+        height: 110px;      /* smaller height */
+        margin: 0 auto;
+        border: 2px solid transparent;
+    }
 
-            .collection-range-overlay h3 {
-                font-size: 0.85rem;
-                letter-spacing: 1px;
-            }
+    .collection-range-overlay {
+        padding-top: 0.5rem; /* reduced */
+    }
 
-            .collection-nav-btn {
-                display: none;
-            }
+    .collection-range-overlay h3 {
+        font-size: 0.75rem; /* smaller text */
+        letter-spacing: 0.5px;
+    }
 
-            .collection-range-link {
-                margin-top: 1.5rem;
-                padding: 0.7rem 2rem;
-                font-size: 0.8rem;
-            }
-        }
+    .collection-nav-btn {
+        display: none;
+    }
+
+    .collection-range-link {
+        margin-top: 1rem;
+        padding: 0.6rem 1.5rem;
+        font-size: 0.75rem;
+    }
+}
+
         /* ============================================================
            SHARED SECTION STYLES
            ============================================================ */
@@ -1905,7 +1913,7 @@ h3,
             font-size: 1rem;
             color: var(--dark-black);
             opacity: 0.7;
-            margin-bottom: 4rem;
+            margin-bottom: 1rem;
         }
 
         .cta-button {
@@ -2042,7 +2050,7 @@ h3,
         .gender-grid {
             display: flex;
             flex-direction: column;
-            gap: 4rem;
+            gap: 1rem;
         }
 
         .gender-row {
@@ -2252,7 +2260,7 @@ h3,
 
         .banner-content .cta-button {
             background: var(--secondary-peach);
-            color: var(--white);
+            color: var(--dark-black);
             border: 2px solid var(--secondary-peach);
             padding: 1rem 3rem;
             text-transform: uppercase;
@@ -2397,7 +2405,7 @@ h3,
         .gifting-banner {
             padding: 0;
             background: var(--white);
-            margin: 4rem 0;
+            margin: 0rem 0;
         }
 
         .gifting-banner-container {
@@ -3083,203 +3091,101 @@ h3,
 }
 
 
-        /* ============================================================
-           BESTSELLERS SECTION
-           ============================================================ */
-        .bestsellers-section {
-            padding: 5rem 2rem;
-            /* background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); */
-             background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--white) 100%);
-        }
+    /* ============================================================
+   BESTSELLERS SECTION (HORIZONTAL SCROLL)
+   ============================================================ */
 
-        .bestsellers-container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .bestsellers-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            margin-top: 3rem;
-        }
-
-        .bestseller-card {
-            background: var(--white);
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.4s ease;
-            cursor: pointer;
-            opacity: 0;
-            transform: translateX(-40px) translateY(20px);
-        }
-
-        .bestseller-card.scroll-animate {
-            opacity: 0;
-            transform: translateX(-40px) translateY(20px);
-        }
-
-        .bestseller-card.scroll-animate.animate {
-            animation: bestsellerFloatIn 0.7s ease-out forwards;
-        }
-
-        .bestseller-card.scroll-animate:nth-child(1).animate {
-            animation-delay: 0.05s;
-        }
-        .bestseller-card.scroll-animate:nth-child(2).animate {
-            animation-delay: 0.15s;
-        }
-        .bestseller-card.scroll-animate:nth-child(3).animate {
-            animation-delay: 0.25s;
-        }
-        .bestseller-card.scroll-animate:nth-child(4).animate {
-            animation-delay: 0.35s;
-        }
-        .bestseller-card.scroll-animate:nth-child(5).animate {
-            animation-delay: 0.45s;
-        }
-        .bestseller-card.scroll-animate:nth-child(6).animate {
-            animation-delay: 0.55s;
-        }
-
-        @keyframes bestsellerFloatIn {
-            0% {
-                opacity: 0;
-                transform: translateX(-40px) translateY(20px);
-            }
-            60% {
-                opacity: 1;
-                transform: translateX(0) translateY(-4px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateX(0) translateY(0);
-            }
-        }
-
-        .bestseller-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-
-        .bestseller-image {
-            position: relative;
-            height: 350px;
-            overflow: hidden;
-        }
-
-        .bestseller-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .bestseller-card:hover .bestseller-image img {
-            transform: scale(1.1);
-        }
-
-        .bestseller-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: var(--dark-black);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-
-        .bestseller-info {
-            padding: 2rem;
-            text-align: center;
-        }
-
-        .bestseller-info h3 {
-            font-size: 1.3rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .bestseller-info p {
-            font-size: 0.95rem;
-            color: var(--dark-black);
-            opacity: 0.7;
-            line-height: 1.6;
-        }
-
-        /* Bestsellers Section - Tablet */
-        @media (max-width: 1024px) {
-            .bestsellers-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-     /* Bestsellers Section - Mobile */
-/* Bestsellers Section - Mobile (≤ 768px) */
-@media (max-width: 768px) {
-
-    .bestsellers-section {
-        padding: 2.5rem 1rem;
-    }
-
-    .bestsellers-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr) !important; /* FORCE 2 columns */
-        gap: 1rem;
-        margin-top: 1.5rem;
-    }
-
-    .bestseller-card {
-        border-radius: 10px;
-        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
-    }
-
-    .bestseller-image {
-        height: 160px !important;  /* MUCH smaller */
-    }
-
-    .bestseller-info {
-        padding: 1rem;
-    }
-
-    .bestseller-info h3 {
-        font-size: 0.95rem;
-        margin-bottom: 0.3rem;
-        letter-spacing: 1px;
-    }
-
-    .bestseller-info p {
-        font-size: 0.78rem;
-        line-height: 1.4;
-    }
-
-    .bestseller-badge {
-        top: 10px;
-        right: 10px;
-        padding: 0.3rem 0.6rem;
-        font-size: 0.7rem;
-    }
-
-    .bestseller-info p {
-        display: none !important;
-    }
+.bestsellers-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--white) 100%);
 }
 
-/* Bestsellers Section - Small Mobile (≤ 480px) */
-@media (max-width: 480px) {
-    .bestsellers-grid {
-        grid-template-columns: repeat(2, 1fr) !important; /* still 2 columns */
-        gap: 0.8rem;
+.bestsellers-container {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bestsellers-grid {
+    display: flex !important;
+    gap: 1.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding-bottom: 1rem;
+    padding-top: 1rem;
+    scrollbar-width: none; /* Firefox hide scrollbar */
+}
+
+.bestsellers-grid::-webkit-scrollbar {
+    display: none; /* Chrome/Edge/Safari hide scrollbar */
+}
+
+.bestseller-card {
+    min-width: 280px;
+    background: var(--white);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    transition: all 0.4s ease;
+    cursor: pointer;
+
+    scroll-snap-align: center;
+}
+
+.bestseller-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.bestseller-image {
+    position: relative;
+    height: 220px;
+    overflow: hidden;
+}
+
+.bestseller-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.bestseller-card:hover .bestseller-image img {
+    transform: scale(1.1);
+}
+
+.bestseller-badge {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: var(--dark-black);
+    color: var(--white);
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* text */
+.bestseller-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.bestseller-info h3 {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    margin-bottom: 0.4rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .bestseller-card {
+        min-width: 180px;
+        border-radius: 10px;
     }
 
     .bestseller-image {
-        height: 135px !important; /* even smaller */
+        height: 150px;
     }
 
     .bestseller-info h3 {
@@ -3287,12 +3193,52 @@ h3,
     }
 
     .bestseller-info p {
-        font-size: 0.75rem;
-    }
-    .bestseller-info p {
         display: none !important;
     }
 }
+
+@media (max-width: 480px) {
+    .bestseller-card {
+        min-width: 160px;
+    }
+
+    .bestseller-image {
+        height: 130px;
+    }
+}
+
+/* Scroll Arrow Buttons */
+.scroll-arrows {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.scroll-btn {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 0.6rem 1rem;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.scroll-btn:hover {
+    transform: scale(1.15);
+}
+
+/* Hide arrows on mobile (users will swipe) */
+@media(max-width: 768px){
+    .scroll-btn {
+        display: none;
+    }
+}
+
 
 
 
@@ -4832,9 +4778,6 @@ h3,
                 <i class="fas fa-chevron-right"></i>
             </button>
             
-            <div style="text-align: center;">
-                <a href="#collections" class="collection-range-link">Collection Range</a>
-            </div>
         </div>
     </section>
 
@@ -5031,6 +4974,12 @@ h3,
         <div class="bestsellers-container">
             <h2 class="section-title">OUR BESTSELLERS</h2>
             <p class="section-subtitle">The most loved pieces from Etthnicoast</p>
+   
+            <!-- ARROWS -->
+            <!-- /   <div class="scroll-arrows">
+            <button class="scroll-btn left">❮</button>
+            <button class="scroll-btn right">❯</button>
+        </div> -->
 
             <div class="bestsellers-grid">
                 <div class="bestseller-card scroll-animate">
@@ -6272,6 +6221,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 closeModal();
             }
         });
+</script>
+
+<!-- BEST SELLER JS -->
+<script>
+    const grid = document.querySelector(".bestsellers-grid");
+    const leftBtn = document.querySelector(".scroll-btn.left");
+    const rightBtn = document.querySelector(".scroll-btn.right");
+
+    rightBtn.addEventListener("click", () => {
+        grid.scrollBy({
+            left: grid.querySelector(".bestseller-card").offsetWidth + 20,
+            behavior: "smooth"
+        });
+    });
+
+    leftBtn.addEventListener("click", () => {
+        grid.scrollBy({
+            left: -(grid.querySelector(".bestseller-card").offsetWidth + 20),
+            behavior: "smooth"
+        });
+    });
 </script>
 
 </body>
