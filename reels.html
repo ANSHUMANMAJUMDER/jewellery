@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewellery in Motion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #EBDED4;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --light-peach: #F8E3D2;
+            --font-primary: 'Cormorant Garamond', 'Garamond', 'Times New Roman', serif;
+            --font-secondary: 'Lato', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+        }
+
+        /* ============================================================
+           JEWELLERY VIDEO SLIDER SECTION (REELS)
+           ============================================================ */
+        .insta-reels-section {
+            padding: 5rem 2rem;
+            background: linear-gradient(
+                135deg,
+                var(--light-peach) 0%,
+                var(--white) 100%
+            );
+        }
+
+        .insta-reels-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .insta-reels-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .insta-reels-header .section-title {
+            font-size: 1.9rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--primary-blue);
+            margin-bottom: 0.6rem;
+            font-family: var(--font-primary);
+        }
+
+        .insta-reels-header .section-subtitle {
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(2,0,13,0.7);
+        }
+
+        /* Slider wrapper */
+        .insta-reels-slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        /* Track: horizontal scroll */
+        .insta-reels-track {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 0.5rem 0.5rem 0.5rem 0;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+
+        .insta-reels-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Cards */
+        .insta-reel-card {
+            flex: 0 0 280px;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 5px 5px 12px;
+            box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0;
+            transform: translateY(30px);
+            scroll-snap-align: start;
+            cursor: pointer;
+        }
+
+        .insta-reel-card.animate {
+            animation: reelFloatUp 0.7s ease-out forwards;
+        }
+
+        .insta-reel-card:hover {
+            transform: translateY(-6px) scale(1.01);
+            box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+        }
+
+        /* Video frame */
+        .insta-reel-frame {
+            border-radius: 16px;
+            overflow: hidden;
+            background: #000;
+            aspect-ratio: 9 / 16;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .insta-reel-frame video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .play-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+
+        .insta-reel-card:hover .play-overlay {
+            opacity: 1;
+        }
+
+        .play-overlay i {
+            color: var(--primary-blue);
+            font-size: 24px;
+            margin-left: 4px;
+        }
+
+        /* Product Info Block */
+        .reel-product-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 8px 4px;
+            background: var(--white);
+        }
+
+        .product-image-wrapper {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            overflow: hidden;
+            background: var(--light-peach);
+            border: 2px solid rgba(7,32,63,0.08);
+        }
+
+        .product-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .product-name {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin: 0 0 4px;
+            line-height: 1.3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+        .product-price {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin: 0;
+            letter-spacing: 0.3px;
+        }
+
+        /* Slider arrows */
+        .reels-arrow {
+            border: 1px solid rgba(7,32,63,0.2);
+            background: var(--white);
+            color: var(--primary-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .reels-arrow:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ============================================================
+           MODAL STYLES
+           ============================================================ */
+        .product-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2,0,13,0.85); /* dark-black overlay */
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .product-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 1100px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .modal-close:hover {
+            background: rgba(0,0,0,0.9);
+        }
+
+        .modal-video-section {
+            flex: 1;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+
+        .modal-video-section video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .modal-product-section {
+            flex: 0 0 450px;
+            padding: 30px;
+            overflow-y: auto;
+            background: var(--white);
+        }
+
+        .modal-product-image {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 25px;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .modal-badges {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .badge-free {
+            background: var(--secondary-peach);
+            color: var(--dark-black);
+            border: 1px solid rgba(7,32,63,0.08);
+        }
+
+        .badge-award {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .modal-product-title {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.4;
+            font-family: var(--font-primary);
+        }
+
+        .modal-product-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .modal-description-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .modal-description-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--dark-black);
+            margin-bottom: 15px;
+        }
+
+        .read-more {
+            color: var(--primary-blue);
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: underline;
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-secondary);
+        }
+
+        .btn-more-info {
+            background: transparent;
+            color: var(--primary-blue);
+        }
+
+        .btn-more-info:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .btn-add-cart {
+            background: var(--secondary-peach);
+            color: var(--dark-black);
+            border-color: var(--secondary-peach);
+        }
+
+        .btn-add-cart:hover {
+            background: #f3ded0;
+            border-color: #f3ded0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(2,0,13,0.25);
+        }
+
+        .btn-cart-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--primary-blue);
+        }
+
+        .btn-cart-icon:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        /* Modal left/right arrows (for switching reels) */
+        .modal-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.8);
+            background: rgba(0,0,0,0.65);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.25s ease;
+        }
+
+        .modal-arrow:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .modal-prev {
+            left: 20px;
+        }
+
+        .modal-next {
+            right: 20px;
+        }
+
+        /* Entrance animation */
+        @keyframes reelFloatUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            60% {
+                opacity: 1;
+                transform: translateY(-4px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .modal-content {
+                flex-direction: column;
+                max-height: 85vh;
+            }
+
+            .modal-video-section {
+                min-height: 300px;
+            }
+
+            .modal-product-section {
+                flex: 1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .insta-reels-section {
+                padding: 3.5rem 1.2rem;
+            }
+            
+            .insta-reels-slider {
+                gap: 0.5rem;
+            }
+            
+            .reels-arrow {
+                width: 34px;
+                height: 34px;
+            }
+            
+            .insta-reel-card {
+                flex: 0 0 220px;
+                margin: 0.25rem 0;
+            }
+
+            .modal-product-section {
+                padding: 20px;
+            }
+
+            .modal-buttons {
+                flex-direction: column;
+            }
+
+            .btn-cart-icon {
+                width: 100%;
+            }
+
+            .modal-arrow {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .insta-reels-section {
+                padding: 3rem 1rem;
+            }
+            
+            .product-name {
+                font-size: 0.8rem;
+            }
+            
+            .product-price {
+                font-size: 0.95rem;
+            }
+
+            .modal-product-title {
+                font-size: 1.2rem;
+            }
+
+            .modal-product-price {
+                font-size: 1.5rem;
+            }
+
+            .modal-prev {
+                left: 10px;
+            }
+
+            .modal-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="insta-reels-section">
+        <div class="insta-reels-inner">
+            <div class="insta-reels-header">
+                <h2 class="section-title">JEWELLERY IN MOTION</h2>
+                <p class="section-subtitle">Scroll through our latest styling videos</p>
+            </div>
+            <div class="insta-reels-slider">
+                <button class="reels-arrow reels-prev" type="button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="insta-reels-track">
+                    <!-- CARD 1 -->
+                    <div class="insta-reel-card scroll-animate" data-product="1">
+                        <div class="insta-reel-frame">
+                            <video
+                                class="reel-video"
+                                src="videos/jewellery1.mp4"
+                                muted
+                                loop
+                                autoplay
+                                playsinline
+                            ></video>
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="reel-product-info">
+                            <div class="product-image-wrapper">
+                                <img src="images/product1.jpg" alt="Diamond Necklace" class="product-thumb">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Elegant Diamond Necklace Set</h4>
+                                <p class="product-price">₹24,999</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CARD 2 -->
+                    <div class="insta-reel-card scroll-animate" data-product="2">
+                        <div class="insta-reel-frame">
+                            <video
+                                class="reel-video"
+                                src="videos/jewellery2.mp4"
+                                muted
+                                loop
+                                autoplay
+                                playsinline
+                            ></video>
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="reel-product-info">
+                            <div class="product-image-wrapper">
+                                <img src="images/product2.jpg" alt="Gold Earrings" class="product-thumb">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Traditional Gold Earrings</h4>
+                                <p class="product-price">₹18,499</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CARD 3 -->
+                    <div class="insta-reel-card scroll-animate" data-product="3">
+                        <div class="insta-reel-frame">
+                            <video
+                                class="reel-video"
+                                src="videos/jewellery3.mp4"
+                                muted
+                                loop
+                                autoplay
+                                playsinline
+                            ></video>
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="reel-product-info">
+                            <div class="product-image-wrapper">
+                                <img src="images/product3.jpg" alt="Pearl Bracelet" class="product-thumb">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Pearl & Crystal Bracelet</h4>
+                                <p class="product-price">₹12,999</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CARD 4 -->
+                    <div class="insta-reel-card scroll-animate" data-product="4">
+                        <div class="insta-reel-frame">
+                            <video
+                                class="reel-video"
+                                src="videos/jewellery4.mp4"
+                                muted
+                                loop
+                                autoplay
+                                playsinline
+                            ></video>
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="reel-product-info">
+                            <div class="product-image-wrapper">
+                                <img src="images/product4.jpg" alt="Designer Ring" class="product-thumb">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Designer Diamond Ring</h4>
+                                <p class="product-price">₹32,499</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- CARD 5 -->
+                    <div class="insta-reel-card scroll-animate" data-product="5">
+                        <div class="insta-reel-frame">
+                            <video
+                                class="reel-video"
+                                src="videos/jewellery5.mp4"
+                                muted
+                                loop
+                                autoplay
+                                playsinline
+                            ></video>
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <div class="reel-product-info">
+                            <div class="product-image-wrapper">
+                                <img src="images/product5.jpg" alt="Choker Set" class="product-thumb">
+                            </div>
+                            <div class="product-details">
+                                <h4 class="product-name">Royal Choker Set</h4>
+                                <p class="product-price">₹45,999</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="reels-arrow reels-next" type="button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT MODAL -->
+    <div class="product-modal" id="productModal">
+        <!-- modal left/right arrows -->
+        <button class="modal-arrow modal-prev" type="button">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="modal-content">
+            <button class="modal-close" id="closeModal">
+                <i class="fas fa-times"></i>
+            </button>
+            
+            <div class="modal-video-section">
+                <video id="modalVideo" controls muted loop playsinline>
+                    <source src="" type="video/mp4">
+                </video>
+            </div>
+            
+            <div class="modal-product-section">
+                <img id="modalProductImage" src="" alt="" class="modal-product-image">
+                
+                <div class="modal-badges">
+                    <span class="badge badge-free">FREE GIFT</span>
+                    <span class="badge badge-award">AWARD WINNING</span>
+                </div>
+                
+                <h2 id="modalProductTitle" class="modal-product-title"></h2>
+                <p id="modalProductPrice" class="modal-product-price"></p>
+                
+                <h3 class="modal-description-title">Description</h3>
+                <p id="modalProductDescription" class="modal-description-text"></p>
+                <span class="read-more">Read more</span>
+                
+                <div class="modal-buttons">
+                    <button class="modal-btn btn-more-info">
+                        More info
+                    </button>
+                    <button class="modal-btn btn-add-cart">
+                        Add to cart
+                    </button>
+                    <div class="btn-cart-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button class="modal-arrow modal-next" type="button">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Product data
+        const productsData = {
+            1: {
+                video: 'videos/jewellery1.mp4',
+                image: 'images/product1.jpg',
+                name: 'Elegant Diamond Necklace Set',
+                price: '₹24,999',
+                description: 'Suitable for: All occasions and celebrations. This stunning diamond necklace set features premium quality stones set in pure gold. Perfect for weddings, parties, and special occasions. The intricate design showcases traditional craftsmanship with a modern touch.'
+            },
+            2: {
+                video: 'videos/jewellery2.mp4',
+                image: 'images/product2.jpg',
+                name: 'Traditional Gold Earrings',
+                price: '₹18,499',
+                description: 'Suitable for: Daily wear and special occasions. Beautifully crafted traditional gold earrings that complement any outfit. Made from 22K gold with intricate detailing. Lightweight and comfortable for all-day wear.'
+            },
+            3: {
+                video: 'videos/jewellery3.mp4',
+                image: 'images/product3.jpg',
+                name: 'Pearl & Crystal Bracelet',
+                price: '₹12,999',
+                description: 'Suitable for: Parties and evening events. Elegant bracelet featuring genuine pearls and sparkling crystals. The perfect accessory to add sophistication to your look. Adjustable clasp for comfortable fit.'
+            },
+            4: {
+                video: 'videos/jewellery4.mp4',
+                image: 'images/product4.jpg',
+                name: 'Designer Diamond Ring',
+                price: '₹32,499',
+                description: 'Suitable for: Engagements and special moments. Exquisite designer diamond ring with a unique contemporary design. Features conflict-free diamonds set in platinum. A timeless piece that symbolizes eternal love.'
+            },
+            5: {
+                video: 'videos/jewellery5.mp4',
+                image: 'images/product5.jpg',
+                name: 'Royal Choker Set',
+                price: '₹45,999',
+                description: 'Suitable for: Weddings and grand celebrations. Luxurious royal choker set adorned with premium stones and intricate gold work. Includes matching earrings. Perfect for brides and special occasions requiring regal elegance.'
+            }
+        };
+
+        // Scroll animation observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => {
+                        entry.target.classList.add('animate');
+                    }, index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach((el) => {
+            observer.observe(el);
+        });
+
+        // Arrow navigation for main reel track
+        const track = document.querySelector('.insta-reels-track');
+        const prevBtn = document.querySelector('.reels-prev');
+        const nextBtn = document.querySelector('.reels-next');
+
+        prevBtn.addEventListener('click', () => {
+            track.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', () => {
+            track.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+        // Modal functionality
+        const modal = document.getElementById('productModal');
+        const closeModal = document.getElementById('closeModal');
+        const modalVideo = document.getElementById('modalVideo');
+        const modalProductImage = document.getElementById('modalProductImage');
+        const modalProductTitle = document.getElementById('modalProductTitle');
+        const modalProductPrice = document.getElementById('modalProductPrice');
+        const modalProductDescription = document.getElementById('modalProductDescription');
+
+        const modalPrev = document.querySelector('.modal-prev');
+        const modalNext = document.querySelector('.modal-next');
+
+        const cards = Array.from(document.querySelectorAll('.insta-reel-card'));
+        let currentIndex = 0;
+
+        function openProductByIndex(index) {
+            if (index < 0) index = cards.length - 1;
+            if (index >= cards.length) index = 0;
+            currentIndex = index;
+
+            const productId = cards[currentIndex].getAttribute('data-product');
+            const product = productsData[productId];
+            if (!product) return;
+
+            modalVideo.pause();
+            modalVideo.src = product.video;
+            modalVideo.load();
+            modalVideo.play();
+
+            modalProductImage.src = product.image;
+            modalProductImage.alt = product.name;
+            modalProductTitle.textContent = product.name;
+            modalProductPrice.textContent = product.price;
+            modalProductDescription.textContent = product.description;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        cards.forEach((card, index) => {
+            card.addEventListener('click', () => openProductByIndex(index));
+        });
+
+        modalPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openProductByIndex(currentIndex - 1);
+        });
+
+        modalNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            openProductByIndex(currentIndex + 1);
+        });
+
+        function closeProductModal() {
+            modal.classList.remove('active');
+            modalVideo.pause();
+            modalVideo.currentTime = 0;
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModal.addEventListener('click', (e) => {
+            e.stopPropagation();
+            closeProductModal();
+        });
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeProductModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!modal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                closeProductModal();
+            } else if (e.key === 'ArrowLeft') {
+                openProductByIndex(currentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                openProductByIndex(currentIndex + 1);
+            }
+        });
+
+        document.querySelector('.btn-add-cart').addEventListener('click', () => {
+            alert('Product added to cart!');
+        });
+
+        document.querySelector('.btn-cart-icon').addEventListener('click', () => {
+            alert('Opening cart...');
+        });
+
+        document.querySelector('.btn-more-info').addEventListener('click', () => {
+            alert('Redirecting to product page...');
+        });
+    </script>
+</body>
+</html>

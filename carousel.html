@@ -1,409 +1,594 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Lifestyle Preview</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lifestyle Slider</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #07203F;
+            --white: #FFFFFF;
+            --font-primary: 'Georgia', serif;
+        }
 
-<style>
-    :root {
-        --primary-blue: #0033cc;
-        --white: #ffffff;
-    }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    body{
-        background:#f4f4f4;
-        font-family:Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
 
-    .lifestyle-section {
-        padding: 5rem 2rem;
-        background: var(--white);
-        position: relative;
-    }
-
-    .lifestyle-container {
-        max-width: 1600px;
-        margin: 0 auto;
-        position: relative;
-    }
-
-    .lifestyle-slider-wrapper {
-        overflow: hidden;
-        position: relative;
-        width: 100%;
-        max-width: 1300px; /* overall max width */
-        margin: 0 auto;
-        perspective: 1000px;
-    }
-
-    .lifestyle-grid {
-        display: flex;
-        gap: 0;
-        transition: transform 0.5s ease-out;
-        width: fit-content;
-    }
-
-    .lifestyle-card {
-        flex-shrink: 0;
-        /* 5 cards on desktop: (100% - 4*24px) / 5 */
-        width: calc((100% - 96px) / 5);
-        max-width: 300px;
-        height: 400px;
-        margin-right: 24px;
-        position: relative;
-        overflow: hidden;
-        cursor: pointer;
-        border-radius: 12px;
-        transition: all 0.5s ease-out;
-        opacity: 0.2;
-        transform: scale(0.75);
-        transform-origin: center;
-        background: #ddd;
-    }
-
-    .lifestyle-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-        transition: transform 0.6s ease;
-        display: block;
-    }
-
-    .lifestyle-card:hover img {
-        transform: scale(1.05);
-    }
-
-    /* Center Card Styles */
-    .lifestyle-card.center-card {
-        opacity: 1;
-        transform: scale(1.05) rotate(0deg) skewX(0deg) !important;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
-        z-index: 10;
-    }
-
-    /* Left Adjacent Card */
-    .lifestyle-card.left-adjacent {
-        opacity: 0.8;
-        transform: scale(0.95) rotate(-3deg) skewX(-3deg);
-        z-index: 5;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Far Left Card */
-    .lifestyle-card.far-left {
-        opacity: 0.4;
-        transform: scale(0.85) rotate(-5deg) skewX(-5deg);
-        z-index: 1;
-        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    /* Right Adjacent Card */
-    .lifestyle-card.right-adjacent {
-        opacity: 0.8;
-        transform: scale(0.95) rotate(3deg) skewX(3deg);
-        z-index: 5;
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Far Right Card */
-    .lifestyle-card.far-right {
-        opacity: 0.4;
-        transform: scale(0.85) rotate(5deg) skewX(5deg);
-        z-index: 1;
-        box-shadow: 0 5px 10px -2px rgba(0, 0, 0, 0.05);
-    }
-
-    .lifestyle-overlay {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.4) 100%);
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        padding-bottom: 3rem;
-        transition: background 0.3s ease;
-    }
-
-    .lifestyle-card:hover .lifestyle-overlay {
-        background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.5) 100%);
-    }
-
-    .lifestyle-info h3 {
-        font-size: 2rem;
-        font-weight: 400;
-        letter-spacing: 5px;
-        color: var(--white);
-        text-transform: uppercase;
-        text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
-        font-family: 'Arial', sans-serif;
-        text-align: center;
-    }
-
-    .lifestyle-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(255, 255, 255, 0.9);
-        border: 2px solid var(--primary-blue);
-        color: var(--primary-blue);
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        cursor: pointer;
-        z-index: 20;
-        transition: all 0.3s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.2rem;
-        box-shadow: 0 5px 20px rgba(0,0,0,0.2);
-    }
-
-    .lifestyle-nav-btn:hover {
-        background: var(--primary-blue);
-        color: var(--white);
-        transform: translateY(-50%) scale(1.1);
-    }
-
-    .lifestyle-nav-btn.prev {
-        left: 40px;
-    }
-
-    .lifestyle-nav-btn.next {
-        right: 40px;
-    }
-
-    .section-title {
-        margin: 0;
-        font-size: 2.2rem;
-        font-weight: 600;
-        text-align: center;
-    }
-
-    .section-subtitle {
-        margin-top: 0.5rem;
-        margin-bottom: 2.5rem;
-        font-size: 1rem;
-        color: #666;
-        text-align: center;
-    }
-
-    /* TABLET: show 3 cards */
-    @media (max-width: 1024px) {
+        /* ============================================================
+           LIFESTYLE SECTION (UPDATED SMOOTH SLIDER)
+           ============================================================ */
         .lifestyle-section {
-            padding: 3rem 1rem;
+            padding: 5rem 2rem;
+            background: var(--white);
+            position: relative;
         }
-        .lifestyle-slider-wrapper {
-            max-width: 100%;
-        }
-        .lifestyle-card {
-            width: calc((100% - 48px) / 3); /* 3 cards, 2 gaps */
-            height: 340px;
-        }
-        .lifestyle-nav-btn.prev {
-            left: 20px;
-        }
-        .lifestyle-nav-btn.next {
-            right: 20px;
-        }
-    }
 
-    /* SMALL TABLET / LARGE MOBILE: show 2 cards */
-    @media (max-width: 768px) {
-        .lifestyle-card {
-            width: calc((100% - 24px) / 2); /* 2 cards, 1 gap */
-            height: 320px;
+        .lifestyle-container {
+            max-width: 1600px;
+            margin: 0 auto;
+            position: relative;
         }
-        .lifestyle-info h3 {
-            font-size: 1.4rem;
-            letter-spacing: 3px;
-        }
-        .lifestyle-nav-btn {
-            width: 40px;
-            height: 40px;
-            font-size: 1rem;
-        }
-        .lifestyle-nav-btn.prev {
-            left: 10px;
-        }
-        .lifestyle-nav-btn.next {
-            right: 10px;
-        }
-    }
 
-    /* MOBILE: 1 card full width */
-    @media (max-width: 480px) {
-        .lifestyle-card {
-            width: 100%;
-            max-width: 100%;
-            height: 300px;
-            margin-right: 16px;
+        .section-title {
+            font-family: var(--font-primary);
+            font-size: 3rem;
+            font-weight: 300;
+            letter-spacing: 8px;
+            text-align: center;
+            color: var(--primary-blue);
+            margin-bottom: 1rem;
+            text-transform: uppercase;
         }
-        .lifestyle-info h3 {
+
+        .section-subtitle {
+            font-family: var(--font-primary);
             font-size: 1.2rem;
-            letter-spacing: 2px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-align: center;
+            color: #666;
+            margin-bottom: 4rem;
+            text-transform: uppercase;
         }
-        .lifestyle-nav-btn {
-            top: auto;
-            bottom: 10px;
-            transform: none;
+
+        .lifestyle-slider-wrapper-new {
+            position: relative;
+            width: 100%;
+            max-width: 1400px;
+            height: 520px;
+            margin: 0 auto;
+            overflow: hidden;
+            perspective: 1500px;
+            perspective-origin: 50% 50%;
         }
-        .lifestyle-nav-btn.prev {
-            left: 10px;
+
+        .lifestyle-slider-track-new {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
-        .lifestyle-nav-btn.next {
-            right: 10px;
+
+        .lifestyle-slide-new {
+            position: absolute;
+            width: 320px;
+            height: 420px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
+            transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
+                        opacity 0.8s ease,
+                        filter 0.8s ease;
+            cursor: pointer;
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+            will-change: transform;
+            
         }
-    }
-</style>
+
+        .lifestyle-slide-new img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            user-select: none;
+            
+        }
+
+        .lifestyle-slide-overlay-new {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            padding-bottom: 3rem;
+            transition: background 0.3s ease;
+            
+        }
+
+        .lifestyle-slide-new:hover .lifestyle-slide-overlay-new {
+            background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.8) 100%);
+        }
+
+        .lifestyle-slide-title-new {
+            font-family: var(--font-primary);
+            font-size: 2rem;
+            font-weight: 400;
+            letter-spacing: 5px;
+            color: var(--white);
+            text-transform: uppercase;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            text-align: center;
+        }
+
+        /* Slide positions - ADJUSTED FOR CLOSER SPACING & SMOOTH TILT */
+        .lifestyle-slide-new.active {
+            transform: translateX(0) translateZ(0) scale(1) rotateY(0deg);
+            opacity: 1;
+            z-index: 10;
+            filter: brightness(1);
+        }
+
+        .lifestyle-slide-new.prev {
+            transform: translateX(-320px) translateZ(-100px) scale(0.88) rotateY(25deg);
+            opacity: 0.92;
+            z-index: 5;
+            filter: brightness(0.88);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .lifestyle-slide-new.next {
+            transform: translateX(320px) translateZ(-100px) scale(0.88) rotateY(-25deg);
+            opacity: 0.92;
+            z-index: 5;
+            filter: brightness(0.88);
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .lifestyle-slide-new.far-prev {
+            transform: translateX(-580px) translateZ(-200px) scale(0.76) rotateY(35deg);
+            opacity: 0.85;
+            z-index: 2;
+            filter: brightness(0.78);
+            pointer-events: auto;
+            visibility: visible;
+            transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
+                        opacity 0.8s ease,
+                        filter 0.8s ease;
+        }
+
+        .lifestyle-slide-new.far-next {
+            transform: translateX(580px) translateZ(-200px) scale(0.76) rotateY(-35deg);
+            opacity: 0.85;
+            z-index: 2;
+            filter: brightness(0.78);
+            pointer-events: auto;
+            visibility: visible;
+            transition: transform 0.8s cubic-bezier(0.4, 0.0, 0.2, 1),
+                        opacity 0.8s ease,
+                        filter 0.8s ease;
+        }
+
+        /* Transitioning states - center image tilting while moving */
+        .lifestyle-slide-new.transitioning-out-left {
+            transform: translateX(-160px) translateZ(-50px) scale(0.94) rotateY(15deg) !important;
+            z-index: 9 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .lifestyle-slide-new.transitioning-out-right {
+            transform: translateX(160px) translateZ(-50px) scale(0.94) rotateY(-15deg) !important;
+            z-index: 9 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .lifestyle-slide-new.transitioning-in-from-right {
+            transform: translateX(160px) translateZ(-50px) scale(0.94) rotateY(-15deg) !important;
+            z-index: 9 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .lifestyle-slide-new.transitioning-in-from-left {
+            transform: translateX(-160px) translateZ(-50px) scale(0.94) rotateY(15deg) !important;
+            z-index: 9 !important;
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .lifestyle-slide-new.hidden {
+            transform: translateX(-1000px) scale(0.5);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .lifestyle-slide-new.hidden-right {
+            transform: translateX(1000px) scale(0.5);
+            opacity: 0;
+            z-index: 1;
+        }
+
+        /* Navigation arrows */
+        .lifestyle-nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20;
+            transition: all 0.3s ease;
+        }
+
+        .lifestyle-nav-arrow:hover {
+            transform: translateY(-50%) scale(1.1);
+            background: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .lifestyle-nav-arrow:hover i {
+            color: var(--white);
+        }
+
+        .lifestyle-nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .lifestyle-nav-arrow.prev {
+            left: 30px;
+        }
+
+        .lifestyle-nav-arrow.next {
+            right: 30px;
+        }
+
+        .lifestyle-nav-arrow i {
+            font-size: 22px;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        /* Pagination dots */
+        .lifestyle-pagination-new {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 12px;
+            z-index: 20;
+        }
+
+        .lifestyle-dot-new {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(7, 32, 63, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .lifestyle-dot-new.active {
+            width: 30px;
+            border-radius: 5px;
+            background: var(--primary-blue);
+        }
+
+        .lifestyle-dot-new:hover {
+            background: rgba(7, 32, 63, 0.6);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .lifestyle-slider-wrapper-new {
+                height: 470px;
+            }
+
+            .lifestyle-slide-new {
+                width: 280px;
+                height: 380px;
+            }
+
+            .lifestyle-slide-new.prev {
+                transform: translateX(-280px) scale(0.86) rotateY(25deg);
+            }
+
+            .lifestyle-slide-new.next {
+                transform: translateX(280px) scale(0.86) rotateY(-25deg);
+            }
+
+            .lifestyle-slide-title-new {
+                font-size: 1.6rem;
+                letter-spacing: 3px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .lifestyle-section {
+                padding: 3rem 1rem;
+            }
+
+            .lifestyle-slider-wrapper-new {
+                height: 420px;
+            }
+
+            .lifestyle-slide-new {
+                width: 260px;
+                height: 350px;
+            }
+
+            .lifestyle-slide-new.prev,
+            .lifestyle-slide-new.next {
+                transform: translateX(-250px) scale(0.82);
+                opacity: 0.6;
+            }
+
+            .lifestyle-slide-new.next {
+                transform: translateX(250px) scale(0.82);
+            }
+
+            .lifestyle-nav-arrow {
+                width: 50px;
+                height: 50px;
+            }
+
+            .lifestyle-nav-arrow i {
+                font-size: 18px;
+            }
+
+            .lifestyle-nav-arrow.prev {
+                left: 15px;
+            }
+
+            .lifestyle-nav-arrow.next {
+                right: 15px;
+            }
+
+            .lifestyle-slide-title-new {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .lifestyle-slider-wrapper-new {
+                height: 380px;
+            }
+
+            .lifestyle-slide-new {
+                width: 240px;
+                height: 320px;
+            }
+
+            .lifestyle-slide-new.prev,
+            .lifestyle-slide-new.next {
+                transform: translateX(-220px) scale(0.78);
+                opacity: 0.4;
+            }
+
+            .lifestyle-slide-new.next {
+                transform: translateX(220px) scale(0.78);
+            }
+
+            .lifestyle-slide-title-new {
+                font-size: 1.2rem;
+                letter-spacing: 2px;
+            }
+
+            .lifestyle-nav-arrow {
+                width: 45px;
+                height: 45px;
+            }
+
+            .lifestyle-nav-arrow i {
+                font-size: 16px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<section class="lifestyle-section">
-    <div class="lifestyle-container">
-
-        <h2 class="section-title">SHOP BY LIFESTYLE</h2>
-        <p class="section-subtitle">For every you</p>
-
-        <button class="lifestyle-nav-btn prev" id="lifestylePrev">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div class="lifestyle-slider-wrapper">
-            <div class="lifestyle-grid" id="lifestyleGrid"></div>
-        </div>
-
-        <button class="lifestyle-nav-btn next" id="lifestyleNext">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-    </div>
-</section>
-
-<script>
-// Lifestyle Carousel with Dynamic Slant Effect
-const lifestyleGrid = document.getElementById('lifestyleGrid');
-const lifestylePrev = document.getElementById('lifestylePrev');
-const lifestyleNext = document.getElementById('lifestyleNext');
-const lifestyleWrapper = document.querySelector('.lifestyle-slider-wrapper');
-
-let LIFESTYLE_ITEM_WIDTH = 300;
-let LIFESTYLE_MARGIN = 24;
-let LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
-
-const lifestyleItems = [
-    { name: "DAILY WEAR", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=800&q=80" },
-    { name: "OFFICE WEAR", image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=800&q=80" },
-    { name: "PARTY WEAR", image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=800&q=80" },
-    { name: "DAY OUT", image: "https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&q=80" },
-    { name: "FESTIVE", image: "https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&q=80" }
-];
-
-let lifestyleTrackItems = [];
-let lifestyleCurrentIndex = lifestyleItems.length;
-const lifestyleTotalItems = lifestyleItems.length;
-
-function renderLifestyleCarousel() {
-    lifestyleGrid.innerHTML = '';
-    lifestyleTrackItems = [];
-
-    const duplicatedItems = [...lifestyleItems, ...lifestyleItems, ...lifestyleItems];
-
-    duplicatedItems.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'lifestyle-card';
-        card.innerHTML = `
-            <img src="${item.image}" alt="${item.name}">
-            <div class="lifestyle-overlay">
-                <div class="lifestyle-info"><h3>${item.name}</h3></div>
+    <section class="lifestyle-section">
+        <div class="lifestyle-container">
+            <h2 class="section-title">SHOP BY LIFESTYLE</h2>
+            <p class="section-subtitle">For every you</p>
+            <button class="lifestyle-nav-arrow prev" id="lifestylePrevNew">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="lifestyle-slider-wrapper-new">
+                <div class="lifestyle-slider-track-new" id="lifestyleTrackNew"></div>
             </div>
-        `;
-        lifestyleGrid.appendChild(card);
-        lifestyleTrackItems.push(card);
-    });
+            <button class="lifestyle-nav-arrow next" id="lifestyleNextNew">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="lifestyle-pagination-new" id="lifestylePaginationNew"></div>
+        </div>
+    </section>
 
-    // Update width values based on rendered card (for responsiveness)
-    if (lifestyleTrackItems[0]) {
-        LIFESTYLE_ITEM_WIDTH = lifestyleTrackItems[0].offsetWidth;
-    }
-    const cardStyle = getComputedStyle(lifestyleTrackItems[0]);
-    const mr = parseInt(cardStyle.marginRight, 10);
-    if (!isNaN(mr)) {
-        LIFESTYLE_MARGIN = mr;
-    }
-    LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
+    <script>
+        /* ========================================================
+           LIFESTYLE CAROUSEL (UPDATED SMOOTH SLIDER)
+           ======================================================== */
+        (function() {
+            const lifestyleTrackNew = document.getElementById('lifestyleTrackNew');
+            const lifestylePrevNew = document.getElementById('lifestylePrevNew');
+            const lifestyleNextNew = document.getElementById('lifestyleNextNew');
+            const lifestylePaginationNew = document.getElementById('lifestylePaginationNew');
 
-    updateLifestyleCarousel(false);
-}
+            const lifestyleItemsData = [
+                { name: "DAILY WEAR", image: "https://i.pinimg.com/1200x/c3/3d/23/c33d23c7a1833a1ab828d5a4a65e6f39.jpg" },
+                { name: "OFFICE WEAR", image: "https://i.pinimg.com/736x/ce/b3/74/ceb374203a8ab8b43809c7b0b264ff3e.jpg" },
+                { name: "PARTY WEAR", image: "https://i.pinimg.com/736x/92/64/6a/92646a0d09b3b2e3be82879c2787006e.jpg" },
+                { name: "DAY OUT", image: "https://i.pinimg.com/1200x/23/67/9a/23679a845da4590d6edf8bcf675d4137.jpg" },
+                { name: "FESTIVE", image: "https://i.pinimg.com/736x/11/c7/21/11c721a83df639ea0187b5b422f3fd4c.jpg" },
+                { name: "CASUAL", image: "https://i.pinimg.com/1200x/19/b6/af/19b6af5a789d1bef849deadd33388d7d.jpg" },
+                { name: "ELEGANT", image: "https://i.pinimg.com/736x/18/85/f1/1885f137d67596b779f4556e2e1950da.jpg" }
+            ];
 
-function updateLifestyleCarousel(useTransition = true) {
-    // recalc item sizes in case of resize
-    if (lifestyleTrackItems[0]) {
-        LIFESTYLE_ITEM_WIDTH = lifestyleTrackItems[0].offsetWidth;
-        const cardStyle = getComputedStyle(lifestyleTrackItems[0]);
-        const mr = parseInt(cardStyle.marginRight, 10);
-        if (!isNaN(mr)) {
-            LIFESTYLE_MARGIN = mr;
-        }
-        LIFESTYLE_FULL_WIDTH = LIFESTYLE_ITEM_WIDTH + LIFESTYLE_MARGIN;
-    }
+            let lifestyleCurrentIdx = 0;
+            const lifestyleTotalSlides = lifestyleItemsData.length;
+            let lifestyleSlideElements = [];
 
-    // Infinite-like looping boundaries
-    if (lifestyleCurrentIndex >= lifestyleTrackItems.length - lifestyleTotalItems) {
-        lifestyleCurrentIndex = lifestyleTotalItems;
-        lifestyleGrid.style.transition = 'none';
-    } 
-    else if (lifestyleCurrentIndex < lifestyleTotalItems) {
-        lifestyleCurrentIndex = lifestyleTrackItems.length - (lifestyleTotalItems * 2);
-        lifestyleGrid.style.transition = 'none';
-    }
+            function initLifestyleSlider() {
+                if (!lifestyleTrackNew || !lifestylePaginationNew) return;
 
-    const centerCardIndex = lifestyleCurrentIndex + 1; // center among visible
+                // Create slides
+                lifestyleTrackNew.innerHTML = '';
+                lifestylePaginationNew.innerHTML = '';
+                lifestyleSlideElements = [];
 
-    const wrapperWidth = lifestyleWrapper.offsetWidth;
-    const centerOffset = (wrapperWidth - LIFESTYLE_ITEM_WIDTH) / 2;
-    const translateX = -(centerCardIndex * LIFESTYLE_FULL_WIDTH) + centerOffset;
+                lifestyleItemsData.forEach(function(item, index) {
+                    // Create slide
+                    const slide = document.createElement('div');
+                    slide.className = 'lifestyle-slide-new';
+                    slide.innerHTML = `
+                        <img src="${item.image}" alt="${item.name}">
+                        <div class="lifestyle-slide-overlay-new">
+                            <h3 class="lifestyle-slide-title-new">${item.name}</h3>
+                        </div>
+                    `;
+                    slide.addEventListener('click', function() {
+                        goToLifestyleSlide(index);
+                    });
+                    lifestyleTrackNew.appendChild(slide);
+                    lifestyleSlideElements.push(slide);
 
-    if (useTransition) {
-        setTimeout(() => {
-            lifestyleGrid.style.transition = 'transform 0.5s ease-out';
-        }, 50);
-    }
+                    // Create pagination dot
+                    const dot = document.createElement('div');
+                    dot.className = 'lifestyle-dot-new';
+                    if (index === 0) dot.classList.add('active');
+                    dot.addEventListener('click', function() {
+                        goToLifestyleSlide(index);
+                    });
+                    lifestylePaginationNew.appendChild(dot);
+                });
 
-    lifestyleGrid.style.transform = `translateX(${translateX}px)`;
+                updateLifestyleSlider();
+            }
 
-    lifestyleTrackItems.forEach((item, index) => {
-        item.classList.remove('center-card','left-adjacent','right-adjacent','far-left','far-right');
+            function getLifestyleSlideClass(index) {
+                const diff = index - lifestyleCurrentIdx;
 
-        if (index === centerCardIndex) item.classList.add('center-card');
-        else if (index === centerCardIndex - 1) item.classList.add('left-adjacent');
-        else if (index === centerCardIndex - 2) item.classList.add('far-left');
-        else if (index === centerCardIndex + 1) item.classList.add('right-adjacent');
-        else if (index === centerCardIndex + 2) item.classList.add('far-right');
-    });
-}
+                if (diff === 0) return 'active';
+                if (diff === 1 || diff === -(lifestyleTotalSlides - 1)) return 'next';
+                if (diff === -1 || diff === lifestyleTotalSlides - 1) return 'prev';
+                if (diff === 2 || diff === -(lifestyleTotalSlides - 2)) return 'far-next';
+                if (diff === -2 || diff === lifestyleTotalSlides - 2) return 'far-prev';
+                if (diff > 0) return 'hidden-right';
+                return 'hidden';
+            }
 
-function scrollLifestyleCarousel(direction) {
-    lifestyleCurrentIndex += direction === 'next' ? 1 : -1;
-    updateLifestyleCarousel(true);
-}
+            function updateLifestyleSlider() {
+                lifestyleSlideElements.forEach(function(slide, index) {
+                    slide.className = 'lifestyle-slide-new ' + getLifestyleSlideClass(index);
+                });
 
-lifestylePrev.addEventListener('click', () => scrollLifestyleCarousel('prev'));
-lifestyleNext.addEventListener('click', () => scrollLifestyleCarousel('next'));
+                // Update pagination dots
+                const dots = lifestylePaginationNew.querySelectorAll('.lifestyle-dot-new');
+                dots.forEach(function(dot, index) {
+                    if (index === lifestyleCurrentIdx) {
+                        dot.classList.add('active');
+                    } else {
+                        dot.classList.remove('active');
+                    }
+                });
+            }
 
-window.addEventListener('resize', () => {
-    updateLifestyleCarousel(false);
-});
+            function goToLifestyleSlide(index) {
+                lifestyleCurrentIdx = index;
+                updateLifestyleSlider();
+            }
 
-renderLifestyleCarousel();
-</script>
+            function nextLifestyleSlide() {
+                // Add transitioning classes for smoother animation
+                const currentSlide = lifestyleSlideElements[lifestyleCurrentIdx];
+                const nextIdx = (lifestyleCurrentIdx + 1) % lifestyleTotalSlides;
+                const nextSlide = lifestyleSlideElements[nextIdx];
+                
+                // Add transitioning state
+                currentSlide.classList.add('transitioning-out-left');
+                nextSlide.classList.add('transitioning-in-from-right');
+                
+                // Update index
+                lifestyleCurrentIdx = nextIdx;
+                
+                // Small delay before updating to show transition
+                setTimeout(function() {
+                    currentSlide.classList.remove('transitioning-out-left');
+                    nextSlide.classList.remove('transitioning-in-from-right');
+                    updateLifestyleSlider();
+                }, 50);
+            }
 
+            function prevLifestyleSlide() {
+                // Add transitioning classes for smoother animation
+                const currentSlide = lifestyleSlideElements[lifestyleCurrentIdx];
+                const prevIdx = (lifestyleCurrentIdx - 1 + lifestyleTotalSlides) % lifestyleTotalSlides;
+                const prevSlide = lifestyleSlideElements[prevIdx];
+                
+                // Add transitioning state
+                currentSlide.classList.add('transitioning-out-right');
+                prevSlide.classList.add('transitioning-in-from-left');
+                
+                // Update index
+                lifestyleCurrentIdx = prevIdx;
+                
+                // Small delay before updating to show transition
+                setTimeout(function() {
+                    currentSlide.classList.remove('transitioning-out-right');
+                    prevSlide.classList.remove('transitioning-in-from-left');
+                    updateLifestyleSlider();
+                }, 50);
+            }
+
+            // Event listeners
+            if (lifestylePrevNew) {
+                lifestylePrevNew.addEventListener('click', prevLifestyleSlide);
+            }
+
+            if (lifestyleNextNew) {
+                lifestyleNextNew.addEventListener('click', nextLifestyleSlide);
+            }
+
+            // Keyboard navigation
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowLeft') prevLifestyleSlide();
+                if (e.key === 'ArrowRight') nextLifestyleSlide();
+            });
+
+            // Initialize on load
+            if (document.readyState === 'complete') {
+                initLifestyleSlider();
+            } else {
+                window.addEventListener('load', initLifestyleSlider);
+            }
+        })();
+    </script>
 </body>
 </html>
