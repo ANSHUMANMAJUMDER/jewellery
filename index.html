@@ -1584,22 +1584,24 @@ h3,
         /* ============================================================
            PROMO STRIP SECTION
            ============================================================ */
-        .promo-strip {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 0.8rem 0;
-            overflow: hidden;
-        }
+  .promo-strip {
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 0.8rem 0;
+    overflow: hidden;
+}
 
-        .promo-content {
-            display: flex;
-            gap: 3rem;
-            animation: scroll 30s linear infinite;
-        }
-        .promo-content a {
-    text-decoration: none;       /* Remove underline */
-    color: inherit;              /* Keep same text color */
-    cursor: pointer;             /* Remove link pointer if you want */
+.promo-content {
+    display: flex;
+    gap: 3rem;
+    animation: scroll 20s linear infinite;
+    width: fit-content;
+}
+
+.promo-content a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }
 
 .promo-content a:visited,
@@ -1609,24 +1611,22 @@ h3,
     color: inherit;
 }
 
+.promo-content span {
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    white-space: nowrap;
+}
 
-        .promo-content span {
-            font-size: 0.85rem;
-            letter-spacing: 2px;
-            white-space: nowrap;
-        }
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
 
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-100%); }
-        }
-
-        /* Promo Strip - Small Mobile */
-        @media (max-width: 480px) {
-            .promo-content span {
-                font-size: 0.75rem;
-            }
-        }
+@media (max-width: 480px) {
+    .promo-content span {
+        font-size: 0.75rem;
+    }
+}
 
         /* ============================================================
            COLLECTION RANGE SLIDER SECTION
@@ -5119,7 +5119,22 @@ h3,
         <span>•</span>
         <a href="/"><span>FREE SHIPPING</span></a>
         <span>•</span>
-
+        <a href="/"><span>PREMIUM JEWELRY</span></a>
+        <span>•</span>
+        <a href="/"><span>EASY EXCHANGE</span></a>
+        <span>•</span>
+        <a href="/"><span>LIFETIME WARRANTY</span></a>
+        <span>•</span>
+        <a href="/"><span>FREE SHIPPING</span></a>
+        <span>•</span>
+        <a href="/"><span>PREMIUM JEWELRY</span></a>
+        <span>•</span>
+        <a href="/"><span>EASY EXCHANGE</span></a>
+        <span>•</span>
+        <a href="/"><span>LIFETIME WARRANTY</span></a>
+        <span>•</span>
+        <a href="/"><span>FREE SHIPPING</span></a>
+        <span>•</span>
         <a href="/"><span>PREMIUM JEWELRY</span></a>
         <span>•</span>
         <a href="/"><span>EASY EXCHANGE</span></a>
