@@ -91,13 +91,8 @@ h3,
 .lifestyle-info h3,
 .gender-text h3,
 .gender-info h3,
-.gender-info p,
-.gender-text p,
-.banner-content p,
 .general-banner-overlay h2,
-.general-banner-overlay p,
 .gifting-banner-overlay h2,
-.gifting-banner-overlay p,
 .banner-content h2,
 .csr-content h3,
 .world-section .section-title,
@@ -117,8 +112,12 @@ h3,
 .hotspot-product-meta,
 .modal-product-meta,
 .csr-stat-label,
-.promo-content span
- {
+.promo-content span,
+.gender-text p,
+.gender-info p,
+.gifting-banner-overlay p,
+.general-banner-overlay p,
+.banner-content p {
     font-family: var(--font-secondary);
 }
 
@@ -513,14 +512,12 @@ h3,
        
 
   .hotspot-section {
-            /* padding: 4rem 2rem; */
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding: 4rem 2rem;
             background: linear-gradient(135deg, #f8f3ec 0%, #fdf9f5 100%);
         }
 
         .hotspot-container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
@@ -538,12 +535,11 @@ h3,
         }
 
         .hotspot-title p {
-            /* font-size: 0.85rem; */
+            font-size: 0.85rem;
             color: var(--dark-black);
             opacity: 0.7;
             letter-spacing: 2px;
-            /* text-transform: uppercase; */
-            font-family: var(--font-primary);
+            text-transform: uppercase;
         }
 
         .hotspot-layout {
@@ -559,10 +555,7 @@ h3,
             overflow: hidden;
             border-radius: 2px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.18);
-              height: 60vh;            /* desktop-friendly height */
-    max-height: 520px;       /* prevent overgrowth */
         }
-       
 
         .hotspot-main-image {
             width: 100%;
@@ -659,9 +652,7 @@ h3,
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-              /* max-height: 380px;    */
         }
-   
 
         .hotspot-details-panel::before {
             content: '';
@@ -768,105 +759,6 @@ h3,
             text-transform: uppercase;
             color: rgba(2,0,13,0.45);
         }
-
-
-        /* =========================================
-   HOTSPOT DETAILS PANEL — SHRINK (NO SCROLL)
-   ========================================= */
-
-.hotspot-details-panel{
-  max-width: 380px;                 /* smaller panel width */
-  padding: 1.25rem 1.35rem 1.1rem;  /* tighter padding */
-  box-shadow: 0 12px 34px rgba(0,0,0,0.12);
-}
-
-/* smaller image block */
-.hotspot-detail-image-wrapper{
-  height: 135px;                 /* keep compact height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f7f7f7;           /* subtle neutral background */
-  overflow: hidden;
-}
-
-.hotspot-detail-image{
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;           /* 🔑 KEY FIX */
-}
-/* tighter typography + spacing */
-.hotspot-eyebrow{
-  font-size: 0.65rem;
-  letter-spacing: 2.5px;
-  margin-bottom: 0.4rem;
-}
-
-.hotspot-divider{
-  width: 52px;
-  margin-bottom: 0.85rem;
-}
-
-.hotspot-product-title{
-  font-size: 1.1rem;
-  letter-spacing: 0.6px;
-  margin-bottom: 0.2rem;
-}
-
-.hotspot-product-meta{
-  font-size: 0.75rem;
-  letter-spacing: 0.9px;
-  margin-bottom: 0.65rem;
-}
-
-.hotspot-product-description{
-  font-size: 0.85rem;
-  line-height: 1.45;
-  margin-bottom: 0.85rem;
-}
-
-.hotspot-product-price{
-  font-size: 1rem;
-  margin-bottom: 0.9rem;
-}
-
-/* smaller buttons */
-.hotspot-buttons{
-  gap: 0.5rem;
-  margin-bottom: 0.85rem;
-}
-
-.product-btn{
-  padding: 0.55rem 1.15rem;
-  font-size: 0.65rem;
-  letter-spacing: 1.2px;
-}
-
-/* smaller hint */
-.hotspot-hint{
-  font-size: 0.65rem;
-  letter-spacing: 0.7px;
-}
-
-/* remove any chance of internal scroll */
-.hotspot-details-panel{
-  overflow: hidden;
-}
-
-/* Responsive tune */
-@media (max-width: 768px){
-  .hotspot-details-panel{
-    max-width: 100%;
-    padding: 1.1rem 1.1rem 1rem;
-  }
-
-  .hotspot-detail-image-wrapper{
-    height: 120px;
-  }
-}
-
 
         .hotspot-modal {
             display: none;
@@ -1014,9 +906,6 @@ h3,
             padding: 1rem 1.5rem;
         }
 
-
-
-        /* SEARCH//  */
         .search-overlay {
             position: fixed;
             top: 0;
@@ -1743,56 +1632,30 @@ h3,
            COLLECTION RANGE SLIDER SECTION
            ============================================================ */
         .collection-range-section {
-            /* padding: 5rem 2rem; */
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding: 5rem 2rem;
             background: var(--white);
         }
 
-        /* .collection-range-container {
+        .collection-range-container {
             max-width: 1400px;
             margin: 0 auto;
             position: relative;
             padding: 0 60px;
-        } */
-         .collection-range-container{
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  padding: 0 0; /* no need space for buttons */
-}
-/* 
+        }
+
         .collection-cards-wrapper {
             overflow: hidden;
             padding: 1rem 0;
-        } */
+        }
 
-        .collection-cards-wrapper{
-  overflow-x: auto;
-  overflow-y: hidden;
-  -webkit-overflow-scrolling: touch;
-  scroll-snap-type: x mandatory;
-  padding: 1rem 0;
-  scrollbar-width: none;       /* Firefox */
-}
-.collection-cards-wrapper::-webkit-scrollbar{
-  display: none;               /* Chrome/Safari */
-}
-        /* .collection-cards {
+        .collection-cards {
             display: flex;
             gap: 1.5rem;
             transition: transform 0.4s ease;
             will-change: transform;
-        } */
-.collection-cards{
-  display: flex;
-  gap: 1.5rem;
-  padding: 0 2rem;             /* inner left-right padding */
-  width: max-content;          /* important for horizontal scroll */
-  transform: none !important;
-  transition: none !important;
-}
-        /* .collection-range-card {
+        }
+
+        .collection-range-card {
             min-width: 180px;
             flex-shrink: 0;
             display: flex;
@@ -1800,12 +1663,7 @@ h3,
             align-items: center;
             cursor: pointer;
             transition: all 0.3s ease;
-        } */
-         .collection-range-card{
-  min-width: 180px;
-  flex: 0 0 auto;
-  scroll-snap-align: start;
-}
+        }
 
         .collection-range-card:hover {
             transform: translateY(-5px);
@@ -2038,199 +1896,6 @@ h3,
     }
 }
 
-
-/* ===============================
-   DIWALI BANNER — ETTHNICOAST
-   =============================== */
-
-.ec-diwali-banner{
-  background: var(--white);
-  margin: 4rem 0;
-}
-
-.ec-diwali-container{
-  padding: 0 0 10px 10px;  
-  max-width: 1400px;
-  margin: 0 auto;
-  height: 450px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-
-  /* premium deep gradient like your arrivals */
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, var(--primary-blue) 100%);
-}
-
-/* left content */
-.ec-diwali-content{
-  position: relative;
-  z-index: 2;
-  /* padding: 0 4rem; */
-  max-width: 55%;
-  color: var(--white);
-  padding-top: 40px;
-}
-
-.ec-diwali-eyebrow{
-  font-family: var(--font-secondary);
-  font-size: 0.85rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--secondary-peach);
-  margin-bottom: 1rem;
-}
-
-.ec-diwali-content h2{
-  font-family: var(--font-primary);
-  font-size: 3.4rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.2rem;
-}
-
-.ec-diwali-sub{
-  font-family: var(--font-secondary);
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.9);
-  max-width: 520px;
-  margin-bottom: 2rem;
-}
-
-.ec-diwali-actions{
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
-}
-
-.ec-diwali-btn{
-  display: inline-block;
-  text-decoration: none;
-  font-family: var(--font-secondary);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 0.95rem 2.6rem;
-  border: 2px solid transparent;
-  transition: all 0.25s ease;
-}
-
-.ec-diwali-btn.primary{
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  border-color: var(--secondary-peach);
-}
-
-.ec-diwali-btn.primary:hover{
-  background: transparent;
-  color: var(--secondary-peach);
-}
-
-.ec-diwali-btn.secondary{
-  background: transparent;
-  border-color: rgba(255,255,255,0.45);
-  color: var(--white);
-}
-
-.ec-diwali-btn.secondary:hover{
-  border-color: var(--secondary-peach);
-  color: var(--secondary-peach);
-}
-
-.ec-diwali-note{
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.78);
-  letter-spacing: 0.03em;
-}
-
-/* right image */
-.ec-diwali-visual{
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 48%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.ec-diwali-visual::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--primary-blue) 0%, transparent 55%);
-  z-index: 1;
-}
-
-.ec-diwali-visual img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.ec-diwali-container:hover .ec-diwali-visual img{
-  transform: scale(1.05);
-}
-
-/* badge */
-.ec-diwali-badge{
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 2;
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  font-family: var(--font-secondary);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 0.45rem 0.95rem;
-}
-
-/* ===============================
-   RESPONSIVE
-   =============================== */
-
-@media (max-width: 1024px){
-  .ec-diwali-container{ height: 380px; }
-  .ec-diwali-content{ padding: 0 3rem; max-width: 70%; }
-  .ec-diwali-content h2{ font-size: 2.8rem; }
-  .ec-diwali-sub{ font-size: 1rem; }
-  .ec-diwali-visual{ width: 55%; }
-}
-
-@media (max-width: 768px){
-  .ec-diwali-banner{ margin: 2rem 0; }
-  .ec-diwali-container{
-    height: 330px;
-    background: linear-gradient(135deg, #1a1a2e 0%, var(--primary-blue) 100%);
-  }
-  .ec-diwali-content{
-    padding: 0 1.6rem;
-    max-width: 100%;
-  }
-  .ec-diwali-content h2{ font-size: 2.1rem; }
-  .ec-diwali-sub{ font-size: 0.95rem; max-width: 100%; }
-  .ec-diwali-btn{ padding: 0.85rem 2.1rem; }
-  .ec-diwali-visual{
-    width: 100%;
-    opacity: 0.18;  /* soft background image like hero */
-  }
-  .ec-diwali-visual::before{
-    background: linear-gradient(90deg, var(--primary-blue) 35%, transparent 100%);
-  }
-}
-
-@media (max-width: 480px){
-  .ec-diwali-container{ height: 300px; }
-  .ec-diwali-content h2{ font-size: 1.8rem; }
-  .ec-diwali-eyebrow{ font-size: 0.75rem; }
-  .ec-diwali-note{ font-size: 0.85rem; }
-}
-
         /* ============================================================
            SHARED SECTION STYLES
            ============================================================ */
@@ -2372,15 +2037,10 @@ h3,
         /* ============================================================
            GENDER SECTION
            ============================================================ */
-        /* .gender-section {
+        .gender-section {
             padding: 5rem 2rem;
             background: var(--white);
-        } */
-         .gender-section {
-             background: var(--white);
-             margin-top: 0;          /* remove extra top gap */
-             padding-top: 40px;      /* optional controlled spacing */
-}
+        }
 
         .gender-container {
             max-width: 1400px;
@@ -2556,18 +2216,11 @@ h3,
         /* ============================================================
            NEW ARRIVALS BANNER SECTION - STYLE 1 (Modern Banner Style)
            ============================================================ */
-        /* .new-arrivals-banner {
+        .new-arrivals-banner {
             padding: 0;
             background: var(--white);
             margin: 4rem 0;
-        } */
-         .new-arrivals-banner {
-                  /* padding-top: 40px; */
-              /* background: var(--white); */
-              margin-bottom: 0;       /* reduce or remove bottom gap */
-              /* padding-bottom: 20px;   keep only needed spacing */
-              margin-top: 40px;
-            }
+        }
 
         .banner-container {
             max-width: 1400px;
@@ -2752,8 +2405,7 @@ h3,
         .gifting-banner {
             padding: 0;
             background: var(--white);
-            margin-top: 40px;
-            
+            margin: 0rem 0;
         }
 
         .gifting-banner-container {
@@ -2902,8 +2554,7 @@ h3,
    LIFESTYLE SECTION (UPDATED SMOOTH SLIDER)
    ============================================================ */
 .lifestyle-section {
-    /* padding: 5rem 2rem; */
-    padding-top: 40px;
+    padding: 5rem 2rem;
     background: var(--white);
     position: relative;
 }
@@ -3218,8 +2869,7 @@ h3,
    WORLD SECTION (MASONRY LAYOUT)
    ============================================================ */
 .world-section {
-    padding-top: 40px;
-    /* padding: 5rem 2rem; */
+    padding: 5rem 2rem;
     background: var(--white);
 }
 
@@ -3446,8 +3096,7 @@ h3,
    ============================================================ */
 
 .bestsellers-section {
-    /* padding: 5rem 2rem; */
-    padding-top: 40px;
+    padding: 5rem 2rem;
     background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--white) 100%);
 }
 
@@ -3826,8 +3475,7 @@ h3,
    JEWELLERY VIDEO SLIDER SECTION (REELS)
    ============================================================ */
       .jm-reels-section {
-            /* padding: 5rem 2rem; */
-            padding-top: 40px;
+            padding: 5rem 2rem;
             background: linear-gradient(
                 135deg,
                 var(--light-peach) 0%,
@@ -3846,21 +3494,19 @@ h3,
         }
 
         .jm-reels-header .jm-section-title {
-            font-size: 2.5rem;
-            /* letter-spacing: 4px; */
+            font-size: 1.9rem;
+            letter-spacing: 4px;
             text-transform: uppercase;
-            font-family: var(--font-primary);
             color: var(--primary-blue);
             margin-bottom: 0.6rem;
-         
+            font-family: var(--font-primary);
         }
 
         .jm-reels-header .jm-section-subtitle {
-            /* font-size: 0.95rem; */
-            /* letter-spacing: 2px; */
-            /* text-transform: uppercase; */
-            /* color: rgba(2,0,13,0.7); */
-            font-family: var(--font-primary);
+            font-size: 0.95rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: rgba(2,0,13,0.7);
         }
 
         /* Slider wrapper */
@@ -4432,9 +4078,7 @@ h3,
    PRICE SECTION (Compact & Premium)
    ============================================================ */
 .price-section {
-    padding-top: 40px;
-    padding-bottom: 20px;
-    /* padding: 3.5rem 1.5rem; reduced */
+    padding: 3.5rem 1.5rem; /* reduced */
     background: linear-gradient(135deg, #9B7E6B 0%, #8B6F5C 100%);
 }
 
@@ -4604,7 +4248,7 @@ h3,
     grid-template-columns: 0.85fr 1fr;
     min-height: 180px; 
 } */
-/* .optional-banner {
+.optional-banner {
     padding: 0;
     background: var(--white);
     margin: 3rem 0; 
@@ -4612,17 +4256,17 @@ h3,
 }
 
 .optional-banner-container {
-    max-width: 1400px; 
+    max-width: 1400px;  /* Wider, more impactful */
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1.2fr 1fr;
-    min-height: 420px;  
+    min-height: 420px;  /* Taller, more premium */
     box-shadow: 0 20px 60px rgba(0,0,0,0.12);
 }
-
+/* LEFT SIDE */
 .optional-banner-left {
     background: #07203F;
-    padding: 1.2rem 1.5rem;
+    padding: 1.2rem 1.5rem; /* Reduced padding */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -4639,9 +4283,9 @@ h3,
     background: radial-gradient(circle, rgba(235,222,212,0.05) 0%, transparent 70%);
 }
 
-
+/* CONTENT */
 .optional-banner-content h2 {
-    font-size: 1.3rem; 
+    font-size: 1.3rem; /* Smaller heading */
     font-weight: 300;
     letter-spacing: 1.5px;
     color: var(--white);
@@ -4649,7 +4293,7 @@ h3,
 }
 
 .optional-banner-content p {
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* Smaller text */
     color: #EBDED4;
     line-height: 1.35;
     opacity: 0.9;
@@ -4657,7 +4301,7 @@ h3,
 }
 
 .optional-banner-content .cta-button {
-    padding: 0.5rem 1.3rem;
+    padding: 0.5rem 1.3rem; /* Smaller button */
     font-size: 0.7rem;
     background: #F8E3D2;
     color: #07203F;
@@ -4673,11 +4317,11 @@ h3,
     color: #F8E3D2;
 }
 
-
+/* RIGHT SIDE */
 .optional-banner-right {
     position: relative;
     overflow: hidden;
-    height: 420px;
+    height: 420px; /* Fixed height */
 }
 
 .optional-banner-right img {
@@ -4686,7 +4330,7 @@ h3,
     object-fit: cover;
 }
 
-
+/* BADGE */
 .optional-banner-badge {
     position: absolute;
     top: 0.6rem;
@@ -4700,7 +4344,9 @@ h3,
     font-weight: 600;
 }
 
-
+/* ===========================
+   TABLET
+   =========================== */
 @media (max-width: 1024px) {
 
     .optional-banner-container {
@@ -4722,7 +4368,9 @@ h3,
     }
 }
 
-
+/* ===========================
+   MOBILE
+   =========================== */
 @media (max-width: 768px) {
 
     .optional-banner {
@@ -4750,7 +4398,7 @@ h3,
     }
 
     .optional-banner-right {
-        height: 150px; 
+        height: 150px; /* Smaller mobile height */
     }
 
     .optional-banner-badge {
@@ -4761,7 +4409,9 @@ h3,
     }
 }
 
-
+/* ===========================
+   SMALL MOBILE
+   =========================== */
 @media (max-width: 480px) {
 
     .optional-banner-left {
@@ -4784,191 +4434,6 @@ h3,
         font-size: 0.5rem;
         padding: 0.3rem 0.7rem;
     }
-} */
- /* ============================================================
-   OPTIONAL BANNER — MATCH NEW ARRIVALS (STYLE 1)
-   ============================================================ */
-
-.optional-banner{
-    padding-top: 40px;
-  /* padding: 0; */
-  background: var(--white);
-  /* margin: 4rem 0; same as new-arrivals */
-  overflow: hidden;
-}
-
-/* SAME AS .banner-container */
-.optional-banner-container{
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  height: 450px;
-  overflow: hidden;
-  border-radius: 0;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-}
-
-/* LEFT CONTENT (same as .banner-content) */
-.optional-banner-left{
-  position: relative;
-  z-index: 2;
-  padding: 0 4rem;
-  max-width: 50%;
-  background: transparent;
-}
-
-.optional-banner-left::before{ display: none; }
-
-.optional-banner-content h2{
-  font-size: 3.5rem;
-  font-weight: 300;
-  letter-spacing: 5px;
-  color: var(--white);
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-}
-
-.optional-banner-content p{
-  /* font-size: 1.15rem; */
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  color: var(--white);
-  opacity: 0.9;
-  font-family: var(--font-primary);
-}
-
-/* CTA (same as .banner-content .cta-button) */
-.optional-banner-content .cta-button{
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  border: 2px solid var(--secondary-peach);
-  padding: 1rem 3rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.optional-banner-content .cta-button:hover{
-  background: transparent;
-  color: var(--secondary-peach);
-  border-color: var(--secondary-peach);
-}
-
-/* RIGHT IMAGE (same as .banner-image) */
-.optional-banner-right{
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.optional-banner-right::before{
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #0f3460 0%, transparent 50%);
-  z-index: 1;
-}
-
-.optional-banner-right img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-/* same hover zoom effect as new-arrivals */
-.optional-banner-container:hover .optional-banner-right img{
-  transform: scale(1.05);
-}
-
-/* BADGE (keep, but make it match the banner vibe) */
-.optional-banner-badge{
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 2;
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  padding: 0.45rem 0.95rem;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  font-weight: 600;
-  border-radius: 0;
-}
-
-/* ============================================================
-   RESPONSIVE — mirror new-arrivals breakpoints
-   ============================================================ */
-
-@media (max-width: 1024px){
-  .optional-banner-container{ height: 380px; }
-  .optional-banner-left{ padding: 0 3rem; max-width: 55%; }
-  .optional-banner-content h2{ font-size: 2.8rem; letter-spacing: 4px; }
-  .optional-banner-content p{ font-size: 1rem; }
-}
-
-@media (max-width: 768px){
-  .optional-banner{ margin: 2rem 0; }
-  .optional-banner-container{
-    height: 320px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-  }
-  .optional-banner-left{
-    padding: 0 2rem;
-    max-width: 100%;
-  }
-  .optional-banner-content h2{
-    font-size: 2rem;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-  }
-  .optional-banner-content p{
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1.8rem;
-  }
-  .optional-banner-content .cta-button{
-    padding: 0.85rem 2.2rem;
-    font-size: 0.85rem;
-  }
-  .optional-banner-right{
-    width: 100%;
-    opacity: 0.2;
-  }
-  .optional-banner-right::before{
-    background: linear-gradient(90deg, #0f3460 30%, transparent 100%);
-  }
-}
-
-@media (max-width: 480px){
-  .optional-banner{ margin: 1.5rem 0; }
-  .optional-banner-container{ height: 280px; }
-  .optional-banner-left{ padding: 0 1.5rem; }
-  .optional-banner-content h2{
-    font-size: 1.6rem;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.8rem;
-  }
-  .optional-banner-content p{
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
-  .optional-banner-content .cta-button{
-    padding: 0.75rem 2rem;
-    font-size: 0.8rem;
-  }
 }
 
 
@@ -4976,12 +4441,9 @@ h3,
            VALUES SECTION
            ============================================================ */
         .values-section {
-     padding: 3.5rem 1.5rem;
+    padding: 3.5rem 1.5rem; /* smaller */
     background: var(--primary-blue);
     color: var(--white);
-    margin-left: 1px;
-    margin-right: 1px;
-    margin-top: 40px;
 }
 
 .values-container {
@@ -5085,8 +4547,7 @@ h3,
         }
 
         .animal-welfare-container {
-            /* max-width: 1400px; */
-            max-width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
@@ -5108,12 +4569,11 @@ h3,
         }
 
         .animal-welfare-content p {
-            /* font-size: 1.05rem; */
+            font-size: 1.05rem;
             line-height: 1.8;
             color: var(--dark-black);
             opacity: 0.85;
             margin-bottom: 1.5rem;
-            font-family: var(--font-primary);
         }
 
         .animal-welfare-highlight {
@@ -5127,7 +4587,6 @@ h3,
             font-size: 0.95rem;
             font-weight: 500;
             letter-spacing: 1px;
-            cursor: pointer;
         }
 
         .animal-welfare-highlight i {
@@ -5150,12 +4609,12 @@ h3,
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            /* transition: transform 0.3s ease; */
+            transition: transform 0.3s ease;
         }
 
-        /* .animal-welfare-icon-box:hover {
+        .animal-welfare-icon-box:hover {
             transform: translateY(-8px);
-        } */
+        }
 
         .animal-welfare-icon-box i {
             font-size: 3rem;
@@ -5402,7 +4861,7 @@ h3,
         /* ============================================================
            FOOTER SECTION
            ============================================================ */
-        /* footer {
+        footer {
             background: var(--primary-blue);
             color: var(--white);
             padding: 3rem 2rem 1rem;
@@ -5473,200 +4932,19 @@ h3,
             font-size: 0.9rem;
         }
 
- 
+        /* Footer - Tablet */
         @media (max-width: 1024px) {
             .footer-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-
+        /* Footer - Mobile */
         @media (max-width: 768px) {
             .footer-container {
                 grid-template-columns: 1fr;
             }
-        } */
-
-
-        /* ===============================
-   ETTHNICOAST FOOTER
-   =============================== */
-.ec-footer {
-  background: var(--primary-blue);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 4.5rem 0 2rem;
-  color: var(--white);
-}
-
-.ec-footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2.2rem;
-}
-
-/* TOP GRID */
-.ec-footer-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 3.2rem;
-  padding-bottom: 3.2rem;
-}
-
-/* headings: light + uppercase */
-.ec-footer-col h4 {
-  font-family: var(--font-secondary);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--white);
-  margin-bottom: 1.1rem;
-}
-
-/* list reset */
-.ec-footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.ec-footer-col li {
-  margin: 0.7rem 0;
-}
-
-/* links: soft white */
-.ec-footer-col a {
-  font-family: var(--font-secondary);
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.78);
-  text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-/* hover: peach highlight */
-.ec-footer-col a:hover {
-  color: var(--secondary-peach);
-  opacity: 1;
-}
-
-/* optional: nicer focus for keyboard users */
-.ec-footer-col a:focus-visible {
-  outline: 2px solid var(--secondary-peach);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-.ec-footer-bottom{
-  border-top: 1px solid rgba(255,255,255,0.12);
-}
-
-.ec-footer-brand{
-  font-family: var(--font-primary);
-  color: var(--white);
-}
-
-.ec-footer-copy{
-  font-family: var(--font-secondary);
-  color: rgba(255,255,255,0.78);
-}
-
-/* ===============================
-   FOOTER BOTTOM – CLEAN ALIGNMENT
-   =============================== */
-
-.ec-footer-bottom{
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 1.8rem;
-  margin-top: 2.5rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-/* BRAND */
-.ec-footer-brand{
-  font-family: var(--font-primary);
-  font-size: 1.9rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--white);
-  white-space: nowrap;
-}
-
-/* META (center group) */
-.ec-footer-meta{
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* links */
-.ec-footer-country,
-.ec-footer-lang{
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--secondary-peach);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(235,222,212,0.4);
-  padding-bottom: 2px;
-}
-
-.ec-footer-country:hover,
-.ec-footer-lang:hover{
-  border-bottom-color: var(--secondary-peach);
-}
-
-/* dots */
-.ec-dot{
-  color: rgba(255,255,255,0.45);
-}
-
-/* copyright */
-.ec-footer-copy{
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.75);
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-}
-
-/* spacer no longer needed */
-.ec-footer-spacer{
-  display: none;
-}
-
-/* ===============================
-   RESPONSIVE
-   =============================== */
-
-@media (max-width: 900px){
-  .ec-footer-bottom{
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .ec-footer-brand{
-    font-size: 1.8rem;
-  }
-
-  .ec-footer-meta{
-    gap: 0.7rem;
-  }
-
-  .ec-footer-copy{
-    white-space: normal;
-  }
-}
-
-
-
+        }
 
         /* ============================================================
            CONTENT SPACING
@@ -5688,69 +4966,36 @@ h3,
                 margin-top: 120px;
             }
         }
+    
 
-
-
-    /* Base state */
-.scroll-lift {
-  opacity: 0;
-  transform: translateY(28px) scale(0.985);
-  transition:
-    opacity 600ms cubic-bezier(.22, 1, .36, 1),
-    transform 700ms cubic-bezier(.22, 1, .36, 1),
-    box-shadow 700ms cubic-bezier(.22, 1, .36, 1);
-  will-change: transform, opacity;
+/* ============================================================
+   SCROLL REVEAL (Pandora-like section/card entrance)
+   Add class "scroll-animate" to anything you want to reveal.
+   Optional: data-anim="up|left|right|zoom" and data-delay="120" (ms)
+   ============================================================ */
+.scroll-animate{
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 700ms cubic-bezier(.2,.8,.2,1), transform 700ms cubic-bezier(.2,.8,.2,1);
+    will-change: transform, opacity;
+}
+.scroll-animate[data-anim="left"]{ transform: translateX(-32px); }
+.scroll-animate[data-anim="right"]{ transform: translateX(32px); }
+.scroll-animate[data-anim="zoom"]{ transform: scale(0.96); }
+.scroll-animate.animate{
+    opacity: 1;
+    transform: translate3d(0,0,0);
+}
+@media (prefers-reduced-motion: reduce){
+    .scroll-animate{
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
 }
 
-/* Visible (lifted) */
-.scroll-lift.is-visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
-
-/* Card shadow lift */
-.scroll-lift.card-lift {
-  box-shadow: 0 8px 24px rgba(2, 0, 13, 0.10);
-  border-radius: 0;
-}
-
-.scroll-lift.is-visible.card-lift {
-  box-shadow: 0 18px 50px rgba(2, 0, 13, 0.16);
-}
-
-/* stagger support */
-.scroll-lift {
-  transition-delay: var(--delay, 0ms);
-}
-
-/* accessibility */
-@media (prefers-reduced-motion: reduce) {
-  .scroll-lift {
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-    box-shadow: none !important;
-  }
-}
-
-
-#navLogo{
-  transition: opacity 180ms ease;
-  will-change: opacity;
-  display:block;
-}
-
-.nav-logo, .nav-logo img{
-  background: transparent !important;
-  outline: none !important;
-  border: 0 !important;
-}
-
-    </style>
-
+</style>
 </head>
-
-
 <body>
     <!-- ============================================================
          Navbar and hero section together
@@ -5935,9 +5180,9 @@ h3,
          ============================================================ -->
     <section class="collection-range-section">
         <div class="collection-range-container">
-            <!-- <button class="collection-nav-btn prev" id="collectionPrev">
+            <button class="collection-nav-btn prev" id="collectionPrev">
                 <i class="fas fa-chevron-left"></i>
-            </button> -->
+            </button>
             
             <div class="collection-cards-wrapper">
                 <div class="collection-cards" id="collectionCards">
@@ -6000,9 +5245,9 @@ h3,
                 </div>
             </div>
             
-            <!-- <button class="collection-nav-btn next" id="collectionNext">
+            <button class="collection-nav-btn next" id="collectionNext">
                 <i class="fas fa-chevron-right"></i>
-            </button> -->
+            </button>
             
         </div>
     </section>
@@ -6010,7 +5255,7 @@ h3,
     <!-- ============================================================
          GENERAL BANNER
          ============================================================ -->
-    <section class="general-banner scroll-lift card-lift">
+    <section class="general-banner">
         <div class="general-banner-container">
             <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1400&q=80" alt="Banner">
             <div class="general-banner-overlay">
@@ -6024,14 +5269,14 @@ h3,
     <!-- ============================================================
          GENDER SECTION
          ============================================================ -->
-    <section class="gender-section">
+    <section class="gender-section scroll-animate">
         <div class="gender-container">
             <h2 class="section-title">SHOP BY GENDER</h2>
             <p class="section-subtitle">Discover collections crafted for every style</p>
             <div class="gender-grid">
                 <!-- For Him -->
                 <div class="gender-row" id="men">
-                    <div class="gender-card">
+                    <div class="gender-card scroll-animate">
                         <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=800&q=80" alt="For Him">
                         <div class="gender-overlay">
                             <div class="gender-info">
@@ -6049,7 +5294,7 @@ h3,
 
                 <!-- For Her -->
                 <div class="gender-row reverse" id="women">
-                    <div class="gender-card">
+                    <div class="gender-card scroll-animate">
                         <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=800&q=80" alt="For Her">
                         <div class="gender-overlay">
                             <div class="gender-info">
@@ -6072,7 +5317,7 @@ h3,
     <!-- ============================================================
          NEW ARRIVALS BANNER (MODERN DARK BANNER STYLE)
          ============================================================ -->
-    <section class="new-arrivals-banner scroll-lift card-lift" id="new-arrivals">
+    <section class="new-arrivals-banner scroll-animate" id="new-arrivals">
         <div class="banner-container">
             <div class="banner-content">
                 <h2>NEW ARRIVALS</h2>
@@ -6088,7 +5333,7 @@ h3,
     <!-- ============================================================
          GIFTING BANNER (STYLE 2 - OVERLAY DESIGN)
          ============================================================ -->
-    <section class="gifting-banner scroll-lift card-lift">
+    <section class="gifting-banner">
         <div class="gifting-banner-container">
             <img src="https://images.unsplash.com/photo-1513885535751-8b9238bd345a?w=1400&q=80" alt="Gifting">
             <div class="gifting-banner-overlay">
@@ -6264,9 +5509,8 @@ h3,
  <section class="jm-reels-section">
         <div class="jm-reels-inner">
             <div class="jm-reels-header">
-                <div class="jm-section-title">
-                    JEWELLERY IN MOTION</div>
-                <div class="jm-section-subtitle">Scroll through our latest styling videos</div>
+                <h2 class="jm-section-title">JEWELLERY IN MOTION</h2>
+                <p class="jm-section-subtitle">Scroll through our latest styling videos</p>
             </div>
             <div class="jm-reels-slider">
                 <button class="jm-reels-arrow jm-reels-prev" type="button">
@@ -6458,45 +5702,16 @@ h3,
         </button>
     </div>
 
-<!-- =============================================================
-DIWALI SECTION 
-==================================================================-->
-<section class="ec-diwali-banner scroll-lift card-lift" id="diwali-banner">
-  <div class="ec-diwali-container">
-
-    <div class="ec-diwali-content">
-      <p class="ec-diwali-eyebrow">DIWALI CELEBRATIONS</p>
-      <h2>Shine Brighter This Diwali</h2>
-      <p class="ec-diwali-sub">
-        Celebrate the festival of lights with premium silver jewelry—crafted to glow with every moment.
-      </p>
-
-      <div class="ec-diwali-actions">
-        <a href="#" class="ec-diwali-btn primary">SHOP DIWALI EDIT</a>
-        <a href="#" class="ec-diwali-btn secondary">GIFT GUIDE</a>
-      </div>
-
-      <p class="ec-diwali-note">Limited festive pieces • Fast delivery • Gift-ready packaging</p>
-    </div>
-
-    <div class="ec-diwali-visual">
-      <img
-        src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=1400&q=80"
-        alt="Diwali jewelry collection"
-      />
-      <div class="ec-diwali-badge">FESTIVE</div>
-    </div>
-
-  </div>
-</section>
-
-
     <!-- ============================================================
          VALUES SECTION
          ============================================================ -->
   
 <section class="values-section">
     <div class="values-container">
+
+        <h2 class="section-title" style="color: var(--white);">ETTHNICOAST VALUES</h2>
+        <p class="section-subtitle" style="color: var(--white); opacity: 0.9;">What makes us special</p>
+
         <div class="values-grid">
             <div class="value-card">
                 <div class="value-icon"><i class="fas fa-certificate"></i></div>
@@ -6531,7 +5746,7 @@ DIWALI SECTION
          ANIMAL WELFARE SECTION
          ============================================================ -->
     <section class="animal-welfare-section">
-        <div class="animal-welfare-container">
+        <div class="animal-welfare-container scroll-animate">
             <div class="animal-welfare-content">
                 <h3>COMPASSION IN EVERY PURCHASE</h3>
                 <p>With every purchase you make, ₹10-20 goes directly to animal welfare organizations. Together, we're making a difference in the lives of animals in need.</p>
@@ -6604,7 +5819,7 @@ DIWALI SECTION
 <!-- ============================================================
          OPTIONAL BANNER (SPLIT DESIGN WITH ANIMATION)
          ============================================================ -->
-    <section class="optional-banner scroll-lift card-lift">
+    <section class="optional-banner scroll-animate">
         <div class="optional-banner-container">
             <div class="optional-banner-left">
                 <div class="optional-banner-content">
@@ -6625,7 +5840,7 @@ DIWALI SECTION
     <!-- ============================================================
          Hotspot SECTION
          ============================================================ -->
- <section class="hotspot-section">
+ <section class="hotspot-section scroll-animate">
         <div class="hotspot-container">
             <div class="hotspot-title">
                 <h2>SHOP THE LOOK</h2>
@@ -6689,7 +5904,7 @@ DIWALI SECTION
                     </div>
                 </div>
                 
-                <div class="hotspot-details-panel">
+                <div class="hotspot-details-panel scroll-animate">
                     <div class="hotspot-detail-image-wrapper">
             <img id="lookImage"
                  src=""
@@ -6794,7 +6009,7 @@ DIWALI SECTION
     <!-- ============================================================
          FOOTER
          ============================================================ -->
-    <!-- <footer>
+    <footer>
         <div class="footer-container">
             <div class="footer-section">
                 <h4>ABOUT US</h4>
@@ -6836,129 +6051,13 @@ DIWALI SECTION
         <div class="footer-bottom">
             <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
         </div>
-    </footer> -->
-
-
-    <footer class="ec-footer">
-  <div class="ec-footer-inner">
-
-    <!-- TOP LINKS -->
-    <div class="ec-footer-grid">
-      <div class="ec-footer-col">
-        <h4>SHOP</h4>
-        <ul>
-          <li><a href="#">Rings</a></li>
-          <li><a href="#">Earrings</a></li>
-          <li><a href="#">Necklaces</a></li>
-          <li><a href="#">Bracelets</a></li>
-          <li><a href="#">New Arrivals</a></li>
-          <li><a href="#">Best Sellers</a></li>
-          <li><a href="#">Gift Sets</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>RESOURCES</h4>
-        <ul>
-          <li><a href="#">Order Tracking</a></li>
-          <li><a href="#">Shipping</a></li>
-          <li><a href="#">Returns & Exchanges</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">Jewelry Care</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>SERVICES</h4>
-        <ul>
-          <li><a href="#">Custom Orders</a></li>
-          <li><a href="#">Engraving</a></li>
-          <li><a href="#">Gift Cards</a></li>
-          <li><a href="#">Bulk Gifting</a></li>
-          <li><a href="#">Store Pickup</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>LEGAL</h4>
-        <ul>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-          <li><a href="#">Refund Policy</a></li>
-          <li><a href="#">Accessibility</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>ABOUT US</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Craftsmanship</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- BOTTOM BAR -->
-    <div class="ec-footer-bottom">
-      <div class="ec-footer-brand">ETTHNICOAST</div>
-
-      <div class="ec-footer-meta">
-        <a href="#" class="ec-footer-country">INDIA</a>
-        <span class="ec-dot">•</span>
-        <a href="#" class="ec-footer-lang">English</a>
-        <span class="ec-dot">•</span>
-        <span class="ec-footer-copy">© ALL RIGHTS RESERVED. 2026 ETTHNICOAST</span>
-      </div>
-
-      <!-- no social icons (as requested) -->
-      <div class="ec-footer-spacer"></div>
-    </div>
-
-  </div>
-</footer>
+    </footer>
 
     <!-- ============================================================
          EXTERNAL SCRIPTS
          ============================================================ -->
-   
-<script>
-  (function () {
-    const elements = document.querySelectorAll(".scroll-lift");
+    <script async src="https://www.instagram.com/embed.js"></script>
 
-    /* stagger like Pandora */
-    elements.forEach((el, index) => {
-      const grid = el.closest(
-        ".products-grid, .new-arrivals-grid, .bestsellers-grid, .reels-grid, .gender-grid"
-      );
-      if (grid) {
-        el.style.setProperty("--delay", `${(index % 10) * 70}ms`);
-      }
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          } else {
-            entry.target.classList.remove("is-visible"); // 👈 THIS is the key
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -10% 0px"
-      }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-  })();
-</script>
     <!-- ============================================================
          JAVASCRIPT
          ============================================================ -->
@@ -7015,72 +6114,39 @@ DIWALI SECTION
             }
         });
 
-       
+        const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('navLogo');
+
+        navbar.addEventListener('mouseenter', function() {
+            isHovering = true;
+            if (window.scrollY <= 50 && navLogo) {
+                navLogo.src = './assets/logo_new_1.png';
+            }
+        });
+
+        navbar.addEventListener('mouseleave', function() {
+            isHovering = false;
+            if (window.scrollY <= 50 && navLogo) {
+                navLogo.src = './assets/etthnicoast.png';
+            }
+        });
         // When scrolling DOWN (past 50px):
+navLogo.style.opacity = '0';        // 1. Fade logo out (invisible)
+setTimeout(() => {
+    navLogo.src = './assets/logo_new_1.png';  // 2. Change image while invisible
+    setTimeout(() => {
+        navLogo.style.opacity = '1';   // 3. Fade logo back in
+    }, 50);
+}, 300);
 
-const navbar = document.getElementById('navbar');
-const navLogo = document.getElementById('navLogo');
-
-
-let isScrolledState = false; // track state to avoid repeating swaps
-
-// preload both logos so no “late image load” flash
-const logoTop = new Image();
-logoTop.src = './assets/etthnicoast.png';
-
-const logoScrolled = new Image();
-logoScrolled.src = './assets/logo_new_1.png';
-
-function setLogo(src){
-  if (!navLogo) return;
-  if (navLogo.getAttribute('data-src') === src) return; // already showing
-
-  navLogo.style.opacity = '0';
-  // swap while invisible
-  setTimeout(() => {
-    navLogo.src = src;
-    navLogo.setAttribute('data-src', src);
-    requestAnimationFrame(() => {
-      navLogo.style.opacity = '1';
-    });
-  }, 120);
-}
-
-function setNavbarState(scrolled){
-  if (!navbar || !navLogo) return;
-
-  if (scrolled === isScrolledState) return; // nothing changed
-  isScrolledState = scrolled;
-
-  // 1) apply background state first
-  navbar.classList.toggle('scrolled', scrolled);
-
-  // 2) swap logo (unless user is hovering)
-  if (!isHovering){
-    setLogo(scrolled ? './assets/logo_new_1.png' : './assets/etthnicoast.png');
-  }
-}
-
-// initial state on load
-setNavbarState(window.scrollY > 50);
-
-// on scroll
-window.addEventListener('scroll', () => {
-  setNavbarState(window.scrollY > 50);
-}, { passive: true });
-
-// hover behavior (keep your logic, but use setLogo)
-navbar.addEventListener('mouseenter', () => {
-  isHovering = true;
-  if (window.scrollY <= 50) setLogo('./assets/logo_new_1.png');
-});
-
-navbar.addEventListener('mouseleave', () => {
-  isHovering = false;
-  setLogo(window.scrollY > 50 ? './assets/logo_new_1.png' : './assets/etthnicoast.png');
-});
-
-
+// When scrolling UP (back to top):
+navLogo.style.opacity = '0';        // 1. Fade logo out (invisible)
+setTimeout(() => {
+    navLogo.src = './assets/etthnicoast.png';  // 2. Change image while invisible
+    setTimeout(() => {
+        navLogo.style.opacity = '1';   // 3. Fade logo back in
+    }, 50);
+}, 1000);
 
         const hamburger = document.getElementById('hamburger');
         const navLinksContainer = document.getElementById('navLinksContainer');
@@ -7157,130 +6223,95 @@ navbar.addEventListener('mouseleave', () => {
 
         /* ========================================================
            COLLECTION RANGE SLIDER
-           ======================================================== 
-        // const collectionCards = document.getElementById('collectionCards');
-        // const collectionPrev = document.getElementById('collectionPrev');
-        // const collectionNext = document.getElementById('collectionNext');
-        // const collectionWrapper = document.querySelector('.collection-cards-wrapper');
+           ======================================================== */
+        const collectionCards = document.getElementById('collectionCards');
+        const collectionPrev = document.getElementById('collectionPrev');
+        const collectionNext = document.getElementById('collectionNext');
+        const collectionWrapper = document.querySelector('.collection-cards-wrapper');
 
-        // let collectionCurrentIndex = 0;
-        // let collectionVisibleCount = 1;
-        // let collectionStep = 0;
-        // let collectionMaxIndex = 0;
+        let collectionCurrentIndex = 0;
+        let collectionVisibleCount = 1;
+        let collectionStep = 0;
+        let collectionMaxIndex = 0;
 
-        // function recalcCollectionGeometry() {
-        //     const firstCard = collectionCards.querySelector('.collection-range-card');
-        //     const secondCard = firstCard ? firstCard.nextElementSibling : null;
+        function recalcCollectionGeometry() {
+            const firstCard = collectionCards.querySelector('.collection-range-card');
+            const secondCard = firstCard ? firstCard.nextElementSibling : null;
 
-        //     if (!firstCard) return;
+            if (!firstCard) return;
 
-        //     const cardWidth = firstCard.offsetWidth;
-        //     let gap = 0;
+            const cardWidth = firstCard.offsetWidth;
+            let gap = 0;
 
-        //     // Detect actual gap between cards
-        //     if (secondCard) {
-        //         const rect1 = firstCard.getBoundingClientRect();
-        //         const rect2 = secondCard.getBoundingClientRect();
-        //         gap = Math.max(0, Math.round(rect2.left - rect1.right));
-        //     }
+            // Detect actual gap between cards
+            if (secondCard) {
+                const rect1 = firstCard.getBoundingClientRect();
+                const rect2 = secondCard.getBoundingClientRect();
+                gap = Math.max(0, Math.round(rect2.left - rect1.right));
+            }
 
-        //     collectionStep = cardWidth + gap || cardWidth;
+            collectionStep = cardWidth + gap || cardWidth;
 
-        //     const wrapperWidth = collectionWrapper.offsetWidth;
-        //     collectionVisibleCount = Math.max(1, Math.floor(wrapperWidth / collectionStep));
+            const wrapperWidth = collectionWrapper.offsetWidth;
+            collectionVisibleCount = Math.max(1, Math.floor(wrapperWidth / collectionStep));
 
-        //     const totalCards = collectionCards.children.length;
-        //     collectionMaxIndex = Math.max(0, totalCards - collectionVisibleCount);
+            const totalCards = collectionCards.children.length;
+            collectionMaxIndex = Math.max(0, totalCards - collectionVisibleCount);
 
-        //     // Clamp index in case of resize
-        //     if (collectionCurrentIndex > collectionMaxIndex) {
-        //         collectionCurrentIndex = collectionMaxIndex;
-        //     }
-        // }
+            // Clamp index in case of resize
+            if (collectionCurrentIndex > collectionMaxIndex) {
+                collectionCurrentIndex = collectionMaxIndex;
+            }
+        }
 
-        // function updateCollectionPosition() {
-        //     const translateX = -(collectionCurrentIndex * collectionStep);
-        //     collectionCards.style.transform = `translateX(${translateX}px)`;
-        //     updateCollectionButtons();
-        // }
+        function updateCollectionPosition() {
+            const translateX = -(collectionCurrentIndex * collectionStep);
+            collectionCards.style.transform = `translateX(${translateX}px)`;
+            updateCollectionButtons();
+        }
 
-        // function updateCollectionButtons() {
-        //     if (!collectionPrev || !collectionNext) return;
+        function updateCollectionButtons() {
+            if (!collectionPrev || !collectionNext) return;
 
-        //     const atStart = collectionCurrentIndex <= 0;
-        //     const atEnd = collectionCurrentIndex >= collectionMaxIndex;
+            const atStart = collectionCurrentIndex <= 0;
+            const atEnd = collectionCurrentIndex >= collectionMaxIndex;
 
-        //     collectionPrev.style.opacity = atStart ? '0.4' : '1';
-        //     collectionPrev.style.pointerEvents = atStart ? 'none' : 'auto';
+            collectionPrev.style.opacity = atStart ? '0.4' : '1';
+            collectionPrev.style.pointerEvents = atStart ? 'none' : 'auto';
 
-        //     collectionNext.style.opacity = atEnd ? '0.4' : '1';
-        //     collectionNext.style.pointerEvents = atEnd ? 'none' : 'auto';
-        // }
+            collectionNext.style.opacity = atEnd ? '0.4' : '1';
+            collectionNext.style.pointerEvents = atEnd ? 'none' : 'auto';
+        }
 
-        // collectionNext.addEventListener('click', () => {
-        //     if (collectionCurrentIndex < collectionMaxIndex) {
-        //         collectionCurrentIndex = Math.min(
-        //             collectionCurrentIndex + collectionVisibleCount,
-        //             collectionMaxIndex
-        //         );
-        //         updateCollectionPosition();
-        //     }
-        // });
+        collectionNext.addEventListener('click', () => {
+            if (collectionCurrentIndex < collectionMaxIndex) {
+                collectionCurrentIndex = Math.min(
+                    collectionCurrentIndex + collectionVisibleCount,
+                    collectionMaxIndex
+                );
+                updateCollectionPosition();
+            }
+        });
 
-        // collectionPrev.addEventListener('click', () => {
-        //     if (collectionCurrentIndex > 0) {
-        //         collectionCurrentIndex = Math.max(
-        //             collectionCurrentIndex - collectionVisibleCount,
-        //             0
-        //         );
-        //         updateCollectionPosition();
-        //     }
-        // });
+        collectionPrev.addEventListener('click', () => {
+            if (collectionCurrentIndex > 0) {
+                collectionCurrentIndex = Math.max(
+                    collectionCurrentIndex - collectionVisibleCount,
+                    0
+                );
+                updateCollectionPosition();
+            }
+        });
 
-        // // Initialize on load
-        // recalcCollectionGeometry();
-        // updateCollectionPosition();
+        // Initialize on load
+        recalcCollectionGeometry();
+        updateCollectionPosition();
 
-        // // Recalculate on resize
-        // window.addEventListener('resize', () => {
-        //     recalcCollectionGeometry();
-        //     updateCollectionPosition();
-        // }); */
-
-         (function () {
-    const wrapper = document.querySelector(".collection-cards-wrapper");
-    if (!wrapper) return;
-
-    let isDown = false;
-    let startX = 0;
-    let scrollLeft = 0;
-
-    wrapper.addEventListener("mousedown", (e) => {
-      isDown = true;
-      wrapper.classList.add("dragging");
-      startX = e.pageX - wrapper.offsetLeft;
-      scrollLeft = wrapper.scrollLeft;
-    });
-
-    window.addEventListener("mouseup", () => {
-      isDown = false;
-      wrapper.classList.remove("dragging");
-    });
-
-    wrapper.addEventListener("mouseleave", () => {
-      isDown = false;
-      wrapper.classList.remove("dragging");
-    });
-
-    wrapper.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - wrapper.offsetLeft;
-      const walk = (x - startX) * 1.2; // drag speed
-      wrapper.scrollLeft = scrollLeft - walk;
-    });
-  })();
-
+        // Recalculate on resize
+        window.addEventListener('resize', () => {
+            recalcCollectionGeometry();
+            updateCollectionPosition();
+        });
 
         /* ========================================================
            LIFESTYLE CAROUSEL
@@ -7915,5 +6946,74 @@ document.addEventListener("DOMContentLoaded", () => {
             alert('Redirecting to product page...');
         });
     </script>
+
+
+<script>
+/* =========================================
+   Scroll reveal (Pandora-like)
+   ========================================= */
+document.addEventListener("DOMContentLoaded", () => {
+
+  // If user prefers reduced motion, show everything.
+  const reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) {
+    document.querySelectorAll(".scroll-animate").forEach(el => el.classList.add("animate"));
+    return;
+  }
+
+  // Auto-apply to key sections/cards (in case you forget classes)
+  const autoSelectors = [
+    '.new-arrivals-banner',
+    '.gender-section',
+    '.hotspot-section',
+    '.animal-welfare-container',
+    '.optional-banner',
+    '.ec-footer',
+    '.ec-footer .ec-footer-col',
+    '.ec-footer .ec-footer-bottom'
+  ];
+
+  autoSelectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      if (!el.classList.contains("scroll-animate")) el.classList.add("scroll-animate");
+      if (!el.dataset.delay) el.dataset.delay = String(Math.min(i, 8) * 80);
+      if (!el.dataset.anim) el.dataset.anim = "up";
+    });
+  });
+
+  const staggerGroups = [
+    '.new-arrivals-grid .new-arrival-card',
+    '.gender-grid .gender-card',
+    '.bestsellers-grid .bestseller-card',
+    '.insta-reels-track .insta-reel-card',
+    '.hotspot-thumbnails .hotspot-thumb',
+    '.hotspot-details-panel'
+  ];
+
+  staggerGroups.forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      if (!el.classList.contains("scroll-animate")) el.classList.add("scroll-animate");
+      if (!el.dataset.delay) el.dataset.delay = String(Math.min(i, 10) * 70);
+      if (!el.dataset.anim) el.dataset.anim = "up";
+    });
+  });
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+
+      const delay = parseInt(el.dataset.delay || "0", 10);
+      if (delay) el.style.transitionDelay = delay + "ms";
+
+      el.classList.add("animate");
+      observer.unobserve(el); // animate once (Pandora-like)
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -12% 0px" });
+
+  document.querySelectorAll(".scroll-animate").forEach(el => observer.observe(el));
+});
+</script>
+
 </body>
 </html>
