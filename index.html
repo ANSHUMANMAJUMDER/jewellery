@@ -6,7 +6,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <title>ETTHNICOAST - Premium Silver Jewelry</title>
     <style>
@@ -538,7 +538,7 @@ h3,
         }
 
         .hotspot-title p {
-            /* font-size: 0.85rem; */
+            font-size: 1.2rem;
             color: var(--dark-black);
             opacity: 0.7;
             letter-spacing: 2px;
@@ -2050,14 +2050,14 @@ h3,
 
 .ec-diwali-container{
   padding: 0 0 10px 10px;  
-  max-width: 1400px;
+  max-width: 100%;
   margin: 0 auto;
   height: 450px;
   display: flex;
   align-items: center;
   position: relative;
   overflow: hidden;
-
+ 
   /* premium deep gradient like your arrivals */
   background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, var(--primary-blue) 100%);
 }
@@ -2070,6 +2070,7 @@ h3,
   max-width: 55%;
   color: var(--white);
   padding-top: 40px;
+      padding-left: 19px;
 }
 
 .ec-diwali-eyebrow{
@@ -2245,7 +2246,7 @@ h3,
 
         .section-subtitle {
             text-align: center;
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: var(--dark-black);
             opacity: 0.7;
             margin-bottom: 1rem;
@@ -3218,7 +3219,7 @@ h3,
    WORLD SECTION (MASONRY LAYOUT)
    ============================================================ */
 .world-section {
-    padding-top: 40px;
+    /* padding-top: 40px; */
     /* padding: 5rem 2rem; */
     background: var(--white);
 }
@@ -3861,6 +3862,9 @@ h3,
             /* text-transform: uppercase; */
             /* color: rgba(2,0,13,0.7); */
             font-family: var(--font-primary);
+        }
+        .jm-section-subtitle {
+            font-size: 1.2rem;
         }
 
         /* Slider wrapper */
@@ -5746,6 +5750,76 @@ h3,
   border: 0 !important;
 }
 
+
+/* ============================================================
+  Ethnicoast Palmonas Swiper
+   ============================================================ */
+.swiper-section {
+     display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: white;
+    margin: 0;
+    padding: 0;
+}
+.lifestyle-container{
+        max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+}
+   .swiper {
+    width: 95%;
+    max-width: 1350px;
+    padding-bottom: 70px;  
+}
+
+   .swiper-slide {
+    background: #ccc;
+    border: 1px solid #0000008f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 380px;
+    font-size: 50px;
+   }
+   .swiper-slide img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+   }
+
+   .swiper-button-next,
+   .swiper-button-prev {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+   }
+
+   .swiper-button-next:hover,
+   .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+   }
+
+   .swiper-button-next::after,
+   .swiper-button-prev::after {
+    font-size: 20px;
+    font-weight: bold;
+   }
+  
+  .swiper-slide {
+    background-color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  }
     </style>
 
 </head>
@@ -6102,28 +6176,38 @@ h3,
     <!-- ============================================================
          LIFESTYLE SECTION
          ============================================================ -->
-  
-
-    <section class="lifestyle-section">
-    <div class="lifestyle-container">
+        <div class="swiper-section">  
+    <div class="lifestyle-container"> 
         <h2 class="section-title">SHOP BY LIFESTYLE</h2>
         <p class="section-subtitle">For every you</p>
-
-        <button class="lifestyle-nav-arrow prev" id="lifestylePrevNew">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div class="lifestyle-slider-wrapper-new">
-            <div class="lifestyle-slider-track-new" id="lifestyleTrackNew"></div>
+           <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="https://i.pinimg.com/736x/5f/5f/e4/5f5fe4b1f54e08c6cd97080be4534640.jpg" alt="Slide 1">
         </div>
-
-        <button class="lifestyle-nav-arrow next" id="lifestyleNextNew">
-            <i class="fas fa-chevron-right"></i>
-        </button>
-
-        <div class="lifestyle-pagination-new" id="lifestylePaginationNew"></div>
+        <div class="swiper-slide">
+          <img src="https://i.pinimg.com/736x/92/64/6a/92646a0d09b3b2e3be82879c2787006e.jpg" alt="Slide 2">
+        </div>
+        <div class="swiper-slide">
+          <img src="https://i.pinimg.com/736x/8a/33/0a/8a330a9e7a5fbd9f6e73e57b9ea492fe.jpg" alt="Slide 3">
+        </div>
+        <div class="swiper-slide">
+          <img src="https://i.pinimg.com/736x/3b/93/50/3b935039c2763df65b8031fddd4ce00e.jpg" alt="Slide 4">
+        </div>
+        <div class="swiper-slide">
+          <img src="https://i.pinimg.com/736x/5b/88/03/5b8803c6682d79b34a767c3b7e85d1c4.jpg" alt="Slide 5">
+        </div>
+        <div class="swiper-slide">
+          <img src="https://i.pinimg.com/736x/3b/93/50/3b935039c2763df65b8031fddd4ce00e.jpg" alt="Slide 4">
+        </div>
+        </div>
+        <!-- arrow -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+        </div>
     </div>
-</section>
+        </div>
+   
     <!-- ============================================================
          WORLD SECTION
          ============================================================ -->
@@ -6925,7 +7009,7 @@ DIWALI SECTION
     <!-- ============================================================
          EXTERNAL SCRIPTS
          ============================================================ -->
-   
+   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <script>
   (function () {
     const elements = document.querySelectorAll(".scroll-lift");
@@ -7287,131 +7371,37 @@ navbar.addEventListener('mouseleave', () => {
      /* ========================================================
    LIFESTYLE CAROUSEL (UPDATED SMOOTH SLIDER)
    ======================================================== */
-(function() {
-    const lifestyleTrackNew = document.getElementById('lifestyleTrackNew');
-    const lifestylePrevNew = document.getElementById('lifestylePrevNew');
-    const lifestyleNextNew = document.getElementById('lifestyleNextNew');
-    const lifestylePaginationNew = document.getElementById('lifestylePaginationNew');
-
-    const lifestyleItemsData = [
-        { name: "DAILY WEAR", image: "https://i.pinimg.com/1200x/c3/3d/23/c33d23c7a1833a1ab828d5a4a65e6f39.jpg" },
-        { name: "OFFICE WEAR", image: "https://i.pinimg.com/736x/ce/b3/74/ceb374203a8ab8b43809c7b0b264ff3e.jpg" },
-        { name: "PARTY WEAR", image: "https://i.pinimg.com/736x/92/64/6a/92646a0d09b3b2e3be82879c2787006e.jpg" },
-        { name: "DAY OUT", image: "https://i.pinimg.com/1200x/23/67/9a/23679a845da4590d6edf8bcf675d4137.jpg" },
-        { name: "FESTIVE", image: "https://i.pinimg.com/736x/11/c7/21/11c721a83df639ea0187b5b422f3fd4c.jpg" },
-        { name: "CASUAL", image: "https://i.pinimg.com/1200x/19/b6/af/19b6af5a789d1bef849deadd33388d7d.jpg" },
-        { name: "ELEGANT", image: "https://i.pinimg.com/736x/18/85/f1/1885f137d67596b779f4556e2e1950da.jpg" }
-    ];
-
-    let lifestyleCurrentIdx = 0;
-    const lifestyleTotalSlides = lifestyleItemsData.length;
-    let lifestyleSlideElements = [];
-
-    function initLifestyleSlider() {
-        if (!lifestyleTrackNew || !lifestylePaginationNew) return;
-
-        // Create slides
-        lifestyleTrackNew.innerHTML = '';
-        lifestylePaginationNew.innerHTML = '';
-        lifestyleSlideElements = [];
-
-        lifestyleItemsData.forEach(function(item, index) {
-            // Create slide
-            const slide = document.createElement('div');
-            slide.className = 'lifestyle-slide-new';
-            slide.innerHTML = `
-                <img src="${item.image}" alt="${item.name}">
-                <div class="lifestyle-slide-overlay-new">
-                    <h3 class="lifestyle-slide-title-new">${item.name}</h3>
-                </div>
-            `;
-            slide.addEventListener('click', function() {
-                goToLifestyleSlide(index);
-            });
-            lifestyleTrackNew.appendChild(slide);
-            lifestyleSlideElements.push(slide);
-
-            // Create pagination dot
-            const dot = document.createElement('div');
-            dot.className = 'lifestyle-dot-new';
-            if (index === 0) dot.classList.add('active');
-            dot.addEventListener('click', function() {
-                goToLifestyleSlide(index);
-            });
-            lifestylePaginationNew.appendChild(dot);
-        });
-
-        updateLifestyleSlider();
-    }
-
-    function getLifestyleSlideClass(index) {
-        const diff = index - lifestyleCurrentIdx;
-
-        if (diff === 0) return 'active';
-        if (diff === 1 || diff === -(lifestyleTotalSlides - 1)) return 'next';
-        if (diff === -1 || diff === lifestyleTotalSlides - 1) return 'prev';
-        if (diff === 2 || diff === -(lifestyleTotalSlides - 2)) return 'far-next';
-        if (diff === -2 || diff === lifestyleTotalSlides - 2) return 'far-prev';
-        if (diff > 0) return 'hidden-right';
-        return 'hidden';
-    }
-
-    function updateLifestyleSlider() {
-        lifestyleSlideElements.forEach(function(slide, index) {
-            slide.className = 'lifestyle-slide-new ' + getLifestyleSlideClass(index);
-        });
-
-        // Update pagination dots
-        const dots = lifestylePaginationNew.querySelectorAll('.lifestyle-dot-new');
-        dots.forEach(function(dot, index) {
-            if (index === lifestyleCurrentIdx) {
-                dot.classList.add('active');
-            } else {
-                dot.classList.remove('active');
-            }
-        });
-    }
-
-    function goToLifestyleSlide(index) {
-        lifestyleCurrentIdx = index;
-        updateLifestyleSlider();
-    }
-
-    function nextLifestyleSlide() {
-        lifestyleCurrentIdx = (lifestyleCurrentIdx + 1) % lifestyleTotalSlides;
-        updateLifestyleSlider();
-    }
-
-    function prevLifestyleSlide() {
-        lifestyleCurrentIdx = (lifestyleCurrentIdx - 1 + lifestyleTotalSlides) % lifestyleTotalSlides;
-        updateLifestyleSlider();
-    }
-
-    // Event listeners
-    if (lifestylePrevNew) {
-        lifestylePrevNew.addEventListener('click', prevLifestyleSlide);
-    }
-
-    if (lifestyleNextNew) {
-        lifestyleNextNew.addEventListener('click', nextLifestyleSlide);
-    }
-
-    // Keyboard navigation
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'ArrowLeft') prevLifestyleSlide();
-        if (e.key === 'ArrowRight') nextLifestyleSlide();
+ var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 30,
+        stretch: 150,
+        depth: 100,
+        scale: 0.9,
+        modifier: 1,
+        slideShadows: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      loop: true,
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        600: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+      },
     });
 
-    // Initialize on load
-    if (document.readyState === 'complete') {
-        initLifestyleSlider();
-    } else {
-        window.addEventListener('load', initLifestyleSlider);
-    }
-
-    // Optional: Auto-play (uncomment to enable)
-    // setInterval(nextLifestyleSlide, 4000);
-})();
 
         /* ========================================================
            JEWELRY SHOTS VIDEO SLIDER
