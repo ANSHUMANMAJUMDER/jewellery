@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jewellery in Motion – ARATA Style</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Inter, Arial, sans-serif;
+}
+
+body {
+    background: #f4f7fb;
+    padding: 40px;
+}
+
+/* SECTION */
+.jm-reels-section {
+    max-width: 1200px;
+    margin: auto;
+}
+
+.jm-reels-header {
+    margin-bottom: 20px;
+}
+
+.jm-section-title {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.jm-section-subtitle {
+    color: #666;
+    margin-top: 4px;
+}
+
+/* TRACK */
+.jm-reels-wrapper {
+    position: relative;
+}
+
+.jm-reels-track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding-bottom: 30px;
+}
+
+.jm-reels-track::-webkit-scrollbar {
+    display: none;
+}
+
+/* CARD */
+.jm-reel-card {
+    position: relative;
+    min-width: 260px;
+    height: 460px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: #000;
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.jm-reel-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.jm-reel-card:hover video {
+    transform: scale(1.05);
+}
+
+/* PRODUCT PILL */
+.jm-reel-product {
+    position: absolute;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    background: #fff;
+    border-radius: 999px;
+    padding: 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.jm-reel-product img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.jm-reel-product-info {
+    display: flex;
+    flex-direction: column;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+.jm-reel-title {
+    font-weight: 600;
+    color: #111;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.jm-reel-price {
+    color: #2563eb;
+    font-weight: 600;
+}
+
+/* ARROWS */
+.jm-reels-prev,
+.jm-reels-next {
+    position: absolute;
+    top: 45%;
+    transform: translateY(-50%);
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: #fff;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    font-size: 18px;
+}
+
+.jm-reels-prev { left: -20px; }
+.jm-reels-next { right: -20px; }
+
+/* MODAL */
+#jmModal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+#jmModal.active {
+    display: flex;
+}
+
+.jm-modal-content {
+    background: #fff;
+    width: 90%;
+    max-width: 900px;
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+}
+
+.jm-modal-video {
+    width: 50%;
+    background: #000;
+}
+
+.jm-modal-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.jm-modal-info {
+    padding: 24px;
+    width: 50%;
+}
+
+.jm-modal-info h2 {
+    margin-bottom: 10px;
+}
+
+.jm-modal-price {
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.jm-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 26px;
+    cursor: pointer;
+    color: #fff;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+    body { padding: 20px; }
+    .jm-reel-card {
+        min-width: 220px;
+        height: 400px;
+    }
+    .jm-modal-content {
+        flex-direction: column;
+    }
+    .jm-modal-video,
+    .jm-modal-info {
+        width: 100%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section class="jm-reels-section">
+    <div class="jm-reels-header">
+        <div class="jm-section-title">JEWELLERY IN MOTION</div>
+        <div class="jm-section-subtitle">Scroll through our latest styling videos</div>
+    </div>
+
+    <div class="jm-reels-wrapper">
+        <button class="jm-reels-prev">‹</button>
+
+        <div class="jm-reels-track">
+
+            <div class="jm-reel-card jm-scroll-animate" data-product="1">
+                <video src="videos/jewellery1.mp4" muted loop autoplay playsinline></video>
+                <div class="jm-reel-product">
+                    <img src="images/product1.jpg">
+                    <div class="jm-reel-product-info">
+                        <span class="jm-reel-title">Diamond Necklace</span>
+                        <span class="jm-reel-price">₹24,999</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jm-reel-card jm-scroll-animate" data-product="2">
+                <video src="videos/jewellery2.mp4" muted loop autoplay playsinline></video>
+                <div class="jm-reel-product">
+                    <img src="images/product2.jpg">
+                    <div class="jm-reel-product-info">
+                        <span class="jm-reel-title">Gold Earrings</span>
+                        <span class="jm-reel-price">₹18,499</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="jm-reel-card jm-scroll-animate" data-product="3">
+                <video src="videos/jewellery3.mp4" muted loop autoplay playsinline></video>
+                <div class="jm-reel-product">
+                    <img src="images/product3.jpg">
+                    <div class="jm-reel-product-info">
+                        <span class="jm-reel-title">Bracelet</span>
+                        <span class="jm-reel-price">₹12,999</span>
+                    </div>
+                </div>
+            </div>
+            <div class="jm-reel-card jm-scroll-animate" data-product="4">
+                <video src="videos/jewellery4.mp4" muted loop autoplay playsinline></video>
+                <div class="jm-reel-product">
+                    <img src="images/product4.jpg">
+                    <div class="jm-reel-product-info">
+                        <span class="jm-reel-title">Sapphire Ring</span>
+                        <span class="jm-reel-price">₹15,499</span>
+                    </div>
+                </div>
+            </div>
+            <div class="jm-reel-card jm-scroll-animate" data-product="5">
+                <video src="videos/jewellery5.mp4" muted loop autoplay playsinline></video>
+                <div class="jm-reel-product">
+                    <img src="images/product5.jpg">
+                    <div class="jm-reel-product-info">
+                        <span class="jm-reel-title">Emerald Pendant</span>
+                        <span class="jm-reel-price">₹22,999</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <button class="jm-reels-next">›</button>
+    </div>
+</section>
+
+<!-- MODAL -->
+<div id="jmModal">
+    <div class="jm-modal-close" id="jmModalClose">✕</div>
+    <div class="jm-modal-content">
+        <div class="jm-modal-video">
+            <video id="jmModalVideo" controls></video>
+        </div>
+        <div class="jm-modal-info">
+            <h2 id="jmModalTitle"></h2>
+            <div class="jm-modal-price" id="jmModalPrice"></div>
+            <p id="jmModalDescription"></p>
+        </div>
+    </div>
+</div>
+
+<script>
+/* YOUR JS – UNCHANGED */
+const jmProducts = {
+    1: {
+        video: 'videos/jewellery1.mp4',
+        image: 'images/product1.jpg',
+        name: 'Elegant Diamond Necklace Set',
+        price: '₹24,999',
+        description: 'Premium diamond necklace set.'
+    },
+    2: {
+        video: 'videos/jewellery2.mp4',
+        image: 'images/product2.jpg',
+        name: 'Traditional Gold Earrings',
+        price: '₹18,499',
+        description: 'Beautiful gold earrings.'
+    },
+    3: {
+        video: 'videos/jewellery3.mp4',
+        image: 'images/product3.jpg',
+        name: 'Pearl & Crystal Bracelet',
+        price: '₹12,999',
+        description: 'Elegant bracelet.'
+    },
+    4: {
+        video: 'videos/jewellery4.mp4',
+        image: 'images/product4.jpg',
+        name: 'Sapphire Ring',
+        price: '₹15,499',
+        description: 'Stunning sapphire ring.'
+    },
+    5: {
+        video: 'videos/jewellery5.mp4',
+        image: 'images/product5.jpg',
+        name: 'Emerald Pendant',
+        price: '₹22,999',
+        description: 'Beautiful emerald pendant.'
+    }
+};
+
+const jmTrack = document.querySelector('.jm-reels-track');
+document.querySelector('.jm-reels-prev').onclick = () => jmTrack.scrollBy({left:-300,behavior:'smooth'});
+document.querySelector('.jm-reels-next').onclick = () => jmTrack.scrollBy({left:300,behavior:'smooth'});
+
+const jmModal = document.getElementById('jmModal');
+const jmModalVideo = document.getElementById('jmModalVideo');
+const jmModalTitle = document.getElementById('jmModalTitle');
+const jmModalPrice = document.getElementById('jmModalPrice');
+const jmModalDescription = document.getElementById('jmModalDescription');
+
+const jmCards = [...document.querySelectorAll('.jm-reel-card')];
+let jmCurrentIndex = 0;
+
+function jmOpenProductByIndex(index){
+    if(index<0) index=jmCards.length-1;
+    if(index>=jmCards.length) index=0;
+    jmCurrentIndex=index;
+    const product = jmProducts[jmCards[index].dataset.product];
+    jmModalVideo.src = product.video;
+    jmModalTitle.textContent = product.name;
+    jmModalPrice.textContent = product.price;
+    jmModalDescription.textContent = product.description;
+    jmModal.classList.add('active');
+}
+
+jmCards.forEach((c,i)=>c.onclick=()=>jmOpenProductByIndex(i));
+document.getElementById('jmModalClose').onclick=()=>jmModal.classList.remove('active');
+jmModal.onclick=e=>{ if(e.target===jmModal) jmModal.classList.remove('active'); };
+</script>
+
+</body>
+</html>
