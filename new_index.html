@@ -91,13 +91,8 @@ h3,
 .lifestyle-info h3,
 .gender-text h3,
 .gender-info h3,
-.gender-info p,
-.gender-text p,
-.banner-content p,
 .general-banner-overlay h2,
-.general-banner-overlay p,
 .gifting-banner-overlay h2,
-.gifting-banner-overlay p,
 .banner-content h2,
 .csr-content h3,
 .world-section .section-title,
@@ -117,8 +112,12 @@ h3,
 .hotspot-product-meta,
 .modal-product-meta,
 .csr-stat-label,
-.promo-content span
- {
+.promo-content span,
+.gender-text p,
+.gender-info p,
+.gifting-banner-overlay p,
+.general-banner-overlay p,
+.banner-content p {
     font-family: var(--font-secondary);
 }
 
@@ -127,14 +126,13 @@ h3,
            ============================================================ */
       
               
-       nav {
+        nav {
             position: fixed;
             top: 0;
             width: 100%;
             background: transparent;
-            /* z-index: 1000; */
+            z-index: 1000;
             transition: all 0.4s ease;
-            z-index: 9999; 
         }
 
         nav.scrolled,
@@ -514,14 +512,12 @@ h3,
        
 
   .hotspot-section {
-            /* padding: 4rem 2rem; */
-            padding-top: 40px;
-            padding-bottom: 40px;
+            padding: 4rem 2rem;
             background: linear-gradient(135deg, #f8f3ec 0%, #fdf9f5 100%);
         }
 
         .hotspot-container {
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
         }
 
@@ -539,12 +535,11 @@ h3,
         }
 
         .hotspot-title p {
-            font-size: 1.2rem;
+            font-size: 0.85rem;
             color: var(--dark-black);
             opacity: 0.7;
             letter-spacing: 2px;
-            /* text-transform: uppercase; */
-            font-family: var(--font-primary);
+            text-transform: uppercase;
         }
 
         .hotspot-layout {
@@ -560,10 +555,7 @@ h3,
             overflow: hidden;
             border-radius: 2px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.18);
-              height: 60vh;            /* desktop-friendly height */
-    max-height: 520px;       /* prevent overgrowth */
         }
-       
 
         .hotspot-main-image {
             width: 100%;
@@ -660,9 +652,7 @@ h3,
             margin: 0 auto;
             position: relative;
             overflow: hidden;
-              /* max-height: 380px;    */
         }
-   
 
         .hotspot-details-panel::before {
             content: '';
@@ -769,105 +759,6 @@ h3,
             text-transform: uppercase;
             color: rgba(2,0,13,0.45);
         }
-
-
-        /* =========================================
-   HOTSPOT DETAILS PANEL — SHRINK (NO SCROLL)
-   ========================================= */
-
-.hotspot-details-panel{
-  max-width: 380px;                 /* smaller panel width */
-  padding: 1.25rem 1.35rem 1.1rem;  /* tighter padding */
-  box-shadow: 0 12px 34px rgba(0,0,0,0.12);
-}
-
-/* smaller image block */
-.hotspot-detail-image-wrapper{
-  height: 135px;                 /* keep compact height */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f7f7f7;           /* subtle neutral background */
-  overflow: hidden;
-}
-
-.hotspot-detail-image{
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;           /* 🔑 KEY FIX */
-}
-/* tighter typography + spacing */
-.hotspot-eyebrow{
-  font-size: 0.65rem;
-  letter-spacing: 2.5px;
-  margin-bottom: 0.4rem;
-}
-
-.hotspot-divider{
-  width: 52px;
-  margin-bottom: 0.85rem;
-}
-
-.hotspot-product-title{
-  font-size: 1.1rem;
-  letter-spacing: 0.6px;
-  margin-bottom: 0.2rem;
-}
-
-.hotspot-product-meta{
-  font-size: 0.75rem;
-  letter-spacing: 0.9px;
-  margin-bottom: 0.65rem;
-}
-
-.hotspot-product-description{
-  font-size: 0.85rem;
-  line-height: 1.45;
-  margin-bottom: 0.85rem;
-}
-
-.hotspot-product-price{
-  font-size: 1rem;
-  margin-bottom: 0.9rem;
-}
-
-/* smaller buttons */
-.hotspot-buttons{
-  gap: 0.5rem;
-  margin-bottom: 0.85rem;
-}
-
-.product-btn{
-  padding: 0.55rem 1.15rem;
-  font-size: 0.65rem;
-  letter-spacing: 1.2px;
-}
-
-/* smaller hint */
-.hotspot-hint{
-  font-size: 0.65rem;
-  letter-spacing: 0.7px;
-}
-
-/* remove any chance of internal scroll */
-.hotspot-details-panel{
-  overflow: hidden;
-}
-
-/* Responsive tune */
-@media (max-width: 768px){
-  .hotspot-details-panel{
-    max-width: 100%;
-    padding: 1.1rem 1.1rem 1rem;
-  }
-
-  .hotspot-detail-image-wrapper{
-    height: 120px;
-  }
-}
-
 
         .hotspot-modal {
             display: none;
@@ -1015,9 +906,6 @@ h3,
             padding: 1rem 1.5rem;
         }
 
-
-
-        /* SEARCH//  */
         .search-overlay {
             position: fixed;
             top: 0;
@@ -1166,7 +1054,7 @@ h3,
         }
 
         @media (max-width: 768px) {
-             .nav-container {
+            .nav-container {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
@@ -1267,6 +1155,7 @@ h3,
                 content: ' ▾';
                 float: right;
             }
+
             .hero-slider-section {
                 height: 100vh;
             }
@@ -1695,24 +1584,22 @@ h3,
         /* ============================================================
            PROMO STRIP SECTION
            ============================================================ */
-  .promo-strip {
-    background: var(--primary-blue);
-    color: var(--white);
-    padding: 0.8rem 0;
-    overflow: hidden;
-}
+        .promo-strip {
+            background: var(--primary-blue);
+            color: var(--white);
+            padding: 0.8rem 0;
+            overflow: hidden;
+        }
 
-.promo-content {
-    display: flex;
-    gap: 3rem;
-    animation: scroll 20s linear infinite;
-    width: fit-content;
-}
-
-.promo-content a {
-    text-decoration: none;
-    color: inherit;
-    cursor: pointer;
+        .promo-content {
+            display: flex;
+            gap: 3rem;
+            animation: scroll 30s linear infinite;
+        }
+        .promo-content a {
+    text-decoration: none;       /* Remove underline */
+    color: inherit;              /* Keep same text color */
+    cursor: pointer;             /* Remove link pointer if you want */
 }
 
 .promo-content a:visited,
@@ -1722,27 +1609,286 @@ h3,
     color: inherit;
 }
 
-.promo-content span {
-    font-size: 0.85rem;
-    letter-spacing: 2px;
-    white-space: nowrap;
-}
 
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-}
+        .promo-content span {
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
 
-@media (max-width: 480px) {
-    .promo-content span {
-        font-size: 0.75rem;
-    }
-}
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
+        /* Promo Strip - Small Mobile */
+        @media (max-width: 480px) {
+            .promo-content span {
+                font-size: 0.75rem;
+            }
+        }
 
         /* ============================================================
            COLLECTION RANGE SLIDER SECTION
            ============================================================ */
-        .collection-range-section {
+        /* .collection-range-section {
+            padding: 5rem 2rem;
+            background: var(--white);
+        }
+
+        .collection-range-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            padding: 0 60px;
+        }
+
+        .collection-cards-wrapper {
+            overflow: hidden;
+            padding: 1rem 0;
+        }
+
+        .collection-cards {
+            display: flex;
+            gap: 1.5rem;
+            transition: transform 0.4s ease;
+            will-change: transform;
+        }
+
+        .collection-range-card {
+            min-width: 180px;
+            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .collection-range-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .collection-card-image {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            overflow: hidden;
+            background: #f5f5f5;
+            border: 3px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        .collection-range-card:hover .collection-card-image {
+            border-color: var(--primary-blue);
+            box-shadow: 0 10px 30px rgba(7,32,63,0.2);
+        }
+
+        .collection-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .collection-range-card:hover .collection-card-image img {
+            transform: scale(1.1);
+        }
+
+        .collection-range-overlay {
+            text-align: center;
+            padding-top: 1rem;
+        }
+
+        .collection-range-overlay h3 {
+            font-size: 1.1rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+        }
+
+        .collection-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: var(--white);
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .collection-nav-btn:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .collection-nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        .collection-nav-btn.prev {
+            left: 10px;
+        }
+
+        .collection-nav-btn.next {
+            right: 10px;
+        }
+
+        .collection-range-link {
+            display: inline-block;
+            margin-top: 3rem;
+            padding: 1rem 3rem;
+            background: var(--primary-blue);
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            border-radius: 50px;
+            transition: all 0.4s ease;
+            border: 2px solid var(--primary-blue);
+        }
+
+        .collection-range-link:hover {
+            background: transparent;
+            color: var(--primary-blue);
+        } */
+
+        /* Collection Range - Tablet */
+        /* @media (max-width: 1024px) {
+            .collection-range-section {
+                padding: 3rem 1rem;
+            }
+
+            .collection-range-container {
+                padding: 0 40px;
+            }
+
+            .collection-card-image {
+                width: 150px;
+                height: 150px;
+            }
+
+            .collection-range-card {
+                min-width: 150px;
+            }
+
+            .collection-nav-btn.prev {
+                left: 0;
+            }
+
+            .collection-nav-btn.next {
+                right: 0;
+            }
+        } */
+
+        /* Collection Range - Mobile */
+        /* @media (max-width: 768px) {
+            .collection-range-container {
+                padding: 0 50px;
+            }
+
+            .collection-card-image {
+                width: 140px;
+                height: 140px;
+            }
+
+            .collection-range-card {
+                min-width: 140px;
+            }
+
+            .collection-range-overlay h3 {
+                font-size: 0.95rem;
+                letter-spacing: 1.5px;
+            }
+
+            .collection-nav-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .collection-nav-btn.prev {
+                left: 0;
+            }
+
+            .collection-nav-btn.next {
+                right: 0;
+            }
+
+            .collection-range-link {
+                padding: 0.8rem 2rem;
+                font-size: 0.85rem;
+            }
+        } */
+
+     /* Collection Range - Small Mobile */
+        /* @media (max-width: 480px) {
+            .collection-range-section {
+                padding: 3rem 0.5rem;
+            }
+
+            .collection-range-container {
+                padding: 0 0.5rem;
+            }
+
+            .collection-cards-wrapper {
+                overflow: visible;
+                padding: 0;
+            }
+
+            .collection-cards {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                transform: none !important;
+                transition: none;
+            }
+
+            .collection-card-image {
+                width: 100%;
+                max-width: 130px;
+                height: 130px;
+                margin: 0 auto;
+                border: 2px solid transparent;
+            }
+
+            .collection-range-card {
+                min-width: auto;
+                width: 100%;
+                padding: 0.5rem;
+            }
+
+            .collection-range-overlay {
+                padding-top: 0.75rem;
+            }
+
+            .collection-range-overlay h3 {
+                font-size: 0.85rem;
+                letter-spacing: 1px;
+            }
+
+            .collection-nav-btn {
+                display: none;
+            }
+
+            .collection-range-link {
+                margin-top: 1.5rem;
+                padding: 0.7rem 2rem;
+                font-size: 0.8rem;
+            }
+        } */
+             .collection-range-section {
             /* padding: 5rem 2rem; */
             padding-top: 40px;
             padding-bottom: 40px;
@@ -2038,200 +2184,6 @@ h3,
     }
 }
 
-
-/* ===============================
-   DIWALI BANNER — ETTHNICOAST
-   =============================== */
-
-.ec-diwali-banner{
-  background: var(--white);
-  margin: 4rem 0;
-}
-
-.ec-diwali-container{
-  padding: 0 0 10px 10px;  
-  max-width: 100%;
-  margin: 0 auto;
-  height: 450px;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
- 
-  /* premium deep gradient like your arrivals */
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, var(--primary-blue) 100%);
-}
-
-/* left content */
-.ec-diwali-content{
-  position: relative;
-  z-index: 2;
-  /* padding: 0 4rem; */
-  max-width: 55%;
-  color: var(--white);
-  padding-top: 40px;
-      padding-left: 19px;
-}
-
-.ec-diwali-eyebrow{
-  font-family: var(--font-secondary);
-  font-size: 0.85rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--secondary-peach);
-  margin-bottom: 1rem;
-}
-
-.ec-diwali-content h2{
-  font-family: var(--font-primary);
-  font-size: 3.4rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  margin-bottom: 1.2rem;
-}
-
-.ec-diwali-sub{
-  font-family: var(--font-secondary);
-  font-size: 1.05rem;
-  line-height: 1.8;
-  color: rgba(255,255,255,0.9);
-  max-width: 520px;
-  margin-bottom: 2rem;
-}
-
-.ec-diwali-actions{
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-bottom: 1.2rem;
-}
-
-.ec-diwali-btn{
-  display: inline-block;
-  text-decoration: none;
-  font-family: var(--font-secondary);
-  font-size: 0.85rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  padding: 0.95rem 2.6rem;
-  border: 2px solid transparent;
-  transition: all 0.25s ease;
-}
-
-.ec-diwali-btn.primary{
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  border-color: var(--secondary-peach);
-}
-
-.ec-diwali-btn.primary:hover{
-  background: transparent;
-  color: var(--secondary-peach);
-}
-
-.ec-diwali-btn.secondary{
-  background: transparent;
-  border-color: rgba(255,255,255,0.45);
-  color: var(--white);
-}
-
-.ec-diwali-btn.secondary:hover{
-  border-color: var(--secondary-peach);
-  color: var(--secondary-peach);
-}
-
-.ec-diwali-note{
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.78);
-  letter-spacing: 0.03em;
-}
-
-/* right image */
-.ec-diwali-visual{
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 48%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.ec-diwali-visual::before{
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--primary-blue) 0%, transparent 55%);
-  z-index: 1;
-}
-
-.ec-diwali-visual img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-.ec-diwali-container:hover .ec-diwali-visual img{
-  transform: scale(1.05);
-}
-
-/* badge */
-.ec-diwali-badge{
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 2;
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  font-family: var(--font-secondary);
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  padding: 0.45rem 0.95rem;
-}
-
-/* ===============================
-   RESPONSIVE
-   =============================== */
-
-@media (max-width: 1024px){
-  .ec-diwali-container{ height: 380px; }
-  .ec-diwali-content{ padding: 0 3rem; max-width: 70%; }
-  .ec-diwali-content h2{ font-size: 2.8rem; }
-  .ec-diwali-sub{ font-size: 1rem; }
-  .ec-diwali-visual{ width: 55%; }
-}
-
-@media (max-width: 768px){
-  .ec-diwali-banner{ margin: 2rem 0; }
-  .ec-diwali-container{
-    height: 330px;
-    background: linear-gradient(135deg, #1a1a2e 0%, var(--primary-blue) 100%);
-  }
-  .ec-diwali-content{
-    padding: 0 1.6rem;
-    max-width: 100%;
-  }
-  .ec-diwali-content h2{ font-size: 2.1rem; }
-  .ec-diwali-sub{ font-size: 0.95rem; max-width: 100%; }
-  .ec-diwali-btn{ padding: 0.85rem 2.1rem; }
-  .ec-diwali-visual{
-    width: 100%;
-    opacity: 0.18;  /* soft background image like hero */
-  }
-  .ec-diwali-visual::before{
-    background: linear-gradient(90deg, var(--primary-blue) 35%, transparent 100%);
-  }
-}
-
-@media (max-width: 480px){
-  .ec-diwali-container{ height: 300px; }
-  .ec-diwali-content h2{ font-size: 1.8rem; }
-  .ec-diwali-eyebrow{ font-size: 0.75rem; }
-  .ec-diwali-note{ font-size: 0.85rem; }
-}
-
         /* ============================================================
            SHARED SECTION STYLES
            ============================================================ */
@@ -2246,10 +2198,10 @@ h3,
 
         .section-subtitle {
             text-align: center;
-            font-size: 1.2rem;
+            font-size: 1rem;
             color: var(--dark-black);
             opacity: 0.7;
-            margin-bottom: 1rem;
+            margin-bottom: 4rem;
         }
 
         .cta-button {
@@ -2373,15 +2325,10 @@ h3,
         /* ============================================================
            GENDER SECTION
            ============================================================ */
-        /* .gender-section {
+        .gender-section {
             padding: 5rem 2rem;
             background: var(--white);
-        } */
-         .gender-section {
-             background: var(--white);
-             margin-top: 0;          /* remove extra top gap */
-             padding-top: 40px;      /* optional controlled spacing */
-}
+        }
 
         .gender-container {
             max-width: 1400px;
@@ -2391,7 +2338,7 @@ h3,
         .gender-grid {
             display: flex;
             flex-direction: column;
-            gap: 1rem;
+            gap: 4rem;
         }
 
         .gender-row {
@@ -2557,21 +2504,14 @@ h3,
         /* ============================================================
            NEW ARRIVALS BANNER SECTION - STYLE 1 (Modern Banner Style)
            ============================================================ */
-        /* .new-arrivals-banner {
+        .new-arrivals-banner {
             padding: 0;
             background: var(--white);
             margin: 4rem 0;
-        } */
-         .new-arrivals-banner {
-                  /* padding-top: 40px; */
-              /* background: var(--white); */
-              margin-bottom: 0;       /* reduce or remove bottom gap */
-              /* padding-bottom: 20px;   keep only needed spacing */
-              margin-top: 40px;
-            }
+        }
 
         .banner-container {
-            max-width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             height: 450px;
@@ -2608,7 +2548,7 @@ h3,
 
         .banner-content .cta-button {
             background: var(--secondary-peach);
-            color: var(--dark-black);
+            color: var(--white);
             border: 2px solid var(--secondary-peach);
             padding: 1rem 3rem;
             text-transform: uppercase;
@@ -2753,12 +2693,11 @@ h3,
         .gifting-banner {
             padding: 0;
             background: var(--white);
-            margin-top: 40px;
-            
+            margin: 4rem 0;
         }
 
         .gifting-banner-container {
-            max-width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             height: 500px;
@@ -2902,325 +2841,77 @@ h3,
        /* ============================================================
    LIFESTYLE SECTION (UPDATED SMOOTH SLIDER)
    ============================================================ */
-.lifestyle-section {
-    /* padding: 5rem 2rem; */
-    padding-top: 40px;
-    background: var(--white);
-    position: relative;
-}
-
-.lifestyle-container {
-    max-width: 1600px;
-    margin: 0 auto;
-    position: relative;
-}
-
-.lifestyle-slider-wrapper-new {
-    position: relative;
-    width: 100%;
-    max-width: 1400px;
-    height: 520px;
-    margin: 0 auto;
-    overflow: hidden;
-    perspective: 2000px;
-}
-
-.lifestyle-slider-track-new {
-    position: relative;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
+/* .swiper-section {
+     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 71vh;
+    background: white;
+    margin: 0;
+    padding: 0;
+}
+.lifestyle-container{
+        max-width: 1600px;
+    margin: 0 auto;
+    position: relative;
+}
+   .swiper {
+    width: 95%;
+    max-width: 1350px;
+    padding-bottom: 70px;  
 }
 
-.lifestyle-slide-new {
-    position: absolute;
-    width: 320px;
-    height: 420px;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.3);
-    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    cursor: pointer;
-}
-
-.lifestyle-slide-new img {
+   .swiper-slide {
+    background: #ccc;
+    border: 1px solid #0000008f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 380px;
+    font-size: 50px;
+   }
+   .swiper-slide img{
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
-    user-select: none;
-}
+   }
 
-.lifestyle-slide-overlay-new {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.7) 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: center;
-    padding-bottom: 3rem;
-    transition: background 0.3s ease;
-}
-
-.lifestyle-slide-new:hover .lifestyle-slide-overlay-new {
-    background: linear-gradient(180deg, transparent 55%, rgba(0, 0, 0, 0.8) 100%);
-}
-
-.lifestyle-slide-title-new {
-    font-family: var(--font-primary);
-    font-size: 2rem;
-    font-weight: 400;
-    letter-spacing: 5px;
-    color: var(--white);
-    text-transform: uppercase;
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
-    text-align: center;
-}
-
-/* Slide positions */
-.lifestyle-slide-new.active {
-    transform: translateX(0) scale(1) rotateY(0deg);
-    opacity: 1;
-    z-index: 10;
-    filter: brightness(1);
-}
-
-.lifestyle-slide-new.prev {
-    transform: translateX(-380px) scale(0.88) rotateY(15deg);
-    opacity: 0.95;
-    z-index: 5;
-    filter: brightness(0.9);
-}
-
-.lifestyle-slide-new.next {
-    transform: translateX(380px) scale(0.88) rotateY(-15deg);
-    opacity: 0.95;
-    z-index: 5;
-    filter: brightness(0.9);
-}
-
-.lifestyle-slide-new.far-prev {
-    transform: translateX(-680px) scale(0.76) rotateY(25deg);
-    opacity: 0.85;
-    z-index: 2;
-    filter: brightness(0.8);
-}
-
-.lifestyle-slide-new.far-next {
-    transform: translateX(680px) scale(0.76) rotateY(-25deg);
-    opacity: 0.85;
-    z-index: 2;
-    filter: brightness(0.8);
-}
-
-.lifestyle-slide-new.hidden {
-    transform: translateX(-1200px) scale(0.5);
-    opacity: 0;
-    z-index: 1;
-}
-
-.lifestyle-slide-new.hidden-right {
-    transform: translateX(1200px) scale(0.5);
-    opacity: 0;
-    z-index: 1;
-}
-
-/* Navigation arrows */
-.lifestyle-nav-arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
+   .swiper-button-next,
+   .swiper-button-prev {
+    color: #fff;
+    background: rgba(0, 0, 0, 0.5);
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
-    border: none;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
+    transition: all 0.3s ease;
+   }
+
+   .swiper-button-next:hover,
+   .swiper-button-prev:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+   }
+
+   .swiper-button-next::after,
+   .swiper-button-prev::after {
+    font-size: 20px;
+    font-weight: bold;
+   }
+  
+  .swiper-slide {
+    background-color: #fff;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 20;
-    transition: all 0.3s ease;
-}
-
-.lifestyle-nav-arrow:hover {
-    transform: translateY(-50%) scale(1.1);
-    background: var(--primary-blue);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-}
-
-.lifestyle-nav-arrow:hover i {
-    color: var(--white);
-}
-
-.lifestyle-nav-arrow:active {
-    transform: translateY(-50%) scale(0.95);
-}
-
-.lifestyle-nav-arrow.prev {
-    left: 30px;
-}
-
-.lifestyle-nav-arrow.next {
-    right: 30px;
-}
-
-.lifestyle-nav-arrow i {
-    font-size: 22px;
-    color: #333;
-    transition: color 0.3s ease;
-}
-
-/* Pagination dots */
-.lifestyle-pagination-new {
-    position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 12px;
-    z-index: 20;
-}
-
-.lifestyle-dot-new {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    background: rgba(7, 32, 63, 0.3);
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.lifestyle-dot-new.active {
-    width: 30px;
-    border-radius: 5px;
-    background: var(--primary-blue);
-}
-
-.lifestyle-dot-new:hover {
-    background: rgba(7, 32, 63, 0.6);
-}
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-    .lifestyle-slider-wrapper-new {
-        height: 470px;
-    }
-
-    .lifestyle-slide-new {
-        width: 280px;
-        height: 380px;
-    }
-
-    .lifestyle-slide-new.prev {
-        transform: translateX(-330px) scale(0.85) rotateY(15deg);
-    }
-
-    .lifestyle-slide-new.next {
-        transform: translateX(330px) scale(0.85) rotateY(-15deg);
-    }
-
-    .lifestyle-slide-title-new {
-        font-size: 1.6rem;
-        letter-spacing: 3px;
-    }
-}
-
-@media (max-width: 768px) {
-    .lifestyle-section {
-        padding: 3rem 1rem;
-    }
-
-    .lifestyle-slider-wrapper-new {
-        height: 420px;
-    }
-
-    .lifestyle-slide-new {
-        width: 260px;
-        height: 350px;
-    }
-
-    .lifestyle-slide-new.prev,
-    .lifestyle-slide-new.next {
-        transform: translateX(-300px) scale(0.8);
-        opacity: 0.6;
-    }
-
-    .lifestyle-slide-new.next {
-        transform: translateX(300px) scale(0.8);
-    }
-
-    .lifestyle-nav-arrow {
-        width: 50px;
-        height: 50px;
-    }
-
-    .lifestyle-nav-arrow i {
-        font-size: 18px;
-    }
-
-    .lifestyle-nav-arrow.prev {
-        left: 15px;
-    }
-
-    .lifestyle-nav-arrow.next {
-        right: 15px;
-    }
-
-    .lifestyle-slide-title-new {
-        font-size: 1.4rem;
-        letter-spacing: 2px;
-    }
-}
-
-@media (max-width: 480px) {
-    .lifestyle-slider-wrapper-new {
-        height: 380px;
-    }
-
-    .lifestyle-slide-new {
-        width: 240px;
-        height: 320px;
-    }
-
-    .lifestyle-slide-new.prev,
-    .lifestyle-slide-new.next {
-        transform: translateX(-260px) scale(0.75);
-        opacity: 0.4;
-    }
-
-    .lifestyle-slide-new.next {
-        transform: translateX(260px) scale(0.75);
-    }
-
-    .lifestyle-slide-title-new {
-        font-size: 1.2rem;
-        letter-spacing: 2px;
-    }
-
-    .lifestyle-nav-arrow {
-        width: 45px;
-        height: 45px;
-    }
-
-    .lifestyle-nav-arrow i {
-        font-size: 16px;
-    }
-}
-
+    font-size: 24px;
+    font-weight: bold;
+    color: #000;
+  } */
         /* ============================================================
    WORLD SECTION (MASONRY LAYOUT)
    ============================================================ */
 .world-section {
-    /* padding-top: 40px; */
-    /* padding: 5rem 2rem; */
+    padding: 5rem 2rem;
     background: var(--white);
 }
 
@@ -3442,106 +3133,187 @@ h3,
 }
 
 
-    /* ============================================================
-   BESTSELLERS SECTION (HORIZONTAL SCROLL)
-   ============================================================ */
+        /* ============================================================
+           BESTSELLERS SECTION
+           ============================================================ */
+        .bestsellers-section {
+            padding: 5rem 2rem;
+            /* background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%); */
+             background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--white) 100%);
+        }
 
-.bestsellers-section {
-    /* padding: 5rem 2rem; */
-    padding-top: 40px;
-    background: linear-gradient(135deg, var(--secondary-peach) 0%, var(--white) 100%);
-}
+        .bestsellers-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
 
-.bestsellers-container {
-    max-width: 1400px;
-    margin: 0 auto;
-}
+        .bestsellers-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-top: 3rem;
+        }
 
-.bestsellers-grid {
-    display: flex !important;
-    gap: 1.5rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    padding-bottom: 1rem;
-    padding-top: 1rem;
-    scrollbar-width: none; /* Firefox hide scrollbar */
-}
+        .bestseller-card {
+            background: var(--white);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateX(-40px) translateY(20px);
+        }
 
-.bestsellers-grid::-webkit-scrollbar {
-    display: none; /* Chrome/Edge/Safari hide scrollbar */
-}
+        .bestseller-card.scroll-animate {
+            opacity: 0;
+            transform: translateX(-40px) translateY(20px);
+        }
 
-.bestseller-card {
-    min-width: 280px;
-    background: var(--white);
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-    transition: all 0.4s ease;
-    cursor: pointer;
+        .bestseller-card.scroll-animate.animate {
+            animation: bestsellerFloatIn 0.7s ease-out forwards;
+        }
 
-    scroll-snap-align: center;
-}
+        .bestseller-card.scroll-animate:nth-child(1).animate {
+            animation-delay: 0.05s;
+        }
+        .bestseller-card.scroll-animate:nth-child(2).animate {
+            animation-delay: 0.15s;
+        }
+        .bestseller-card.scroll-animate:nth-child(3).animate {
+            animation-delay: 0.25s;
+        }
+        .bestseller-card.scroll-animate:nth-child(4).animate {
+            animation-delay: 0.35s;
+        }
+        .bestseller-card.scroll-animate:nth-child(5).animate {
+            animation-delay: 0.45s;
+        }
+        .bestseller-card.scroll-animate:nth-child(6).animate {
+            animation-delay: 0.55s;
+        }
 
-.bestseller-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-}
+        @keyframes bestsellerFloatIn {
+            0% {
+                opacity: 0;
+                transform: translateX(-40px) translateY(20px);
+            }
+            60% {
+                opacity: 1;
+                transform: translateX(0) translateY(-4px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateX(0) translateY(0);
+            }
+        }
 
-.bestseller-image {
-    position: relative;
-    height: 220px;
-    overflow: hidden;
-}
+        .bestseller-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
 
-.bestseller-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-}
+        .bestseller-image {
+            position: relative;
+            height: 350px;
+            overflow: hidden;
+        }
 
-.bestseller-card:hover .bestseller-image img {
-    transform: scale(1.1);
-}
+        .bestseller-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
 
-.bestseller-badge {
-    position: absolute;
-    top: 20px;
-    right: 20px;
-    background: var(--dark-black);
-    color: var(--white);
-    padding: 0.5rem 1rem;
-    border-radius: 25px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
+        .bestseller-card:hover .bestseller-image img {
+            transform: scale(1.1);
+        }
 
-/* text */
-.bestseller-info {
-    padding: 1.5rem;
-    text-align: center;
-}
+        .bestseller-badge {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--dark-black);
+            color: var(--white);
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
 
-.bestseller-info h3 {
-    font-size: 1.2rem;
-    letter-spacing: 1px;
-    margin-bottom: 0.4rem;
-}
+        .bestseller-info {
+            padding: 2rem;
+            text-align: center;
+        }
 
-/* ===== Responsive ===== */
+        .bestseller-info h3 {
+            font-size: 1.3rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            color: var(--primary-blue);
+            margin-bottom: 0.5rem;
+        }
+
+        .bestseller-info p {
+            font-size: 0.95rem;
+            color: var(--dark-black);
+            opacity: 0.7;
+            line-height: 1.6;
+        }
+
+        /* Bestsellers Section - Tablet */
+        @media (max-width: 1024px) {
+            .bestsellers-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+     /* Bestsellers Section - Mobile */
+/* Bestsellers Section - Mobile (≤ 768px) */
 @media (max-width: 768px) {
+
+    .bestsellers-section {
+        padding: 2.5rem 1rem;
+    }
+
+    .bestsellers-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr) !important; /* FORCE 2 columns */
+        gap: 1rem;
+        margin-top: 1.5rem;
+    }
+
     .bestseller-card {
-        min-width: 180px;
         border-radius: 10px;
+        box-shadow: 0 6px 16px rgba(0,0,0,0.08);
     }
 
     .bestseller-image {
-        height: 150px;
+        height: 160px !important;  /* MUCH smaller */
+    }
+
+    .bestseller-info {
+        padding: 1rem;
     }
 
     .bestseller-info h3 {
-        font-size: 0.9rem;
+        font-size: 0.95rem;
+        margin-bottom: 0.3rem;
+        letter-spacing: 1px;
+    }
+
+    .bestseller-info p {
+        font-size: 0.78rem;
+        line-height: 1.4;
+    }
+
+    .bestseller-badge {
+        top: 10px;
+        right: 10px;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
     }
 
     .bestseller-info p {
@@ -3549,48 +3321,28 @@ h3,
     }
 }
 
+/* Bestsellers Section - Small Mobile (≤ 480px) */
 @media (max-width: 480px) {
-    .bestseller-card {
-        min-width: 160px;
+    .bestsellers-grid {
+        grid-template-columns: repeat(2, 1fr) !important; /* still 2 columns */
+        gap: 0.8rem;
     }
 
     .bestseller-image {
-        height: 130px;
+        height: 135px !important; /* even smaller */
+    }
+
+    .bestseller-info h3 {
+        font-size: 0.9rem;
+    }
+
+    .bestseller-info p {
+        font-size: 0.75rem;
+    }
+    .bestseller-info p {
+        display: none !important;
     }
 }
-
-/* Scroll Arrow Buttons */
-.scroll-arrows {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1rem;
-    position: relative;
-}
-
-.scroll-btn {
-    background: var(--primary-blue);
-    color: white;
-    border: none;
-    padding: 0.6rem 1rem;
-    border-radius: 50%;
-    font-size: 1.3rem;
-    cursor: pointer;
-    transition: 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
-
-.scroll-btn:hover {
-    transform: scale(1.15);
-}
-
-/* Hide arrows on mobile (users will swipe) */
-@media(max-width: 768px){
-    .scroll-btn {
-        display: none;
-    }
-}
-
 
 
 
@@ -3826,574 +3578,197 @@ h3,
        /* ============================================================
    JEWELLERY VIDEO SLIDER SECTION (REELS)
    ============================================================ */
-      .jm-reels-section {
-            padding-top: 40px;
-            background: linear-gradient(
-                135deg,
-                var(--light-peach) 0%,
-                var(--white) 100%
-            );
-        }
-
-        .jm-reels-inner {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .jm-reels-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .jm-reels-header .jm-section-title {
-            font-size: 2.5rem;
-      
-            text-transform: uppercase;
-            font-family: var(--font-primary);
-            color: var(--primary-blue);
-            margin-bottom: 0.6rem;
-         
-        }
-
-        .jm-reels-header .jm-section-subtitle {
-         
-            font-family: var(--font-primary);
-        }
-        .jm-section-subtitle {
-            font-size: 1.2rem;
-        }
-
-      
-        .jm-reels-slider {
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-   
-         .jm-reels-wrapper {
-    position: relative;
+.insta-reels-section {
+    padding: 5rem 2rem;
+    background: linear-gradient(
+        135deg,
+        var(--light-peach) 0%,
+        var(--white) 100%
+    );
 }
 
-.jm-reels-track {
+.insta-reels-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.insta-reels-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.insta-reels-header .section-title {
+    font-size: 1.9rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--primary-blue);
+    margin-bottom: 0.6rem;
+}
+
+.insta-reels-header .section-subtitle {
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(2,0,13,0.7);
+}
+
+/* Slider wrapper */
+.insta-reels-slider {
+    position: relative;
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Track: horizontal scroll */
+.insta-reels-track {
+    display: flex;
+    gap: 2rem;
     overflow-x: auto;
-    scroll-behavior: smooth;
-    padding-bottom: 30px;
+    padding: 0.5rem 0.5rem 0.5rem 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox hide scroll */
+}
+.insta-reels-track::-webkit-scrollbar {
+    display: none; /* Chrome/Safari hide scroll */
 }
 
-.jm-reels-track::-webkit-scrollbar {
-    display: none;
+/* Cards */
+.insta-reel-card {
+    flex: 0 0 280px; /* width of each card */
+    background: var(--white);
+    border-radius: 20px;
+    padding: 5px;
+    box-shadow: 0 14px 35px rgba(0,0,0,0.12);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    opacity: 0;
+    transform: translateY(30px);
+    scroll-snap-align: start;
 }
 
-        .jm-reel-card {
-    position: relative;
-    min-width: 260px;
-    height: 460px;
-    border-radius: 28px;
+.insta-reel-card.animate {
+    animation: reelFloatUp 0.7s ease-out forwards;
+}
+
+.insta-reel-card:hover {
+    transform: translateY(-6px) scale(1.01);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.18);
+}
+
+/* Video frame */
+.insta-reel-frame {
+    border-radius: 16px;
     overflow: hidden;
     background: #000;
-    flex-shrink: 0;
-    cursor: pointer;
+    aspect-ratio: 9 / 16;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.jm-reel-card video {
+.insta-reel-frame video {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    transition: transform 0.5s ease;
 }
 
-.jm-reel-card:hover video {
-    transform: scale(1.05);
-}
-
-
-.jm-reel-product {
-    position: absolute;
-    left: 12px;
-    right: 12px;
-    bottom: 12px;
-    background: #fff;
-    border-radius: 999px;
-    padding: 8px 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.jm-reel-product img {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.jm-reel-product-info {
-    display: flex;
-    flex-direction: column;
-    font-size: 13px;
-    line-height: 1.2;
-}
-
-.jm-reel-title {
-    font-weight: 600;
-    color: #111;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.jm-reel-price {
+/* Slider arrows */
+.reels-arrow {
+    border: 1px solid rgba(7,32,63,0.2);
+    background: var(--white);
     color: var(--primary-blue);
-    font-weight: 600;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.25s ease;
 }
 
-        .jm-reels-arrow {
-            border: 1px solid rgba(7,32,63,0.2);
-            background: var(--white);
-            color: var(--primary-blue);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            flex-shrink: 0;
-            transition: all 0.25s ease;
-        }
-
-        .jm-reels-arrow:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-
-        .jm-reel-desc {
-    font-size: 12px;
-    color: #333;
-    font-weight: 500;
-    line-height: 1.3;
-
-    /* keep pill neat */
-    display: -webkit-box;
-    -webkit-line-clamp: 2;   /* max 2 lines */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
+.reels-arrow:hover {
+    background: var(--primary-blue);
+    color: var(--white);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
+/* Entrance animation */
+@keyframes reelFloatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    60% {
+        opacity: 1;
+        transform: translateY(-4px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-        /* ============================================================
-           MODAL STYLES
-           ============================================================ */
-        .jm-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(2,0,13,0.85); /* dark-black overlay */
-            z-index: 9999;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            animation: fadeIn 0.3s ease;
-        }
+/* Tablet */
+@media (max-width: 1024px) {
+    .insta-reels-section {
+        padding: 4rem 1.5rem;
+    }
+    .insta-reels-track {
+        gap: 1.5rem;
+    }
+    .insta-reel-card {
+        flex: 0 0 240px;
+    }
+}
 
-        .jm-modal.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .jm-modal-content {
-            background: var(--white);
-            border-radius: 20px;
-            max-width: 1100px;
-            width: 100%;
-            max-height: 90vh;
-            overflow: hidden;
-            display: flex;
-            position: relative;
-            animation: slideUp 0.4s ease;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .jm-modal-close {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 40px;
-            height: 40px;
-            background: rgba(0,0,0,0.7);
-            color: var(--white);
-            border: none;
-            border-radius: 50%;
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.3s ease;
-        }
-
-        .jm-modal-close:hover {
-            background: rgba(0,0,0,0.9);
-        }
-
-        .jm-modal-video {
-            flex: 1;
-            background: #000;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 500px;
-        }
-
-        .jm-modal-video video {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .jm-modal-product {
-            flex: 0 0 450px;
-            padding: 30px;
-            overflow-y: auto;
-            background: var(--white);
-        }
-
-        .jm-modal-product-image {
-            width: 100%;
-            max-width: 300px;
-            margin: 0 auto 25px;
-            display: block;
-            border-radius: 15px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-        }
-
-        .jm-modal-badges {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .jm-badge {
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-        }
-
-        .jm-badge-free {
-            background: var(--secondary-peach);
-            color: var(--dark-black);
-            border: 1px solid rgba(7,32,63,0.08);
-        }
-
-        .jm-badge-award {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-
-        .jm-modal-title {
-            font-size: 1.5rem;
-            color: var(--primary-blue);
-            margin-bottom: 15px;
-            font-weight: 700;
-            line-height: 1.4;
-            font-family: var(--font-primary);
-        }
-
-        .jm-modal-price {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 20px;
-        }
-
-        .jm-modal-desc-title {
-            font-size: 1.1rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 10px;
-        }
-
-        .jm-modal-desc-text {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--dark-black);
-            margin-bottom: 15px;
-        }
-
-        .jm-read-more {
-            color: var(--primary-blue);
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .jm-modal-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-
-        .jm-modal-btn {
-            flex: 1;
-            padding: 14px 20px;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 2px solid var(--primary-blue);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            font-family: var(--font-secondary);
-        }
-
-        .jm-btn-more-info {
-            background: transparent;
-            color: var(--primary-blue);
-        }
-
-        .jm-btn-more-info:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-
-        .jm-btn-add-cart {
-            background: var(--secondary-peach);
-            color: var(--dark-black);
-            border-color: var(--secondary-peach);
-        }
-
-        .jm-btn-add-cart:hover {
-            background: #f3ded0;
-            border-color: #f3ded0;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(2,0,13,0.25);
-        }
-
-        .jm-btn-cart-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--white);
-            border: 2px solid var(--primary-blue);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: var(--primary-blue);
-        }
-
-        .jm-btn-cart-icon:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-
-        /* Modal left/right arrows (for switching reels) */
-        .jm-modal-arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            border: 1px solid rgba(255,255,255,0.8);
-            background: rgba(0,0,0,0.65);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10000;
-            transition: all 0.25s ease;
-        }
-
-        .jm-modal-arrow:hover {
-            background: var(--white);
-            color: var(--primary-blue);
-        }
-
-        .jm-modal-prev {
-            left: 20px;
-        }
-
-        .jm-modal-next {
-            right: 20px;
-        }
-
-        /* Entrance animation */
-        @keyframes jmReelFloatUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            60% {
-                opacity: 1;
-                transform: translateY(-4px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .jm-modal-content {
-                flex-direction: column;
-                max-height: 85vh;
-            }
-
-            .jm-modal-video {
-                min-height: 300px;
-            }
-
-            .jm-modal-product {
-                flex: 1;
-            }
-        }
-
-        /* @media (max-width: 768px) {
-            .jm-reels-section {
-                padding: 3.5rem 1.2rem;
-            }
-            
-            .jm-reels-slider {
-                gap: 0.5rem;
-            }
-            
-            .jm-reels-arrow {
-                width: 34px;
-                height: 34px;
-            }
-            
-            .jm-reel-card {
-                flex: 0 0 220px;
-                margin: 0.25rem 0;
-            }
-
-            .jm-modal-product {
-                padding: 20px;
-            }
-
-            .jm-modal-buttons {
-                flex-direction: column;
-            }
-
-            .jm-btn-cart-icon {
-                width: 100%;
-            }
-
-            .jm-modal-arrow {
-                width: 36px;
-                height: 36px;
-            }
-        } */
-         /* Fix for Mobile Reel Modal */
+/* Mobile */
 @media (max-width: 768px) {
-    .jm-modal-content {
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 0;
-        background: #000; /* Dark background for cinematic feel */
+    .insta-reels-section {
+        padding: 3.5rem 1.2rem;
     }
 
-    .jm-modal-video-container {
-        flex: 1; /* Takes remaining space */
-        height: 70vh; /* Most of the screen for the video */
-        background: #000;
+    .insta-reels-slider {
+        gap: 0.5rem;
     }
 
-    .jm-modal-info {
-        flex: 0 0 auto;
-        width: 100% !important;
-        padding: 1.5rem;
-        background: #fff;
-        border-radius: 20px 20px 0 0; /* Rounded top for info panel */
-        margin-top: -20px; /* Slight overlap on video */
-        z-index: 2;
-        max-height: 35vh; /* Thin column layout */
-        overflow-y: auto;
+    .reels-arrow {
+        width: 34px;
+        height: 34px;
     }
 
-    /* Hide redundant long descriptions for mobile to keep it thin */
-    .jm-modal-info .jm-product-description {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        font-size: 0.85rem;
-    }
-
-    /* Stack buttons for better thumb reach */
-    .jm-modal-actions {
-        flex-direction: column;
-        gap: 10px;
+    .insta-reel-card {
+        flex: 0 0 220px;
+        margin: 0.25rem 0;
     }
 }
 
-        @media (max-width: 480px) {
-            .jm-reels-section {
-                padding: 3rem 1rem;
-            }
-            
-            .jm-product-name {
-                font-size: 0.8rem;
-            }
-            
-            .jm-product-price {
-                font-size: 0.95rem;
-            }
+/* Small Mobile */
+@media (max-width: 480px) {
+    .insta-reels-section {
+        padding: 3rem 1rem;
+    }
 
-            .jm-modal-title {
-                font-size: 1.2rem;
-            }
+    .insta-reel-card {
+        padding: 5px;
+        border-radius: 16px;
+    }
 
-            .jm-modal-price {
-                font-size: 1.5rem;
-            }
+    .insta-reel-frame {
+        border-radius: 12px;
+    }
+}
 
-            .jm-modal-prev {
-                left: 10px;
-            }
 
-            .jm-modal-next {
-                right: 10px;
-            }
-        }
+
 /* ============================================================
    PRICE SECTION (Compact & Premium)
    ============================================================ */
 .price-section {
-    padding-top: 40px;
-    padding-bottom: 20px;
-    /* padding: 3.5rem 1.5rem; reduced */
+    padding: 3.5rem 1.5rem; /* reduced */
     background: linear-gradient(135deg, #9B7E6B 0%, #8B6F5C 100%);
 }
 
@@ -4549,39 +3924,25 @@ h3,
        /* ============================================================
    OPTIONAL BANNER — ULTRA COMPACT VERSION
    ============================================================ */
-/* .optional-banner {
+.optional-banner {
     padding: 0;
     background: var(--white);
     margin: 1.5rem 0; 
     overflow: hidden;
-} */
-
-/* .optional-banner-container {
-    max-width: 900px;  
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 0.85fr 1fr;
-    min-height: 180px; 
-} */
-/* .optional-banner {
-    padding: 0;
-    background: var(--white);
-    margin: 3rem 0; 
-    overflow: hidden;
 }
 
 .optional-banner-container {
-    max-width: 1400px; 
+    max-width: 900px;  /* Much narrower */
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    min-height: 420px;  
-    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+    grid-template-columns: 0.85fr 1fr;
+    min-height: 180px;  /* Significantly reduced */
 }
 
+/* LEFT SIDE */
 .optional-banner-left {
     background: #07203F;
-    padding: 1.2rem 1.5rem;
+    padding: 1.2rem 1.5rem; /* Reduced padding */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -4598,9 +3959,9 @@ h3,
     background: radial-gradient(circle, rgba(235,222,212,0.05) 0%, transparent 70%);
 }
 
-
+/* CONTENT */
 .optional-banner-content h2 {
-    font-size: 1.3rem; 
+    font-size: 1.3rem; /* Smaller heading */
     font-weight: 300;
     letter-spacing: 1.5px;
     color: var(--white);
@@ -4608,7 +3969,7 @@ h3,
 }
 
 .optional-banner-content p {
-    font-size: 0.75rem;
+    font-size: 0.75rem; /* Smaller text */
     color: #EBDED4;
     line-height: 1.35;
     opacity: 0.9;
@@ -4616,7 +3977,7 @@ h3,
 }
 
 .optional-banner-content .cta-button {
-    padding: 0.5rem 1.3rem;
+    padding: 0.5rem 1.3rem; /* Smaller button */
     font-size: 0.7rem;
     background: #F8E3D2;
     color: #07203F;
@@ -4632,11 +3993,11 @@ h3,
     color: #F8E3D2;
 }
 
-
+/* RIGHT SIDE */
 .optional-banner-right {
     position: relative;
     overflow: hidden;
-    height: 420px;
+    height: 180px; /* Fixed height */
 }
 
 .optional-banner-right img {
@@ -4645,7 +4006,7 @@ h3,
     object-fit: cover;
 }
 
-
+/* BADGE */
 .optional-banner-badge {
     position: absolute;
     top: 0.6rem;
@@ -4659,7 +4020,9 @@ h3,
     font-weight: 600;
 }
 
-
+/* ===========================
+   TABLET
+   =========================== */
 @media (max-width: 1024px) {
 
     .optional-banner-container {
@@ -4681,7 +4044,9 @@ h3,
     }
 }
 
-
+/* ===========================
+   MOBILE
+   =========================== */
 @media (max-width: 768px) {
 
     .optional-banner {
@@ -4709,7 +4074,7 @@ h3,
     }
 
     .optional-banner-right {
-        height: 150px; 
+        height: 150px; /* Smaller mobile height */
     }
 
     .optional-banner-badge {
@@ -4720,7 +4085,9 @@ h3,
     }
 }
 
-
+/* ===========================
+   SMALL MOBILE
+   =========================== */
 @media (max-width: 480px) {
 
     .optional-banner-left {
@@ -4743,191 +4110,6 @@ h3,
         font-size: 0.5rem;
         padding: 0.3rem 0.7rem;
     }
-} */
- /* ============================================================
-   OPTIONAL BANNER — MATCH NEW ARRIVALS (STYLE 1)
-   ============================================================ */
-
-.optional-banner{
-    padding-top: 40px;
-  /* padding: 0; */
-  background: var(--white);
-  /* margin: 4rem 0; same as new-arrivals */
-  overflow: hidden;
-}
-
-/* SAME AS .banner-container */
-.optional-banner-container{
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  height: 450px;
-  overflow: hidden;
-  border-radius: 0;
-  display: flex;
-  align-items: center;
-  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-}
-
-/* LEFT CONTENT (same as .banner-content) */
-.optional-banner-left{
-  position: relative;
-  z-index: 2;
-  padding: 0 4rem;
-  max-width: 50%;
-  background: transparent;
-}
-
-.optional-banner-left::before{ display: none; }
-
-.optional-banner-content h2{
-  font-size: 3.5rem;
-  font-weight: 300;
-  letter-spacing: 5px;
-  color: var(--white);
-  margin-bottom: 1.5rem;
-  text-transform: uppercase;
-}
-
-.optional-banner-content p{
-  /* font-size: 1.15rem; */
-  line-height: 1.8;
-  margin-bottom: 2.5rem;
-  color: var(--white);
-  opacity: 0.9;
-  font-family: var(--font-primary);
-}
-
-/* CTA (same as .banner-content .cta-button) */
-.optional-banner-content .cta-button{
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  border: 2px solid var(--secondary-peach);
-  padding: 1rem 3rem;
-  text-transform: uppercase;
-  font-weight: 500;
-  letter-spacing: 1px;
-  text-decoration: none;
-  display: inline-block;
-  transition: all 0.3s ease;
-}
-
-.optional-banner-content .cta-button:hover{
-  background: transparent;
-  color: var(--secondary-peach);
-  border-color: var(--secondary-peach);
-}
-
-/* RIGHT IMAGE (same as .banner-image) */
-.optional-banner-right{
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 50%;
-  height: 100%;
-  overflow: hidden;
-}
-
-.optional-banner-right::before{
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, #0f3460 0%, transparent 50%);
-  z-index: 1;
-}
-
-.optional-banner-right img{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.6s ease;
-}
-
-/* same hover zoom effect as new-arrivals */
-.optional-banner-container:hover .optional-banner-right img{
-  transform: scale(1.05);
-}
-
-/* BADGE (keep, but make it match the banner vibe) */
-.optional-banner-badge{
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  z-index: 2;
-  background: var(--secondary-peach);
-  color: var(--dark-black);
-  padding: 0.45rem 0.95rem;
-  font-size: 0.7rem;
-  letter-spacing: 2px;
-  font-weight: 600;
-  border-radius: 0;
-}
-
-/* ============================================================
-   RESPONSIVE — mirror new-arrivals breakpoints
-   ============================================================ */
-
-@media (max-width: 1024px){
-  .optional-banner-container{ height: 380px; }
-  .optional-banner-left{ padding: 0 3rem; max-width: 55%; }
-  .optional-banner-content h2{ font-size: 2.8rem; letter-spacing: 4px; }
-  .optional-banner-content p{ font-size: 1rem; }
-}
-
-@media (max-width: 768px){
-  .optional-banner{ margin: 2rem 0; }
-  .optional-banner-container{
-    height: 320px;
-    background: linear-gradient(135deg, #1a1a2e 0%, #0f3460 100%);
-  }
-  .optional-banner-left{
-    padding: 0 2rem;
-    max-width: 100%;
-  }
-  .optional-banner-content h2{
-    font-size: 2rem;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-  }
-  .optional-banner-content p{
-    font-size: 0.9rem;
-    line-height: 1.6;
-    margin-bottom: 1.8rem;
-  }
-  .optional-banner-content .cta-button{
-    padding: 0.85rem 2.2rem;
-    font-size: 0.85rem;
-  }
-  .optional-banner-right{
-    width: 100%;
-    opacity: 0.2;
-  }
-  .optional-banner-right::before{
-    background: linear-gradient(90deg, #0f3460 30%, transparent 100%);
-  }
-}
-
-@media (max-width: 480px){
-  .optional-banner{ margin: 1.5rem 0; }
-  .optional-banner-container{ height: 280px; }
-  .optional-banner-left{ padding: 0 1.5rem; }
-  .optional-banner-content h2{
-    font-size: 1.6rem;
-    letter-spacing: 1.5px;
-    margin-bottom: 0.8rem;
-  }
-  .optional-banner-content p{
-    font-size: 0.85rem;
-    line-height: 1.5;
-    margin-bottom: 1.5rem;
-  }
-  .optional-banner-content .cta-button{
-    padding: 0.75rem 2rem;
-    font-size: 0.8rem;
-  }
 }
 
 
@@ -4935,12 +4117,9 @@ h3,
            VALUES SECTION
            ============================================================ */
         .values-section {
-     padding: 3.5rem 1.5rem;
+    padding: 3.5rem 1.5rem; /* smaller */
     background: var(--primary-blue);
     color: var(--white);
-    margin-left: 1px;
-    margin-right: 1px;
-    margin-top: 40px;
 }
 
 .values-container {
@@ -5038,16 +4217,13 @@ h3,
            ANIMAL WELFARE SECTION
            ============================================================ */
         .animal-welfare-section {
-            /* padding: 0; */
-            padding:0; 
+            padding: 0;
             background: var(--white);
             margin: 0;
         }
 
         .animal-welfare-container {
-            /* max-width: 1400px; */
-            min-height: 70vh;
-            max-width: 100%;
+            max-width: 1400px;
             margin: 0 auto;
             position: relative;
             overflow: hidden;
@@ -5069,12 +4245,11 @@ h3,
         }
 
         .animal-welfare-content p {
-            /* font-size: 1.05rem; */
+            font-size: 1.05rem;
             line-height: 1.8;
             color: var(--dark-black);
             opacity: 0.85;
             margin-bottom: 1.5rem;
-            font-family: var(--font-primary);
         }
 
         .animal-welfare-highlight {
@@ -5088,7 +4263,6 @@ h3,
             font-size: 0.95rem;
             font-weight: 500;
             letter-spacing: 1px;
-            cursor: pointer;
         }
 
         .animal-welfare-highlight i {
@@ -5111,12 +4285,12 @@ h3,
             align-items: center;
             justify-content: center;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            /* transition: transform 0.3s ease; */
+            transition: transform 0.3s ease;
         }
 
-        /* .animal-welfare-icon-box:hover {
+        .animal-welfare-icon-box:hover {
             transform: translateY(-8px);
-        } */
+        }
 
         .animal-welfare-icon-box i {
             font-size: 3rem;
@@ -5363,7 +4537,7 @@ h3,
         /* ============================================================
            FOOTER SECTION
            ============================================================ */
-        /* footer {
+        footer {
             background: var(--primary-blue);
             color: var(--white);
             padding: 3rem 2rem 1rem;
@@ -5434,200 +4608,19 @@ h3,
             font-size: 0.9rem;
         }
 
- 
+        /* Footer - Tablet */
         @media (max-width: 1024px) {
             .footer-container {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
 
-
+        /* Footer - Mobile */
         @media (max-width: 768px) {
             .footer-container {
                 grid-template-columns: 1fr;
             }
-        } */
-
-
-        /* ===============================
-   ETTHNICOAST FOOTER
-   =============================== */
-.ec-footer {
-  background: var(--primary-blue);
-  border-top: 1px solid rgba(255, 255, 255, 0.12);
-  padding: 4.5rem 0 2rem;
-  color: var(--white);
-}
-
-.ec-footer-inner {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 2.2rem;
-}
-
-/* TOP GRID */
-.ec-footer-grid {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 3.2rem;
-  padding-bottom: 3.2rem;
-}
-
-/* headings: light + uppercase */
-.ec-footer-col h4 {
-  font-family: var(--font-secondary);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--white);
-  margin-bottom: 1.1rem;
-}
-
-/* list reset */
-.ec-footer-col ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.ec-footer-col li {
-  margin: 0.7rem 0;
-}
-
-/* links: soft white */
-.ec-footer-col a {
-  font-family: var(--font-secondary);
-  font-size: 0.95rem;
-  line-height: 1.45;
-  color: rgba(255, 255, 255, 0.78);
-  text-decoration: none;
-  transition: color 0.2s ease, opacity 0.2s ease;
-}
-
-/* hover: peach highlight */
-.ec-footer-col a:hover {
-  color: var(--secondary-peach);
-  opacity: 1;
-}
-
-/* optional: nicer focus for keyboard users */
-.ec-footer-col a:focus-visible {
-  outline: 2px solid var(--secondary-peach);
-  outline-offset: 3px;
-  border-radius: 4px;
-}
-
-.ec-footer-bottom{
-  border-top: 1px solid rgba(255,255,255,0.12);
-}
-
-.ec-footer-brand{
-  font-family: var(--font-primary);
-  color: var(--white);
-}
-
-.ec-footer-copy{
-  font-family: var(--font-secondary);
-  color: rgba(255,255,255,0.78);
-}
-
-/* ===============================
-   FOOTER BOTTOM – CLEAN ALIGNMENT
-   =============================== */
-
-.ec-footer-bottom{
-  border-top: 1px solid rgba(255,255,255,0.12);
-  padding-top: 1.8rem;
-  margin-top: 2.5rem;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.5rem;
-}
-
-/* BRAND */
-.ec-footer-brand{
-  font-family: var(--font-primary);
-  font-size: 1.9rem;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--white);
-  white-space: nowrap;
-}
-
-/* META (center group) */
-.ec-footer-meta{
-  display: flex;
-  align-items: center;
-  gap: 0.9rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-/* links */
-.ec-footer-country,
-.ec-footer-lang{
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--secondary-peach);
-  text-decoration: none;
-  border-bottom: 1px solid rgba(235,222,212,0.4);
-  padding-bottom: 2px;
-}
-
-.ec-footer-country:hover,
-.ec-footer-lang:hover{
-  border-bottom-color: var(--secondary-peach);
-}
-
-/* dots */
-.ec-dot{
-  color: rgba(255,255,255,0.45);
-}
-
-/* copyright */
-.ec-footer-copy{
-  font-family: var(--font-secondary);
-  font-size: 0.9rem;
-  color: rgba(255,255,255,0.75);
-  letter-spacing: 0.03em;
-  white-space: nowrap;
-}
-
-/* spacer no longer needed */
-.ec-footer-spacer{
-  display: none;
-}
-
-/* ===============================
-   RESPONSIVE
-   =============================== */
-
-@media (max-width: 900px){
-  .ec-footer-bottom{
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .ec-footer-brand{
-    font-size: 1.8rem;
-  }
-
-  .ec-footer-meta{
-    gap: 0.7rem;
-  }
-
-  .ec-footer-copy{
-    white-space: normal;
-  }
-}
-
-
-
+        }
 
         /* ============================================================
            CONTENT SPACING
@@ -5651,8 +4644,8 @@ h3,
         }
 
 
-
-    /* Base state */
+    /* Design for animation of cards  */
+      /* Base state */
 .scroll-lift {
   opacity: 0;
   transform: translateY(28px) scale(0.985);
@@ -5708,95 +4701,8 @@ h3,
 }
 
 
-/* ============================================================
-  Ethnicoast Palmonas Swiper
-   ============================================================ */
-   .swiper-section{
-    padding: 4rem ;
-    background: var(--white);
-   }
-.swiper-slide {
-    width: 320px;   /* desktop */
-    height: 380px;
-}
-
-@media (max-width: 992px) {
-  .swiper-slide {
-    width: 280px;
-    height: 350px;
-  }
-}
-
-@media (max-width: 600px) {
-  .swiper-slide {
-    width: 240px;
-    height: 300px;
-  }
-}
-
-
-.lifestyle-container{
-        max-width: 1600px;
-    margin: 0 auto;
-    position: relative;
-}
-   .swiper {
-    width: 95%;
-    max-width: 1350px;
-    padding-bottom: 70px;  
-}
-
-   .swiper-slide {
-    background: #ccc;
-    border: 1px solid #0000008f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 380px;
-    font-size: 50px;
-   }
-   .swiper-slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-   }
-
-   .swiper-button-next,
-   .swiper-button-prev {
-    color: #fff;
-    background: rgba(0, 0, 0, 0.5);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-   }
-
-   .swiper-button-next:hover,
-   .swiper-button-prev:hover {
-    background: rgba(0, 0, 0, 0.8);
-    transform: scale(1.1);
-   }
-
-   .swiper-button-next::after,
-   .swiper-button-prev::after {
-    font-size: 20px;
-    font-weight: bold;
-   }
-  
-  .swiper-slide {
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #000;
-  }
     </style>
-
 </head>
-
-
 <body>
     <!-- ============================================================
          Navbar and hero section together
@@ -5948,22 +4854,7 @@ h3,
         <span>•</span>
         <a href="/"><span>FREE SHIPPING</span></a>
         <span>•</span>
-        <a href="/"><span>PREMIUM JEWELRY</span></a>
-        <span>•</span>
-        <a href="/"><span>EASY EXCHANGE</span></a>
-        <span>•</span>
-        <a href="/"><span>LIFETIME WARRANTY</span></a>
-        <span>•</span>
-        <a href="/"><span>FREE SHIPPING</span></a>
-        <span>•</span>
-        <a href="/"><span>PREMIUM JEWELRY</span></a>
-        <span>•</span>
-        <a href="/"><span>EASY EXCHANGE</span></a>
-        <span>•</span>
-        <a href="/"><span>LIFETIME WARRANTY</span></a>
-        <span>•</span>
-        <a href="/"><span>FREE SHIPPING</span></a>
-        <span>•</span>
+
         <a href="/"><span>PREMIUM JEWELRY</span></a>
         <span>•</span>
         <a href="/"><span>EASY EXCHANGE</span></a>
@@ -6050,13 +4941,16 @@ h3,
                 <i class="fas fa-chevron-right"></i>
             </button> -->
             
+            <div style="text-align: center;">
+                <a href="#collections" class="collection-range-link">Collection Range</a>
+            </div>
         </div>
     </section>
 
     <!-- ============================================================
          GENERAL BANNER
          ============================================================ -->
-    <section class="general-banner scroll-lift card-lift">
+    <section class="general-banner  scroll-lift card-lift">
         <div class="general-banner-container">
             <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1400&q=80" alt="Banner">
             <div class="general-banner-overlay">
@@ -6148,7 +5042,46 @@ h3,
     <!-- ============================================================
          LIFESTYLE SECTION
          ============================================================ -->
-        <div class="swiper-section">  
+    <!-- <section class="lifestyle-section">
+        <div class="lifestyle-container">
+            <h2 class="section-title">SHOP BY LIFESTYLE</h2>
+            <p class="section-subtitle">For every you</p>
+
+            <button class="lifestyle-nav-btn prev" id="lifestylePrev">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+
+            <div class="lifestyle-slider-wrapper">
+                <div class="lifestyle-grid" id="lifestyleGrid"></div>
+            </div>
+
+            <button class="lifestyle-nav-btn next" id="lifestyleNext">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section> -->
+<!-- 
+    <section class="lifestyle-section">
+    <div class="lifestyle-container">
+        <h2 class="section-title">SHOP BY LIFESTYLE</h2>
+        <p class="section-subtitle">For every you</p>
+
+        <button class="lifestyle-nav-arrow prev" id="lifestylePrevNew">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="lifestyle-slider-wrapper-new">
+            <div class="lifestyle-slider-track-new" id="lifestyleTrackNew"></div>
+        </div>
+
+        <button class="lifestyle-nav-arrow next" id="lifestyleNextNew">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+
+        <div class="lifestyle-pagination-new" id="lifestylePaginationNew"></div>
+    </div>
+</section> -->
+     <div class="swiper-section">  
     <div class="lifestyle-container"> 
         <h2 class="section-title">SHOP BY LIFESTYLE</h2>
         <p class="section-subtitle">For every you</p>
@@ -6179,7 +5112,6 @@ h3,
         </div>
     </div>
         </div>
-   
     <!-- ============================================================
          WORLD SECTION
          ============================================================ -->
@@ -6239,12 +5171,6 @@ h3,
         <div class="bestsellers-container">
             <h2 class="section-title">OUR BESTSELLERS</h2>
             <p class="section-subtitle">The most loved pieces from Etthnicoast</p>
-   
-            <!-- ARROWS -->
-            <!-- /   <div class="scroll-arrows">
-            <button class="scroll-btn left">❮</button>
-            <button class="scroll-btn right">❯</button>
-        </div> -->
 
             <div class="bestsellers-grid">
                 <div class="bestseller-card scroll-animate">
@@ -6316,178 +5242,142 @@ h3,
         </div>
     </section>
 
-
- <section class="jm-reels-section">
-        <div class="jm-reels-inner">
-            <div class="jm-reels-header">
-                <div class="jm-section-title">
-                    JEWELLERY IN MOTION</div>
-                <div class="jm-section-subtitle">Scroll through our latest styling videos</div>
-            </div>
-            <div class="jm-reels-slider">
-                <button class="jm-reels-arrow jm-reels-prev" type="button">
-                    <i class="fas fa-chevron-left"></i>
-                </button>
-                <div class="jm-reels-track">
-
-            <div class="jm-reel-card jm-scroll-animate" data-product="1">
-                <video src="videos/jewellery1.mp4" muted loop autoplay playsinline></video>
-                <div class="jm-reel-product">
-                    <img src="images/product1.jpg">
-                    <div class="jm-reel-product-info">
-                        <!-- <span class="jm-reel-title">Diamond Necklace</span> -->
-                         <span class="jm-reel-desc">
-        Elegant handcrafted diamond necklace for special occasions
-    </span>
-                        <span class="jm-reel-price">₹24,999</span>
-                    </div>
-                </div>
+    
+    <!-- ============================================================
+         INSTAGRAM REELS SECTION
+         ============================================================ -->
+    <!-- <section class="insta-reels-section">
+        <div class="insta-reels-inner">
+            <div class="insta-reels-header">
+                <h2 class="section-title">REELS</h2>
+                <p class="section-subtitle">See our Jewellery in Motion</p>
             </div>
 
-            <div class="jm-reel-card jm-scroll-animate" data-product="2">
-                <video src="videos/jewellery2.mp4" muted loop autoplay playsinline></video>
-                <div class="jm-reel-product">
-                    <img src="images/product2.jpg">
-                    <div class="jm-reel-product-info">
-                        <!-- <span class="jm-reel-title">Gold Earrings</span> -->
-                         <span class="jm-reel-desc">
-        Elegant handcrafted diamond necklace for special occasions
-    </span>
-                        <span class="jm-reel-price">₹18,499</span>
+            <div class="insta-reels-grid">
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <blockquote
+                            class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DRPSMn6E-Su/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                            data-instgrm-version="14"
+                            style="background:#FFF; border:0; margin:0; padding:0; width:100%;"
+                        ></blockquote>
                     </div>
                 </div>
-            </div>
 
-            <div class="jm-reel-card jm-scroll-animate" data-product="3">
-                <video src="videos/jewellery3.mp4" muted loop autoplay playsinline></video>
-                <div class="jm-reel-product">
-                    <img src="images/product3.jpg">
-                    <div class="jm-reel-product-info">
-                        <!-- <span class="jm-reel-title">Bracelet</span> -->
-                         <span class="jm-reel-desc">
-        Elegant handcrafted diamond necklace for special occasions
-    </span>
-                        <span class="jm-reel-price">₹12,999</span>
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <blockquote
+                            class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DRPBkeMjL15/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                            data-instgrm-version="14"
+                            style="background:#FFF; border:0; margin:0; padding:0; width:100%;"
+                        ></blockquote>
                     </div>
                 </div>
-            </div>
-            <div class="jm-reel-card jm-scroll-animate" data-product="4">
-                <video src="videos/jewellery4.mp4" muted loop autoplay playsinline></video>
-                <div class="jm-reel-product">
-                    <img src="images/product4.jpg">
-                    <div class="jm-reel-product-info">
-                        <!-- <span class="jm-reel-title">Sapphire Ring</span> -->
-                         <span class="jm-reel-desc">
-        Elegant handcrafted diamond necklace for special occasions
-    </span>
-                        <span class="jm-reel-price">₹15,499</span>
-                    </div>
-                </div>
-            </div>
-            <div class="jm-reel-card jm-scroll-animate" data-product="5">
-                <video src="videos/jewellery5.mp4" muted loop autoplay playsinline></video>
-                <div class="jm-reel-product">
-                    <img src="images/product5.jpg">
-                    <div class="jm-reel-product-info">
-                        <!-- <span class="jm-reel-title">Emerald Pendant</span> -->
-                         <span class="jm-reel-desc">
-        Elegant handcrafted diamond necklace for special occasions
-    </span>
-                        <span class="jm-reel-price">₹22,999</span>
-                    </div>
-                </div>
-            </div>
 
-        </div>
-                <button class="jm-reels-arrow jm-reels-next" type="button">
-                    <i class="fas fa-chevron-right"></i>
-                </button>
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <blockquote
+                            class="instagram-media"
+                            data-instgrm-permalink="https://www.instagram.com/reel/DROl8xpkgKQ/?utm_source=ig_web_copy_link&igsh=MzRlODBiNWFlZA=="
+                            data-instgrm-version="14"
+                            style="background:#FFF; border:0; margin:0; padding:0; width:100%;"
+                        ></blockquote>
+                    </div>
+                </div>
             </div>
         </div>
-    </section>
+    </section> -->
+<section class="insta-reels-section">
+    <div class="insta-reels-inner">
+        <div class="insta-reels-header">
+            <h2 class="section-title">JEWELLERY IN MOTION</h2>
+            <p class="section-subtitle">Scroll through our latest styling videos</p>
+        </div>
 
-    <!-- PRODUCT MODAL -->
-    <div class="jm-modal" id="jmModal">
-        <!-- modal left/right arrows -->
-        <button class="jm-modal-arrow jm-modal-prev" type="button">
-            <i class="fas fa-chevron-left"></i>
-        </button>
-
-        <div class="jm-modal-content">
-            <button class="jm-modal-close" id="jmModalClose">
-                <i class="fas fa-times"></i>
+        <div class="insta-reels-slider">
+            <button class="reels-arrow reels-prev" type="button">
+                <i class="fas fa-chevron-left"></i>
             </button>
-            
-            <div class="jm-modal-video">
-                <video id="jmModalVideo" controls muted loop playsinline>
-                    <source src="" type="video/mp4">
-                </video>
-            </div>
-            
-            <div class="jm-modal-product">
-                <img id="jmModalProductImage" src="" alt="" class="jm-modal-product-image">
-                
-                <div class="jm-modal-badges">
-                    <span class="jm-badge jm-badge-free">FREE GIFT</span>
-                    <span class="jm-badge jm-badge-award">AWARD WINNING</span>
+
+            <div class="insta-reels-track">
+                <!-- CARD 1 -->
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <video
+                            class="reel-video"
+                            src="videos/jewellery1.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                        ></video>
+                    </div>
                 </div>
-                
-                <h2 id="jmModalTitle" class="jm-modal-title"></h2>
-                <p id="jmModalPrice" class="jm-modal-price"></p>
-                
-                <h3 class="jm-modal-desc-title">Description</h3>
-                <p id="jmModalDescription" class="jm-modal-desc-text"></p>
-                <span class="jm-read-more">Read more</span>
-                
-                <div class="jm-modal-buttons">
-                    <button class="jm-modal-btn jm-btn-more-info">
-                        More info
-                    </button>
-                    <button class="jm-modal-btn jm-btn-add-cart">
-                        Add to cart
-                    </button>
-                    <div class="jm-btn-cart-icon">
-                        <i class="fas fa-shopping-cart"></i>
+
+                <!-- CARD 2 -->
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <video
+                            class="reel-video"
+                            src="videos/jewellery2.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                        ></video>
+                    </div>
+                </div>
+
+                <!-- CARD 3 -->
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <video
+                            class="reel-video"
+                            src="videos/jewellery3.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                        ></video>
+                    </div>
+                </div>
+
+                <!-- CARD 4 -->
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <video
+                            class="reel-video"
+                            src="videos/jewellery4.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                        ></video>
+                    </div>
+                </div>
+
+                <!-- CARD 5 -->
+                <div class="insta-reel-card scroll-animate">
+                    <div class="insta-reel-frame">
+                        <video
+                            class="reel-video"
+                            src="videos/jewellery5.mp4"
+                            autoplay
+                            muted
+                            loop
+                            playsinline
+                        ></video>
                     </div>
                 </div>
             </div>
+
+            <button class="reels-arrow reels-next" type="button">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </div>
-
-        <button class="jm-modal-arrow jm-modal-next" type="button">
-            <i class="fas fa-chevron-right"></i>
-        </button>
     </div>
-
-<!-- =============================================================
-DIWALI SECTION 
-==================================================================-->
-<section class="ec-diwali-banner scroll-lift card-lift" id="diwali-banner">
-  <div class="ec-diwali-container">
-
-    <div class="ec-diwali-content">
-      <p class="ec-diwali-eyebrow">DIWALI CELEBRATIONS</p>
-      <h2>Shine Brighter This Diwali</h2>
-      <p class="ec-diwali-sub">
-        Celebrate the festival of lights with premium silver jewelry—crafted to glow with every moment.
-      </p>
-
-      <div class="ec-diwali-actions">
-        <a href="#" class="ec-diwali-btn primary">SHOP DIWALI EDIT</a>
-        <a href="#" class="ec-diwali-btn secondary">GIFT GUIDE</a>
-      </div>
-
-      <p class="ec-diwali-note">Limited festive pieces • Fast delivery • Gift-ready packaging</p>
-    </div>
-
-    <div class="ec-diwali-visual">
-      <img
-        src="https://images.unsplash.com/photo-1603565816030-6b389eeb23cb?w=1400&q=80"
-        alt="Diwali jewelry collection"
-      />
-      <div class="ec-diwali-badge">FESTIVE</div>
-    </div>
-
-  </div>
 </section>
 
 
@@ -6497,6 +5387,10 @@ DIWALI SECTION
   
 <section class="values-section">
     <div class="values-container">
+
+        <h2 class="section-title" style="color: var(--white);">ETTHNICOAST VALUES</h2>
+        <p class="section-subtitle" style="color: var(--white); opacity: 0.9;">What makes us special</p>
+
         <div class="values-grid">
             <div class="value-card">
                 <div class="value-icon"><i class="fas fa-certificate"></i></div>
@@ -6604,7 +5498,7 @@ DIWALI SECTION
 <!-- ============================================================
          OPTIONAL BANNER (SPLIT DESIGN WITH ANIMATION)
          ============================================================ -->
-    <section class="optional-banner scroll-lift card-lift">
+    <section class="optional-banner">
         <div class="optional-banner-container">
             <div class="optional-banner-left">
                 <div class="optional-banner-content">
@@ -6794,7 +5688,7 @@ DIWALI SECTION
     <!-- ============================================================
          FOOTER
          ============================================================ -->
-    <!-- <footer>
+    <footer>
         <div class="footer-container">
             <div class="footer-section">
                 <h4>ABOUT US</h4>
@@ -6836,133 +5730,49 @@ DIWALI SECTION
         <div class="footer-bottom">
             <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
         </div>
-    </footer> -->
-
-
-    <footer class="ec-footer">
-  <div class="ec-footer-inner">
-
-    <!-- TOP LINKS -->
-    <div class="ec-footer-grid">
-      <div class="ec-footer-col">
-        <h4>SHOP</h4>
-        <ul>
-          <li><a href="#">Rings</a></li>
-          <li><a href="#">Earrings</a></li>
-          <li><a href="#">Necklaces</a></li>
-          <li><a href="#">Bracelets</a></li>
-          <li><a href="#">New Arrivals</a></li>
-          <li><a href="#">Best Sellers</a></li>
-          <li><a href="#">Gift Sets</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>RESOURCES</h4>
-        <ul>
-          <li><a href="#">Order Tracking</a></li>
-          <li><a href="#">Shipping</a></li>
-          <li><a href="#">Returns & Exchanges</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">Jewelry Care</a></li>
-          <li><a href="#">FAQ</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>SERVICES</h4>
-        <ul>
-          <li><a href="#">Custom Orders</a></li>
-          <li><a href="#">Engraving</a></li>
-          <li><a href="#">Gift Cards</a></li>
-          <li><a href="#">Bulk Gifting</a></li>
-          <li><a href="#">Store Pickup</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>LEGAL</h4>
-        <ul>
-          <li><a href="#">Terms & Conditions</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-          <li><a href="#">Refund Policy</a></li>
-          <li><a href="#">Accessibility</a></li>
-        </ul>
-      </div>
-
-      <div class="ec-footer-col">
-        <h4>ABOUT US</h4>
-        <ul>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Craftsmanship</a></li>
-          <li><a href="#">Sustainability</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Contact Us</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <!-- BOTTOM BAR -->
-    <div class="ec-footer-bottom">
-      <div class="ec-footer-brand">ETTHNICOAST</div>
-
-      <div class="ec-footer-meta">
-        <a href="#" class="ec-footer-country">INDIA</a>
-        <span class="ec-dot">•</span>
-        <a href="#" class="ec-footer-lang">English</a>
-        <span class="ec-dot">•</span>
-        <span class="ec-footer-copy">© ALL RIGHTS RESERVED. 2026 ETTHNICOAST</span>
-      </div>
-
-      <!-- no social icons (as requested) -->
-      <div class="ec-footer-spacer"></div>
-    </div>
-
-  </div>
-</footer>
+    </footer>
 
     <!-- ============================================================
          EXTERNAL SCRIPTS
          ============================================================ -->
-   <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script>
-  (function () {
-    const elements = document.querySelectorAll(".scroll-lift");
+  
 
-    /* stagger like Pandora */
-    elements.forEach((el, index) => {
-      const grid = el.closest(
-        ".products-grid, .new-arrivals-grid, .bestsellers-grid, .reels-grid, .gender-grid"
-      );
-      if (grid) {
-        el.style.setProperty("--delay", `${(index % 10) * 70}ms`);
-      }
-    });
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          } else {
-            entry.target.classList.remove("is-visible"); // 👈 THIS is the key
-          }
-        });
-      },
-      {
-        threshold: 0.15,
-        rootMargin: "0px 0px -10% 0px"
-      }
-    );
-
-    elements.forEach((el) => observer.observe(el));
-  })();
-</script>
     <!-- ============================================================
          JAVASCRIPT
          ============================================================ -->
-    <script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script> -->
+   <script>
+//         (function () {
+//     const elements = document.querySelectorAll(".scroll-lift");
+
+
+//     elements.forEach((el, index) => {
+//       const grid = el.closest(
+//         ".products-grid, .new-arrivals-grid, .bestsellers-grid, .reels-grid, .gender-grid"
+//       );
+//       if (grid) {
+//         el.style.setProperty("--delay", `${(index % 10) * 70}ms`);
+//       }
+//     });
+
+//     const observer = new IntersectionObserver(
+//       (entries) => {
+//         entries.forEach((entry) => {
+//           if (entry.isIntersecting) {
+//             entry.target.classList.add("is-visible");
+//           } else {
+//             entry.target.classList.remove("is-visible"); // 👈 THIS is the key
+//           }
+//         });
+//       },
+//       {
+//         threshold: 0.15,
+//         rootMargin: "0px 0px -10% 0px"
+//       }
+//     );
+
+//     elements.forEach((el) => observer.observe(el));
+//   })();
         /* ========================================================
            MOBILE MENU TOGGLE
            ======================================================== */
@@ -7015,72 +5825,22 @@ DIWALI SECTION
             }
         });
 
-       
-        // When scrolling DOWN (past 50px):
+        const navbar = document.getElementById('navbar');
+        const navLogo = document.getElementById('navLogo');
 
-const navbar = document.getElementById('navbar');
-const navLogo = document.getElementById('navLogo');
+        navbar.addEventListener('mouseenter', function() {
+            isHovering = true;
+            if (window.scrollY <= 50 && navLogo) {
+                navLogo.src = './assets/logo_new_1.png';
+            }
+        });
 
-
-let isScrolledState = false; // track state to avoid repeating swaps
-
-// preload both logos so no “late image load” flash
-const logoTop = new Image();
-logoTop.src = './assets/etthnicoast.png';
-
-const logoScrolled = new Image();
-logoScrolled.src = './assets/logo_new_1.png';
-
-function setLogo(src){
-  if (!navLogo) return;
-  if (navLogo.getAttribute('data-src') === src) return; // already showing
-
-  navLogo.style.opacity = '0';
-  // swap while invisible
-  setTimeout(() => {
-    navLogo.src = src;
-    navLogo.setAttribute('data-src', src);
-    requestAnimationFrame(() => {
-      navLogo.style.opacity = '1';
-    });
-  }, 120);
-}
-
-function setNavbarState(scrolled){
-  if (!navbar || !navLogo) return;
-
-  if (scrolled === isScrolledState) return; // nothing changed
-  isScrolledState = scrolled;
-
-  // 1) apply background state first
-  navbar.classList.toggle('scrolled', scrolled);
-
-  // 2) swap logo (unless user is hovering)
-  if (!isHovering){
-    setLogo(scrolled ? './assets/logo_new_1.png' : './assets/etthnicoast.png');
-  }
-}
-
-// initial state on load
-setNavbarState(window.scrollY > 50);
-
-// on scroll
-window.addEventListener('scroll', () => {
-  setNavbarState(window.scrollY > 50);
-}, { passive: true });
-
-// hover behavior (keep your logic, but use setLogo)
-navbar.addEventListener('mouseenter', () => {
-  isHovering = true;
-  if (window.scrollY <= 50) setLogo('./assets/logo_new_1.png');
-});
-
-navbar.addEventListener('mouseleave', () => {
-  isHovering = false;
-  setLogo(window.scrollY > 50 ? './assets/logo_new_1.png' : './assets/etthnicoast.png');
-});
-
-
+        navbar.addEventListener('mouseleave', function() {
+            isHovering = false;
+            if (window.scrollY <= 50 && navLogo) {
+                navLogo.src = './assets/etthnicoast.png';
+            }
+        });
 
         const hamburger = document.getElementById('hamburger');
         const navLinksContainer = document.getElementById('navLinksContainer');
@@ -7157,7 +5917,41 @@ navbar.addEventListener('mouseleave', () => {
 
         /* ========================================================
            COLLECTION RANGE SLIDER
-           ======================================================== 
+           ======================================================== */
+                 (function () {
+    const wrapper = document.querySelector(".collection-cards-wrapper");
+    if (!wrapper) return;
+
+    let isDown = false;
+    let startX = 0;
+    let scrollLeft = 0;
+
+    wrapper.addEventListener("mousedown", (e) => {
+      isDown = true;
+      wrapper.classList.add("dragging");
+      startX = e.pageX - wrapper.offsetLeft;
+      scrollLeft = wrapper.scrollLeft;
+    });
+
+    window.addEventListener("mouseup", () => {
+      isDown = false;
+      wrapper.classList.remove("dragging");
+    });
+
+    wrapper.addEventListener("mouseleave", () => {
+      isDown = false;
+      wrapper.classList.remove("dragging");
+    });
+
+    wrapper.addEventListener("mousemove", (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - wrapper.offsetLeft;
+      const walk = (x - startX) * 1.2; // drag speed
+      wrapper.scrollLeft = scrollLeft - walk;
+    });
+  })();
+
         // const collectionCards = document.getElementById('collectionCards');
         // const collectionPrev = document.getElementById('collectionPrev');
         // const collectionNext = document.getElementById('collectionNext');
@@ -7192,7 +5986,7 @@ navbar.addEventListener('mouseleave', () => {
         //     const totalCards = collectionCards.children.length;
         //     collectionMaxIndex = Math.max(0, totalCards - collectionVisibleCount);
 
-        //     // Clamp index in case of resize
+            // Clamp index in case of resize
         //     if (collectionCurrentIndex > collectionMaxIndex) {
         //         collectionCurrentIndex = collectionMaxIndex;
         //     }
@@ -7237,100 +6031,147 @@ navbar.addEventListener('mouseleave', () => {
         //     }
         // });
 
-        // // Initialize on load
+        // Initialize on load
         // recalcCollectionGeometry();
         // updateCollectionPosition();
 
-        // // Recalculate on resize
+        // Recalculate on resize
         // window.addEventListener('resize', () => {
         //     recalcCollectionGeometry();
         //     updateCollectionPosition();
-        // }); */
-
-         (function () {
-    const wrapper = document.querySelector(".collection-cards-wrapper");
-    if (!wrapper) return;
-
-    let isDown = false;
-    let startX = 0;
-    let scrollLeft = 0;
-
-    wrapper.addEventListener("mousedown", (e) => {
-      isDown = true;
-      wrapper.classList.add("dragging");
-      startX = e.pageX - wrapper.offsetLeft;
-      scrollLeft = wrapper.scrollLeft;
-    });
-
-    window.addEventListener("mouseup", () => {
-      isDown = false;
-      wrapper.classList.remove("dragging");
-    });
-
-    wrapper.addEventListener("mouseleave", () => {
-      isDown = false;
-      wrapper.classList.remove("dragging");
-    });
-
-    wrapper.addEventListener("mousemove", (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - wrapper.offsetLeft;
-      const walk = (x - startX) * 1.2; // drag speed
-      wrapper.scrollLeft = scrollLeft - walk;
-    });
-  })();
-
+        // });
 
         /* ========================================================
            LIFESTYLE CAROUSEL
      /* ========================================================
    LIFESTYLE CAROUSEL (UPDATED SMOOTH SLIDER)
    ======================================================== */
-var swiper = new Swiper(".mySwiper", {
-  effect: "coverflow",
-  grabCursor: true,
-  centeredSlides: true,
-  loop: true,
+(function() {
+    const lifestyleTrackNew = document.getElementById('lifestyleTrackNew');
+    const lifestylePrevNew = document.getElementById('lifestylePrevNew');
+    const lifestyleNextNew = document.getElementById('lifestyleNextNew');
+    const lifestylePaginationNew = document.getElementById('lifestylePaginationNew');
 
-  coverflowEffect: {
-    rotate: 30,
-    stretch: 150,
-    depth: 100,
-    scale: 0.9,
-    modifier: 1,
-    slideShadows: false,
-  },
+    const lifestyleItemsData = [
+        { name: "DAILY WEAR", image: "https://i.pinimg.com/1200x/c3/3d/23/c33d23c7a1833a1ab828d5a4a65e6f39.jpg" },
+        { name: "OFFICE WEAR", image: "https://i.pinimg.com/736x/ce/b3/74/ceb374203a8ab8b43809c7b0b264ff3e.jpg" },
+        { name: "PARTY WEAR", image: "https://i.pinimg.com/736x/92/64/6a/92646a0d09b3b2e3be82879c2787006e.jpg" },
+        { name: "DAY OUT", image: "https://i.pinimg.com/1200x/23/67/9a/23679a845da4590d6edf8bcf675d4137.jpg" },
+        { name: "FESTIVE", image: "https://i.pinimg.com/736x/11/c7/21/11c721a83df639ea0187b5b422f3fd4c.jpg" },
+        { name: "CASUAL", image: "https://i.pinimg.com/1200x/19/b6/af/19b6af5a789d1bef849deadd33388d7d.jpg" },
+        { name: "ELEGANT", image: "https://i.pinimg.com/736x/18/85/f1/1885f137d67596b779f4556e2e1950da.jpg" }
+    ];
 
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-      coverflowEffect: {
-        stretch: 80,
-        depth: 80,
-      }
-    },
-    640: {
-      slidesPerView: 2,
-      coverflowEffect: {
-        stretch: 100,
-        depth: 90,
-      }
-    },
-    1024: {
-      slidesPerView: 3,
-      coverflowEffect: {
-        stretch: 150,
-        depth: 100,
-      }
-    },
-  },
-});
+    let lifestyleCurrentIdx = 0;
+    const lifestyleTotalSlides = lifestyleItemsData.length;
+    let lifestyleSlideElements = [];
+
+    function initLifestyleSlider() {
+        if (!lifestyleTrackNew || !lifestylePaginationNew) return;
+
+        // Create slides
+        lifestyleTrackNew.innerHTML = '';
+        lifestylePaginationNew.innerHTML = '';
+        lifestyleSlideElements = [];
+
+        lifestyleItemsData.forEach(function(item, index) {
+            // Create slide
+            const slide = document.createElement('div');
+            slide.className = 'lifestyle-slide-new';
+            slide.innerHTML = `
+                <img src="${item.image}" alt="${item.name}">
+                <div class="lifestyle-slide-overlay-new">
+                    <h3 class="lifestyle-slide-title-new">${item.name}</h3>
+                </div>
+            `;
+            slide.addEventListener('click', function() {
+                goToLifestyleSlide(index);
+            });
+            lifestyleTrackNew.appendChild(slide);
+            lifestyleSlideElements.push(slide);
+
+            // Create pagination dot
+            const dot = document.createElement('div');
+            dot.className = 'lifestyle-dot-new';
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', function() {
+                goToLifestyleSlide(index);
+            });
+            lifestylePaginationNew.appendChild(dot);
+        });
+
+        updateLifestyleSlider();
+    }
+
+    function getLifestyleSlideClass(index) {
+        const diff = index - lifestyleCurrentIdx;
+
+        if (diff === 0) return 'active';
+        if (diff === 1 || diff === -(lifestyleTotalSlides - 1)) return 'next';
+        if (diff === -1 || diff === lifestyleTotalSlides - 1) return 'prev';
+        if (diff === 2 || diff === -(lifestyleTotalSlides - 2)) return 'far-next';
+        if (diff === -2 || diff === lifestyleTotalSlides - 2) return 'far-prev';
+        if (diff > 0) return 'hidden-right';
+        return 'hidden';
+    }
+
+    function updateLifestyleSlider() {
+        lifestyleSlideElements.forEach(function(slide, index) {
+            slide.className = 'lifestyle-slide-new ' + getLifestyleSlideClass(index);
+        });
+
+        // Update pagination dots
+        const dots = lifestylePaginationNew.querySelectorAll('.lifestyle-dot-new');
+        dots.forEach(function(dot, index) {
+            if (index === lifestyleCurrentIdx) {
+                dot.classList.add('active');
+            } else {
+                dot.classList.remove('active');
+            }
+        });
+    }
+
+    function goToLifestyleSlide(index) {
+        lifestyleCurrentIdx = index;
+        updateLifestyleSlider();
+    }
+
+    function nextLifestyleSlide() {
+        lifestyleCurrentIdx = (lifestyleCurrentIdx + 1) % lifestyleTotalSlides;
+        updateLifestyleSlider();
+    }
+
+    function prevLifestyleSlide() {
+        lifestyleCurrentIdx = (lifestyleCurrentIdx - 1 + lifestyleTotalSlides) % lifestyleTotalSlides;
+        updateLifestyleSlider();
+    }
+
+    // Event listeners
+    if (lifestylePrevNew) {
+        lifestylePrevNew.addEventListener('click', prevLifestyleSlide);
+    }
+
+    if (lifestyleNextNew) {
+        lifestyleNextNew.addEventListener('click', nextLifestyleSlide);
+    }
+
+    // Keyboard navigation
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'ArrowLeft') prevLifestyleSlide();
+        if (e.key === 'ArrowRight') nextLifestyleSlide();
+    });
+
+    // Initialize on load
+    if (document.readyState === 'complete') {
+        initLifestyleSlider();
+    } else {
+        window.addEventListener('load', initLifestyleSlider);
+    }
+
+    // Optional: Auto-play (uncomment to enable)
+    // setInterval(nextLifestyleSlide, 4000);
+})();
+
         /* ========================================================
            JEWELRY SHOTS VIDEO SLIDER
            ======================================================== */
@@ -7637,201 +6478,44 @@ document.addEventListener("DOMContentLoaded", () => {
                 closeModal();
             }
         });
-</script>
 
-<!-- BEST SELLER JS -->
-<script>
-    const grid = document.querySelector(".bestsellers-grid");
-    const leftBtn = document.querySelector(".scroll-btn.left");
-    const rightBtn = document.querySelector(".scroll-btn.right");
 
-    rightBtn.addEventListener("click", () => {
-        grid.scrollBy({
-            left: grid.querySelector(".bestseller-card").offsetWidth + 20,
-            behavior: "smooth"
-        });
+          /* ========================================================
+   LIFESTYLE CAROUSEL (UPDATED SMOOTH SLIDER)
+   ======================================================== */
+ var swiper = new Swiper(".mySwiper", {
+      effect: "coverflow",
+      grabCursor: true,
+      centeredSlides: true,
+      slidesPerView: "auto",
+      coverflowEffect: {
+        rotate: 30,
+        stretch: 150,
+        depth: 100,
+        scale: 0.9,
+        modifier: 1,
+        slideShadows: false,
+      },
+      navigation: {
+        nextEl: ".swiper-button-next",
+        prevEl: ".swiper-button-prev",
+      },
+      loop: true,
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
+        600: {
+          slidesPerView: 2,
+        },
+        992: {
+          slidesPerView: 3,
+        },
+      },
     });
 
-    leftBtn.addEventListener("click", () => {
-        grid.scrollBy({
-            left: -(grid.querySelector(".bestseller-card").offsetWidth + 20),
-            behavior: "smooth"
-        });
-    });
+
 </script>
 
-<!-- /////////////////// -->
-<!-- REEL SECTION  -->
-<!-- /////////////////////// -->
-
- 
-    <script>
-        // Product data
-        const jmProducts = {
-            1: {
-                video: 'videos/jewellery1.mp4',
-                image: 'images/product1.jpg',
-                name: 'Elegant Diamond Necklace Set',
-                price: '₹24,999',
-                description: 'Suitable for: All occasions and celebrations. This stunning diamond necklace set features premium quality stones set in pure gold. Perfect for weddings, parties, and special occasions. The intricate design showcases traditional craftsmanship with a modern touch.'
-            },
-            2: {
-                video: 'videos/jewellery2.mp4',
-                image: 'images/product2.jpg',
-                name: 'Traditional Gold Earrings',
-                price: '₹18,499',
-                description: 'Suitable for: Daily wear and special occasions. Beautifully crafted traditional gold earrings that complement any outfit. Made from 22K gold with intricate detailing. Lightweight and comfortable for all-day wear.'
-            },
-            3: {
-                video: 'videos/jewellery3.mp4',
-                image: 'images/product3.jpg',
-                name: 'Pearl & Crystal Bracelet',
-                price: '₹12,999',
-                description: 'Suitable for: Parties and evening events. Elegant bracelet featuring genuine pearls and sparkling crystals. The perfect accessory to add sophistication to your look. Adjustable clasp for comfortable fit.'
-            },
-            4: {
-                video: 'videos/jewellery4.mp4',
-                image: 'images/product4.jpg',
-                name: 'Designer Diamond Ring',
-                price: '₹32,499',
-                description: 'Suitable for: Engagements and special moments. Exquisite designer diamond ring with a unique contemporary design. Features conflict-free diamonds set in platinum. A timeless piece that symbolizes eternal love.'
-            },
-            5: {
-                video: 'videos/jewellery5.mp4',
-                image: 'images/product5.jpg',
-                name: 'Royal Choker Set',
-                price: '₹45,999',
-                description: 'Suitable for: Weddings and grand celebrations. Luxurious royal choker set adorned with premium stones and intricate gold work. Includes matching earrings. Perfect for brides and special occasions requiring regal elegance.'
-            }
-        };
-
-        // Scroll animation observer
-        const jmObserverOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const jmObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('jm-animate');
-                    }, index * 100);
-                }
-            });
-        }, jmObserverOptions);
-
-        document.querySelectorAll('.jm-scroll-animate').forEach((el) => {
-            jmObserver.observe(el);
-        });
-
-        // Arrow navigation for main reel track
-        const jmTrack = document.querySelector('.jm-reels-track');
-        const jmPrevBtn = document.querySelector('.jm-reels-prev');
-        const jmNextBtn = document.querySelector('.jm-reels-next');
-
-        jmPrevBtn.addEventListener('click', () => {
-            jmTrack.scrollBy({ left: -300, behavior: 'smooth' });
-        });
-
-        jmNextBtn.addEventListener('click', () => {
-            jmTrack.scrollBy({ left: 300, behavior: 'smooth' });
-        });
-
-        // Modal functionality
-        const jmModal = document.getElementById('jmModal');
-        const jmModalCloseBtn = document.getElementById('jmModalClose');
-        const jmModalVideo = document.getElementById('jmModalVideo');
-        const jmModalProductImage = document.getElementById('jmModalProductImage');
-        const jmModalTitle = document.getElementById('jmModalTitle');
-        const jmModalPrice = document.getElementById('jmModalPrice');
-        const jmModalDescription = document.getElementById('jmModalDescription');
-
-        const jmModalPrev = document.querySelector('.jm-modal-prev');
-        const jmModalNext = document.querySelector('.jm-modal-next');
-
-        const jmCards = Array.from(document.querySelectorAll('.jm-reel-card'));
-        let jmCurrentIndex = 0;
-
-        function jmOpenProductByIndex(index) {
-            if (index < 0) index = jmCards.length - 1;
-            if (index >= jmCards.length) index = 0;
-            jmCurrentIndex = index;
-
-            const productId = jmCards[jmCurrentIndex].getAttribute('data-product');
-            const product = jmProducts[productId];
-            if (!product) return;
-
-            jmModalVideo.pause();
-            jmModalVideo.src = product.video;
-            jmModalVideo.load();
-            jmModalVideo.play();
-
-            jmModalProductImage.src = product.image;
-            jmModalProductImage.alt = product.name;
-            jmModalTitle.textContent = product.name;
-            jmModalPrice.textContent = product.price;
-            jmModalDescription.textContent = product.description;
-
-            jmModal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        jmCards.forEach((card, index) => {
-            card.addEventListener('click', () => jmOpenProductByIndex(index));
-        });
-
-        jmModalPrev.addEventListener('click', (e) => {
-            e.stopPropagation();
-            jmOpenProductByIndex(jmCurrentIndex - 1);
-        });
-
-        jmModalNext.addEventListener('click', (e) => {
-            e.stopPropagation();
-            jmOpenProductByIndex(jmCurrentIndex + 1);
-        });
-
-        function jmCloseProductModal() {
-            jmModal.classList.remove('active');
-            jmModalVideo.pause();
-            jmModalVideo.currentTime = 0;
-            document.body.style.overflow = 'auto';
-        }
-
-        jmModalCloseBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            jmCloseProductModal();
-        });
-
-        jmModal.addEventListener('click', (e) => {
-            if (e.target === jmModal) {
-                jmCloseProductModal();
-            }
-        });
-
-        document.addEventListener('keydown', (e) => {
-            if (!jmModal.classList.contains('active')) return;
-
-            if (e.key === 'Escape') {
-                jmCloseProductModal();
-            } else if (e.key === 'ArrowLeft') {
-                jmOpenProductByIndex(jmCurrentIndex - 1);
-            } else if (e.key === 'ArrowRight') {
-                jmOpenProductByIndex(jmCurrentIndex + 1);
-            }
-        });
-
-        document.querySelector('.jm-btn-add-cart').addEventListener('click', () => {
-            alert('Product added to cart!');
-        });
-
-        document.querySelector('.jm-btn-cart-icon').addEventListener('click', () => {
-            alert('Opening cart...');
-        });
-
-        document.querySelector('.jm-btn-more-info').addEventListener('click', () => {
-            alert('Redirecting to product page...');
-        });
-    </script>
 </body>
 </html>

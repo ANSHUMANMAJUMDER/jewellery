@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrolling Navbar Effect</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+            z-index: 1000;
+            background: #000000;
+        }
+
+        .navbar.scrolled {
+            background: #ffffff;
+            backdrop-filter: blur(10px);
+            padding: 15px 50px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            height: 50px;
+            transition: all 0.4s ease;
+        }
+
+        .logo-img {
+            height: 100%;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar.scrolled .nav-links a {
+            color: #1e293b;
+            text-shadow: none;
+        }
+
+        .nav-links a:hover {
+            color: #60a5fa;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 24px;
+            max-width: 600px;
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Content Sections */
+        .section {
+            min-height: 100vh;
+            padding: 100px 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .section:nth-child(odd) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: rgb(255, 255, 255);
+        }
+
+        .section:nth-child(even) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            color: rgb(255, 255, 255);
+        }
+
+        .section h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+        }
+
+        .section p {
+            font-size: 20px;
+            max-width: 800px;
+            text-align: center;
+            line-height: 1.6;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 15px 20px;
+            }
+
+            .navbar.scrolled {
+                padding: 10px 20px;
+            }
+
+            .nav-links {
+                gap: 15px;
+            }
+
+            .nav-links a {
+                font-size: 14px;
+            }
+
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .hero p {
+                font-size: 18px;
+                padding: 0 20px;
+            }
+
+            .section h2 {
+                font-size: 32px;
+            }
+
+            .section p {
+                font-size: 16px;
+                padding: 0 20px;
+            }
+        }
+        .navbar.scrolled .logo {
+    background: transparent;
+    padding: 5px;
+}
+
+/* .logo-img {
+    display: block;
+    background: transparent;
+} */
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <img src="/assets/etthnicoast.png" alt="Ethnicoast Logo" class="logo-img" id="logoImg">
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Welcome to Our Site</h1>
+        <p>Scroll down to see the navbar transform from transparent to solid</p>
+    </section>
+
+    <!-- Content Sections -->
+    <section class="section" id="about">
+        <h2>About Us</h2>
+        <p>We create beautiful and functional websites with smooth animations and modern design principles. Our focus is on delivering exceptional user experiences that captivate and engage.</p>
+    </section>
+
+    <section class="section" id="services">
+        <h2>Our Services</h2>
+        <p>From web design to development, we offer comprehensive solutions tailored to your needs. We specialize in creating responsive, performant, and visually stunning websites.</p>
+    </section>
+
+    <section class="section" id="contact">
+        <h2>Get In Touch</h2>
+        <p>Ready to start your next project? Contact us today and let's create something amazing together. We're here to bring your vision to life.</p>
+    </section>
+
+    <script>
+        const navbar = document.getElementById('navbar');
+        const logoImg = document.getElementById('logoImg');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                logoImg.src = '/assets/new_logo_02.png';
+            } else {
+                navbar.classList.remove('scrolled');
+                logoImg.src = '/assets/etthnicoast.png';
+            }
+        });
+    </script>
+</body>
+</html>
