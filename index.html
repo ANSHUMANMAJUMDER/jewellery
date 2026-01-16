@@ -3990,15 +3990,84 @@ h3,
     overflow: hidden;
 }
 
+/* ============================================================
+   MOBILE HEADER SIZE FIX (PHONES ONLY)
+   ============================================================ */
 @media (max-width: 480px) {
-    .jm-section-title {
-        font-size: 1rem;
+
+    .jm-reels-header {
+        margin-bottom: 1.5rem;
+        padding: 0 16px;
     }
-    .section-title {
-        font-size: 1.5rem;
-        letter-spacing: 2px;
+
+    .jm-reels-header .jm-section-title {
+        font-size: 1.4rem;
+        line-height: 1.2;
+        letter-spacing: 1px;
+    }
+
+    .jm-reels-header .jm-section-subtitle {
+        font-size: 0.9rem;
+        line-height: 1.4;
     }
 }
+
+/* ============================================================
+   MOBILE VIEW – REELS STRUCTURE (NO DESKTOP CHANGE)
+   ============================================================ */
+@media (max-width: 768px) {
+      
+   
+    /* Hide arrows on mobile */
+    .jm-reels-arrow {
+        display: none;
+    }
+
+    /* Track spacing */
+    .jm-reels-track {
+        gap: 14px;
+        padding: 0 16px 20px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+    }
+
+    /* Card sizing for mobile */
+    .jm-reel-card {
+        min-width: 70%;
+        height: 360px;
+        border-radius: 16px;
+        scroll-snap-align: start;
+    }
+
+    /* Make cards look like clean blocks (image style) */
+    .jm-reel-card {
+        background: #fff;
+        border: 1px solid #e0e0e0;
+    }
+
+    /* Keep video fitted */
+    .jm-reel-card video {
+        object-fit: cover;
+    }
+
+    /* Product pill spacing */
+    .jm-reel-product {
+        left: 10px;
+        right: 10px;
+        bottom: 10px;
+        padding: 6px 10px;
+    }
+
+    /* Typography adjustment */
+    .jm-reel-desc {
+        font-size: 11px;
+    }
+
+    .jm-reel-price {
+        font-size: 13px;
+    }
+}
+
 
         /* ============================================================
            MODAL STYLES
