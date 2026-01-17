@@ -3418,7 +3418,7 @@ h3,
 /* Very Small Mobile (≤ 480px) */
 @media (max-width: 480px) {
     .world-section {
-        padding: 2.5rem 0.8rem;
+        padding: 8.5rem 0.8rem 1rem;
     }
 
     .world-grid {
@@ -5945,60 +5945,7 @@ h3,
     margin: 0 auto;
     position: relative;
 }
-   .swiper {
-    width: 95%;
-    max-width: 1350px;
-    padding-bottom: 70px;  
-}
-
-   .swiper-slide {
-    background: #ccc;
-    border: 1px solid #0000008f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 380px;
-    font-size: 50px;
-   }
-   .swiper-slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-   }
-
-   .swiper-button-next,
-   .swiper-button-prev {
-    color: #fff;
-    background: rgba(0, 0, 0, 0.5);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    transition: all 0.3s ease;
-   }
-
-   .swiper-button-next:hover,
-   .swiper-button-prev:hover {
-    background: rgba(0, 0, 0, 0.8);
-    transform: scale(1.1);
-   }
-
-   .swiper-button-next::after,
-   .swiper-button-prev::after {
-    font-size: 20px;
-    font-weight: bold;
-   }
   
-  .swiper-slide {
-    background-color: #fff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px;
-    font-weight: bold;
-    color: #000;
-  }
-  
-
 
   html, body {
   width: 100%;
@@ -6008,40 +5955,65 @@ h3,
 /* Desktop: normal */
 .swiper-wrapper-container{
   width: 100%;
-  display: flex;
-  justify-content: center;
+   display: flex;
+            justify-content: center;
+            align-items: center;
 }
 
-/* ✅ Mobile: shrink whole slider but keep same desktop layout */
-@media (max-width: 576px){
-  .swiper-wrapper-container{
-    transform: scale(0.62);        /* adjust 0.55 - 0.75 */
-    transform-origin: center top;
-  }
-}
+   .swiper {
+            width: 95%;
+            max-width: 1350px;
+            padding-bottom: 70px;
+            /* padding-top: 50px; */
+        }
 
-/* Tablet */
-@media (max-width: 992px){
-  .swiper-wrapper-container{
-    transform: scale(0.78);        /* adjust 0.70 - 0.85 */
-    transform-origin: center top;
-  }
-}
+        .swiper-slide {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 500px;
+            width: 400px;
+            /* border-radius: 12px; */
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .swiper-slide {
+                height: 380px;
+                width: 300px;
+            }
+        }
+        
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-/* 
-@media (max-width: 576px){
-  .swiper-slide{
-    width: 210px !important;
-    height: 260px !important;
-  }
-} */
-/* @media (max-width: 576px){
-  .swiper-button-next,
-  .swiper-button-prev{
-    top: 55% !important;
-    transform: translateY(-50%);
-  }
-} */
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: scale(1.1);
+        }
+
+        .swiper-button-next::after,
+        .swiper-button-prev::after {
+            font-size: 20px;
+            font-weight: bold;
+        }
 
     </style>
 
@@ -6408,31 +6380,42 @@ h3,
         <p class="section-subtitle">For every you</p>
         <div class="swiper-wrapper-container">
             
-           <div class="swiper mySwiper">
-      <div class="swiper-wrapper">
-        <div class="swiper-slide">
-          <img src="https://i.pinimg.com/736x/5f/5f/e4/5f5fe4b1f54e08c6cd97080be4534640.jpg" alt="Slide 1">
+          <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/1200x/5f/5f/e4/5f5fe4b1f54e08c6cd97080be4534640.jpg" alt="Slide 1">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/736x/92/64/6a/92646a0d09b3b2e3be82879c2787006e.jpg" alt="Slide 2">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/736x/5d/7a/b8/5d7ab87a1bd179f4232afd2b9d75fbeb.jpg" alt="Slide 3">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/736x/1a/86/9a/1a869a377ab8ee216c9cfce98c0707a0.jpg" alt="Slide 4">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/1200x/41/0e/ef/410eef754855c54c003b5d4a585b31bd.jpg" alt="Slide 5">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/736x/1a/3c/e3/1a3ce3971220426985eaebeb7ef4c766.jpg" alt="Slide 6">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/1200x/86/32/2a/86322af494c43addb93a460aa7d08fa2.jpg" alt="Slide 7">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/736x/38/af/68/38af68a24816b8f80d96cb057ad80153.jpg" alt="Slide 8">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/736x/12/d7/9d/12d79d0572b150b484bf1e7cb29e761d.jpg" alt="Slide 9">
+            </div>
+            <div class="swiper-slide">
+                <img src="https://i.pinimg.com/736x/62/0f/48/620f489e0e0b2656746fddf342adec09.jpg" alt="Slide 10">
+            </div>
         </div>
-        <div class="swiper-slide">
-          <img src="https://i.pinimg.com/736x/92/64/6a/92646a0d09b3b2e3be82879c2787006e.jpg" alt="Slide 2">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://i.pinimg.com/736x/8a/33/0a/8a330a9e7a5fbd9f6e73e57b9ea492fe.jpg" alt="Slide 3">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://i.pinimg.com/736x/3b/93/50/3b935039c2763df65b8031fddd4ce00e.jpg" alt="Slide 4">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://i.pinimg.com/736x/5b/88/03/5b8803c6682d79b34a767c3b7e85d1c4.jpg" alt="Slide 5">
-        </div>
-        <div class="swiper-slide">
-          <img src="https://i.pinimg.com/736x/3b/93/50/3b935039c2763df65b8031fddd4ce00e.jpg" alt="Slide 4">
-        </div>
-        </div>
-        </div>
-        <!-- arrow -->
         <div class="swiper-button-next"></div>
         <div class="swiper-button-prev"></div>
+    </div>
         </div>
     </div>
         </div>
@@ -7585,65 +7568,65 @@ navbar.addEventListener('mouseleave', () => {
 //   },
 // });
 
-var swiper = new Swiper(".mySwiper", {
-  effect: "coverflow",
-  centeredSlides: true,
-  loop: true,
-  grabCursor: true,
+// var swiper = new Swiper(".mySwiper", {
+//   effect: "coverflow",
+//   centeredSlides: true,
+//   loop: true,
+//   grabCursor: true,
 
-  // Desktop default (your current look)
-  slidesPerView: 3,
-  coverflowEffect: {
-    rotate: 30,
-    stretch: 150,
-    depth: 100,
-    scale: 0.9,
-    modifier: 1,
-    slideShadows: false,
-  },
+//   // Desktop default (your current look)
+//   slidesPerView: 3,
+//   coverflowEffect: {
+//     rotate: 30,
+//     stretch: 150,
+//     depth: 100,
+//     scale: 0.9,
+//     modifier: 1,
+//     slideShadows: false,
+//   },
 
   // ✅ Mobile/Tablet: stacked style like your screenshot
-  breakpoints: {
-    0: {
-      slidesPerView: 1,
-      coverflowEffect: {
-        rotate: 0,
-        stretch: 0,
-        depth: 160,
-        scale: 0.92,
-        modifier: 1,
-        slideShadows: false,
-      },
-    },
-    768: {
-      slidesPerView: 2,
-      coverflowEffect: {
-        rotate: 15,
-        stretch: 60,
-        depth: 140,
-        scale: 0.92,
-        modifier: 1,
-        slideShadows: false,
-      },
-    },
-    992: {
-      slidesPerView: 3,
-      coverflowEffect: {
-        rotate: 30,
-        stretch: 150,
-        depth: 100,
-        scale: 0.9,
-        modifier: 1,
-        slideShadows: false,
-      },
-    },
-  },
+//   breakpoints: {
+//     0: {
+//       slidesPerView: 1,
+//       coverflowEffect: {
+//         rotate: 0,
+//         stretch: 0,
+//         depth: 160,
+//         scale: 0.92,
+//         modifier: 1,
+//         slideShadows: false,
+//       },
+//     },
+//     768: {
+//       slidesPerView: 2,
+//       coverflowEffect: {
+//         rotate: 15,
+//         stretch: 60,
+//         depth: 140,
+//         scale: 0.92,
+//         modifier: 1,
+//         slideShadows: false,
+//       },
+//     },
+//     992: {
+//       slidesPerView: 3,
+//       coverflowEffect: {
+//         rotate: 30,
+//         stretch: 150,
+//         depth: 100,
+//         scale: 0.9,
+//         modifier: 1,
+//         slideShadows: false,
+//       },
+//     },
+//   },
 
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-});
+//   navigation: {
+//     nextEl: ".swiper-button-next",
+//     prevEl: ".swiper-button-prev",
+//   },
+// });
 
   
 //   breakpoints: {
@@ -7670,6 +7653,27 @@ var swiper = new Swiper(".mySwiper", {
 //     },
 //   },
 // });
+
+
+        var swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            coverflowEffect: {
+                rotate: 15,
+                stretch: 0,
+                depth: 300,
+                modifier: 1,
+                slideShadows: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            loop: true,
+        });
+    
         /* ========================================================
            JEWELRY SHOTS VIDEO SLIDER
            ======================================================== */
