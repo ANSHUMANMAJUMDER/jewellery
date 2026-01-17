@@ -117,12 +117,18 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.15);
         }
 
-        .jm-reel-product img {
+       .jm-reel-product img {
             width: 42px;
             height: 42px;
+            min-width: 42px;
+            min-height: 42px;
+            max-width: 42px;
+            max-height: 42px;
             border-radius: 50%;
             object-fit: cover;
+            flex-shrink: 0;
         }
+
 
         .jm-reel-product-info {
             display: flex;
