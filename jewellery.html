@@ -131,6 +131,14 @@
             line-height: 1.2;
         }
 
+        .jm-reel-title {
+            font-weight: 600;
+            color: #111;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
         .jm-reel-desc {
             font-size: 12px;
             color: #333;
@@ -455,7 +463,7 @@
         }
 
         /* ============================================================
-           MOBILE VIEW – INSTAGRAM REELS STYLE
+           MOBILE VIEW – REELS STRUCTURE (NO DESKTOP CHANGE)
            ============================================================ */
         @media (max-width: 768px) {
             /* Hide arrows on mobile */
@@ -479,15 +487,18 @@
                 scroll-snap-align: start;
             }
 
+            /* Make cards look like clean blocks (image style) */
             .jm-reel-card {
                 background: #fff;
                 border: 1px solid #e0e0e0;
             }
 
+            /* Keep video fitted */
             .jm-reel-card video {
                 object-fit: cover;
             }
 
+            /* Product pill spacing */
             .jm-reel-product {
                 left: 10px;
                 right: 10px;
@@ -495,6 +506,7 @@
                 padding: 6px 10px;
             }
 
+            /* Typography adjustment */
             .jm-reel-desc {
                 font-size: 11px;
             }
@@ -630,9 +642,9 @@
                 <div class="jm-reels-track">
 
                     <div class="jm-reel-card" data-product="1">
-                        <video src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop autoplay playsinline></video>
+                        <video src="videos/jewellery1.mp4" muted loop autoplay playsinline></video>
                         <div class="jm-reel-product">
-                            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=100&h=100&fit=crop" alt="Product">
+                            <img src="images/product1.jpg" alt="Product">
                             <div class="jm-reel-product-info">
                                 <span class="jm-reel-desc">Elegant handcrafted diamond necklace for special occasions</span>
                                 <span class="jm-reel-price">₹24,999</span>
@@ -641,9 +653,9 @@
                     </div>
 
                     <div class="jm-reel-card" data-product="2">
-                        <video src="https://www.w3schools.com/html/movie.mp4" muted loop autoplay playsinline></video>
+                        <video src="videos/jewellery2.mp4" muted loop autoplay playsinline></video>
                         <div class="jm-reel-product">
-                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=100&h=100&fit=crop" alt="Product">
+                            <img src="images/product2.jpg" alt="Product">
                             <div class="jm-reel-product-info">
                                 <span class="jm-reel-desc">Traditional gold earrings with intricate design</span>
                                 <span class="jm-reel-price">₹18,499</span>
@@ -652,9 +664,9 @@
                     </div>
 
                     <div class="jm-reel-card" data-product="3">
-                        <video src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop autoplay playsinline></video>
+                        <video src="videos/jewellery3.mp4" muted loop autoplay playsinline></video>
                         <div class="jm-reel-product">
-                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=100&h=100&fit=crop" alt="Product">
+                            <img src="images/product3.jpg" alt="Product">
                             <div class="jm-reel-product-info">
                                 <span class="jm-reel-desc">Pearl & crystal bracelet for elegant evenings</span>
                                 <span class="jm-reel-price">₹12,999</span>
@@ -663,9 +675,9 @@
                     </div>
 
                     <div class="jm-reel-card" data-product="4">
-                        <video src="https://www.w3schools.com/html/movie.mp4" muted loop autoplay playsinline></video>
+                        <video src="videos/jewellery4.mp4" muted loop autoplay playsinline></video>
                         <div class="jm-reel-product">
-                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=100&h=100&fit=crop" alt="Product">
+                            <img src="images/product4.jpg" alt="Product">
                             <div class="jm-reel-product-info">
                                 <span class="jm-reel-desc">Designer diamond ring with unique style</span>
                                 <span class="jm-reel-price">₹32,499</span>
@@ -674,9 +686,9 @@
                     </div>
 
                     <div class="jm-reel-card" data-product="5">
-                        <video src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop autoplay playsinline></video>
+                        <video src="videos/jewellery5.mp4" muted loop autoplay playsinline></video>
                         <div class="jm-reel-product">
-                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=100&h=100&fit=crop" alt="Product">
+                            <img src="images/product5.jpg" alt="Product">
                             <div class="jm-reel-product-info">
                                 <span class="jm-reel-desc">Royal choker set for weddings and celebrations</span>
                                 <span class="jm-reel-price">₹45,999</span>
@@ -741,39 +753,39 @@
         // Product data
         const jmProducts = {
             1: {
-                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-                image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&h=300&fit=crop',
+                video: 'videos/jewellery1.mp4',
+                image: 'images/product1.jpg',
                 name: 'Elegant Diamond Necklace Set',
                 price: '₹24,999',
-                description: 'Suitable for: All occasions and celebrations. This stunning diamond necklace set features premium quality stones set in pure gold. Perfect for weddings, parties, and special occasions.'
+                description: 'Suitable for: All occasions and celebrations. This stunning diamond necklace set features premium quality stones set in pure gold. Perfect for weddings, parties, and special occasions. The intricate design showcases traditional craftsmanship with a modern touch.'
             },
             2: {
-                video: 'https://www.w3schools.com/html/movie.mp4',
-                image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=300&fit=crop',
+                video: 'videos/jewellery2.mp4',
+                image: 'images/product2.jpg',
                 name: 'Traditional Gold Earrings',
                 price: '₹18,499',
-                description: 'Suitable for: Daily wear and special occasions. Beautifully crafted traditional gold earrings that complement any outfit. Made from 22K gold with intricate detailing.'
+                description: 'Suitable for: Daily wear and special occasions. Beautifully crafted traditional gold earrings that complement any outfit. Made from 22K gold with intricate detailing. Lightweight and comfortable for all-day wear.'
             },
             3: {
-                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-                image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&h=300&fit=crop',
+                video: 'videos/jewellery3.mp4',
+                image: 'images/product3.jpg',
                 name: 'Pearl & Crystal Bracelet',
                 price: '₹12,999',
-                description: 'Suitable for: Parties and evening events. Elegant bracelet featuring genuine pearls and sparkling crystals. The perfect accessory to add sophistication to your look.'
+                description: 'Suitable for: Parties and evening events. Elegant bracelet featuring genuine pearls and sparkling crystals. The perfect accessory to add sophistication to your look. Adjustable clasp for comfortable fit.'
             },
             4: {
-                video: 'https://www.w3schools.com/html/movie.mp4',
-                image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&h=300&fit=crop',
+                video: 'videos/jewellery4.mp4',
+                image: 'images/product4.jpg',
                 name: 'Designer Diamond Ring',
                 price: '₹32,499',
-                description: 'Suitable for: Engagements and special moments. Exquisite designer diamond ring with a unique contemporary design. Features conflict-free diamonds set in platinum.'
+                description: 'Suitable for: Engagements and special moments. Exquisite designer diamond ring with a unique contemporary design. Features conflict-free diamonds set in platinum. A timeless piece that symbolizes eternal love.'
             },
             5: {
-                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
-                image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=300&fit=crop',
+                video: 'videos/jewellery5.mp4',
+                image: 'images/product5.jpg',
                 name: 'Royal Choker Set',
                 price: '₹45,999',
-                description: 'Suitable for: Weddings and grand celebrations. Luxurious royal choker set adorned with premium stones and intricate gold work. Includes matching earrings.'
+                description: 'Suitable for: Weddings and grand celebrations. Luxurious royal choker set adorned with premium stones and intricate gold work. Includes matching earrings. Perfect for brides and special occasions requiring regal elegance.'
             }
         };
 
@@ -848,35 +860,74 @@
             e.stopPropagation();
             jmOpenProductByIndex(jmCurrentIndex + 1);
         });
-        jmModalCloseBtn.addEventListener('click', () => {
-            jmModal.classList.remove('active');
-            jmModalVideo.pause();
-            document.body.style.overflow = 'auto';
-        });
-        jmModal.addEventListener('click', (e) => {
-            if (e.target === jmModal) {
-                jmModal.classList.remove('active');
-                jmModalVideo.pause();
-                document.body.style.overflow = 'auto';
-            }
-        });
-        jmModalVideo.addEventListener('touchstart', (e) => {
-            touchStartY = e.changedTouches[0].screenY;
-        });
-        jmModalVideo.addEventListener('touchend', (e) => {
-            touchEndY = e.changedTouches[0].screenY;
-            handleSwipeGesture();
-        });
-        function handleSwipeGesture() {
-            const swipeDistance = touchEndY - touchStartY;
+
+        // Touch events for swipe navigation
+        jmModal.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        jmModal.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].clientY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeDistance = touchStartY - touchEndY;
+            
             if (Math.abs(swipeDistance) > swipeThreshold) {
                 if (swipeDistance > 0) {
-                    jmOpenProductByIndex(jmCurrentIndex - 1);
-                } else {
+                    // Swiped up - next video
                     jmOpenProductByIndex(jmCurrentIndex + 1);
+                } else {
+                    // Swiped down - previous video
+                    jmOpenProductByIndex(jmCurrentIndex - 1);
                 }
             }
         }
+
+        function jmCloseProductModal() {
+            jmModal.classList.remove('active');
+            jmModalVideo.pause();
+            jmModalVideo.muted = true; // Mute again when closed
+            jmModalVideo.currentTime = 0;
+            document.body.style.overflow = 'auto';
+        }
+
+        jmModalCloseBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            jmCloseProductModal();
+        });
+
+        jmModal.addEventListener('click', (e) => {
+            if (e.target === jmModal) {
+                jmCloseProductModal();
+            }
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!jmModal.classList.contains('active')) return;
+
+            if (e.key === 'Escape') {
+                jmCloseProductModal();
+            } else if (e.key === 'ArrowLeft') {
+                jmOpenProductByIndex(jmCurrentIndex - 1);
+            } else if (e.key === 'ArrowRight') {
+                jmOpenProductByIndex(jmCurrentIndex + 1);
+            }
+        });
+
+        document.querySelector('.jm-btn-add-cart').addEventListener('click', () => {
+            alert('Product added to cart!');
+        });
+
+        document.querySelector('.jm-btn-cart-icon').addEventListener('click', () => {
+            alert('Added to wishlist!');
+        });
+
+        document.querySelector('.jm-btn-more-info').addEventListener('click', () => {
+            alert('Redirecting to product page...');
+        });
     </script>
+
 </body>
 </html>

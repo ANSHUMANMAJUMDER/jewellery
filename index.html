@@ -4072,14 +4072,14 @@ h3,
         /* ============================================================
            MODAL STYLES
            ============================================================ */
-        .jm-modal {
+      .jm-modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(2,0,13,0.85); /* dark-black overlay */
+            background: rgba(2,0,13,0.85);
             z-index: 9999;
             align-items: center;
             justify-content: center;
@@ -4223,13 +4223,6 @@ h3,
             margin-bottom: 15px;
         }
 
-        .jm-read-more {
-            color: var(--primary-blue);
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
         .jm-modal-buttons {
             display: flex;
             gap: 15px;
@@ -4294,7 +4287,6 @@ h3,
             color: var(--white);
         }
 
-        /* Modal left/right arrows (for switching reels) */
         .jm-modal-arrow {
             position: absolute;
             top: 50%;
@@ -4326,131 +4318,24 @@ h3,
             right: 20px;
         }
 
-        /* Entrance animation */
-        @keyframes jmReelFloatUp {
-            0% {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            60% {
-                opacity: 1;
-                transform: translateY(-4px);
-            }
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .jm-modal-content {
-                flex-direction: column;
-                max-height: 85vh;
-            }
-
-            .jm-modal-video {
-                min-height: 300px;
-            }
-
-            .jm-modal-product {
-                flex: 1;
-            }
-        }
-
-        /* @media (max-width: 768px) {
-            .jm-reels-section {
-                padding: 3.5rem 1.2rem;
-            }
-            
-            .jm-reels-slider {
-                gap: 0.5rem;
-            }
-            
-            .jm-reels-arrow {
-                width: 34px;
-                height: 34px;
-            }
-            
-            .jm-reel-card {
-                flex: 0 0 220px;
-                margin: 0.25rem 0;
-            }
-
-            .jm-modal-product {
-                padding: 20px;
-            }
-
-            .jm-modal-buttons {
-                flex-direction: column;
-            }
-
-            .jm-btn-cart-icon {
-                width: 100%;
-            }
-
-            .jm-modal-arrow {
-                width: 36px;
-                height: 36px;
-            }
-        } */
-         /* Fix for Mobile Reel Modal */
-@media (max-width: 768px) {
-    .jm-modal-content {
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        border-radius: 0;
-        background: #000; /* Dark background for cinematic feel */
-    }
-
-    .jm-modal-video-container {
-        flex: 1; /* Takes remaining space */
-        height: 70vh; /* Most of the screen for the video */
-        background: #000;
-    }
-
-    .jm-modal-info {
-        flex: 0 0 auto;
-        width: 100% !important;
-        padding: 1.5rem;
-        background: #fff;
-        border-radius: 20px 20px 0 0; /* Rounded top for info panel */
-        margin-top: -20px; /* Slight overlap on video */
-        z-index: 2;
-        max-height: 35vh; /* Thin column layout */
-        overflow-y: auto;
-    }
-
-    /* Hide redundant long descriptions for mobile to keep it thin */
-    .jm-modal-info .jm-product-description {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
-        overflow: hidden;
-        font-size: 0.85rem;
-    }
-
-    /* Stack buttons for better thumb reach */
-    .jm-modal-actions {
-        flex-direction: column;
-        gap: 10px;
-    }
-}
-
+        /* ============================================================
+           MOBILE HEADER SIZE FIX (PHONES ONLY)
+           ============================================================ */
         @media (max-width: 480px) {
-            .jm-reels-section {
-                padding: 3rem 1rem;
+            .jm-reels-header {
+                margin-bottom: 1.5rem;
+                padding: 0 16px;
             }
-            
-            .jm-product-name {
-                font-size: 0.8rem;
+
+            .jm-reels-header .jm-section-title {
+                font-size: 1.4rem;
+                line-height: 1.2;
+                letter-spacing: 1px;
             }
-            
-            .jm-product-price {
-                font-size: 0.95rem;
+
+            .jm-reels-header .jm-section-subtitle {
+                font-size: 0.9rem;
+                line-height: 1.4;
             }
 
             .jm-modal-title {
@@ -4467,6 +4352,169 @@ h3,
 
             .jm-modal-next {
                 right: 10px;
+            }
+        }
+
+        /* ============================================================
+           MOBILE VIEW – REELS STRUCTURE (NO DESKTOP CHANGE)
+           ============================================================ */
+        @media (max-width: 768px) {
+            /* Hide arrows on mobile */
+            .jm-reels-arrow {
+                display: none;
+            }
+
+            /* Track spacing */
+            .jm-reels-track {
+                gap: 14px;
+                padding: 0 16px 20px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            /* Card sizing for mobile */
+            .jm-reel-card {
+                min-width: 70%;
+                height: 360px;
+                border-radius: 16px;
+                scroll-snap-align: start;
+            }
+
+            /* Make cards look like clean blocks (image style) */
+            .jm-reel-card {
+                background: #fff;
+                border: 1px solid #e0e0e0;
+            }
+
+            /* Keep video fitted */
+            .jm-reel-card video {
+                object-fit: cover;
+            }
+
+            /* Product pill spacing */
+            .jm-reel-product {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                padding: 6px 10px;
+            }
+
+            /* Typography adjustment */
+            .jm-reel-desc {
+                font-size: 11px;
+            }
+
+            .jm-reel-price {
+                font-size: 13px;
+            }
+
+            /* MODAL - INSTAGRAM REELS STYLE */
+            .jm-modal {
+                padding: 0;
+            }
+
+            .jm-modal-content {
+                flex-direction: column;
+                width: 100vw;
+                height: 100vh;
+                max-width: 100vw;
+                max-height: 100vh;
+                border-radius: 0;
+                background: #000;
+                position: relative;
+            }
+
+            .jm-modal-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                min-height: 100vh;
+            }
+
+            .jm-modal-video video {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+
+            .jm-modal-product {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                flex: none;
+                width: 100%;
+                padding: 20px;
+                background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+                overflow-y: visible;
+                max-height: none;
+            }
+
+            .jm-modal-product-image {
+                display: none;
+            }
+
+            .jm-modal-badges {
+                margin-bottom: 10px;
+            }
+
+            .jm-modal-title {
+                font-size: 1.1rem;
+                color: #fff;
+                margin-bottom: 8px;
+            }
+
+            .jm-modal-price {
+                font-size: 1.4rem;
+                color: #fff;
+                margin-bottom: 12px;
+            }
+
+            .jm-modal-desc-title {
+                color: #fff;
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+
+            .jm-modal-desc-text {
+                color: rgba(255,255,255,0.9);
+                font-size: 0.85rem;
+                line-height: 1.5;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                margin-bottom: 12px;
+            }
+
+            .jm-modal-buttons {
+                flex-direction: row;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .jm-modal-btn {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+            .jm-btn-cart-icon {
+                width: 44px;
+                height: 44px;
+                border-color: #fff;
+                color: #fff;
+            }
+
+            .jm-btn-cart-icon:hover {
+                background: #fff;
+                color: var(--primary-blue);
+            }
+
+            /* Hide desktop arrows */
+            .jm-modal-arrow {
+                display: none;
             }
         }
 /* ============================================================
@@ -5119,216 +5167,204 @@ h3,
           /* ============================================================
            ANIMAL WELFARE SECTION
            ============================================================ */
-        .animal-welfare-section {
-            /* padding: 0; */
-            padding:0; 
-            background: var(--white);
-            margin: 0;
-        }
+  .animal-welfare-section {
+    padding: 0; 
+    background: var(--white);
+    margin: 0;
+}
 
-        .animal-welfare-container {
-            /* max-width: 1400px; */
-            /* min-height: 70vh; */
-            min-height: 58vh;
-            max-width: 100%;
-            margin: 0 auto;
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%);
-            padding: 3rem 4rem;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: center;
-        }
+.animal-welfare-container {
+    max-width: 100%;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #f0f4f8 0%, #e8eef5 100%);
+    padding: 2.5rem 4rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+}
 
-        .animal-welfare-content h3 {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-        }
+.animal-welfare-content h3 {
+    font-size: 2rem;
+    font-weight: 300;
+    letter-spacing: 3px;
+    color: var(--primary-blue);
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+}
 
-        .animal-welfare-content p {
-            /* font-size: 1.05rem; */
-            line-height: 1.8;
-            color: var(--dark-black);
-            opacity: 0.85;
-            margin-bottom: 1.5rem;
-            font-family: var(--font-primary);
-        }
+.animal-welfare-content p {
+    line-height: 1.8;
+    color: var(--dark-black);
+    opacity: 0.85;
+    margin-bottom: 1.5rem;
+    font-family: var(--font-primary);
+}
 
-        .animal-welfare-highlight {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.8rem;
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 0.8rem 1.5rem;
-            border-radius: 50px;
-            font-size: 0.95rem;
-            font-weight: 500;
-            letter-spacing: 1px;
-            cursor: pointer;
-        }
+.animal-welfare-highlight {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.8rem;
+    background: var(--primary-blue);
+    color: var(--white);
+    padding: 0.8rem 1.5rem;
+    border-radius: 50px;
+    font-size: 0.95rem;
+    font-weight: 500;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
 
-        .animal-welfare-highlight i {
-            font-size: 1.3rem;
-        }
+.animal-welfare-highlight i {
+    font-size: 1.3rem;
+}
 
-        .animal-welfare-image {
-            display: flex;
-            gap: 1rem;
-            justify-content: flex-end;
-        }
+.animal-welfare-image {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+}
 
-        .animal-welfare-icon-box {
-            background: var(--white);
-            width: 120px;
-            height: 120px;
-            border-radius: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            /* transition: transform 0.3s ease; */
-        }
+.animal-welfare-icon-box {
+    background: var(--white);
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
 
-        /* .animal-welfare-icon-box:hover {
-            transform: translateY(-8px);
-        } */
+.animal-welfare-icon-box i {
+    font-size: 3rem;
+    color: var(--primary-blue);
+    margin-bottom: 0.5rem;
+}
 
-        .animal-welfare-icon-box i {
-            font-size: 3rem;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
+.animal-welfare-icon-box span {
+    font-size: 0.75rem;
+    color: var(--dark-black);
+    opacity: 0.7;
+    letter-spacing: 1px;
+    text-align: center;
+}
 
-        .animal-welfare-icon-box span {
-            font-size: 0.75rem;
-            color: var(--dark-black);
-            opacity: 0.7;
-            letter-spacing: 1px;
-            text-align: center;
-        }
+/* Animal Welfare - Tablet */
+@media (max-width: 1024px) {
+    .animal-welfare-container {
+        padding: 2rem 3rem;
+        gap: 2rem;
+    }
 
-        /* Animal Welfare - Tablet */
-        @media (max-width: 1024px) {
-            .animal-welfare-container {
-                padding: 2.5rem 3rem;
-                gap: 2rem;
-            }
+    .animal-welfare-content h3 {
+        font-size: 1.8rem;
+        letter-spacing: 2px;
+    }
 
-            .animal-welfare-content h3 {
-                font-size: 1.8rem;
-                letter-spacing: 2px;
-            }
+    .animal-welfare-content p {
+        font-size: 1rem;
+    }
 
-            .animal-welfare-content p {
-                font-size: 1rem;
-            }
+    .animal-welfare-icon-box {
+        width: 100px;
+        height: 100px;
+    }
 
-            .animal-welfare-icon-box {
-                width: 100px;
-                height: 100px;
-            }
+    .animal-welfare-icon-box i {
+        font-size: 2.5rem;
+    }
+}
 
-            .animal-welfare-icon-box i {
-                font-size: 2.5rem;
-            }
-        }
+/* Animal Welfare - Mobile */
+@media (max-width: 768px) {
+    .animal-welfare-container {
+        grid-template-columns: 1fr;
+        padding: 1.8rem 1.5rem;
+        gap: 1.5rem;
+        text-align: center;
+    }
 
-        /* Animal Welfare - Mobile */
-        @media (max-width: 768px) {
-            .animal-welfare-container {
-                grid-template-columns: 1fr;
-                padding: 2rem 1.5rem;
-                gap: 2rem;
-                text-align: center;
-            }
+    .animal-welfare-content h3 {
+        font-size: 1.6rem;
+        letter-spacing: 1.5px;
+    }
 
-            .animal-welfare-content h3 {
-                font-size: 1.6rem;
-                letter-spacing: 1.5px;
-            }
+    .animal-welfare-content p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+    }
 
-            .animal-welfare-content p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
+    .animal-welfare-highlight {
+        display: inline-flex;
+        padding: 0.7rem 1.3rem;
+        font-size: 0.9rem;
+    }
 
-            .animal-welfare-highlight {
-                display: inline-flex;
-                padding: 0.7rem 1.3rem;
-                font-size: 0.9rem;
-            }
+    .animal-welfare-image {
+        justify-content: center;
+    }
 
-            .animal-welfare-image {
-                justify-content: center;
-            }
+    .animal-welfare-icon-box {
+        width: 90px;
+        height: 90px;
+    }
 
-            .animal-welfare-icon-box {
-                width: 90px;
-                height: 90px;
-            }
+    .animal-welfare-icon-box i {
+        font-size: 2.2rem;
+    }
 
-            .animal-welfare-icon-box i {
-                font-size: 2.2rem;
-            }
+    .animal-welfare-icon-box span {
+        font-size: 0.7rem;
+    }
+}
 
-            .animal-welfare-icon-box span {
-                font-size: 0.7rem;
-            }
-        }
+/* Animal Welfare - Small Mobile */
+@media (max-width: 480px) {
+    .animal-welfare-container {
+        padding: 2.5rem 1rem;
+        gap: 1.2rem;
+    }
 
-        /* Animal Welfare - Small Mobile */
-        @media (max-width: 480px) {
-            .animal-welfare-container {
-                padding: 1.8rem 1rem;
-                gap: 1.5rem;
-            }
+    .animal-welfare-content h3 {
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+        margin-bottom: 0.8rem;
+    }
 
-            .animal-welfare-content h3 {
-                font-size: 1.4rem;
-                letter-spacing: 1px;
-                margin-bottom: 0.8rem;
-            }
+    .animal-welfare-content p {
+        font-size: 0.88rem;
+        line-height: 1.5;
+        margin-bottom: 1.2rem;
+    }
 
-            .animal-welfare-content p {
-                font-size: 0.88rem;
-                line-height: 1.5;
-                margin-bottom: 1.2rem;
-            }
+    .animal-welfare-highlight {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
 
-            .animal-welfare-highlight {
-                padding: 0.6rem 1.2rem;
-                font-size: 0.85rem;
-            }
+    .animal-welfare-highlight i {
+        font-size: 1.1rem;
+    }
 
-            .animal-welfare-highlight i {
-                font-size: 1.1rem;
-            }
+    .animal-welfare-icon-box {
+        width: 80px;
+        height: 80px;
+        border-radius: 15px;
+    }
 
-            .animal-welfare-icon-box {
-                width: 80px;
-                height: 80px;
-                border-radius: 15px;
-            }
+    .animal-welfare-icon-box i {
+        font-size: 2rem;
+        margin-bottom: 0.3rem;
+    }
 
-            .animal-welfare-icon-box i {
-                font-size: 2rem;
-                margin-bottom: 0.3rem;
-            }
-
-            .animal-welfare-icon-box span {
-                font-size: 0.65rem;
-            }
-        }
-
-
+    .animal-welfare-icon-box span {
+        font-size: 0.65rem;
+    }
+}
         /* ============================================================
            PARTNERS SECTION
            ============================================================ */
@@ -8001,26 +8037,6 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         };
 
-        // Scroll animation observer
-        const jmObserverOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const jmObserver = new IntersectionObserver((entries) => {
-            entries.forEach((entry, index) => {
-                if (entry.isIntersecting) {
-                    setTimeout(() => {
-                        entry.target.classList.add('jm-animate');
-                    }, index * 100);
-                }
-            });
-        }, jmObserverOptions);
-
-        document.querySelectorAll('.jm-scroll-animate').forEach((el) => {
-            jmObserver.observe(el);
-        });
-
         // Arrow navigation for main reel track
         const jmTrack = document.querySelector('.jm-reels-track');
         const jmPrevBtn = document.querySelector('.jm-reels-prev');
@@ -8049,6 +8065,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const jmCards = Array.from(document.querySelectorAll('.jm-reel-card'));
         let jmCurrentIndex = 0;
 
+        // Touch/swipe handling for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+        const swipeThreshold = 50;
+
         function jmOpenProductByIndex(index) {
             if (index < 0) index = jmCards.length - 1;
             if (index >= jmCards.length) index = 0;
@@ -8060,6 +8081,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             jmModalVideo.pause();
             jmModalVideo.src = product.video;
+            jmModalVideo.muted = false; // Enable sound for modal
             jmModalVideo.load();
             jmModalVideo.play();
 
@@ -8087,9 +8109,34 @@ document.addEventListener("DOMContentLoaded", () => {
             jmOpenProductByIndex(jmCurrentIndex + 1);
         });
 
+        // Touch events for swipe navigation
+        jmModal.addEventListener('touchstart', (e) => {
+            touchStartY = e.touches[0].clientY;
+        }, { passive: true });
+
+        jmModal.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].clientY;
+            handleSwipe();
+        }, { passive: true });
+
+        function handleSwipe() {
+            const swipeDistance = touchStartY - touchEndY;
+            
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    // Swiped up - next video
+                    jmOpenProductByIndex(jmCurrentIndex + 1);
+                } else {
+                    // Swiped down - previous video
+                    jmOpenProductByIndex(jmCurrentIndex - 1);
+                }
+            }
+        }
+
         function jmCloseProductModal() {
             jmModal.classList.remove('active');
             jmModalVideo.pause();
+            jmModalVideo.muted = true; // Mute again when closed
             jmModalVideo.currentTime = 0;
             document.body.style.overflow = 'auto';
         }
@@ -8122,7 +8169,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         document.querySelector('.jm-btn-cart-icon').addEventListener('click', () => {
-            alert('Opening cart...');
+            alert('Added to wishlist!');
         });
 
         document.querySelector('.jm-btn-more-info').addEventListener('click', () => {
