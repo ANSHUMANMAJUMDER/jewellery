@@ -1,0 +1,882 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jewellery in Motion</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #07203F;
+            --secondary-peach: #F8E8DC;
+            --light-peach: #FDF6F0;
+            --dark-black: #02000D;
+            --white: #FFFFFF;
+            --font-primary: 'Georgia', serif;
+            --font-secondary: 'Arial', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background: var(--light-peach);
+        }
+
+        /* ============================================================
+           JEWELLERY VIDEO SLIDER SECTION (REELS)
+           ============================================================ */
+        .jm-reels-section {
+            padding: 60px 20px;
+            background: linear-gradient(
+                135deg,
+                var(--light-peach) 0%,
+                var(--white) 100%
+            );
+        }
+
+        .jm-reels-inner {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .jm-reels-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .jm-reels-header .jm-section-title {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            font-family: var(--font-primary);
+            color: var(--primary-blue);
+            margin-bottom: 0.6rem;
+        }
+
+        .jm-reels-header .jm-section-subtitle {
+            font-family: var(--font-primary);
+            font-size: 1.2rem;
+        }
+
+        .jm-reels-slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .jm-reels-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding-bottom: 30px;
+        }
+
+        .jm-reels-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        .jm-reel-card {
+            position: relative;
+            min-width: 260px;
+            height: 460px;
+            border-radius: 28px;
+            overflow: hidden;
+            background: #000;
+            flex-shrink: 0;
+            cursor: pointer;
+        }
+
+        .jm-reel-card video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .jm-reel-card:hover video {
+            transform: scale(1.05);
+        }
+
+        .jm-reel-product {
+            position: absolute;
+            left: 12px;
+            right: 12px;
+            bottom: 12px;
+            background: #fff;
+            border-radius: 999px;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        .jm-reel-product img {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .jm-reel-product-info {
+            display: flex;
+            flex-direction: column;
+            font-size: 13px;
+            line-height: 1.2;
+        }
+
+        .jm-reel-desc {
+            font-size: 12px;
+            color: #333;
+            font-weight: 500;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .jm-reel-price {
+            color: var(--primary-blue);
+            font-weight: 600;
+        }
+
+        .jm-reels-arrow {
+            border: 1px solid rgba(7,32,63,0.2);
+            background: var(--white);
+            color: var(--primary-blue);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            flex-shrink: 0;
+            transition: all 0.25s ease;
+        }
+
+        .jm-reels-arrow:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        /* ============================================================
+           MODAL STYLES
+           ============================================================ */
+        .jm-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(2,0,13,0.85);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .jm-modal.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .jm-modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            max-width: 1100px;
+            width: 100%;
+            max-height: 90vh;
+            overflow: hidden;
+            display: flex;
+            position: relative;
+            animation: slideUp 0.4s ease;
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .jm-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 40px;
+            height: 40px;
+            background: rgba(0,0,0,0.7);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            font-size: 24px;
+            cursor: pointer;
+            z-index: 10;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .jm-modal-close:hover {
+            background: rgba(0,0,0,0.9);
+        }
+
+        .jm-modal-video {
+            flex: 1;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 500px;
+        }
+
+        .jm-modal-video video {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .jm-modal-product {
+            flex: 0 0 450px;
+            padding: 30px;
+            overflow-y: auto;
+            background: var(--white);
+        }
+
+        .jm-modal-product-image {
+            width: 100%;
+            max-width: 300px;
+            margin: 0 auto 25px;
+            display: block;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .jm-modal-badges {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .jm-badge {
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .jm-badge-free {
+            background: var(--secondary-peach);
+            color: var(--dark-black);
+            border: 1px solid rgba(7,32,63,0.08);
+        }
+
+        .jm-badge-award {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .jm-modal-title {
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.4;
+            font-family: var(--font-primary);
+        }
+
+        .jm-modal-price {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+
+        .jm-modal-desc-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        .jm-modal-desc-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: var(--dark-black);
+            margin-bottom: 15px;
+        }
+
+        .jm-modal-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .jm-modal-btn {
+            flex: 1;
+            padding: 14px 20px;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-family: var(--font-secondary);
+        }
+
+        .jm-btn-more-info {
+            background: transparent;
+            color: var(--primary-blue);
+        }
+
+        .jm-btn-more-info:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .jm-btn-add-cart {
+            background: var(--secondary-peach);
+            color: var(--dark-black);
+            border-color: var(--secondary-peach);
+        }
+
+        .jm-btn-add-cart:hover {
+            background: #f3ded0;
+            border-color: #f3ded0;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(2,0,13,0.25);
+        }
+
+        .jm-btn-cart-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--white);
+            border: 2px solid var(--primary-blue);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--primary-blue);
+        }
+
+        .jm-btn-cart-icon:hover {
+            background: var(--primary-blue);
+            color: var(--white);
+        }
+
+        .jm-modal-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.8);
+            background: rgba(0,0,0,0.65);
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10000;
+            transition: all 0.25s ease;
+        }
+
+        .jm-modal-arrow:hover {
+            background: var(--white);
+            color: var(--primary-blue);
+        }
+
+        .jm-modal-prev {
+            left: 20px;
+        }
+
+        .jm-modal-next {
+            right: 20px;
+        }
+
+        /* ============================================================
+           MOBILE HEADER SIZE FIX (PHONES ONLY)
+           ============================================================ */
+        @media (max-width: 480px) {
+            .jm-reels-header {
+                margin-bottom: 1.5rem;
+                padding: 0 16px;
+            }
+
+            .jm-reels-header .jm-section-title {
+                font-size: 1.4rem;
+                line-height: 1.2;
+                letter-spacing: 1px;
+            }
+
+            .jm-reels-header .jm-section-subtitle {
+                font-size: 0.9rem;
+                line-height: 1.4;
+            }
+
+            .jm-modal-title {
+                font-size: 1.2rem;
+            }
+
+            .jm-modal-price {
+                font-size: 1.5rem;
+            }
+
+            .jm-modal-prev {
+                left: 10px;
+            }
+
+            .jm-modal-next {
+                right: 10px;
+            }
+        }
+
+        /* ============================================================
+           MOBILE VIEW – INSTAGRAM REELS STYLE
+           ============================================================ */
+        @media (max-width: 768px) {
+            /* Hide arrows on mobile */
+            .jm-reels-arrow {
+                display: none;
+            }
+
+            /* Track spacing */
+            .jm-reels-track {
+                gap: 14px;
+                padding: 0 16px 20px;
+                overflow-x: auto;
+                scroll-snap-type: x mandatory;
+            }
+
+            /* Card sizing for mobile */
+            .jm-reel-card {
+                min-width: 70%;
+                height: 360px;
+                border-radius: 16px;
+                scroll-snap-align: start;
+            }
+
+            .jm-reel-card {
+                background: #fff;
+                border: 1px solid #e0e0e0;
+            }
+
+            .jm-reel-card video {
+                object-fit: cover;
+            }
+
+            .jm-reel-product {
+                left: 10px;
+                right: 10px;
+                bottom: 10px;
+                padding: 6px 10px;
+            }
+
+            .jm-reel-desc {
+                font-size: 11px;
+            }
+
+            .jm-reel-price {
+                font-size: 13px;
+            }
+
+            /* MODAL - INSTAGRAM REELS STYLE */
+            .jm-modal {
+                padding: 0;
+            }
+
+            .jm-modal-content {
+                flex-direction: column;
+                width: 100vw;
+                height: 100vh;
+                max-width: 100vw;
+                max-height: 100vh;
+                border-radius: 0;
+                background: #000;
+                position: relative;
+            }
+
+            .jm-modal-video {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                min-height: 100vh;
+            }
+
+            .jm-modal-video video {
+                object-fit: cover;
+                width: 100%;
+                height: 100%;
+            }
+
+            .jm-modal-product {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                flex: none;
+                width: 100%;
+                padding: 20px;
+                background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.6) 50%, transparent 100%);
+                overflow-y: visible;
+                max-height: none;
+            }
+
+            .jm-modal-product-image {
+                display: none;
+            }
+
+            .jm-modal-badges {
+                margin-bottom: 10px;
+            }
+
+            .jm-modal-title {
+                font-size: 1.1rem;
+                color: #fff;
+                margin-bottom: 8px;
+            }
+
+            .jm-modal-price {
+                font-size: 1.4rem;
+                color: #fff;
+                margin-bottom: 12px;
+            }
+
+            .jm-modal-desc-title {
+                color: #fff;
+                font-size: 0.9rem;
+                margin-bottom: 6px;
+            }
+
+            .jm-modal-desc-text {
+                color: rgba(255,255,255,0.9);
+                font-size: 0.85rem;
+                line-height: 1.5;
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+                margin-bottom: 12px;
+            }
+
+            .jm-modal-buttons {
+                flex-direction: row;
+                gap: 10px;
+                margin-top: 15px;
+            }
+
+            .jm-modal-btn {
+                padding: 12px 16px;
+                font-size: 0.9rem;
+            }
+
+            .jm-btn-cart-icon {
+                width: 44px;
+                height: 44px;
+                border-color: #fff;
+                color: #fff;
+            }
+
+            .jm-btn-cart-icon:hover {
+                background: #fff;
+                color: var(--primary-blue);
+            }
+
+            /* Hide desktop arrows */
+            .jm-modal-arrow {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- JEWELLERY REELS SECTION -->
+    <section class="jm-reels-section">
+        <div class="jm-reels-inner">
+            <div class="jm-reels-header">
+                <div class="jm-section-title">JEWELLERY IN MOTION</div>
+                <div class="jm-section-subtitle">Scroll through our latest styling videos</div>
+            </div>
+            <div class="jm-reels-slider">
+                <button class="jm-reels-arrow jm-reels-prev" type="button">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="jm-reels-track">
+
+                    <div class="jm-reel-card" data-product="1">
+                        <video src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop autoplay playsinline></video>
+                        <div class="jm-reel-product">
+                            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=100&h=100&fit=crop" alt="Product">
+                            <div class="jm-reel-product-info">
+                                <span class="jm-reel-desc">Elegant handcrafted diamond necklace for special occasions</span>
+                                <span class="jm-reel-price">₹24,999</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="jm-reel-card" data-product="2">
+                        <video src="https://www.w3schools.com/html/movie.mp4" muted loop autoplay playsinline></video>
+                        <div class="jm-reel-product">
+                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=100&h=100&fit=crop" alt="Product">
+                            <div class="jm-reel-product-info">
+                                <span class="jm-reel-desc">Traditional gold earrings with intricate design</span>
+                                <span class="jm-reel-price">₹18,499</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="jm-reel-card" data-product="3">
+                        <video src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop autoplay playsinline></video>
+                        <div class="jm-reel-product">
+                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=100&h=100&fit=crop" alt="Product">
+                            <div class="jm-reel-product-info">
+                                <span class="jm-reel-desc">Pearl & crystal bracelet for elegant evenings</span>
+                                <span class="jm-reel-price">₹12,999</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="jm-reel-card" data-product="4">
+                        <video src="https://www.w3schools.com/html/movie.mp4" muted loop autoplay playsinline></video>
+                        <div class="jm-reel-product">
+                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=100&h=100&fit=crop" alt="Product">
+                            <div class="jm-reel-product-info">
+                                <span class="jm-reel-desc">Designer diamond ring with unique style</span>
+                                <span class="jm-reel-price">₹32,499</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="jm-reel-card" data-product="5">
+                        <video src="https://www.w3schools.com/html/mov_bbb.mp4" muted loop autoplay playsinline></video>
+                        <div class="jm-reel-product">
+                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=100&h=100&fit=crop" alt="Product">
+                            <div class="jm-reel-product-info">
+                                <span class="jm-reel-desc">Royal choker set for weddings and celebrations</span>
+                                <span class="jm-reel-price">₹45,999</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <button class="jm-reels-arrow jm-reels-next" type="button">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODAL -->
+    <div class="jm-modal" id="jmModal">
+        <button class="jm-modal-close" id="jmModalClose">×</button>
+        
+        <button class="jm-modal-arrow jm-modal-prev">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        
+        <div class="jm-modal-content">
+            <div class="jm-modal-video">
+                <video id="jmModalVideo" controls loop></video>
+            </div>
+            <div class="jm-modal-product">
+                <img src="" alt="" class="jm-modal-product-image" id="jmModalProductImage">
+                
+                <div class="jm-modal-badges">
+                    <span class="jm-badge jm-badge-free">Free Shipping</span>
+                    <span class="jm-badge jm-badge-award">Best Seller</span>
+                </div>
+                
+                <h3 class="jm-modal-title" id="jmModalTitle">Product Name</h3>
+                <div class="jm-modal-price" id="jmModalPrice">₹24,999</div>
+                
+                <div class="jm-modal-desc-title">Description</div>
+                <p class="jm-modal-desc-text" id="jmModalDescription">Product description goes here...</p>
+                
+                <div class="jm-modal-buttons">
+                    <button class="jm-modal-btn jm-btn-more-info">
+                        <i class="fas fa-info-circle"></i> More Info
+                    </button>
+                    <button class="jm-modal-btn jm-btn-add-cart">
+                        <i class="fas fa-shopping-cart"></i> Add to Cart
+                    </button>
+                    <button class="jm-btn-cart-icon">
+                        <i class="fas fa-heart"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <button class="jm-modal-arrow jm-modal-next">
+            <i class="fas fa-chevron-right"></i>
+        </button>
+    </div>
+
+    <script>
+        // Product data
+        const jmProducts = {
+            1: {
+                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                image: 'https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&h=300&fit=crop',
+                name: 'Elegant Diamond Necklace Set',
+                price: '₹24,999',
+                description: 'Suitable for: All occasions and celebrations. This stunning diamond necklace set features premium quality stones set in pure gold. Perfect for weddings, parties, and special occasions.'
+            },
+            2: {
+                video: 'https://www.w3schools.com/html/movie.mp4',
+                image: 'https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=300&fit=crop',
+                name: 'Traditional Gold Earrings',
+                price: '₹18,499',
+                description: 'Suitable for: Daily wear and special occasions. Beautifully crafted traditional gold earrings that complement any outfit. Made from 22K gold with intricate detailing.'
+            },
+            3: {
+                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                image: 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&h=300&fit=crop',
+                name: 'Pearl & Crystal Bracelet',
+                price: '₹12,999',
+                description: 'Suitable for: Parties and evening events. Elegant bracelet featuring genuine pearls and sparkling crystals. The perfect accessory to add sophistication to your look.'
+            },
+            4: {
+                video: 'https://www.w3schools.com/html/movie.mp4',
+                image: 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&h=300&fit=crop',
+                name: 'Designer Diamond Ring',
+                price: '₹32,499',
+                description: 'Suitable for: Engagements and special moments. Exquisite designer diamond ring with a unique contemporary design. Features conflict-free diamonds set in platinum.'
+            },
+            5: {
+                video: 'https://www.w3schools.com/html/mov_bbb.mp4',
+                image: 'https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=300&h=300&fit=crop',
+                name: 'Royal Choker Set',
+                price: '₹45,999',
+                description: 'Suitable for: Weddings and grand celebrations. Luxurious royal choker set adorned with premium stones and intricate gold work. Includes matching earrings.'
+            }
+        };
+
+        // Arrow navigation for main reel track
+        const jmTrack = document.querySelector('.jm-reels-track');
+        const jmPrevBtn = document.querySelector('.jm-reels-prev');
+        const jmNextBtn = document.querySelector('.jm-reels-next');
+
+        jmPrevBtn.addEventListener('click', () => {
+            jmTrack.scrollBy({ left: -300, behavior: 'smooth' });
+        });
+
+        jmNextBtn.addEventListener('click', () => {
+            jmTrack.scrollBy({ left: 300, behavior: 'smooth' });
+        });
+
+        // Modal functionality
+        const jmModal = document.getElementById('jmModal');
+        const jmModalCloseBtn = document.getElementById('jmModalClose');
+        const jmModalVideo = document.getElementById('jmModalVideo');
+        const jmModalProductImage = document.getElementById('jmModalProductImage');
+        const jmModalTitle = document.getElementById('jmModalTitle');
+        const jmModalPrice = document.getElementById('jmModalPrice');
+        const jmModalDescription = document.getElementById('jmModalDescription');
+
+        const jmModalPrev = document.querySelector('.jm-modal-prev');
+        const jmModalNext = document.querySelector('.jm-modal-next');
+
+        const jmCards = Array.from(document.querySelectorAll('.jm-reel-card'));
+        let jmCurrentIndex = 0;
+
+        // Touch/swipe handling for mobile
+        let touchStartY = 0;
+        let touchEndY = 0;
+        const swipeThreshold = 50;
+
+        function jmOpenProductByIndex(index) {
+            if (index < 0) index = jmCards.length - 1;
+            if (index >= jmCards.length) index = 0;
+            jmCurrentIndex = index;
+
+            const productId = jmCards[jmCurrentIndex].getAttribute('data-product');
+            const product = jmProducts[productId];
+            if (!product) return;
+
+            jmModalVideo.pause();
+            jmModalVideo.src = product.video;
+            jmModalVideo.muted = false; // Enable sound for modal
+            jmModalVideo.load();
+            jmModalVideo.play();
+
+            jmModalProductImage.src = product.image;
+            jmModalProductImage.alt = product.name;
+            jmModalTitle.textContent = product.name;
+            jmModalPrice.textContent = product.price;
+            jmModalDescription.textContent = product.description;
+
+            jmModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        jmCards.forEach((card, index) => {
+            card.addEventListener('click', () => jmOpenProductByIndex(index));
+        });
+
+        jmModalPrev.addEventListener('click', (e) => {
+            e.stopPropagation();
+            jmOpenProductByIndex(jmCurrentIndex - 1);
+        });
+
+        jmModalNext.addEventListener('click', (e) => {
+            e.stopPropagation();
+            jmOpenProductByIndex(jmCurrentIndex + 1);
+        });
+        jmModalCloseBtn.addEventListener('click', () => {
+            jmModal.classList.remove('active');
+            jmModalVideo.pause();
+            document.body.style.overflow = 'auto';
+        });
+        jmModal.addEventListener('click', (e) => {
+            if (e.target === jmModal) {
+                jmModal.classList.remove('active');
+                jmModalVideo.pause();
+                document.body.style.overflow = 'auto';
+            }
+        });
+        jmModalVideo.addEventListener('touchstart', (e) => {
+            touchStartY = e.changedTouches[0].screenY;
+        });
+        jmModalVideo.addEventListener('touchend', (e) => {
+            touchEndY = e.changedTouches[0].screenY;
+            handleSwipeGesture();
+        });
+        function handleSwipeGesture() {
+            const swipeDistance = touchEndY - touchStartY;
+            if (Math.abs(swipeDistance) > swipeThreshold) {
+                if (swipeDistance > 0) {
+                    jmOpenProductByIndex(jmCurrentIndex - 1);
+                } else {
+                    jmOpenProductByIndex(jmCurrentIndex + 1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>
