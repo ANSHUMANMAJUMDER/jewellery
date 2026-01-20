@@ -3418,7 +3418,7 @@ h3,
 /* Very Small Mobile (≤ 480px) */
 @media (max-width: 480px) {
     .world-section {
-        padding: 8.5rem 0.8rem 1rem;
+        padding: 8.5rem 0.8rem 4rem;
     }
 
     .world-grid {
@@ -6014,6 +6014,122 @@ h3,
             font-size: 20px;
             font-weight: bold;
         }
+
+
+
+        /* banner fix size  */
+        /* Mobile hero banner – app-like compact size */
+@media (max-width: 768px) {
+    .hero-slider-section {
+        height: 45vh;        /* key change */
+        min-height: 320px;   /* safe minimum */
+        max-height: 420px;   /* prevents too tall banners */
+    }
+
+    .hero-slider,
+    .slide,
+    .slide img {
+        height: 100%;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    .hero-slider-section {
+        height: 60vh;
+        min-height: 280px;
+        max-height: 360px;
+    }
+}
+
+        @media (max-width: 768px) {
+    .slide-content h1 {
+        font-size: 1.6rem;
+        letter-spacing: 3px;
+        margin-bottom: 0.5rem;
+    }
+
+    .slide-content p {
+        font-size: 0.7rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 1rem;
+    }
+
+    .cta-button {
+        padding: 0.6rem 1.6rem;
+        font-size: 0.65rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .collection-range-card {
+        min-width: 95px;        /* smaller card */
+        padding: 0.2rem;
+    }
+
+    .collection-card-image {
+        width: 90px;
+        height: 90px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    }
+
+    .collection-range-overlay {
+        padding-top: 0.35rem;
+    }
+
+    .collection-range-overlay h3 {
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
+    }
+}
+/* Tablet */
+@media (max-width: 768px) {
+    .collection-range-card {
+        min-width: 120px;
+    }
+
+    .collection-card-image {
+             width: 120px;
+        height: 114px;
+    }
+
+    .collection-range-overlay h3 {
+        font-size: 0.85rem;
+        letter-spacing: 1px;
+    }
+}
+/* Ethnicoast world section  */
+/* World section – normalize image height */
+.world-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* crops extra part instead of stretching */
+    display: block;
+}
+
+.world-section .world-card {
+    height: 280px;          /* choose one height */
+    overflow: hidden;
+}
+
+.world-section .world-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .world-section .world-card {
+        height: 220px;
+    }
+}
+
+@media (max-width: 480px) {
+    .world-section .world-card {
+        height: 190px;
+    }
+}
+
 
     </style>
 
