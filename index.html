@@ -4076,6 +4076,8 @@ h3,
 }
 
 
+
+
         /* ============================================================
            MODAL STYLES
            ============================================================ */
@@ -4365,55 +4367,55 @@ h3,
         /* ============================================================
            MOBILE VIEW – REELS STRUCTURE (NO DESKTOP CHANGE)
            ============================================================ */
-        @media (max-width: 768px) {
-            /* Hide arrows on mobile */
-            .jm-reels-arrow {
-                display: none;
-            }
+    @media (max-width: 768px) {
+  .jm-reel-card{
+    min-width: 40%;
+    height: 262px;
+    border-radius: 16px;
+    scroll-snap-align: start;
+  }
 
-            /* Track spacing */
-            .jm-reels-track {
-                gap: 14px;
-                padding: 0 16px 20px;
-                overflow-x: auto;
-                scroll-snap-type: x mandatory;
-            }
+  /* ✅ Product pill: smaller + tighter so it fits 262px card */
+  .jm-reel-product{
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
+    padding: 6px 8px;
+    gap: 8px;
+    border-radius: 999px;
+  }
 
-            /* Card sizing for mobile */
-            .jm-reel-card {
-                min-width: 70%;
-                height: 360px;
-                border-radius: 16px;
-                scroll-snap-align: start;
-            }
+  /* ✅ Smaller thumbnail inside pill */
+  .jm-reel-product img{
+    width: 34px;
+    height: 34px;
+    min-width: 34px;
+    min-height: 34px;
+    max-width: 34px;
+    max-height: 34px;
+  }
 
-            /* Make cards look like clean blocks (image style) */
-            .jm-reel-card {
-                background: #fff;
-                border: 1px solid #e0e0e0;
-            }
+  /* ✅ Typography: fits pill height */
+  .jm-reel-product-info{
+    font-size: 12px;
+    line-height: 1.15;
+  }
 
-            /* Keep video fitted */
-            .jm-reel-card video {
-                object-fit: cover;
-            }
+  .jm-reel-desc{
+    font-size: 10px;
+    line-height: 1.25;
+    -webkit-line-clamp: 2;   /* keep it 2 lines */
+  }
 
-            /* Product pill spacing */
-            .jm-reel-product {
-                left: 10px;
-                right: 10px;
-                bottom: 10px;
-                padding: 6px 10px;
-            }
+  .jm-reel-price{
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-top: 2px;
+    display: inline-block;
+  }
 
-            /* Typography adjustment */
-            .jm-reel-desc {
-                font-size: 11px;
-            }
 
-            .jm-reel-price {
-                font-size: 13px;
-            }
 
             /* MODAL - INSTAGRAM REELS STYLE */
             .jm-modal {
@@ -6137,6 +6139,23 @@ h3,
   }
 }
 
+.shop-look-note {
+    margin-top: 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+    color: rgba(2, 0, 13, 0.6);
+    font-family: var(--font-secondary);
+}
+
+/* Mobile tweak */
+@media (max-width: 768px) {
+    .shop-look-note {
+        font-size: 0.8rem;
+        padding: 0 1rem;
+        margin-top: 1.2rem;
+    }
+}
 
 
     </style>
@@ -7077,6 +7096,9 @@ DIWALI SECTION
                     </p>
                 </div>
             </div>
+            <p class="shop-look-note">
+    Tap on the <strong>+</strong> buttons to view product details, pricing, and explore each highlighted piece.
+</p>
         </div>
     </section>
      <div class="hotspot-modal" id="hotspotModal">
