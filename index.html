@@ -6100,23 +6100,6 @@ h3,
 }
 /* Ethnicoast world section  */
 /* World section – normalize image height */
-.world-section img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;   /* crops extra part instead of stretching */
-    display: block;
-}
-
-.world-section .world-card {
-    height: 280px;          /* choose one height */
-    overflow: hidden;
-}
-
-.world-section .world-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
 
 @media (max-width: 768px) {
     .world-section .world-card {
@@ -6129,6 +6112,31 @@ h3,
         height: 190px;
     }
 }
+
+/* Gender Section – Mobile layout fix */
+@media (max-width: 768px) {
+  .gender-row {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Image first */
+  .gender-card {
+    order: 1;
+  }
+
+  /* Text below image */
+  .gender-text {
+    order: 2;
+    padding: 1.5rem 1.2rem;
+    text-align: center;
+  }
+
+  .gender-text .cta-button {
+    align-self: center;
+  }
+}
+
 
 
     </style>
