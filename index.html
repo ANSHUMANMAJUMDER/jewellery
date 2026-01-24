@@ -2209,16 +2209,35 @@ h3,
 @media (max-width: 768px){
   .ec-diwali-banner{ margin: 2rem 0; }
   .ec-diwali-container{
-    height: 330px;
+    min-height: 330px;
+    height: auto;
+    padding: 2rem 1.5rem;
     background: linear-gradient(135deg, #1a1a2e 0%, var(--primary-blue) 100%);
   }
   .ec-diwali-content{
-    /* padding: 0 1.6rem; */
+    padding-left: 0;
+    padding-top: 0;
     max-width: 100%;
   }
-  .ec-diwali-content h2{ font-size: 2.1rem; }
-  .ec-diwali-sub{ font-size: 0.95rem; max-width: 100%; }
-  .ec-diwali-btn{ padding: 0.85rem 2.1rem; }
+  .ec-diwali-content h2{ 
+    font-size: 2.1rem; 
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  .ec-diwali-sub{ 
+    font-size: 0.95rem; 
+    max-width: 100%; 
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+  }
+  .ec-diwali-btn{ 
+    padding: 0.85rem 1.8rem;
+    font-size: 0.8rem;
+  }
+  .ec-diwali-actions{
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
   .ec-diwali-visual{
     width: 100%;
     opacity: 0.18;  /* soft background image like hero */
@@ -2226,13 +2245,6 @@ h3,
   .ec-diwali-visual::before{
     background: linear-gradient(90deg, var(--primary-blue) 35%, transparent 100%);
   }
-}
-
-@media (max-width: 480px){
-  .ec-diwali-container{ height: 300px; }
-  .ec-diwali-content h2{ font-size: 1.5rem; }
-  .ec-diwali-eyebrow{ font-size: 0.75rem; }
-  .ec-diwali-note{ font-size: 0.85rem; }
 }
 
         /* ============================================================
@@ -5073,13 +5085,14 @@ h3,
         /* ============================================================
            VALUES SECTION
            ============================================================ */
-        .values-section {
-     padding: 3.5rem 1.5rem;
+  .values-section {
+    padding: 3.5rem 1.5rem;
     background: var(--primary-blue);
     color: var(--white);
     margin-left: 1px;
     margin-right: 1px;
     margin-top: 40px;
+    overflow: hidden;
 }
 
 .values-container {
@@ -5088,17 +5101,21 @@ h3,
 }
 
 .values-section .section-title {
-    margin-bottom: 0.5rem; /* tighter */
+    margin-bottom: 0.5rem;
 }
 
 .values-section .section-subtitle {
-    margin-bottom: 2.5rem; /* reduced */
+    margin-bottom: 2.5rem;
+}
+
+.values-scroll-wrapper {
+    width: 100%;
 }
 
 .values-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 2rem; /* reduced */
+    gap: 2rem;
 }
 
 .value-card {
@@ -5106,8 +5123,13 @@ h3,
     padding: 1rem 0.5rem;
 }
 
+/* Hide duplicates on desktop */
+.value-card:nth-child(n+5) {
+    display: none;
+}
+
 .value-icon {
-    width: 55px;        /* smaller */
+    width: 55px;
     height: 55px;
     margin: 0 auto 1rem;
     background: var(--secondary-peach);
@@ -5116,20 +5138,30 @@ h3,
     align-items: center;
     justify-content: center;
     color: var(--primary-blue);
-    font-size: 1.5rem;   /* reduced */
+    font-size: 1.5rem;
 }
 
 .value-card h3 {
-    font-size: 1rem;       /* smaller */
+    font-size: 1rem;
     font-weight: 500;
     letter-spacing: 1.5px;
     margin-bottom: 0.7rem;
 }
 
 .value-card p {
-    font-size: 0.85rem;    /* smaller */
+    font-size: 0.85rem;
     opacity: 0.9;
     line-height: 1.45;
+}
+
+/* Auto-scroll animation for mobile */
+@keyframes autoScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
 }
 
 /* Tablet */
@@ -5140,24 +5172,55 @@ h3,
     }
 }
 
-/* Mobile */
+/* Mobile - Auto Scroll */
 @media (max-width: 768px) {
     .values-section {
-        padding: 3rem 1.2rem;
+        padding: 3rem 0;
+    }
+
+    .values-scroll-wrapper {
+        overflow: hidden;
+    }
+
+    /* Show all cards including duplicates on mobile */
+    .value-card:nth-child(n+5) {
+        display: block;
     }
 
     .values-grid {
-        grid-template-columns: 1fr;
-        gap: 1.2rem;
+        display: flex;
+        gap: 1.5rem;
+        animation: autoScroll 20s linear infinite;
+        width: max-content;
+    }
+
+    .values-grid:hover {
+        animation-play-state: paused;
     }
 
     .value-card {
-        padding: 0.5rem 0.2rem;
+        min-width: 250px;
+        padding: 1rem;
+        flex-shrink: 0;
     }
 }
 
 /* Small Mobile */
 @media (max-width: 480px) {
+    .values-section {
+        padding: 2.5rem 0;
+    }
+
+    .values-grid {
+        gap: 1rem;
+        animation: autoScroll 25s linear infinite;
+    }
+
+    .value-card {
+        min-width: 220px;
+        padding: 0.75rem;
+    }
+
     .value-icon {
         width: 50px;
         height: 50px;
@@ -5377,64 +5440,112 @@ h3,
         /* ============================================================
            PARTNERS SECTION
            ============================================================ */
-        .partners-section {
-            padding: 4rem 2rem;
-            background: var(--light-peach);
-        }
+    /* Partners Section */
+.partners-section {
+    padding: 4rem 2rem;
+    background: var(--light-peach);
+}
 
-        .partners-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            text-align: center;
-        }
+.partners-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    text-align: center;
+}
 
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            gap: 2rem;
-            margin-top: 3rem;
-        }
+.partners-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 2rem;
+    margin-top: 3rem;
+}
 
-        .partner-logo {
-            background: var(--white);
-            padding: 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 120px;
-            transition: transform 0.3s ease;
-        }
+.partner-logo {
+    background: var(--white);
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    transition: transform 0.3s ease;
+    border-radius: 8px;
+}
 
-        .partner-logo:hover {
-            transform: scale(1.05);
-        }
+.partner-logo:hover {
+    transform: scale(1.05);
+}
 
-        /* Partners Section - Tablet */
-        @media (max-width: 1024px) {
-            .partners-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
+/* Partners Section - Tablet */
+@media (max-width: 1024px) {
+    .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
 
-        /* Partners Section - Mobile */
-        @media (max-width: 768px) {
-            .partners-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1rem;
-            }
+/* Partners Section - Mobile */
+@media (max-width: 768px) {
+    .partners-section {
+        padding: 3rem 0;
+    }
 
-            .partner-logo {
-                padding: 1.5rem;
-                height: 100px;
-            }
-        }
+    .partners-container {
+        text-align: center;
+    }
 
-        /* Partners Section - Small Mobile */
-        @media (max-width: 480px) {
-            .partners-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+    .partners-grid {
+        display: flex;
+        overflow-x: auto;
+        gap: 1rem;
+        margin-top: 2rem;
+        padding: 0 1rem 1rem;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .partners-grid::-webkit-scrollbar {
+        height: 4px;
+    }
+
+    .partners-grid::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+    }
+
+    .partners-grid::-webkit-scrollbar-thumb {
+        background: var(--primary-blue);
+        border-radius: 10px;
+    }
+
+    .partner-logo {
+        min-width: 140px;
+        height: 80px;
+        padding: 1rem;
+        scroll-snap-align: start;
+        flex-shrink: 0;
+    }
+
+    .partner-logo span {
+        font-size: 1rem !important;
+    }
+}
+
+/* Partners Section - Small Mobile */
+@media (max-width: 480px) {
+    .partners-section {
+        padding: 2rem 0;
+    }
+
+    .partner-logo {
+        min-width: 120px;
+        height: 70px;
+        padding: 0.75rem;
+    }
+
+    .partner-logo span {
+        font-size: 0.85rem !important;
+        letter-spacing: 1px !important;
+    }
+}
 
         /* ============================================================
            REVIEWS SECTION
@@ -6880,32 +6991,58 @@ DIWALI SECTION
   
 <section class="values-section">
     <div class="values-container">
-        <div class="values-grid">
-            <div class="value-card">
-                <div class="value-icon"><i class="fas fa-certificate"></i></div>
-                <h3>PURITY GUARANTEE</h3>
-                <p>100% hallmarked 925 sterling silver</p>
-            </div>
+        <div class="values-scroll-wrapper">
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>PURITY GUARANTEE</h3>
+                    <p>100% hallmarked 925 sterling silver</p>
+                </div>
 
-            <div class="value-card">
-                <div class="value-icon"><i class="fas fa-eye"></i></div>
-                <h3>TRANSPARENCY</h3>
-                <p>Clear pricing, no hidden costs</p>
-            </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-eye"></i></div>
+                    <h3>TRANSPARENCY</h3>
+                    <p>Clear pricing, no hidden costs</p>
+                </div>
 
-            <div class="value-card">
-                <div class="value-icon"><i class="fas fa-handshake"></i></div>
-                <h3>TRUST</h3>
-                <p>Trusted by thousands of customers</p>
-            </div>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>TRUST</h3>
+                    <p>Trusted by thousands of customers</p>
+                </div>
 
-            <div class="value-card">
-                <div class="value-icon"><i class="fas fa-gem"></i></div>
-                <h3>QUALITY</h3>
-                <p>Premium craftsmanship guaranteed</p>
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-gem"></i></div>
+                    <h3>QUALITY</h3>
+                    <p>Premium craftsmanship guaranteed</p>
+                </div>
+
+                <!-- Duplicate for seamless loop -->
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-certificate"></i></div>
+                    <h3>PURITY GUARANTEE</h3>
+                    <p>100% hallmarked 925 sterling silver</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-eye"></i></div>
+                    <h3>TRANSPARENCY</h3>
+                    <p>Clear pricing, no hidden costs</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-handshake"></i></div>
+                    <h3>TRUST</h3>
+                    <p>Trusted by thousands of customers</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon"><i class="fas fa-gem"></i></div>
+                    <h3>QUALITY</h3>
+                    <p>Premium craftsmanship guaranteed</p>
+                </div>
             </div>
         </div>
-
     </div>
 </section>
 
@@ -7127,28 +7264,37 @@ DIWALI SECTION
          PARTNERS SECTION
          ============================================================ -->
     <section class="partners-section">
-        <div class="partners-container">
-            <h2 class="section-title">OUR VALUED PARTNERS</h2>
-            <p class="section-subtitle">Trusted collaborations</p>
-            <div class="partners-grid">
-                <div class="partner-logo">
-                    <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">PARTNER 1</span>
-                </div>
-                <div class="partner-logo">
-                    <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">PARTNER 2</span>
-                </div>
-                <div class="partner-logo">
-                    <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">PARTNER 3</span>
-                </div>
-                <div class="partner-logo">
-                    <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">PARTNER 4</span>
-                </div>
-                <div class="partner-logo">
-                    <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">PARTNER 5</span>
-                </div>
+    <div class="partners-container">
+        <h2 class="section-title">OUR VALUED PARTNERS</h2>
+        <p class="section-subtitle">Trusted collaborations</p>
+        <div class="partners-grid">
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">MICROSOFT</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">GOOGLE</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">AMAZON</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">SALESFORCE</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">IBM</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">ORACLE</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">SAP</span>
+            </div>
+            <div class="partner-logo">
+                <span style="font-size: 1.5rem; font-weight: 300; letter-spacing: 2px; color: var(--primary-blue);">ADOBE</span>
             </div>
         </div>
-    </section>
+    </div>
+</section>
 
     <!-- ============================================================
          REVIEWS SECTION
