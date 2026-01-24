@@ -1,1429 +1,1399 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <title>Eternal Elegance Ring - ETTHNICOAST</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary-blue: #07203F;
-            --secondary-peach: #EBDED4;
-            --dark-black: #02000D;
-            --white: #FFFFFF;
-            --light-peach: #F8E3D2;
-        }
-
-        body {
-            font-family: 'Georgia', serif;
-            color: var(--dark-black);
-            overflow-x: hidden;
-            background: #f9f9f9;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: var(--white);
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo img {
-            height: 70px;
-            width: auto;
-            object-fit: contain;
-            display: block;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--dark-black);
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .nav-icons {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .nav-icons a {
-            color: var(--dark-black);
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .nav-icons a:hover {
-            color: var(--primary-blue);
-        }
-
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--primary-blue);
-            transition: all 0.3s ease;
-        }
-
-        /* Breadcrumb */
-        .breadcrumb {
-            margin-top: 100px;
-            max-width: 1400px;
-            margin-left: auto;
-            margin-right: auto;
-            padding: 1.5rem 2rem;
-            background: var(--white);
-        }
-
-        .breadcrumb a {
-            color: var(--dark-black);
-            text-decoration: none;
-            opacity: 0.7;
-            transition: opacity 0.3s ease;
-        }
-
-        .breadcrumb a:hover {
-            opacity: 1;
-            color: var(--primary-blue);
-        }
-
-        .breadcrumb span {
-            margin: 0 0.5rem;
-            opacity: 0.5;
-        }
-
-        /* Product Detail Section */
-        .product-detail-container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 2rem;
-        }
-
-        .product-main {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            background: var(--white);
-            padding: 3rem;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            margin-bottom: 3rem;
-        }
-
-        /* Image Gallery */
-        .image-gallery {
-            position: sticky;
-            top: 120px;
-            height: fit-content;
-        }
-
-        .main-image {
-            width: 100%;
-            height: 600px;
-            overflow: hidden;
-            margin-bottom: 1rem;
-            background: var(--light-peach);
-            position: relative;
-        }
-
-        .main-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .badge-container {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
-            z-index: 2;
-        }
-
-        .product-badge {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-        }
-
-        .discount-badge {
-            background: #4CAF50;
-            color: white;
-            padding: 0.5rem 1rem;
-            font-size: 0.75rem;
-            letter-spacing: 1px;
-        }
-
-        .thumbnail-images {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1rem;
-        }
-
-        .thumbnail {
-            width: 100%;
-            height: 120px;
-            overflow: hidden;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .thumbnail:hover,
-        .thumbnail.active {
-            border-color: var(--primary-blue);
-        }
-
-        .thumbnail img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Product Info */
-        .product-info-section {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-category {
-            font-size: 0.9rem;
-            color: var(--dark-black);
-            opacity: 0.6;
-            letter-spacing: 1px;
-            margin-bottom: 0.5rem;
-            text-transform: uppercase;
-        }
-
-        .product-title {
-            font-size: 2.5rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-            line-height: 1.3;
-        }
-
-        .rating-section {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .stars {
-            color: #FFD700;
-            font-size: 1.2rem;
-        }
-
-        .rating-text {
-            font-size: 0.95rem;
-            color: var(--dark-black);
-        }
-
-        .rating-count {
-            color: var(--primary-blue);
-            cursor: pointer;
-            text-decoration: underline;
-        }
-
-        .price-section {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-            padding: 2rem 0;
-            border-top: 1px solid var(--secondary-peach);
-            border-bottom: 1px solid var(--secondary-peach);
-        }
-
-        .current-price {
-            font-size: 2.5rem;
-            font-weight: 400;
-            color: var(--primary-blue);
-        }
-
-        .original-price {
-            font-size: 1.5rem;
-            color: var(--dark-black);
-            opacity: 0.5;
-            text-decoration: line-through;
-        }
-
-        .discount-percent {
-            background: #4CAF50;
-            color: white;
-            padding: 0.5rem 1rem;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-        }
-
-        .product-description {
-            font-size: 1rem;
-            line-height: 1.8;
-            color: var(--dark-black);
-            opacity: 0.85;
-            margin-bottom: 2rem;
-        }
-
-        .product-features {
-            margin-bottom: 2rem;
-        }
-
-        .product-features h3 {
-            font-size: 1.2rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-
-        .features-list {
-            list-style: none;
-        }
-
-        .features-list li {
-            padding: 0.8rem 0;
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            border-bottom: 1px solid var(--light-peach);
-        }
-
-        .features-list li i {
-            color: var(--primary-blue);
-            font-size: 1rem;
-        }
-
-        .size-selector {
-            margin-bottom: 2rem;
-        }
-
-        .size-selector h4 {
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--primary-blue);
-            margin-bottom: 1rem;
-        }
-
-        .size-options {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .size-option {
-            padding: 0.8rem 1.5rem;
-            border: 2px solid var(--secondary-peach);
-            background: transparent;
-            color: var(--primary-blue);
-            font-family: 'Georgia', serif;
-            font-size: 0.95rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .size-option:hover,
-        .size-option.active {
-            background: var(--primary-blue);
-            color: var(--white);
-            border-color: var(--primary-blue);
-        }
-
-        .action-buttons {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .add-to-cart-btn {
-            flex: 2;
-            padding: 1.2rem 2rem;
-            background: var(--secondary-peach);
-            color: var(--primary-blue);
-            border: 2px solid var(--secondary-peach);
-            font-family: 'Georgia', serif;
-            font-size: 1rem;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: all 0.4s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 0.8rem;
-        }
-
-        .add-to-cart-btn:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-            border-color: var(--primary-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 10px 30px rgba(7, 32, 63, 0.3);
-        }
-
-        .wishlist-btn {
-            flex: 1;
-            padding: 1.2rem;
-            background: transparent;
-            color: #dc3545;
-            border: 2px solid var(--secondary-peach);
-            font-size: 1.2rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .wishlist-btn:hover {
-            background: #dc3545;
-            color: var(--white);
-            border-color: #dc3545;
-        }
-
-        /* Reviews Section */
-        .reviews-section {
-            background: var(--white);
-            padding: 3rem;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            margin-bottom: 3rem;
-        }
-
-        .reviews-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 3rem;
-            padding-bottom: 2rem;
-            border-bottom: 2px solid var(--secondary-peach);
-        }
-
-        .reviews-header h2 {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--primary-blue);
-        }
-
-        .write-review-btn {
-            padding: 0.9rem 2rem;
-            background: var(--secondary-peach);
-            color: var(--primary-blue);
-            border: none;
-            font-family: 'Georgia', serif;
-            font-size: 0.95rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .write-review-btn:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-
-        .reviews-summary {
-            display: grid;
-            grid-template-columns: 300px 1fr;
-            gap: 3rem;
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid var(--secondary-peach);
-        }
-
-        .rating-overview {
-            text-align: center;
-            padding: 2rem;
-            background: var(--light-peach);
-        }
-
-        .average-rating {
-            font-size: 4rem;
-            font-weight: 300;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .rating-bars {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .rating-bar {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .rating-label {
-            min-width: 80px;
-            font-size: 0.9rem;
-            color: var(--dark-black);
-        }
-
-        .bar {
-            flex: 1;
-            height: 8px;
-            background: var(--light-peach);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bar-fill {
-            height: 100%;
-            background: var(--primary-blue);
-            transition: width 0.3s ease;
-        }
-
-        .rating-number {
-            min-width: 40px;
-            text-align: right;
-            font-size: 0.9rem;
-            color: var(--dark-black);
-        }
-
-        .reviews-list {
-            display: flex;
-            flex-direction: column;
-            gap: 2rem;
-        }
-
-        .review-card {
-            padding: 2rem;
-            background: var(--light-peach);
-            transition: all 0.3s ease;
-        }
-
-        .review-card:hover {
-            background: var(--secondary-peach);
-        }
-
-        .review-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 1rem;
-        }
-
-        .reviewer-info {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .reviewer-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--primary-blue);
-            color: var(--white);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            font-weight: 400;
-        }
-
-        .reviewer-details h4 {
-            font-size: 1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--primary-blue);
-            margin-bottom: 0.3rem;
-        }
-
-        .review-date {
-            font-size: 0.85rem;
-            color: var(--dark-black);
-            opacity: 0.6;
-        }
-
-        .review-rating {
-            color: #FFD700;
-            font-size: 1rem;
-        }
-
-        .review-text {
-            font-size: 0.95rem;
-            line-height: 1.7;
-            color: var(--dark-black);
-            opacity: 0.85;
-            margin-bottom: 1.5rem;
-        }
-
-        .review-images {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .review-image {
-            width: 100%;
-            height: 100px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .review-image:hover {
-            transform: scale(1.05);
-        }
-
-        .review-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .review-helpful {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-            margin-top: 1rem;
-            font-size: 0.9rem;
-        }
-
-        .helpful-btn {
-            padding: 0.5rem 1rem;
-            background: transparent;
-            border: 1px solid var(--primary-blue);
-            color: var(--primary-blue);
-            font-family: 'Georgia', serif;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .helpful-btn:hover {
-            background: var(--primary-blue);
-            color: var(--white);
-        }
-
-        /* Similar Products */
-        .similar-products {
-            margin-bottom: 5rem;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            font-weight: 300;
-            letter-spacing: 3px;
-            color: var(--primary-blue);
-            margin-bottom: 2rem;
-            text-align: center;
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .product-card {
-            background: var(--white);
-            overflow: hidden;
-            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-        }
-
-        .product-image {
-            width: 100%;
-            height: 300px;
-            overflow: hidden;
-            background: #f9f9f9;
-        }
-
-        .product-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .product-card:hover .product-image img {
-            transform: scale(1.1);
-        }
-
-        .product-details {
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .product-name {
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 1px;
-            color: var(--primary-blue);
-            margin-bottom: 0.8rem;
-        }
-
-        .product-price {
-            font-size: 1.2rem;
-            color: var(--dark-black);
-            font-weight: 400;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--primary-blue);
-            color: var(--white);
-            padding: 3rem 2rem 1rem;
-        }
-
-        .footer-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .footer-section h4 {
-            font-size: 1.1rem;
-            font-weight: 400;
-            letter-spacing: 2px;
-            margin-bottom: 1.5rem;
-        }
-
-        .footer-section ul {
-            list-style: none;
-        }
-
-        .footer-section ul li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-section a {
-            color: var(--white);
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-section a:hover {
-            opacity: 1;
-        }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        /* Mobile Responsive */
-        @media (max-width: 968px) {
-            .product-main {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .image-gallery {
-                position: relative;
-                top: 0;
-            }
-
-            .main-image {
-                height: 400px;
-            }
-
-            .reviews-summary {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                left: -100%;
-                top: 80px;
-                flex-direction: column;
-                background: var(--white);
-                width: 100%;
-                text-align: center;
-                transition: 0.3s;
-                box-shadow: 0 10px 27px rgba(0,0,0,0.05);
-                padding: 2rem 0;
-            }
-
-            .nav-links.active {
-                left: 0;
-            }
-
-            .hamburger {
-                display: flex;
-            }
-
-            .hamburger.active span:nth-child(1) {
-                transform: rotate(45deg) translate(8px, 8px);
-            }
-
-            .hamburger.active span:nth-child(2) {
-                opacity: 0;
-            }
-
-            .hamburger.active span:nth-child(3) {
-                transform: rotate(-45deg) translate(8px, -8px);
-            }
-
-            .product-title {
-                font-size: 2rem;
-            }
-
-            .current-price {
-                font-size: 2rem;
-            }
-
-            .action-buttons {
-                flex-direction: column;
-            }
-
-            .nav-container {
-                padding: 1rem;
-            }
-
-            .product-main,
-            .reviews-section {
-                padding: 2rem 1.5rem;
-            }
-
-            .products-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .logo img {
-                height: 50px;
-            }
-
-            .thumbnail-images {
-                grid-template-columns: repeat(3, 1fr);
-            }
-
-            .product-title {
-                font-size: 1.5rem;
-                letter-spacing: 2px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Lato:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Product Details - ETTHNICOAST</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root{
+      --primary-blue:#07203F;
+      --secondary-peach:#EBDED4;
+      --dark-black:#02000D;
+      --white:#FFFFFF;
+      --light-peach:#F8E3D2;
+      --font-primary:'Cormorant Garamond','Garamond','Times New Roman',serif;
+      --font-secondary:'Lato',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+      --container:1600px;
+      --border: rgba(7,32,63,0.12);
+      --muted: rgba(2,0,13,0.6);
+      --shadow: 0 10px 30px rgba(7,32,63,0.12);
+    }
+
+    body{
+      font-family: var(--font-secondary);
+      color: var(--dark-black);
+      background: var(--white);
+    }
+
+    a{ text-decoration:none; color:inherit; }
+    button{ font-family: inherit; }
+    img{ display:block; max-width:100%; }
+
+    .container{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 3vw, 3rem);
+    }
+
+    /* =========================
+       NAV (same idea as listing)
+       ========================= */
+    nav{
+      position: fixed;
+      top:0; left:0;
+      width:100%;
+      background: var(--white);
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    .nav-container{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 1rem clamp(1rem, 3vw, 3rem);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items:center;
+      gap: 1rem;
+    }
+    .nav-left, .nav-right{
+      display:flex;
+      gap: 1.25rem;
+      align-items:center;
+    }
+    .nav-left{ justify-content:flex-start; }
+    .nav-right{ justify-content:flex-end; }
+    .nav-left a, .nav-right a{
+      font-size: 1rem;
+      transition: color .25s ease;
+    }
+    .nav-left a:hover, .nav-right a:hover{ color: var(--primary-blue); }
+    .nav-center{ display:flex; justify-content:center; }
+    .nav-logo img{ height: 70px; width:auto; }
+
+    .nav-links-container{
+      max-width: var(--container);
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 3vw, 3rem) 1rem;
+      display:flex;
+      justify-content:center;
+    }
+    .nav-links{
+      list-style:none;
+      display:flex;
+      gap: 2.5rem;
+      align-items:center;
+    }
+    .nav-links a{
+      font-size: .85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: .5rem 0;
+      position: relative;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0; bottom:0;
+      width:0; height:1px;
+      background: var(--primary-blue);
+      transition: width .25s ease;
+    }
+    .nav-links a:hover{ color: var(--primary-blue); }
+    .nav-links a:hover::after{ width:100%; }
+
+    .hamburger{
+      display:none;
+      border:none;
+      background:transparent;
+      cursor:pointer;
+      padding:10px;
+      gap:6px;
+      flex-direction:column;
+    }
+    .hamburger span{
+      width:22px;
+      height:2px;
+      background: var(--primary-blue);
+      transition: .25s ease;
+    }
+
+    .overlay{
+      position: fixed;
+      inset:0;
+      background: rgba(2,0,13,0.55);
+      opacity:0;
+      visibility:hidden;
+      transition: .25s ease;
+      z-index: 999;
+    }
+    .overlay.active{
+      opacity:1;
+      visibility: visible;
+    }
+
+    .mobile-menu{
+      position: fixed;
+      left:-100%;
+      top:0;
+      width:100%;
+      height:100vh;
+      background: var(--white);
+      padding-top: 90px;
+      transition: left .3s ease;
+      z-index: 999;
+      overflow-y:auto;
+    }
+    .mobile-menu.active{ left:0; }
+    .mobile-links{ list-style:none; display:flex; flex-direction:column; }
+    .mobile-links li{ border-bottom:1px solid rgba(7,32,63,0.08); }
+    .mobile-links a{
+      display:block;
+      padding: 1.1rem 1.5rem;
+      font-size:.9rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+    .mobile-links a:hover{
+      background: var(--secondary-peach);
+      color: var(--primary-blue);
+    }
+
+    /* =========================
+       PAGE
+       ========================= */
+    .page-offset{ padding-top: 140px; }
+
+    .breadcrumb{
+      padding: 1.75rem 0 1rem;
+      font-size: .85rem;
+      color: var(--muted);
+    }
+    .breadcrumb a{ color: var(--muted); }
+    .breadcrumb a:hover{ color: var(--primary-blue); }
+
+    .product-wrap{
+      display:grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2.25rem;
+      align-items:start;
+      padding-bottom: 2.25rem;
+    }
+
+    /* LEFT GALLERY */
+    .gallery{
+      display:grid;
+      grid-template-columns: 92px 1fr;
+      gap: 1.25rem;
+      align-items:start;
+      min-width: 0;
+    }
+    .thumbs{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      position: sticky;
+      top: 160px;
+      height: max-content;
+    }
+    .thumb{
+      width: 92px;
+      height: 92px;
+      border: 1px solid var(--border);
+      background:#f7f7f7;
+      cursor:pointer;
+      overflow:hidden;
+      transition: .25s ease;
+      position:relative;
+    }
+    .thumb img{ width:100%; height:100%; object-fit:cover; }
+    .thumb.active{
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 2px rgba(7,32,63,0.15);
+    }
+    .main-media{
+      border: 1px solid var(--border);
+      background:#f7f7f7;
+      overflow:hidden;
+      position: relative;
+    }
+    .main-media .badge{
+      position:absolute;
+      top:16px; left:16px;
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 6px 12px;
+      font-size:.7rem;
+      letter-spacing:1px;
+      text-transform:uppercase;
+      z-index:2;
+    }
+    .main-media img{
+      width:100%;
+      height: 560px;
+      object-fit: cover;
+      transition: transform .5s ease;
+    }
+    .main-media:hover img{ transform: scale(1.03); }
+
+    /* RIGHT INFO */
+    .info{
+      position: sticky;
+      top: 150px;
+      height: max-content;
+      border-left: 1px solid rgba(7,32,63,0.06);
+      padding-left: 1.25rem;
+    }
+
+    .title{
+      font-family: var(--font-primary);
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--primary-blue);
+      letter-spacing: 1px;
+      line-height: 1.15;
+      margin-bottom: .75rem;
+    }
+
+    .meta-row{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .rating{
+      display:flex;
+      align-items:center;
+      gap: 8px;
+      font-size: .9rem;
+      color: var(--muted);
+    }
+    .rating .stars{ color:#f39c12; }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      background: var(--white);
+      font-size: .8rem;
+      color: var(--primary-blue);
+      letter-spacing: .5px;
+      white-space: nowrap;
+    }
+    .pill strong{ color: var(--primary-blue); }
+
+    .price-area{
+      display:flex;
+      align-items:baseline;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .price{
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--primary-blue);
+    }
+    .mrp{
+      font-size: 1rem;
+      color: rgba(2,0,13,0.45);
+      text-decoration: line-through;
+    }
+    .discount{
+      background: var(--secondary-peach);
+      color: var(--primary-blue);
+      font-size: .75rem;
+      font-weight: 800;
+      padding: 3px 8px;
+      letter-spacing: .5px;
+    }
+    .subtext{
+      font-size: .85rem;
+      color: var(--muted);
+      margin-bottom: 14px;
+    }
+
+    .offer-box{
+      border: 1px dashed rgba(7,32,63,0.25);
+      padding: 12px;
+      background: rgba(235,222,212,0.35);
+      margin-bottom: 14px;
+    }
+    .offer-box .row{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items:center;
+      font-size: .85rem;
+      color: rgba(2,0,13,0.72);
+    }
+    .coupon{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      padding: 6px 10px;
+      font-weight: 700;
+      color: var(--primary-blue);
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      font-size: .78rem;
+    }
+
+    .option-block{
+      padding: 14px 0;
+      border-top: 1px solid rgba(7,32,63,0.08);
+    }
+    .opt-head{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 1rem;
+      margin-bottom: 10px;
+    }
+    .opt-head .label{
+      font-size: .85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(2,0,13,0.75);
+      font-weight: 700;
+    }
+    .opt-head .hint{
+      font-size: .8rem;
+      color: rgba(2,0,13,0.55);
+    }
+
+    .swatches{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .swatch{
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      border: 1px solid rgba(7,32,63,0.25);
+      cursor:pointer;
+      position: relative;
+      transition: .2s ease;
+    }
+    .swatch.active{
+      outline: 2px solid var(--primary-blue);
+      outline-offset: 2px;
+    }
+
+    .chips{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .chip{
+      border: 1px solid rgba(7,32,63,0.22);
+      background: var(--white);
+      padding: 10px 12px;
+      cursor:pointer;
+      font-size: .85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: .25s ease;
+      min-width: 98px;
+      text-align:center;
+    }
+    .chip.active{
+      background: var(--primary-blue);
+      color: var(--white);
+      border-color: var(--primary-blue);
+    }
+
+    .size-grid{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .size{
+      min-width: 64px;
+      padding: 10px 10px;
+      border: 1px solid rgba(7,32,63,0.22);
+      background: var(--white);
+      cursor:pointer;
+      font-size: .85rem;
+      transition: .25s ease;
+      text-align:center;
+    }
+    .size.active{
+      border-color: var(--primary-blue);
+      box-shadow: 0 0 0 2px rgba(7,32,63,0.12);
+    }
+
+    .cta-row{
+      display:grid;
+      grid-template-columns: 1fr 48px 48px;
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .btn-primary{
+      padding: .95rem 1rem;
+      border: 1px solid var(--primary-blue);
+      background: var(--primary-blue);
+      color: var(--white);
+      cursor:pointer;
+      font-size: .85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: .25s ease;
+    }
+    .btn-primary:hover{ filter: brightness(0.95); }
+
+    .icon-btn{
+      border: 1px solid rgba(7,32,63,0.22);
+      background: var(--white);
+      cursor:pointer;
+      font-size: 1rem;
+      transition: .25s ease;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .icon-btn:hover{
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    .pin-row{
+      display:flex;
+      gap: 10px;
+      margin-top: 10px;
+      align-items:center;
+    }
+    .pin-row input{
+      flex:1;
+      padding: 10px 12px;
+      border: 1px solid rgba(7,32,63,0.22);
+      font-size: .85rem;
+      outline:none;
+    }
+    .pin-row button{
+      padding: 10px 14px;
+      border: 1px solid var(--primary-blue);
+      background: var(--primary-blue);
+      color: var(--white);
+      cursor:pointer;
+      font-size: .82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+    .pin-status{
+      margin-top: 8px;
+      font-size: .82rem;
+      color: rgba(2,0,13,0.7);
+    }
+
+    .usp-row{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .usp{
+      border: 1px solid rgba(7,32,63,0.1);
+      padding: 10px 12px;
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      background: rgba(235,222,212,0.18);
+      font-size: .82rem;
+      color: rgba(2,0,13,0.75);
+    }
+    .usp i{ color: var(--primary-blue); margin-top: 2px; }
+
+    /* Accordion (Description / Specification / More Info) */
+    .accordion{
+      margin-top: 14px;
+      border-top: 1px solid rgba(7,32,63,0.08);
+    }
+    .acc-item{
+      border-bottom: 1px solid rgba(7,32,63,0.08);
+    }
+    .acc-btn{
+      width:100%;
+      padding: 14px 0;
+      background: transparent;
+      border:none;
+      cursor:pointer;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      text-align:left;
+    }
+    .acc-btn .t{
+      font-size: .9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(2,0,13,0.85);
+      font-weight: 700;
+    }
+    .acc-btn i{
+      transition: transform .25s ease;
+      color: var(--primary-blue);
+    }
+    .acc-item.active .acc-btn i{ transform: rotate(180deg); }
+    .acc-body{
+      display:none;
+      padding: 0 0 14px;
+      color: rgba(2,0,13,0.72);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .acc-item.active .acc-body{ display:block; }
+
+    /* =========================
+       COMPLETE THE LOOK
+       ========================= */
+    .section{
+      padding: 2.25rem 0;
+    }
+    .section-title{
+      text-align:center;
+      font-family: var(--font-primary);
+      color: var(--primary-blue);
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      font-weight: 500;
+    }
+    .look-wrap{
+      background: rgba(235,222,212,0.6);
+      border: 1px solid rgba(7,32,63,0.08);
+      padding: 1.5rem;
+    }
+    .look-grid{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap: 1.25rem;
+      align-items:center;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .look-card{
+      border: 1px solid rgba(7,32,63,0.12);
+      background: var(--white);
+      overflow:hidden;
+    }
+    .look-img{
+      height: 180px;
+      background:#f7f7f7;
+    }
+    .look-img img{ width:100%; height:100%; object-fit:cover; }
+    .look-bottom{
+      padding: 10px 12px;
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap: 10px;
+      font-size: .9rem;
+    }
+    .look-plus{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      font-size: 1.25rem;
+      color: var(--primary-blue);
+      font-weight: 800;
+    }
+    .buy-all{
+      max-width: 900px;
+      margin: 1.25rem auto 0;
+      display:flex;
+      justify-content:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items:center;
+    }
+    .buy-all .label{
+      font-size:.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(2,0,13,0.75);
+      font-weight: 700;
+    }
+
+    /* =========================
+       SIMILAR ITEMS
+       ========================= */
+    .similar-grid{
+      display:grid;
+      grid-template-columns: repeat(5, minmax(0,1fr));
+      gap: 1.25rem;
+    }
+    .mini-card{
+      border: 1px solid rgba(7,32,63,0.1);
+      background: var(--white);
+      overflow:hidden;
+      cursor:pointer;
+      transition: .25s ease;
+    }
+    .mini-card:hover{
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .mini-img{
+      height: 220px;
+      background:#f7f7f7;
+    }
+    .mini-img img{ width:100%; height:100%; object-fit:cover; }
+    .mini-info{
+      padding: 10px 12px;
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items:center;
+    }
+    .mini-name{
+      font-family: var(--font-primary);
+      color: var(--primary-blue);
+      font-size: 1rem;
+      line-height: 1.15;
+    }
+    .mini-price{
+      font-weight: 800;
+      color: var(--primary-blue);
+      font-size: .95rem;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       REVIEWS
+       ========================= */
+    .reviews-wrap{
+      max-width: 1100px;
+      margin: 0 auto;
+      border-top: 1px solid rgba(7,32,63,0.08);
+      padding-top: 1.75rem;
+    }
+    .review-head{
+      display:flex;
+      justify-content: space-between;
+      align-items:flex-start;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .review-score{
+      display:flex;
+      gap: 14px;
+      align-items:center;
+    }
+    .score{
+      font-size: 2.1rem;
+      font-weight: 900;
+      color: var(--primary-blue);
+      line-height: 1;
+    }
+    .score-meta{
+      color: rgba(2,0,13,0.7);
+      font-size: .9rem;
+    }
+    .review-btn{
+      padding: .8rem 1rem;
+      border: 1px solid var(--primary-blue);
+      background: transparent;
+      color: var(--primary-blue);
+      cursor:pointer;
+      letter-spacing:1px;
+      text-transform: uppercase;
+      font-size: .85rem;
+      transition: .25s ease;
+    }
+    .review-btn:hover{
+      background: var(--primary-blue);
+      color: var(--white);
+    }
+
+    .review-list{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0,1fr));
+      gap: 1.25rem;
+    }
+    .review-card{
+      border: 1px solid rgba(7,32,63,0.1);
+      padding: 14px;
+      background: var(--white);
+    }
+    .review-top{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+      align-items:center;
+    }
+    .review-name{
+      font-weight: 800;
+      color: rgba(2,0,13,0.8);
+      font-size: .92rem;
+    }
+    .review-date{
+      font-size: .82rem;
+      color: rgba(2,0,13,0.55);
+    }
+    .review-stars{ color:#f39c12; font-size: .9rem; margin-bottom: 8px; }
+    .review-text{
+      color: rgba(2,0,13,0.72);
+      font-size: .92rem;
+      line-height: 1.55;
+    }
+
+    /* =========================
+       STICKY CTA (mobile)
+       ========================= */
+    .sticky-cta{
+      display:none;
+      position: fixed;
+      left:0; right:0; bottom:0;
+      background: var(--white);
+      border-top: 1px solid rgba(7,32,63,0.12);
+      padding: 10px 12px;
+      z-index: 1200;
+    }
+    .sticky-cta .row{
+      max-width: var(--container);
+      margin: 0 auto;
+      display:flex;
+      gap: 10px;
+      align-items:center;
+      padding: 0 clamp(1rem, 3vw, 3rem);
+    }
+    .sticky-cta .mini{
+      flex:1;
+      min-width:0;
+    }
+    .sticky-cta .mini .n{
+      font-family: var(--font-primary);
+      color: var(--primary-blue);
+      font-weight: 600;
+      font-size: 1rem;
+      white-space: nowrap;
+      overflow:hidden;
+      text-overflow: ellipsis;
+    }
+    .sticky-cta .mini .p{
+      font-weight: 900;
+      color: var(--primary-blue);
+      font-size: 1.05rem;
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+    @media (max-width: 1200px){
+      .main-media img{ height: 520px; }
+      .similar-grid{ grid-template-columns: repeat(4, minmax(0,1fr)); }
+    }
+
+    @media (max-width: 992px){
+      .product-wrap{ grid-template-columns: 1fr; }
+      .info{
+        position: static;
+        border-left: none;
+        padding-left: 0;
+      }
+      .thumbs{
+        position: static;
+        flex-direction: row;
+        overflow-x: auto;
+        padding-bottom: 6px;
+      }
+      .gallery{
+        grid-template-columns: 1fr;
+      }
+      .thumb{ width: 84px; height: 84px; flex: 0 0 auto; }
+      .main-media img{ height: 520px; }
+      .similar-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
+      .review-list{ grid-template-columns: 1fr; }
+      .sticky-cta{ display:block; }
+    }
+
+    @media (max-width: 768px){
+      .nav-container{
+        display:flex;
+        justify-content: space-between;
+        align-items:center;
+        padding: .9rem 1.25rem;
+      }
+      .hamburger{ display:flex; width:44px; }
+      .nav-left{ display:none; }
+      .nav-right{ gap: 1rem; width: 86px; justify-content:flex-end; }
+      .nav-center{
+        position:absolute;
+        left:50%;
+        transform: translateX(-50%);
+      }
+      .nav-logo img{ height: 54px; }
+      .nav-links-container{ display:none; }
+
+      .page-offset{ padding-top: 98px; }
+      .main-media img{ height: 420px; }
+
+      .look-grid{ grid-template-columns: 1fr; }
+      .look-plus{ display:none; }
+      .similar-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .usp-row{ grid-template-columns: 1fr; }
+      .cta-row{ grid-template-columns: 1fr 48px 48px; }
+    }
+
+    @media (max-width: 480px){
+      .main-media img{ height: 340px; }
+      .title{ font-size: 1.6rem; }
+      .similar-grid{ gap: .9rem; }
+      .mini-img{ height: 180px; }
+    }
+  </style>
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="/" class="logo">
-                <img src="./assets/logo_new_1.png" alt="Ethnicoast Logo">
-            </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="/">Home</a></li>
-                <li><a href="/#collections">Collections</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/contact.html">Contact</a></li>
-            </ul>
-            <div class="nav-icons">
-                <a href="#"><i class="fas fa-search"></i></a>
-                <a href="./orders.html"><i class="fas fa-shopping-bag"></i></a>
-                <a href="./profile.html"><i class="fas fa-user"></i></a>
-            </div>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
+  <div class="overlay" id="overlay"></div>
 
-    <!-- Breadcrumb -->
+  <!-- NAV -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-center">
+        <a href="/" class="nav-logo">
+          <img src="./assets/logo_new_1.png" alt="ETTHNICOAST" />
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <a href="#"><i class="fas fa-search"></i></a>
+        <a href="#"><i class="fas fa-shopping-bag"></i></a>
+        <a href="#"><i class="fas fa-user"></i></a>
+      </div>
+    </div>
+
+    <div class="nav-links-container">
+      <ul class="nav-links">
+        <li><a href="#">New</a></li>
+        <li><a href="#">Rings</a></li>
+        <li><a href="#">Necklaces</a></li>
+        <li><a href="#">Earrings</a></li>
+        <li><a href="#">Bracelets</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-links">
+      <li><a href="#">New</a></li>
+      <li><a href="#">Rings</a></li>
+      <li><a href="#">Necklaces</a></li>
+      <li><a href="#">Earrings</a></li>
+      <li><a href="#">Bracelets</a></li>
+      <li><a href="#">Sale</a></li>
+    </ul>
+  </div>
+
+  <div class="page-offset"></div>
+
+  <main class="container">
     <div class="breadcrumb">
-        <a href="/">Home</a>
-        <span>/</span>
-        <a href="/category.html">Rings</a>
-        <span>/</span>
-        <span>Eternal Elegance Ring</span>
+      <a href="/">Home</a> / <a href="/shop">Shop</a> / <strong>Product Details</strong>
     </div>
 
-    <!-- Product Detail Container -->
-    <div class="product-detail-container">
-        <!-- Product Main Section -->
-        <div class="product-main">
-            <!-- Image Gallery -->
-            <div class="image-gallery">
-                <div class="main-image">
-                    <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80" alt="Eternal Elegance Ring" id="mainImage">
-                    <div class="badge-container">
-                        <div class="product-badge">BESTSELLER</div>
-                        <div class="discount-badge">30% OFF</div>
-                    </div>
-                </div>
-                <div class="thumbnail-images">
-                    <div class="thumbnail active" onclick="changeImage(this, 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80')">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80" alt="View 1">
-                    </div>
-                    <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1603561596112-0a132b757442?w=800&q=80')">
-                        <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=200&q=80" alt="View 2">
-                    </div>
-                    <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=800&q=80')">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=80" alt="View 3">
-                    </div>
-                    <div class="thumbnail" onclick="changeImage(this, 'https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=800&q=80')">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80" alt="View 4">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Product Info -->
-            <div class="product-info-section">
-                <div class="product-category">Women's Silver Ring</div>
-                <h1 class="product-title">Eternal Elegance Ring</h1>
-                
-                <div class="rating-section">
-                    <div class="stars">★★★★★</div>
-                    <span class="rating-text">4.8 | <span class="rating-count">124 Reviews</span></span>
-                </div>
-
-                <div class="price-section">
-                    <span class="current-price">₹2,499</span>
-                    <span class="original-price">₹3,499</span>
-                    <span class="discount-percent">30% OFF</span>
-                </div>
-
-                <p class="product-description">
-                    Embrace timeless elegance with our Eternal Elegance Ring. Crafted from premium 925 sterling silver, this exquisite piece features intricate detailing and a classic design that complements any style. Perfect for daily wear or special occasions, this ring is a testament to fine craftsmanship and enduring beauty.
-                </p>
-
-                <div class="product-features">
-                    <h3>Key Features</h3>
-                    <ul class="features-list">
-                        <li><i class="fas fa-check-circle"></i> 925 Sterling Silver with Hallmark</li>
-                        <li><i class="fas fa-check-circle"></i> Hypoallergenic & Tarnish Resistant</li>
-                        <li><i class="fas fa-check-circle"></i> Handcrafted by Expert Artisans</li>
-                        <li><i class="fas fa-check-circle"></i> Lifetime Warranty</li>
-                        <li><i class="fas fa-check-circle"></i> Complimentary Gift Packaging</li>
-                    </ul>
-                </div>
-
-                <div class="size-selector">
-                    <h4>Select Size</h4>
-                    <div class="size-options">
-                        <button class="size-option">5</button>
-                        <button class="size-option active">6</button>
-                        <button class="size-option">7</button>
-                        <button class="size-option">8</button>
-                        <button class="size-option">9</button>
-                    </div>
-                </div>
-
-                <div class="action-buttons">
-                    <button class="add-to-cart-btn">
-                        <i class="fas fa-shopping-cart"></i> ADD TO CART
-                    </button>
-                    <button class="wishlist-btn" onclick="toggleWishlist(this)">
-                        <i class="far fa-heart"></i>
-                    </button>
-                </div>
-            </div>
+    <!-- TOP SECTION -->
+    <section class="product-wrap">
+      <!-- LEFT: Gallery -->
+      <div class="gallery">
+        <div class="thumbs" id="thumbs">
+          <div class="thumb active" data-src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&q=80" alt="thumb 1">
+          </div>
+          <div class="thumb" data-src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=300&q=80" alt="thumb 2">
+          </div>
+          <div class="thumb" data-src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&q=80" alt="thumb 3">
+          </div>
+          <div class="thumb" data-src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1400&q=80">
+            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=300&q=80" alt="thumb 4">
+          </div>
         </div>
 
-        <!-- Reviews Section -->
-        <div class="reviews-section">
-            <div class="reviews-header">
-                <h2>CUSTOMER REVIEWS</h2>
-                <button class="write-review-btn"><i class="fas fa-pen"></i> Write a Review</button>
-            </div>
+        <div class="main-media">
+          <div class="badge">New</div>
+          <img id="mainImage" src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1400&q=80" alt="Product main" />
+        </div>
+      </div>
 
-            <div class="reviews-summary">
-                <div class="rating-overview">
-                    <div class="average-rating">4.8</div>
-                    <div class="stars">★★★★★</div>
-                    <p style="margin-top: 0.5rem; opacity: 0.7;">Based on 124 reviews</p>
-                </div>
+      <!-- RIGHT: Info -->
+      <aside class="info">
+        <h1 class="title" id="productTitle">Elegant Diamond Solitaire Ring</h1>
 
-                <div class="rating-bars">
-                    <div class="rating-bar">
-                        <span class="rating-label">5 Stars</span>
-                        <div class="bar">
-                            <div class="bar-fill" style="width: 85%;"></div>
-                        </div>
-                        <span class="rating-number">105</span>
-                    </div>
-                    <div class="rating-bar">
-                        <span class="rating-label">4 Stars</span>
-                        <div class="bar">
-                            <div class="bar-fill" style="width: 10%;"></div>
-                        </div>
-                        <span class="rating-number">12</span>
-                    </div>
-                    <div class="rating-bar">
-                        <span class="rating-label">3 Stars</span>
-                        <div class="bar">
-                            <div class="bar-fill" style="width: 3%;"></div>
-                        </div>
-                        <span class="rating-number">4</span>
-                    </div>
-                    <div class="rating-bar">
-                        <span class="rating-label">2 Stars</span>
-                        <div class="bar">
-                            <div class="bar-fill" style="width: 1%;"></div>
-                        </div>
-                        <span class="rating-number">2</span>
-                    </div>
-                    <div class="rating-bar">
-                        <span class="rating-label">1 Star</span>
-                        <div class="bar">
-                            <div class="bar-fill" style="width: 1%;"></div>
-                        </div>
-                        <span class="rating-number">1</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="reviews-list">
-                <!-- Review 1 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-avatar">P</div>
-                            <div class="reviewer-details">
-                                <h4>Priya Sharma</h4>
-                                <span class="review-date">November 10, 2024</span>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
-                    <p class="review-text">
-                        Absolutely stunning! The quality is exceptional and the design is even more beautiful in person. The silver has a gorgeous shine and the detailing is intricate. I've been wearing it daily for 2 weeks and it still looks brand new. Highly recommend!
-                    </p>
-                    <div class="review-images">
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80" alt="Review Photo 1">
-                        </div>
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=200&q=80" alt="Review Photo 2">
-                        </div>
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=80" alt="Review Photo 3">
-                        </div>
-                    </div>
-                    <div class="review-helpful">
-                        <span>Was this helpful?</span>
-                        <button class="helpful-btn">👍 Yes (45)</button>
-                        <button class="helpful-btn">👎 No (2)</button>
-                    </div>
-                </div>
-
-                <!-- Review 2 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-avatar">A</div>
-                            <div class="reviewer-details">
-                                <h4>Ananya Patel</h4>
-                                <span class="review-date">November 8, 2024</span>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
-                    <p class="review-text">
-                        Perfect gift for my sister's birthday! She absolutely loved it. The packaging was elegant and the ring came with a beautiful certificate. The size guide was accurate and the ring fits perfectly. Worth every penny!
-                    </p>
-                    <div class="review-images">
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=200&q=80" alt="Review Photo">
-                        </div>
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=200&q=80" alt="Review Photo">
-                        </div>
-                    </div>
-                    <div class="review-helpful">
-                        <span>Was this helpful?</span>
-                        <button class="helpful-btn">👍 Yes (32)</button>
-                        <button class="helpful-btn">👎 No (1)</button>
-                    </div>
-                </div>
-
-                <!-- Review 3 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-avatar">R</div>
-                            <div class="reviewer-details">
-                                <h4>Riya Desai</h4>
-                                <span class="review-date">November 5, 2024</span>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
-                    <p class="review-text">
-                        Love the minimalist design! It's elegant without being too flashy. The silver quality is top-notch and hasn't tarnished at all. I wear it with both traditional and western outfits. Great investment piece!
-                    </p>
-                    <div class="review-images">
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=200&q=80" alt="Review Photo">
-                        </div>
-                    </div>
-                    <div class="review-helpful">
-                        <span>Was this helpful?</span>
-                        <button class="helpful-btn">👍 Yes (28)</button>
-                        <button class="helpful-btn">👎 No (0)</button>
-                    </div>
-                </div>
-
-                <!-- Review 4 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-avatar">M</div>
-                            <div class="reviewer-details">
-                                <h4>Meera Kumar</h4>
-                                <span class="review-date">November 2, 2024</span>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★☆</div>
-                    </div>
-                    <p class="review-text">
-                        Beautiful ring with excellent craftsmanship. The only reason I'm giving 4 stars instead of 5 is that I wish it came in more size options. Otherwise, it's perfect! Fast delivery and great customer service.
-                    </p>
-                    <div class="review-images">
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=200&q=80" alt="Review Photo">
-                        </div>
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=200&q=80" alt="Review Photo">
-                        </div>
-                    </div>
-                    <div class="review-helpful">
-                        <span>Was this helpful?</span>
-                        <button class="helpful-btn">👍 Yes (18)</button>
-                        <button class="helpful-btn">👎 No (3)</button>
-                    </div>
-                </div>
-
-                <!-- Review 5 -->
-                <div class="review-card">
-                    <div class="review-header">
-                        <div class="reviewer-info">
-                            <div class="reviewer-avatar">S</div>
-                            <div class="reviewer-details">
-                                <h4>Sneha Reddy</h4>
-                                <span class="review-date">October 28, 2024</span>
-                            </div>
-                        </div>
-                        <div class="review-rating">★★★★★</div>
-                    </div>
-                    <p class="review-text">
-                        This is my third purchase from Etthnicoast and they never disappoint! The quality is consistently amazing. This ring is delicate yet sturdy. The silver is genuine 925 and the hallmark is clearly visible. Customer for life!
-                    </p>
-                    <div class="review-images">
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=200&q=80" alt="Review Photo">
-                        </div>
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=200&q=80" alt="Review Photo">
-                        </div>
-                        <div class="review-image">
-                            <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=200&q=80" alt="Review Photo">
-                        </div>
-                    </div>
-                    <div class="review-helpful">
-                        <span>Was this helpful?</span>
-                        <button class="helpful-btn">👍 Yes (52)</button>
-                        <button class="helpful-btn">👎 No (1)</button>
-                    </div>
-                </div>
-            </div>
+        <div class="meta-row">
+          <div class="rating">
+            <span class="stars">⭐⭐⭐⭐⭐</span>
+            <span>4.8</span>
+            <span>(190 reviews)</span>
+          </div>
+          <div class="pill"><i class="fa-solid fa-truck"></i> <strong>Free Shipping</strong></div>
         </div>
 
-        <!-- Similar Products -->
-        <div class="similar-products">
-            <h2 class="section-title">YOU MAY ALSO LIKE</h2>
-            <div class="products-grid">
-                <!-- Similar Product 1 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=500&q=80" alt="Diamond Accent Band">
-                    </div>
-                    <div class="product-details">
-                        <h4 class="product-name">Diamond Accent Band</h4>
-                        <div class="stars" style="font-size: 0.9rem; color: #FFD700; margin: 0.5rem 0;">★★★★★</div>
-                        <p class="product-price">₹3,999</p>
-                    </div>
-                </div>
-
-                <!-- Similar Product 2 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=500&q=80" alt="Classic Silver Band">
-                    </div>
-                    <div class="product-details">
-                        <h4 class="product-name">Classic Silver Band</h4>
-                        <div class="stars" style="font-size: 0.9rem; color: #FFD700; margin: 0.5rem 0;">★★★★☆</div>
-                        <p class="product-price">₹1,899</p>
-                    </div>
-                </div>
-
-                <!-- Similar Product 3 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=500&q=80" alt="Pearl Accent Ring">
-                    </div>
-                    <div class="product-details">
-                        <h4 class="product-name">Pearl Accent Ring</h4>
-                        <div class="stars" style="font-size: 0.9rem; color: #FFD700; margin: 0.5rem 0;">★★★★★</div>
-                        <p class="product-price">₹2,799</p>
-                    </div>
-                </div>
-
-                <!-- Similar Product 4 -->
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="https://images.unsplash.com/photo-1603561596112-0a132b757442?w=500&q=80" alt="Infinity Design Ring">
-                    </div>
-                    <div class="product-details">
-                        <h4 class="product-name">Infinity Design Ring</h4>
-                        <div class="stars" style="font-size: 0.9rem; color: #FFD700; margin: 0.5rem 0;">★★★★★</div>
-                        <p class="product-price">₹3,299</p>
-                    </div>
-                </div>
-            </div>
+        <div class="price-area">
+          <div class="price" id="productPrice">₹24,999</div>
+          <div class="mrp">₹31,999</div>
+          <div class="discount">22% OFF</div>
         </div>
+        <div class="subtext">MRP inclusive of all taxes • Best Price <strong>₹21,999</strong></div>
+
+        <div class="offer-box">
+          <div class="row">
+            <div><strong>Flat 10% Off</strong> + prepaid discount</div>
+            <div class="coupon"><i class="fa-solid fa-tag"></i> ETTH10</div>
+          </div>
+        </div>
+
+        <!-- Available in / metal names (like your wireframe right side) -->
+        <div class="option-block">
+          <div class="opt-head">
+            <div class="label">Available In</div>
+            <div class="hint">Metal names (optional)</div>
+          </div>
+          <div class="chips" id="metalChips">
+            <button class="chip active" type="button">Silver</button>
+            <button class="chip" type="button">Gold</button>
+            <button class="chip" type="button">Rose</button>
+          </div>
+        </div>
+
+        <!-- Color / finish dots -->
+        <div class="option-block">
+          <div class="opt-head">
+            <div class="label">Finish</div>
+            <div class="hint">Color changes in toggle</div>
+          </div>
+          <div class="swatches" id="swatches">
+            <div class="swatch active" data-color="silver" style="background:#d9d9d9" title="Silver"></div>
+            <div class="swatch" data-color="gold" style="background:#d2b36c" title="Gold"></div>
+            <div class="swatch" data-color="rose" style="background:#d8a0a5" title="Rose Gold"></div>
+            <div class="swatch" data-color="black" style="background:#222" title="Oxidised"></div>
+          </div>
+        </div>
+
+        <!-- Single / Pair toggle -->
+        <div class="option-block">
+          <div class="opt-head">
+            <div class="label">Select Type</div>
+            <div class="hint">(optional)</div>
+          </div>
+          <div class="chips" id="typeChips">
+            <button class="chip active" type="button">Single</button>
+            <button class="chip" type="button">Pair</button>
+          </div>
+        </div>
+
+        <!-- Size -->
+        <div class="option-block">
+          <div class="opt-head">
+            <div class="label">Size</div>
+            <div class="hint">Size chart (optional)</div>
+          </div>
+          <div class="size-grid" id="sizes">
+            <button class="size active" type="button">6</button>
+            <button class="size" type="button">7</button>
+            <button class="size" type="button">8</button>
+            <button class="size" type="button">9</button>
+          </div>
+        </div>
+
+        <!-- CTAs -->
+        <div class="cta-row">
+          <button class="btn-primary" id="addToCartBtn">Add to Cart</button>
+          <button class="icon-btn" id="wishBtn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+          <button class="icon-btn" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></button>
+        </div>
+
+        <!-- Delivery / pincode -->
+        <div class="option-block" style="padding-top:12px;">
+          <div class="opt-head" style="margin-bottom:8px;">
+            <div class="label">Estimated Delivery Time</div>
+            <div class="hint"></div>
+          </div>
+          <div class="pin-row">
+            <input id="pincode" type="text" inputmode="numeric" placeholder="Enter 6 digit pincode" maxlength="6" />
+            <button id="checkPin">Check</button>
+          </div>
+          <div class="pin-status" id="pinStatus">Enter pincode to check delivery estimate.</div>
+
+          <div class="usp-row">
+            <div class="usp"><i class="fa-solid fa-rotate-left"></i> 30 days exchange</div>
+            <div class="usp"><i class="fa-solid fa-shield-heart"></i> 6 months warranty</div>
+            <div class="usp"><i class="fa-solid fa-badge-check"></i> Certified materials</div>
+            <div class="usp"><i class="fa-solid fa-lock"></i> Secure payments</div>
+          </div>
+        </div>
+
+        <!-- Accordions -->
+        <div class="accordion" id="accordion">
+          <div class="acc-item active">
+            <button class="acc-btn" type="button">
+              <span class="t">Description</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="acc-body">
+              A timeless solitaire ring crafted for everyday elegance. Designed with premium finish, comfortable fit,
+              and a refined silhouette that pairs beautifully with any look.
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button">
+              <span class="t">Specification</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="acc-body">
+              <ul style="padding-left:18px; line-height:1.8;">
+                <li>Material: 925 Sterling Silver (base)</li>
+                <li>Finish: High-polish • Anti-tarnish coating</li>
+                <li>Stone: AAA Zircon (simulated diamond)</li>
+                <li>Weight: Approx. 2.8g</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="acc-item">
+            <button class="acc-btn" type="button">
+              <span class="t">More Info</span>
+              <i class="fa-solid fa-chevron-down"></i>
+            </button>
+            <div class="acc-body">
+              Exchange policy and care instructions:
+              keep away from perfume/water for long-lasting shine. Store in a dry pouch after use.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- COMPLETE THE LOOK -->
+    <section class="section">
+      <h2 class="section-title">Complete the look</h2>
+      <div class="look-wrap">
+        <div class="look-grid">
+          <div class="look-card">
+            <div class="look-img">
+              <img src="https://images.unsplash.com/photo-1611652022419-a9419f74343d?w=1200&q=80" alt="Look item 1">
+            </div>
+            <div class="look-bottom">
+              <span>Statement Ring</span>
+              <strong>₹15,999</strong>
+            </div>
+          </div>
+
+          <div class="look-plus">+</div>
+
+          <div class="look-card">
+            <div class="look-img">
+              <img src="https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=1200&q=80" alt="Look item 2">
+            </div>
+            <div class="look-bottom">
+              <span>Drop Earrings</span>
+              <strong>₹12,999</strong>
+            </div>
+          </div>
+
+          <div class="look-plus">+</div>
+
+          <div class="look-card">
+            <div class="look-img">
+              <img src="https://images.unsplash.com/photo-1599643477877-530eb83abc8e?w=1200&q=80" alt="Look item 3">
+            </div>
+            <div class="look-bottom">
+              <span>Heart Pendant</span>
+              <strong>₹9,999</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="buy-all">
+          <span class="label">Buy all 3:</span>
+          <strong style="color:var(--primary-blue); font-size:1.15rem;">₹38,997</strong>
+          <button class="btn-primary" type="button" style="padding:.85rem 1.1rem;">Add Set to Cart</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SIMILAR ITEMS -->
+    <section class="section" style="padding-top: 0;">
+      <h2 class="section-title">Similar items</h2>
+
+      <div class="similar-grid">
+        <div class="mini-card">
+          <div class="mini-img"><img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?w=1200&q=80" alt=""></div>
+          <div class="mini-info">
+            <div class="mini-name">Bridal Set</div>
+            <div class="mini-price">₹45,999</div>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-img"><img src="https://images.unsplash.com/photo-1617038260897-41a1f14a8ca0?w=1200&q=80" alt=""></div>
+          <div class="mini-info">
+            <div class="mini-name">Anklet</div>
+            <div class="mini-price">₹6,499</div>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-img"><img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?w=1200&q=80" alt=""></div>
+          <div class="mini-info">
+            <div class="mini-name">Pendant</div>
+            <div class="mini-price">₹18,499</div>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-img"><img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?w=1200&q=80" alt=""></div>
+          <div class="mini-info">
+            <div class="mini-name">Bracelet</div>
+            <div class="mini-price">₹8,999</div>
+          </div>
+        </div>
+        <div class="mini-card">
+          <div class="mini-img"><img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=1200&q=80" alt=""></div>
+          <div class="mini-info">
+            <div class="mini-name">Solitaire</div>
+            <div class="mini-price">₹24,999</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOMER REVIEWS -->
+    <section class="section" style="padding-top: 0;">
+      <h2 class="section-title">Customer review</h2>
+
+      <div class="reviews-wrap">
+        <div class="review-head">
+          <div class="review-score">
+            <div class="score">4.8</div>
+            <div class="score-meta">
+              <div style="color:#f39c12; font-size:1rem; margin-bottom:6px;">⭐⭐⭐⭐⭐</div>
+              Based on <strong>190</strong> reviews
+            </div>
+          </div>
+          <button class="review-btn" type="button">Write a review</button>
+        </div>
+
+        <div class="review-list">
+          <div class="review-card">
+            <div class="review-top">
+              <div class="review-name">Ananya</div>
+              <div class="review-date">12 Jan 2026</div>
+            </div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">
+              Beautiful finish and looks premium. Delivery was quick and packaging was lovely.
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-top">
+              <div class="review-name">Ritvik</div>
+              <div class="review-date">04 Jan 2026</div>
+            </div>
+            <div class="review-stars">⭐⭐⭐⭐</div>
+            <div class="review-text">
+              Great value for the price. The stone sparkle is amazing. Size fits perfectly.
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-top">
+              <div class="review-name">Megha</div>
+              <div class="review-date">28 Dec 2025</div>
+            </div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">
+              Minimal and classy. I wear it daily. No irritation and still shining after weeks.
+            </div>
+          </div>
+
+          <div class="review-card">
+            <div class="review-top">
+              <div class="review-name">Sourav</div>
+              <div class="review-date">10 Dec 2025</div>
+            </div>
+            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-text">
+              Gifted it and she loved it. The quality feels great and the look is elegant.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Sticky CTA (mobile) -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="row">
+      <div class="mini">
+        <div class="n">Elegant Diamond Solitaire Ring</div>
+        <div class="p">₹24,999</div>
+      </div>
+      <button class="btn-primary" id="stickyAddBtn" style="padding:.85rem 1rem;">Add to Cart</button>
+      <button class="icon-btn" id="stickyWishBtn" aria-label="Wishlist" style="width:48px;height:48px;">
+        <i class="fa-regular fa-heart"></i>
+      </button>
     </div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-container">
-            <div class="footer-section">
-                <h4>ABOUT US</h4>
-                <ul>
-                    <li><a href="/about.html">Our Story</a></li>
-                    <li><a href="/about.html">Craftsmanship</a></li>
-                    <li><a href="/about.html">Sustainability</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>CUSTOMER CARE</h4>
-                <ul>
-                    <li><a href="/contact.html">Contact Us</a></li>
-                    <li><a href="#">Shipping Info</a></li>
-                    <li><a href="#">Returns</a></li>
-                    <li><a href="#">FAQ</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>CONNECT</h4>
-                <ul>
-                    <li><a href="#">Instagram</a></li>
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Pinterest</a></li>
-                </ul>
-            </div>
-            <div class="footer-section">
-                <h4>NEWSLETTER</h4>
-                <p>Subscribe to receive exclusive offers and updates</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 ETTHNICOAST. All rights reserved.</p>
-        </div>
-    </footer>
+  <script>
+    // ===== Mobile menu
+    const overlay = document.getElementById("overlay");
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
 
-    <script>
-        // Mobile menu toggle
-        (function() {
-            const hamburger = document.getElementById('hamburger');
-            const navLinks = document.getElementById('navLinks');
+    function openOverlay(){ overlay.classList.add("active"); document.body.style.overflow="hidden"; }
+    function closeOverlay(){ overlay.classList.remove("active"); document.body.style.overflow=""; }
 
-            if (hamburger && navLinks) {
-                hamburger.addEventListener('click', () => {
-                    hamburger.classList.toggle('active');
-                    navLinks.classList.toggle('active');
-                });
+    function openMenu(){ mobileMenu.classList.add("active"); openOverlay(); }
+    function closeMenu(){ mobileMenu.classList.remove("active"); closeOverlay(); }
 
-                // Close menu when clicking on a link
-                document.querySelectorAll('.nav-links a').forEach(link => {
-                    link.addEventListener('click', () => {
-                        hamburger.classList.remove('active');
-                        navLinks.classList.remove('active');
-                    });
-                });
-            }
-        })();
+    hamburger?.addEventListener("click", (e)=>{
+      e.stopPropagation();
+      mobileMenu.classList.contains("active") ? closeMenu() : openMenu();
+    });
 
-        // Change main image
-        function changeImage(thumbnail, imageSrc) {
-            const mainImage = document.getElementById('mainImage');
-            if (mainImage) {
-                mainImage.src = imageSrc;
-                document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-                thumbnail.classList.add('active');
-            }
-        }
+    // ===== Gallery thumbs
+    const thumbs = document.querySelectorAll(".thumb");
+    const mainImage = document.getElementById("mainImage");
 
-        // Toggle wishlist
-        function toggleWishlist(btn) {
-            const icon = btn.querySelector('i');
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                btn.style.background = '#dc3545';
-                btn.style.color = 'var(--white)';
-                btn.style.borderColor = '#dc3545';
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                btn.style.background = 'transparent';
-                btn.style.color = '#dc3545';
-                btn.style.borderColor = 'var(--secondary-peach)';
-            }
-        }
+    thumbs.forEach(t=>{
+      t.addEventListener("click", ()=>{
+        thumbs.forEach(x=>x.classList.remove("active"));
+        t.classList.add("active");
+        const src = t.getAttribute("data-src");
+        mainImage.src = src;
+      });
+    });
 
-        // Size selector
-        document.querySelectorAll('.size-option').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.size-option').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
+    // ===== Swatches
+    const swatches = document.querySelectorAll(".swatch");
+    swatches.forEach(s=>{
+      s.addEventListener("click", ()=>{
+        swatches.forEach(x=>x.classList.remove("active"));
+        s.classList.add("active");
+      });
+    });
+
+    // ===== Chips (metal + type)
+    function makeChipsActive(wrapperId){
+      const wrap = document.getElementById(wrapperId);
+      if(!wrap) return;
+      const btns = wrap.querySelectorAll(".chip");
+      btns.forEach(b=>{
+        b.addEventListener("click", ()=>{
+          btns.forEach(x=>x.classList.remove("active"));
+          b.classList.add("active");
         });
+      });
+    }
+    makeChipsActive("metalChips");
+    makeChipsActive("typeChips");
 
-        // Add to cart functionality
-        const addToCartBtn = document.querySelector('.add-to-cart-btn');
-        if (addToCartBtn) {
-            addToCartBtn.addEventListener('click', () => {
-                alert('Product added to cart!');
-            });
-        }
+    // ===== Sizes
+    const sizes = document.querySelectorAll("#sizes .size");
+    sizes.forEach(sz=>{
+      sz.addEventListener("click", ()=>{
+        sizes.forEach(x=>x.classList.remove("active"));
+        sz.classList.add("active");
+      });
+    });
 
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (nav) {
-                if (window.scrollY > 100) {
-                    nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                    nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-                } else {
-                    nav.style.background = 'var(--white)';
-                    nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-                }
-            }
-        });
-    </script>
-</body>
-</html>
-            
+    // ===== Accordion
+    const acc = document.getElementById("accordion");
+    acc?.querySelectorAll(".acc-item").forEach(item=>{
+      const btn = item.querySelector(".acc-btn");
+      btn.addEventListener("click", ()=>{
+        // single-open like Arata
+        acc.querySelectorAll(".acc-item").forEach(i=> i.classList.remove("active"));
+        item.classList.add("active");
+      });
+    });
 
-    <script>
-        // Mobile menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navLinks = document.getElementById('navLinks');
+    // ===== Wishlist toggle
+    const wishBtn = document.getElementById("wishBtn");
+    const stickyWishBtn = document.getElementById("stickyWishBtn");
+    function toggleWish(btn){
+      const icon = btn.querySelector("i");
+      const isActive = icon.classList.contains("fa-solid");
+      if(isActive){
+        icon.classList.remove("fa-solid");
+        icon.classList.add("fa-regular");
+        icon.style.color = "";
+      }else{
+        icon.classList.remove("fa-regular");
+        icon.classList.add("fa-solid");
+        icon.style.color = "var(--primary-blue)";
+      }
+    }
+    wishBtn?.addEventListener("click", (e)=>{ e.stopPropagation(); toggleWish(wishBtn); if(stickyWishBtn) toggleWish(stickyWishBtn); });
+    stickyWishBtn?.addEventListener("click", (e)=>{ e.stopPropagation(); toggleWish(stickyWishBtn); if(wishBtn) toggleWish(wishBtn); });
 
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navLinks.classList.toggle('active');
-        });
+    // ===== Add to cart feedback
+    function pulseAdd(btn){
+      const original = btn.textContent;
+      btn.textContent = "Added! ✓";
+      btn.style.filter = "brightness(0.95)";
+      setTimeout(()=>{ btn.textContent = original; btn.style.filter = ""; }, 1400);
+    }
+    const addToCartBtn = document.getElementById("addToCartBtn");
+    const stickyAddBtn = document.getElementById("stickyAddBtn");
+    addToCartBtn?.addEventListener("click", ()=>pulseAdd(addToCartBtn));
+    stickyAddBtn?.addEventListener("click", ()=>pulseAdd(stickyAddBtn));
 
-        // Close menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navLinks.classList.remove('active');
-            });
-        });
+    // ===== Pincode check (demo)
+    const pinInput = document.getElementById("pincode");
+    const checkPin = document.getElementById("checkPin");
+    const pinStatus = document.getElementById("pinStatus");
 
-        // Change main image
-        function changeImage(thumbnail, imageSrc) {
-            document.getElementById('mainImage').src = imageSrc;
-            document.querySelectorAll('.thumbnail').forEach(t => t.classList.remove('active'));
-            thumbnail.classList.add('active');
-        }
+    checkPin?.addEventListener("click", ()=>{
+      const v = (pinInput.value || "").trim();
+      if(!/^\d{6}$/.test(v)){
+        pinStatus.textContent = "Please enter a valid 6 digit pincode.";
+        pinStatus.style.color = "#e74c3c";
+        return;
+      }
+      pinStatus.style.color = "rgba(2,0,13,0.8)";
+      pinStatus.textContent = "Checking...";
+      setTimeout(()=>{
+        pinStatus.textContent = "Delivery estimate: 3–6 business days • COD available (demo)";
+      }, 550);
+    });
 
-        // Toggle wishlist
-        function toggleWishlist(btn) {
-            const icon = btn.querySelector('i');
-            if (icon.classList.contains('far')) {
-                icon.classList.remove('far');
-                icon.classList.add('fas');
-                btn.style.background = '#dc3545';
-                btn.style.color = 'var(--white)';
-                btn.style.borderColor = '#dc3545';
-            } else {
-                icon.classList.remove('fas');
-                icon.classList.add('far');
-                btn.style.background = 'transparent';
-                btn.style.color = '#dc3545';
-                btn.style.borderColor = 'var(--secondary-peach)';
-            }
-        }
-
-        // Size selector
-        document.querySelectorAll('.size-option').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.size-option').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
-
-        // Navbar background on scroll
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('nav');
-            if (window.scrollY > 100) {
-                nav.style.background = 'rgba(255, 255, 255, 0.98)';
-                nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.1)';
-            } else {
-                nav.style.background = 'var(--white)';
-                nav.style.boxShadow = '0 2px 10px rgba(0,0,0,0.1)';
-            }
-        });
-    </script>
+    // ===== Overlay closes menu
+    overlay.addEventListener("click", ()=>{
+      closeMenu();
+    });
+  </script>
 </body>
 </html>
