@@ -755,6 +755,206 @@
       line-height: 1.55;
     }
 
+    /* ---- Review Modal ---- */
+    .modal{
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      z-index: 2000;
+    }
+    .modal.active{ display:flex; }
+    .modal .backdrop{
+      position:absolute;
+      inset:0;
+      background: rgba(2,0,13,0.55);
+    }
+    .modal-card{
+      position: relative;
+      width: min(720px, 100%);
+      background: var(--white);
+      border: 1px solid rgba(7,32,63,0.12);
+      box-shadow: 0 20px 50px rgba(7,32,63,0.18);
+      border-radius: 0px; /* keep same clean style */
+      overflow: hidden;
+    }
+    .modal-head{
+      padding: 14px 16px;
+      border-bottom: 1px solid rgba(7,32,63,0.08);
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(235,222,212,0.35);
+    }
+    .modal-title{
+      font-family: var(--font-primary);
+      font-weight: 700;
+      color: var(--primary-blue);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+    .modal-close{
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(7,32,63,0.18);
+      background: var(--white);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition: .2s ease;
+    }
+    .modal-close:hover{
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+    .modal-body{
+      padding: 16px;
+    }
+
+    .form-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+    }
+    .field.full{ grid-column: 1 / -1; }
+    .field label{
+      font-size: .82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(2,0,13,0.75);
+      font-weight: 700;
+    }
+    .field input,
+    .field textarea{
+      border: 1px solid rgba(7,32,63,0.22);
+      padding: 10px 12px;
+      font-size: .9rem;
+      outline: none;
+      background: var(--white);
+    }
+    .field textarea{
+      resize: vertical;
+      min-height: 110px;
+      line-height: 1.5;
+    }
+    .helper-row{
+      display:flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .error-text{
+      font-size: .85rem;
+      color: #e74c3c;
+      display:none;
+    }
+    .error-text.show{ display:block; }
+
+    .rating-picker{
+      display:flex;
+      align-items:center;
+      gap: 10px;
+      flex-wrap: wrap;
+      padding: 10px 0 0;
+    }
+    .rating-picker .label{
+      font-size: .82rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(2,0,13,0.75);
+      font-weight: 700;
+      margin-right: 6px;
+    }
+    .stars-input{
+      display:flex;
+      gap: 6px;
+      align-items:center;
+      user-select:none;
+    }
+    .star-btn{
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(7,32,63,0.18);
+      background: var(--white);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition: .2s ease;
+      color: rgba(2,0,13,0.35);
+      font-size: 1.05rem;
+    }
+    .star-btn:hover{ border-color: var(--primary-blue); }
+    .star-btn.active{
+      color: #f39c12;
+      border-color: rgba(243,156,18,0.45);
+      box-shadow: 0 0 0 2px rgba(243,156,18,0.12);
+    }
+    .rating-value{
+      font-weight: 800;
+      color: var(--primary-blue);
+      font-size: .95rem;
+      letter-spacing: .5px;
+    }
+
+    .modal-actions{
+      padding: 14px 16px;
+      border-top: 1px solid rgba(7,32,63,0.08);
+      display:flex;
+      justify-content: flex-end;
+      gap: 10px;
+      background: rgba(235,222,212,0.15);
+      flex-wrap: wrap;
+    }
+    .btn-ghost{
+      padding: .85rem 1rem;
+      border: 1px solid rgba(7,32,63,0.22);
+      background: var(--white);
+      cursor:pointer;
+      font-size: .85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: .25s ease;
+      color: rgba(2,0,13,0.8);
+    }
+    .btn-ghost:hover{
+      border-color: var(--primary-blue);
+      color: var(--primary-blue);
+    }
+
+    .toast{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      background: var(--primary-blue);
+      color: var(--white);
+      padding: 12px 14px;
+      font-size: .9rem;
+      letter-spacing: .5px;
+      box-shadow: 0 12px 25px rgba(7,32,63,0.25);
+      transform: translateY(18px);
+      opacity: 0;
+      pointer-events:none;
+      transition: .25s ease;
+      z-index: 3000;
+    }
+    .toast.show{
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     /* =========================
        STICKY CTA (mobile)
        ========================= */
@@ -823,6 +1023,7 @@
       .similar-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
       .review-list{ grid-template-columns: 1fr; }
       .sticky-cta{ display:block; }
+      .form-grid{ grid-template-columns: 1fr; }
     }
 
     @media (max-width: 768px){
@@ -952,10 +1153,10 @@
         <h1 class="title" id="productTitle">Elegant Diamond Solitaire Ring</h1>
 
         <div class="meta-row">
-          <div class="rating">
-            <span class="stars">⭐⭐⭐⭐⭐</span>
-            <span>4.8</span>
-            <span>(190 reviews)</span>
+          <div class="rating" aria-label="Average rating">
+            <span class="stars" id="avgStars">⭐⭐⭐⭐⭐</span>
+            <span id="avgRatingText">4.8</span>
+            <span>(<span id="reviewCountText">190</span> reviews)</span>
           </div>
           <div class="pill"><i class="fa-solid fa-truck"></i> <strong>Free Shipping</strong></div>
         </div>
@@ -1194,16 +1395,17 @@
       <div class="reviews-wrap">
         <div class="review-head">
           <div class="review-score">
-            <div class="score">4.8</div>
+            <div class="score" id="scoreBig">4.8</div>
             <div class="score-meta">
-              <div style="color:#f39c12; font-size:1rem; margin-bottom:6px;">⭐⭐⭐⭐⭐</div>
-              Based on <strong>190</strong> reviews
+              <div style="color:#f39c12; font-size:1rem; margin-bottom:6px;" id="scoreStars">⭐⭐⭐⭐⭐</div>
+              Based on <strong id="basedOn">190</strong> reviews
             </div>
           </div>
-          <button class="review-btn" type="button">Write a review</button>
+          <button class="review-btn" id="openReviewModalBtn" type="button">Write a review</button>
         </div>
 
-        <div class="review-list">
+        <!-- Review list (JS will manage) -->
+        <div class="review-list" id="reviewList">
           <div class="review-card">
             <div class="review-top">
               <div class="review-name">Ananya</div>
@@ -1265,6 +1467,62 @@
       </button>
     </div>
   </div>
+
+  <!-- Review Modal -->
+  <div class="modal" id="reviewModal" aria-hidden="true">
+    <div class="backdrop" id="reviewBackdrop"></div>
+
+    <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="reviewModalTitle">
+      <div class="modal-head">
+        <div class="modal-title" id="reviewModalTitle">Write a review</div>
+        <button class="modal-close" id="closeReviewModalBtn" type="button" aria-label="Close review modal">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <div class="rating-picker">
+          <div class="label">Your rating</div>
+          <div class="stars-input" id="starsInput" aria-label="Select rating">
+            <button class="star-btn" type="button" data-value="1" aria-label="1 star"><i class="fa-solid fa-star"></i></button>
+            <button class="star-btn" type="button" data-value="2" aria-label="2 stars"><i class="fa-solid fa-star"></i></button>
+            <button class="star-btn" type="button" data-value="3" aria-label="3 stars"><i class="fa-solid fa-star"></i></button>
+            <button class="star-btn" type="button" data-value="4" aria-label="4 stars"><i class="fa-solid fa-star"></i></button>
+            <button class="star-btn" type="button" data-value="5" aria-label="5 stars"><i class="fa-solid fa-star"></i></button>
+          </div>
+          <div class="rating-value" id="ratingValue">0/5</div>
+        </div>
+
+        <div class="helper-row" style="margin-top: 10px;">
+          <div class="error-text" id="reviewError">Please fill all fields and select rating.</div>
+        </div>
+
+        <div class="form-grid" style="margin-top: 12px;">
+          <div class="field">
+            <label for="reviewName">Name</label>
+            <input id="reviewName" type="text" placeholder="Your name" maxlength="40" />
+          </div>
+
+          <div class="field">
+            <label for="reviewTitle">Title (optional)</label>
+            <input id="reviewTitle" type="text" placeholder="Short headline" maxlength="60" />
+          </div>
+
+          <div class="field full">
+            <label for="reviewMessage">Review</label>
+            <textarea id="reviewMessage" placeholder="Share your experience..." maxlength="600"></textarea>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal-actions">
+        <button class="btn-ghost" id="cancelReviewBtn" type="button">Cancel</button>
+        <button class="btn-primary" id="submitReviewBtn" type="button">Submit Review</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Review submitted ✓</div>
 
   <script>
     // ===== Mobile menu
@@ -1335,65 +1593,71 @@
       const btn = item.querySelector(".acc-btn");
       btn.addEventListener("click", ()=>{
         // single-open like Arata
-        acc.querySelectorAll(".acc-item").forEach(i=> i.classList.remove("active"));
-        item.classList.add("active");
+        acc.querySelectorAll(".acc-item").forEach(i=>i!==item && i.classList.remove("active"));
+        item.classList.toggle("active");
       });
     });
-
-    // ===== Wishlist toggle
-    const wishBtn = document.getElementById("wishBtn");
-    const stickyWishBtn = document.getElementById("stickyWishBtn");
-    function toggleWish(btn){
-      const icon = btn.querySelector("i");
-      const isActive = icon.classList.contains("fa-solid");
-      if(isActive){
-        icon.classList.remove("fa-solid");
-        icon.classList.add("fa-regular");
-        icon.style.color = "";
-      }else{
-        icon.classList.remove("fa-regular");
-        icon.classList.add("fa-solid");
-        icon.style.color = "var(--primary-blue)";
-      }
+    // ===== Review Modal
+    const reviewModal = document.getElementById("reviewModal");
+    const reviewBackdrop = document.getElementById("reviewBackdrop");
+    const openReviewModalBtn = document.getElementById("openReviewModalBtn");
+    const closeReviewModalBtn = document.getElementById("closeReviewModalBtn");
+    const cancelReviewBtn = document.getElementById("cancelReviewBtn");
+    const submitReviewBtn = document.getElementById("submitReviewBtn");
+    const toast = document.getElementById("toast");
+    const reviewError = document.getElementById("reviewError");
+    const starsInput = document.getElementById("starsInput");
+    const ratingValue = document.getElementById("ratingValue");
+    let selectedRating = 0;
+    function openReviewModal(){
+      reviewModal.setAttribute("aria-hidden", "false");
+      reviewModal.classList.add("active");
+      openOverlay();
     }
-    wishBtn?.addEventListener("click", (e)=>{ e.stopPropagation(); toggleWish(wishBtn); if(stickyWishBtn) toggleWish(stickyWishBtn); });
-    stickyWishBtn?.addEventListener("click", (e)=>{ e.stopPropagation(); toggleWish(stickyWishBtn); if(wishBtn) toggleWish(wishBtn); });
-
-    // ===== Add to cart feedback
-    function pulseAdd(btn){
-      const original = btn.textContent;
-      btn.textContent = "Added! ✓";
-      btn.style.filter = "brightness(0.95)";
-      setTimeout(()=>{ btn.textContent = original; btn.style.filter = ""; }, 1400);
+    function closeReviewModal(){
+      reviewModal.setAttribute("aria-hidden", "true");
+      reviewModal.classList.remove("active");
+      closeOverlay();
+      // reset form
+      selectedRating = 0;
+      ratingValue.textContent = "0/5";
+      reviewError.classList.remove("show");
+      starsInput.querySelectorAll(".star-btn").forEach(b=>b.classList.remove("active"));
+      document.getElementById("reviewName").value = "";
+      document.getElementById("reviewTitle").value = "";
+      document.getElementById("reviewMessage").value = "";
     }
-    const addToCartBtn = document.getElementById("addToCartBtn");
-    const stickyAddBtn = document.getElementById("stickyAddBtn");
-    addToCartBtn?.addEventListener("click", ()=>pulseAdd(addToCartBtn));
-    stickyAddBtn?.addEventListener("click", ()=>pulseAdd(stickyAddBtn));
-
-    // ===== Pincode check (demo)
-    const pinInput = document.getElementById("pincode");
-    const checkPin = document.getElementById("checkPin");
-    const pinStatus = document.getElementById("pinStatus");
-
-    checkPin?.addEventListener("click", ()=>{
-      const v = (pinInput.value || "").trim();
-      if(!/^\d{6}$/.test(v)){
-        pinStatus.textContent = "Please enter a valid 6 digit pincode.";
-        pinStatus.style.color = "#e74c3c";
+    openReviewModalBtn?.addEventListener("click", openReviewModal);
+    closeReviewModalBtn?.addEventListener("click", closeReviewModal);
+    cancelReviewBtn?.addEventListener("click", closeReviewModal);
+    reviewBackdrop?.addEventListener("click", closeReviewModal);
+    // Star rating selection
+    starsInput?.querySelectorAll(".star-btn").forEach(btn=>{  
+      btn.addEventListener("click", ()=>{
+        selectedRating = parseInt(btn.getAttribute("data-value"));
+        ratingValue.textContent = `${selectedRating}/5`;
+        starsInput.querySelectorAll(".star-btn").forEach(b=>{
+          const val = parseInt(b.getAttribute("data-value"));
+          b.classList.toggle("active", val <= selectedRating);
+        });
+      });
+    });
+    // Submit review
+    submitReviewBtn?.addEventListener("click", ()=>{
+      const name = document.getElementById("reviewName").value.trim();
+      const message = document.getElementById("reviewMessage").value.trim();
+      if(name === "" || message === "" || selectedRating === 0){
+        reviewError.classList.add("show");
         return;
       }
-      pinStatus.style.color = "rgba(2,0,13,0.8)";
-      pinStatus.textContent = "Checking...";
-      setTimeout(()=>{
-        pinStatus.textContent = "Delivery estimate: 3–6 business days • COD available (demo)";
-      }, 550);
-    });
-
-    // ===== Overlay closes menu
-    overlay.addEventListener("click", ()=>{
-      closeMenu();
+      reviewError.classList.remove("show");
+      // Here you would normally send the review to the server
+      closeReviewModal();
+      // Show toast
+      toast.classList.add("show");
+      setTimeout(()=>{ toast.classList.remove("show"); }, 3000);
     });
   </script>
 </body>
+  
 </html>
