@@ -2568,6 +2568,20 @@ h3,
         display: block;
     }
 }
+/* Mobile – Force Landscape Images */
+@media (max-width: 768px) {
+    .gender-card {
+        height: auto;               /* remove fixed height */
+        aspect-ratio: 16 / 9;       /* landscape ratio */
+    }
+
+    .gender-card img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
 
         /* ============================================================
            NEW ARRIVALS BANNER SECTION - STYLE 1 (Modern Banner Style)
