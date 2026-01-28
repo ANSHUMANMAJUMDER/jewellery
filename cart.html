@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Lato:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <title>Cart – ETTHNICOAST</title>
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --primary-blue:#07203F;
+      --secondary-peach:#EBDED4;
+      --dark:#02000D;
+      --muted:rgba(2,0,13,.6);
+      --border:rgba(7,32,63,.12);
+      --shadow:0 10px 30px rgba(7,32,63,.12);
+      --white:#fff;
+      --font-primary:'Cormorant Garamond',serif;
+      --font-secondary:'Lato',system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+
+      /* dynamic nav height */
+      --navH: 92px;
+    }
+
+    html{scroll-behavior:smooth}
+    body{
+      font-family:var(--font-secondary);
+      background:#fff;
+      color:var(--dark);
+      line-height:1.35;
+      overscroll-behavior:none; /* iOS jump fix */
+    }
+    a{text-decoration:none;color:inherit}
+    button,input,select{font-family:inherit}
+    img{max-width:100%;display:block}
+
+    /* ================= OVERLAY + MOBILE MENU (same pattern) ================= */
+    .overlay{
+      position:fixed;inset:0;
+      background:rgba(2,0,13,.55);
+      opacity:0;visibility:hidden;
+      transition:.25s ease;
+      z-index:9997;
+    }
+    .overlay.active{opacity:1;visibility:visible}
+
+    .mobile-menu{
+      position:fixed;left:-100%;top:0;
+      width:100%;height:100vh;
+      background:var(--white);
+      z-index:9998;
+      transition:left .3s ease;
+      padding-top:var(--navH);
+      overflow-y:auto;
+      -webkit-overflow-scrolling:touch;
+    }
+    .mobile-menu.active{left:0}
+    .mobile-links{list-style:none;display:flex;flex-direction:column}
+    .mobile-links li{border-bottom:1px solid rgba(7,32,63,.08)}
+    .mobile-links a{
+      display:block;
+      padding:1.1rem 1.5rem;
+      font-size:.9rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+    .mobile-links a:hover{
+      background:var(--secondary-peach);
+      color:var(--primary-blue);
+    }
+
+    /* ================= NAV (same as product page style) ================= */
+    nav{
+      position:fixed;top:0;left:0;width:100%;
+      background:#fff;
+      z-index:9999;
+      box-shadow:0 2px 10px rgba(0,0,0,.08);
+    }
+    .nav-container{
+      max-width:1600px;
+      margin:0 auto;
+      padding:1rem clamp(1rem, 3vw, 3rem);
+      display:grid;
+      grid-template-columns:1fr auto 1fr;
+      align-items:center;
+      gap:1rem;
+      position:relative;
+    }
+    .nav-left,.nav-right{
+      display:flex;align-items:center;gap:1.25rem;
+    }
+    .nav-left{justify-content:flex-start}
+    .nav-right{justify-content:flex-end}
+    .nav-left a,.nav-right a{
+      font-size:1rem;color:var(--dark);
+      transition:color .25s ease;
+    }
+    .nav-left a:hover,.nav-right a:hover{color:var(--primary-blue)}
+
+    .nav-center{display:flex;justify-content:center}
+    .nav-logo img{height:70px;width:auto;transition:.25s ease}
+
+    .nav-links-container{
+      max-width:1600px;
+      margin:0 auto;
+      padding:0 clamp(1rem, 3vw, 3rem) 1rem;
+      display:flex;justify-content:center;
+    }
+    .nav-links{
+      list-style:none;
+      display:flex;gap:2.5rem;align-items:center;
+    }
+    .nav-links a{
+      font-size:.85rem;
+      letter-spacing:2px;
+      text-transform:uppercase;
+      color:var(--dark);
+      padding:.5rem 0;
+      position:relative;
+    }
+    .nav-links a::after{
+      content:"";
+      position:absolute;left:0;bottom:0;
+      width:0;height:1px;
+      background:var(--primary-blue);
+      transition:width .25s ease;
+    }
+    .nav-links a:hover{color:var(--primary-blue)}
+    .nav-links a:hover::after{width:100%}
+
+    .hamburger{
+      display:none;
+      border:none;background:transparent;
+      padding:10px;
+      cursor:pointer;
+      flex-direction:column;
+      gap:6px;
+    }
+    .hamburger span{
+      width:22px;height:2px;
+      background:var(--primary-blue);
+      transition:.25s ease;
+    }
+
+    /* ================= PAGE OFFSET ================= */
+    .page-offset{padding-top:var(--navH)}
+
+    /* ================= CART PAGE ================= */
+    .page{
+      padding-bottom:120px; /* space for sticky footer */
+    }
+
+    .stepper{
+      display:flex;
+      justify-content:center;
+      gap:2.25rem;
+      margin:1.5rem 0 1.25rem;
+      padding:0 1rem;
+      flex-wrap:wrap;
+    }
+    .step{
+      font-size:.85rem;
+      color:var(--muted);
+      position:relative;
+      letter-spacing:.5px;
+    }
+    .step.active{color:var(--primary-blue);font-weight:800}
+
+    .container{
+      max-width:1100px;
+      margin:0 auto;
+      padding:0 clamp(1rem, 3vw, 2rem);
+    }
+
+    .cart-list{
+      display:flex;
+      flex-direction:column;
+      gap:1rem;
+    }
+
+    .cart-item{
+      display:grid;
+      grid-template-columns:84px 1fr auto;
+      gap:14px;
+      border:1px solid var(--border);
+      padding:14px;
+      background:#fafafa;
+      border-radius:14px;
+    }
+    .cart-img{
+      width:84px;height:84px;
+      border-radius:12px;
+      background:#eee;
+      border:1px solid rgba(7,32,63,.10);
+    }
+    .cart-info h4{
+      font-family:var(--font-primary);
+      color:var(--primary-blue);
+      font-size:1.1rem;
+      font-weight:600;
+      letter-spacing:.5px;
+    }
+    .price{
+      font-weight:800;
+      margin:.35rem 0 .55rem;
+      color:var(--dark);
+    }
+    .qty{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      background:#fff;
+      border:1px solid var(--border);
+      padding:.35rem .5rem;
+      border-radius:12px;
+      width:max-content;
+    }
+    .qty button{
+      width:28px;height:28px;
+      border:1px solid rgba(7,32,63,.16);
+      background:#fff;
+      border-radius:10px;
+      cursor:pointer;
+    }
+    .qty span{min-width:18px;text-align:center;font-weight:700;color:var(--primary-blue)}
+
+    .cart-actions{
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:.5rem;
+    }
+    .remove{
+      font-size:.82rem;
+      color:var(--muted);
+      cursor:pointer;
+      user-select:none;
+    }
+    .remove:hover{color:var(--primary-blue);text-decoration:underline}
+
+    .coupon{
+      margin-top:1rem;
+      border:1px dashed rgba(7,32,63,.22);
+      padding:.9rem 1rem;
+      background:rgba(235,222,212,.7);
+      text-align:center;
+      font-size:.9rem;
+      border-radius:14px;
+      color:rgba(2,0,13,.75);
+    }
+
+    .pickup{
+      margin-top:1rem;
+      border:1px solid var(--border);
+      padding:.9rem 1rem;
+      font-size:.9rem;
+      border-radius:14px;
+      background:#fff;
+      color:rgba(2,0,13,.75);
+    }
+
+    .usp{
+      display:flex;
+      justify-content:space-around;
+      margin:1.5rem 0 0;
+      font-size:.85rem;
+      color:var(--muted);
+      gap:1rem;
+      flex-wrap:wrap;
+    }
+    .usp span{
+      display:flex;align-items:center;gap:.5rem;
+      border:1px solid rgba(7,32,63,.10);
+      background:#fff;
+      padding:.65rem .8rem;
+      border-radius:999px;
+    }
+    .usp i{color:var(--primary-blue)}
+
+    /* ================= STICKY FOOTER CTA ================= */
+    .cart-footer{
+      position:fixed;bottom:0;left:0;width:100%;
+      background:rgba(255,255,255,.92);
+      backdrop-filter:blur(8px);
+      border-top:1px solid var(--border);
+      padding:.75rem 1rem;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:1rem;
+      z-index:9996;
+    }
+    .total{
+      font-weight:900;
+      color:var(--primary-blue);
+      letter-spacing:.2px;
+    }
+    .checkout{
+      padding:.85rem 1.25rem;
+      background:var(--primary-blue);
+      color:#fff;
+      border:none;
+      border-radius:12px;
+      text-transform:uppercase;
+      letter-spacing:1.2px;
+      font-size:.85rem;
+      cursor:pointer;
+      transition:.25s ease;
+      white-space:nowrap;
+    }
+    .checkout:hover{background:#050f21}
+
+    /* ================= FOOTER ================= */
+    footer{
+      margin-top:3rem;
+      padding:2rem 1rem;
+      background:#f8f8f8;
+      text-align:center;
+      font-size:.85rem;
+      color:var(--muted);
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px){
+      .nav-container{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        padding:.9rem 1.25rem;
+      }
+      .hamburger{display:flex;width:44px}
+      .nav-left{display:none}
+      .nav-right{gap:1rem;width:86px;justify-content:flex-end}
+      .nav-center{
+        position:absolute;
+        left:50%;
+        transform:translateX(-50%);
+      }
+      .nav-logo img{height:54px}
+      .nav-links-container{display:none}
+    }
+
+    @media (max-width: 560px){
+      .cart-item{
+        grid-template-columns:72px 1fr;
+        grid-template-areas:
+          "img info"
+          "actions actions";
+      }
+      .cart-img{grid-area:img;width:72px;height:72px}
+      .cart-info{grid-area:info}
+      .cart-actions{
+        grid-area:actions;
+        flex-direction:row;
+        align-items:center;
+        justify-content:space-between;
+        border-top:1px solid rgba(7,32,63,.10);
+        padding-top:.75rem;
+      }
+      .stepper{gap:1.25rem}
+      .checkout{padding:.85rem 1rem}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- overlay -->
+  <div class="overlay" id="overlay" aria-hidden="true"></div>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-container">
+      <div class="nav-left">
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
+      </div>
+
+      <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-center">
+        <a href="/" class="nav-logo" aria-label="ETTHNICOAST Home">
+          <img src="./assets/logo_new_1.png" alt="ETTHNICOAST" />
+        </a>
+      </div>
+
+      <div class="nav-right">
+        <a href="#" aria-label="Search"><i class="fas fa-search"></i></a>
+        <a href="#" aria-label="Account"><i class="fas fa-user"></i></a>
+        <a href="#" aria-label="Bag"><i class="fas fa-shopping-bag"></i></a>
+      </div>
+    </div>
+
+    <div class="nav-links-container">
+      <ul class="nav-links">
+        <li><a href="#">New</a></li>
+        <li><a href="#">Rings</a></li>
+        <li><a href="#">Necklaces</a></li>
+        <li><a href="#">Earrings</a></li>
+        <li><a href="#">Bracelets</a></li>
+        <li><a href="#">Sale</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <ul class="mobile-links">
+      <li><a href="#">New</a></li>
+      <li><a href="#">Rings</a></li>
+      <li><a href="#">Necklaces</a></li>
+      <li><a href="#">Earrings</a></li>
+      <li><a href="#">Bracelets</a></li>
+      <li><a href="#">Anklets</a></li>
+      <li><a href="#">Sale</a></li>
+    </ul>
+  </div>
+
+  <div class="page-offset"></div>
+
+  <main class="page">
+    <div class="container">
+      <!-- STEPS -->
+      <div class="stepper">
+        <div class="step active">Bag</div>
+        <div class="step">Order Details</div>
+        <div class="step">Payment</div>
+      </div>
+
+      <!-- CART ITEMS -->
+      <section class="cart-list" aria-label="Cart items">
+        <div class="cart-item">
+          <div class="cart-img" aria-hidden="true"></div>
+          <div class="cart-info">
+            <h4>Elegant Silver Ring</h4>
+            <div class="price">₹24,999</div>
+            <div class="qty" aria-label="Quantity selector">
+              <button type="button" aria-label="Decrease quantity">-</button>
+              <span>1</span>
+              <button type="button" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <div class="cart-actions">
+            <span class="remove" role="button" tabindex="0">Remove</span>
+          </div>
+        </div>
+
+        <div class="cart-item">
+          <div class="cart-img" aria-hidden="true"></div>
+          <div class="cart-info">
+            <h4>Drop Earrings</h4>
+            <div class="price">₹12,999</div>
+            <div class="qty" aria-label="Quantity selector">
+              <button type="button" aria-label="Decrease quantity">-</button>
+              <span>1</span>
+              <button type="button" aria-label="Increase quantity">+</button>
+            </div>
+          </div>
+          <div class="cart-actions">
+            <span class="remove" role="button" tabindex="0">Remove</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COUPON -->
+      <div class="coupon">Apply Coupon • View all offers</div>
+
+      <!-- PICKUP -->
+      <div class="pickup">Pick up from store (Available for Kolkata pincode)</div>
+
+      <!-- USP -->
+      <div class="usp">
+        <span><i class="fa-solid fa-lock"></i> Secure Payment</span>
+        <span><i class="fa-solid fa-rotate-left"></i> Easy Returns</span>
+      </div>
+    </div>
+  </main>
+
+  <!-- STICKY FOOTER -->
+  <div class="cart-footer" role="region" aria-label="Cart total and checkout">
+    <div class="total">Total: ₹37,998</div>
+    <button class="checkout" type="button">Proceed</button>
+  </div>
+
+  <footer>
+    © <span id="year"></span> ETTHNICOAST • Crafted with care
+  </footer>
+
+  <script>
+    // ============================================================
+    // Dynamic nav height -> fixes page offset on all devices
+    // ============================================================
+    function updateNavHeight() {
+      const nav = document.querySelector("nav");
+      if (!nav) return;
+      document.documentElement.style.setProperty("--navH", nav.offsetHeight + "px");
+    }
+    window.addEventListener("load", updateNavHeight);
+    window.addEventListener("resize", updateNavHeight);
+
+    // ============================================================
+    // NAV mobile menu
+    // ============================================================
+    const overlay = document.getElementById("overlay");
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+
+    function lockScroll(lock){
+      document.body.style.overflow = lock ? "hidden" : "";
+    }
+    function openOverlay(){ overlay.classList.add("active"); overlay.setAttribute("aria-hidden","false"); }
+    function closeOverlay(){ overlay.classList.remove("active"); overlay.setAttribute("aria-hidden","true"); }
+
+    function openMenu(){
+      mobileMenu.classList.add("active");
+      mobileMenu.setAttribute("aria-hidden","false");
+      openOverlay();
+      lockScroll(true);
+    }
+    function closeMenu(){
+      mobileMenu.classList.remove("active");
+      mobileMenu.setAttribute("aria-hidden","true");
+      closeOverlay();
+      lockScroll(false);
+    }
+
+    hamburger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if(mobileMenu.classList.contains("active")) closeMenu();
+      else openMenu();
+    });
+
+    overlay.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeMenu();
+    });
+
+    // ============================================================
+    // Footer year
+    // ============================================================
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
