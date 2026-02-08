@@ -14,6 +14,7 @@
 
     :root{
       --primary-blue:#07203F;
+      --secondary-grey:#7c7c7c;
       --secondary-peach:#EBDED4;
       --dark-black:#02000D;
       --white:#FFFFFF;
@@ -217,30 +218,31 @@
       border-color: var(--primary-blue);
       box-shadow: 0 0 0 2px rgba(7,32,63,0.15);
     }
-    .main-media{
-      border: 1px solid var(--border);
-      background:#f7f7f7;
-      overflow:hidden;
-      position: relative;
-    }
-    .main-media .badge{
-      position:absolute;
-      top:16px; left:16px;
-      background: var(--primary-blue);
-      color: var(--white);
-      padding: 6px 12px;
-      font-size:.7rem;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      z-index:2;
-    }
-    .main-media img{
-      width:100%;
-      height: 560px;
-      object-fit: cover;
-      transition: transform .5s ease;
-    }
-    .main-media:hover img{ transform: scale(1.03); }
+   .main-media{
+  border: 1px solid var(--border);
+  background:#f7f7f7;
+  overflow:hidden;
+  position: relative;
+  aspect-ratio: 4/5;
+}
+.main-media .badge{
+  position:absolute;
+  top:16px; left:16px;
+  background: var(--primary-blue);
+  color: var(--white);
+  padding: 6px 12px;
+  font-size:.7rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  z-index:2;
+}
+.main-media img{
+  width:100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+}
+.main-media:hover img{ transform: scale(1.03); }
 
     /* RIGHT INFO */
     .info{
@@ -303,6 +305,14 @@
       font-weight: 800;
       color: var(--primary-blue);
     }
+    .price.strikethrough{
+      text-decoration: line-through;
+      color: rgba(2,0,13,0.45);
+      font-size: 1.4rem;
+    }
+    .price.discounted{
+      color: #d32f2f;
+    }
     .mrp{
       font-size: 1rem;
       color: rgba(2,0,13,0.45);
@@ -321,13 +331,21 @@
       color: var(--muted);
       margin-bottom: 14px;
     }
+.offer-box {
+  border: 1px dashed rgba(7,32,63,0.25);
+  padding: 12px;
+  margin-bottom: 14px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 248, 240, 0.9),
+    rgba(235, 222, 212, 0.6)
+  );
+  border-radius: 8px;
+}
 
-    .offer-box{
-      border: 1px dashed rgba(7,32,63,0.25);
-      padding: 12px;
-      background: rgba(235,222,212,0.35);
-      margin-bottom: 14px;
-    }
+
+
+
     .offer-box .row{
       display:flex;
       justify-content: space-between;
@@ -349,6 +367,17 @@
       letter-spacing: .8px;
       text-transform: uppercase;
       font-size: .78rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .coupon:hover{
+      background: var(--primary-blue);
+      color: var(--white);
+    }
+    .coupon.applied{
+      background: #4caf50;
+      color: var(--white);
+      border-color: #4caf50;
     }
 
     .option-block{
@@ -388,7 +417,30 @@
       position: relative;
       transition: .2s ease;
     }
-    .swatch.active{
+   
+    .swatch-more-btn{
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 1px solid rgba(7,32,63,0.25);
+  background: var(--white);
+  cursor:pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: .7rem;
+  color: var(--primary-blue);
+  transition: .2s ease;
+}
+.swatch-more-btn:hover{
+  border-color: var(--primary-blue);
+  background: rgba(7,32,63,0.05);
+}
+.swatch-more-btn.hidden{
+  display: none;
+}
+
+ .swatch.active{
       outline: 2px solid var(--primary-blue);
       outline-offset: 2px;
     }
@@ -411,9 +463,9 @@
       text-align:center;
     }
     .chip.active{
-      background: var(--primary-blue);
+      background: var(--secondary-grey);
       color: var(--white);
-      border-color: var(--primary-blue);
+      border-color: var(--secondary-grey);
     }
 
     .size-grid{
@@ -436,12 +488,12 @@
       box-shadow: 0 0 0 2px rgba(7,32,63,0.12);
     }
 
-    .cta-row{
-      display:grid;
-      grid-template-columns: 1fr 48px 48px;
-      gap: 10px;
-      margin-top: 12px;
-    }
+   .cta-row{
+  display:grid;
+  grid-template-columns: 1fr 1fr 48px 48px;
+  gap: 10px;
+  margin-top: 12px;
+}
     .btn-primary{
       padding: .95rem 1rem;
       border: 1px solid var(--primary-blue);
@@ -453,7 +505,23 @@
       text-transform: uppercase;
       transition: .25s ease;
     }
+
     .btn-primary:hover{ filter: brightness(0.95); }
+    .btn-secondary{
+  padding: .95rem 1rem;
+  border: 1px solid var(--primary-blue);
+  background: var(--white);
+  color: var(--primary-blue);
+  cursor:pointer;
+  font-size: .85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: .25s ease;
+}
+.btn-secondary:hover{ 
+  background: var(--primary-blue);
+  color: var(--white);
+}
 
     .icon-btn{
       border: 1px solid rgba(7,32,63,0.22);
@@ -579,14 +647,23 @@
       border: 1px solid rgba(7,32,63,0.08);
       padding: 1.5rem;
     }
-    .look-grid{
+    /* .look-grid{
       display:grid;
       grid-template-columns: repeat(3, minmax(0,1fr));
       gap: 1.25rem;
       align-items:center;
       max-width: 900px;
       margin: 0 auto;
-    }
+    } */
+
+    .look-grid{
+  display:grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;  /* Changed from: repeat(3, minmax(0,1fr)) */
+  gap: 1.25rem;
+  align-items:center;
+  max-width: 1100px;  /* Changed from: 900px */
+  margin: 0 auto;
+}
     .look-card{
       border: 1px solid rgba(7,32,63,0.12);
       background: var(--white);
@@ -613,7 +690,7 @@
       color: var(--primary-blue);
       font-weight: 800;
     }
-    .buy-all{
+    /* .buy-all{
       max-width: 900px;
       margin: 1.25rem auto 0;
       display:flex;
@@ -621,7 +698,17 @@
       gap: 12px;
       flex-wrap: wrap;
       align-items:center;
-    }
+    } */
+
+    .buy-all{
+  max-width: 1100px;  /* Changed from: 900px */
+  margin: 1.25rem auto 0;
+  display:flex;
+  justify-content:center;
+  gap: 12px;
+  flex-wrap: wrap;
+  align-items:center;
+}
     .buy-all .label{
       font-size:.85rem;
       letter-spacing: 1px;
@@ -998,7 +1085,7 @@
        RESPONSIVE
        ========================= */
     @media (max-width: 1200px){
-      .main-media img{ height: 520px; }
+      /* .main-media img{ height: 100%; } */
       .similar-grid{ grid-template-columns: repeat(4, minmax(0,1fr)); }
     }
 
@@ -1019,7 +1106,7 @@
         grid-template-columns: 1fr;
       }
       .thumb{ width: 84px; height: 84px; flex: 0 0 auto; }
-      .main-media img{ height: 520px; }
+   /* .main-media img{ height: 340px; } */
       .similar-grid{ grid-template-columns: repeat(3, minmax(0,1fr)); }
       .review-list{ grid-template-columns: 1fr; }
       .sticky-cta{ display:block; }
@@ -1045,21 +1132,57 @@
       .nav-links-container{ display:none; }
 
       .page-offset{ padding-top: 98px; }
-      .main-media img{ height: 420px; }
+      /* .main-media img{ height: 420px; } */
 
       .look-grid{ grid-template-columns: 1fr; }
       .look-plus{ display:none; }
       .similar-grid{ grid-template-columns: repeat(2, minmax(0,1fr)); }
       .usp-row{ grid-template-columns: 1fr; }
-      .cta-row{ grid-template-columns: 1fr 48px 48px; }
+      .cta-row{ grid-template-columns: 1fr 1fr 48px 48px; }
     }
+
+
+/* TABLET - 992px breakpoint */
+@media (max-width: 992px){
+  .look-grid{ 
+    grid-template-columns: 1fr auto 1fr auto 1fr;  /* Added this line */
+    gap: 0.75rem;  /* Added this line - reduced gap for smaller screens */
+  }
+}
+
+/* MOBILE - 768px breakpoint (already existed, no changes needed) */
+@media (max-width: 768px){
+  .look-grid{ grid-template-columns: 1fr; }
+  .look-plus{ display:none; }
+}
 
     @media (max-width: 480px){
       .main-media img{ height: 340px; }
       .title{ font-size: 1.6rem; }
       .similar-grid{ gap: .9rem; }
       .mini-img{ height: 180px; }
+      .cta-row{ 
+  grid-template-columns: 1fr 1fr;
+}
+.cta-row .btn-primary,
+.cta-row .btn-secondary{
+  grid-column: 1 / -1;
+}
     }
+
+    .rating-icons i {
+  color: #ddd;
+}
+
+.rating-icons i.active {
+  color: #ff9800;
+}
+
+.rating-icons span {
+  margin-left: 6px;
+  font-size: 13px;
+}
+
   </style>
 </head>
 
@@ -1154,8 +1277,16 @@
 
         <div class="meta-row">
           <div class="rating" aria-label="Average rating">
-            <span class="stars" id="avgStars">⭐⭐⭐⭐⭐</span>
-            <span id="avgRatingText">4.8</span>
+            <!-- <span class="stars" id="avgStars">⭐⭐⭐⭐⭐</span>
+            <span id="avgRatingText">4.8</span> -->
+            <div class="rating-icons">
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star"></i>
+  <span>4.0</span>
+</div>
             <span>(<span id="reviewCountText">190</span> reviews)</span>
           </div>
           <div class="pill"><i class="fa-solid fa-truck"></i> <strong>Free Shipping</strong></div>
@@ -1163,50 +1294,54 @@
 
         <div class="price-area">
           <div class="price" id="productPrice">₹24,999</div>
-          <div class="mrp">₹31,999</div>
-          <div class="discount">22% OFF</div>
+          <div class="price discounted" id="discountedPrice" style="display:none;"></div>
         </div>
         <div class="subtext">MRP inclusive of all taxes • Best Price <strong>₹21,999</strong></div>
 
         <div class="offer-box">
           <div class="row">
             <div><strong>Flat 10% Off</strong> + prepaid discount</div>
-            <div class="coupon"><i class="fa-solid fa-tag"></i> ETTH10</div>
+            <button class="coupon" id="couponBtn" type="button"><i class="fa-solid fa-tag"></i> ETTH10</button>
           </div>
         </div>
 
         <!-- Available in / metal names (like your wireframe right side) -->
         <div class="option-block">
           <div class="opt-head">
-            <div class="label">Available In</div>
-            <div class="hint">Metal names (optional)</div>
+            <div class="label">Finish</div>
           </div>
           <div class="chips" id="metalChips">
-            <button class="chip active" type="button">Silver</button>
+            <button class="chip active" type="button">Rhodium </button>
             <button class="chip" type="button">Gold</button>
-            <button class="chip" type="button">Rose</button>
+            <button class="chip" type="button">Rose Gold</button>
+            <button class="chip" type="button">Oxidised </button>
           </div>
         </div>
 
         <!-- Color / finish dots -->
         <div class="option-block">
           <div class="opt-head">
-            <div class="label">Finish</div>
-            <div class="hint">Color changes in toggle</div>
+            <div class="label">Available In</div>
+            
           </div>
           <div class="swatches" id="swatches">
-            <div class="swatch active" data-color="silver" style="background:#d9d9d9" title="Silver"></div>
-            <div class="swatch" data-color="gold" style="background:#d2b36c" title="Gold"></div>
-            <div class="swatch" data-color="rose" style="background:#d8a0a5" title="Rose Gold"></div>
-            <div class="swatch" data-color="black" style="background:#222" title="Oxidised"></div>
-          </div>
+  <div class="swatch active" data-color="emerald" style="background:#50C878" title="Green Emerald"></div>
+  <div class="swatch" data-color="ruby" style="background:#E0115F" title="Ruby"></div>
+  <div class="swatch" data-color="turquoise" style="background:#40E0D0" title="Turquoise"></div>
+  <div class="swatch" data-color="coral" style="background:#FF7F50" title="Coral"></div>
+  <div class="swatch" data-color="black-stone" style="background:#1C1C1C" title="Black Stone"></div>
+  <div class="swatch" data-color="pearl" style="background:#F0EAD6" title="Pearl"></div>
+   <button class="swatch-more-btn" id="swatchMoreBtn" type="button" title="See more colors">
+    <i class="fa-solid fa-plus"></i>
+  </button>
+</div>
         </div>
 
         <!-- Single / Pair toggle -->
         <div class="option-block">
           <div class="opt-head">
             <div class="label">Select Type</div>
-            <div class="hint">(optional)</div>
+         
           </div>
           <div class="chips" id="typeChips">
             <button class="chip active" type="button">Single</button>
@@ -1218,7 +1353,7 @@
         <div class="option-block">
           <div class="opt-head">
             <div class="label">Size</div>
-            <div class="hint">Size chart (optional)</div>
+            
           </div>
           <div class="size-grid" id="sizes">
             <button class="size active" type="button">6</button>
@@ -1229,11 +1364,12 @@
         </div>
 
         <!-- CTAs -->
-        <div class="cta-row">
-          <button class="btn-primary" id="addToCartBtn">Add to Cart</button>
-          <button class="icon-btn" id="wishBtn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
-          <button class="icon-btn" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></button>
-        </div>
+      <div class="cta-row">
+  <button class="btn-primary" id="addToCartBtn">Add to Cart</button>
+  <button class="btn-secondary" id="buyNowBtn">Buy Now</button>
+  <button class="icon-btn" id="wishBtn" aria-label="Wishlist"><i class="fa-regular fa-heart"></i></button>
+  <button class="icon-btn" aria-label="Share"><i class="fa-solid fa-share-nodes"></i></button>
+</div>
 
         <!-- Delivery / pincode -->
         <div class="option-block" style="padding-top:12px;">
@@ -1247,11 +1383,10 @@
           </div>
           <div class="pin-status" id="pinStatus">Enter pincode to check delivery estimate.</div>
 
-          <div class="usp-row">
-            <div class="usp"><i class="fa-solid fa-rotate-left"></i> 30 days exchange</div>
-            <div class="usp"><i class="fa-solid fa-shield-heart"></i> 6 months warranty</div>
-            <div class="usp"><i class="fa-solid fa-badge-check"></i> Certified materials</div>
-            <div class="usp"><i class="fa-solid fa-lock"></i> Secure payments</div>
+      <div class="usp-row">
+            <div class="usp"><i class="fa-solid fa-rotate-left"></i> 30 days easy exchange</div>
+            <div class="usp"><i class="fa-solid fa-spray-can-sparkles"></i> Free lifetime plating</div>
+            <div class="usp"><i class="fa-solid fa-clock"></i> 9 to 5 customer support</div>
           </div>
         </div>
 
@@ -1395,9 +1530,18 @@
       <div class="reviews-wrap">
         <div class="review-head">
           <div class="review-score">
-            <div class="score" id="scoreBig">4.8</div>
+            <div class="score" id="scoreBig">4.0</div>
             <div class="score-meta">
-              <div style="color:#f39c12; font-size:1rem; margin-bottom:6px;" id="scoreStars">⭐⭐⭐⭐⭐</div>
+              <div style="color:#f39c12; font-size:1rem; margin-bottom:6px;" id="scoreStars">
+                <div class="rating-icons">
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star"></i>
+
+</div>
+              </div>
               Based on <strong id="basedOn">190</strong> reviews
             </div>
           </div>
@@ -1411,7 +1555,16 @@
               <div class="review-name">Ananya</div>
               <div class="review-date">12 Jan 2026</div>
             </div>
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars">
+              <div class="rating-icons">
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star"></i>
+
+</div>
+            </div>
             <div class="review-text">
               Beautiful finish and looks premium. Delivery was quick and packaging was lovely.
             </div>
@@ -1422,7 +1575,17 @@
               <div class="review-name">Ritvik</div>
               <div class="review-date">04 Jan 2026</div>
             </div>
-            <div class="review-stars">⭐⭐⭐⭐</div>
+            <div class="review-stars">
+                   <div class="rating-icons">
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+
+
+</div>
+            </div>
             <div class="review-text">
               Great value for the price. The stone sparkle is amazing. Size fits perfectly.
             </div>
@@ -1433,7 +1596,15 @@
               <div class="review-name">Megha</div>
               <div class="review-date">28 Dec 2025</div>
             </div>
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars">
+                    <div class="rating-icons">
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+                    </div>
+            </div>
             <div class="review-text">
               Minimal and classy. I wear it daily. No irritation and still shining after weeks.
             </div>
@@ -1444,7 +1615,14 @@
               <div class="review-name">Sourav</div>
               <div class="review-date">10 Dec 2025</div>
             </div>
-            <div class="review-stars">⭐⭐⭐⭐⭐</div>
+            <div class="review-stars">
+                    <div class="rating-icons">
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+  <i class="fa fa-star active"></i>
+            </div>
             <div class="review-text">
               Gifted it and she loved it. The quality feels great and the look is elegant.
             </div>
@@ -1563,6 +1741,35 @@
       });
     });
 
+    // ===== Swatch "See More" functionality
+const swatchMoreBtn = document.getElementById("swatchMoreBtn");
+const moreSwatches = document.querySelectorAll(".more-swatch");
+let swatchesExpanded = false;
+
+swatchMoreBtn?.addEventListener("click", ()=>{
+  swatchesExpanded = !swatchesExpanded;
+  
+  moreSwatches.forEach(swatch => {
+    swatch.style.display = swatchesExpanded ? "block" : "none";
+  });
+  
+  if(swatchesExpanded){
+    swatchMoreBtn.innerHTML = '<i class="fa-solid fa-minus"></i>';
+    swatchMoreBtn.title = "Show less";
+  } else {
+    swatchMoreBtn.innerHTML = '<i class="fa-solid fa-plus"></i>';
+    swatchMoreBtn.title = "See more colors";
+  }
+});
+
+// Make sure the existing swatch click functionality includes the hidden ones
+document.querySelectorAll(".swatch").forEach(s=>{
+  s.addEventListener("click", ()=>{
+    document.querySelectorAll(".swatch").forEach(x=>x.classList.remove("active"));
+    s.classList.add("active");
+  });
+});
+
     // ===== Chips (metal + type)
     function makeChipsActive(wrapperId){
       const wrap = document.getElementById(wrapperId);
@@ -1656,6 +1863,62 @@
       // Show toast
       toast.classList.add("show");
       setTimeout(()=>{ toast.classList.remove("show"); }, 3000);
+    });
+
+    // ===== Buy Now button
+const buyNowBtn = document.getElementById("buyNowBtn");
+buyNowBtn?.addEventListener("click", ()=>{
+  // Add your buy now logic here (e.g., direct checkout)
+  toast.textContent = "Proceeding to checkout...";
+  toast.classList.add("show");
+  setTimeout(()=>{ toast.classList.remove("show"); }, 2000);
+});
+
+    // ===== Coupon functionality
+    const couponBtn = document.getElementById("couponBtn");
+    const productPrice = document.getElementById("productPrice");
+    const discountedPrice = document.getElementById("discountedPrice");
+    let couponApplied = false;
+    const originalPrice = 24999;
+    const discountPercent = 10; // 10% discount
+
+    couponBtn?.addEventListener("click", ()=>{
+      if(!couponApplied){
+        // Apply coupon
+        const newPrice = originalPrice - (originalPrice * discountPercent / 100);
+        
+        // Add strikethrough to original price
+        productPrice.classList.add("strikethrough");
+        
+        // Show discounted price
+        discountedPrice.textContent = `₹${newPrice.toLocaleString('en-IN')}`;
+        discountedPrice.style.display = "block";
+        
+        // Update coupon button appearance
+        couponBtn.classList.add("applied");
+        couponBtn.innerHTML = '<i class="fa-solid fa-check"></i> APPLIED';
+        
+        couponApplied = true;
+        
+        // Show success toast
+        toast.textContent = "Coupon applied successfully! ✓";
+        toast.classList.add("show");
+        setTimeout(()=>{ toast.classList.remove("show"); }, 2000);
+      } else {
+        // Remove coupon
+        productPrice.classList.remove("strikethrough");
+        discountedPrice.style.display = "none";
+        
+        couponBtn.classList.remove("applied");
+        couponBtn.innerHTML = '<i class="fa-solid fa-tag"></i> ETTH10';
+        
+        couponApplied = false;
+        
+        // Show removal toast
+        toast.textContent = "Coupon removed";
+        toast.classList.add("show");
+        setTimeout(()=>{ toast.classList.remove("show"); }, 2000);
+      }
     });
   </script>
 </body>

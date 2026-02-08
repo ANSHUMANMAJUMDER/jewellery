@@ -154,73 +154,42 @@
 
     /* ================= CART PAGE ================= */
     .page{
-      padding-bottom:140px;
+      padding-bottom: 66px;
+      min-height:100vh;
     }
 
     .stepper{
       display:flex;
-      justify-content:center;
+      flex-direction:column;
       align-items:center;
       margin:2rem 0 1.5rem;
       padding:0 1rem;
-      position:relative;
-      max-width:600px;
-      margin-left:auto;
-      margin-right:auto;
+      gap:1rem;
+      height:120px;
     }
-    .stepper-line{
-      position:absolute;
-      top:50%;
-      left:0;
-      right:0;
-      height:2px;
-      background:linear-gradient(90deg, var(--primary-blue) 0%, var(--primary-blue) 50%, rgba(7,32,63,.2) 50%, rgba(7,32,63,.2) 100%);
-      transform:translateY(-50%);
-      z-index:1;
+    .stepper-image{
+      max-width:400px;
+      width:100%;
+      height:auto;
+      max-height:80px;
+      object-fit:contain;
     }
-    .stepper-line::before{
-      content:'';
-      position:absolute;
-      left:0;
-      top:50%;
-      transform:translateY(-50%);
-      width:60px;
-      height:30px;
-      background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 30'%3E%3Cpath d='M0,15 Q10,5 20,15 T40,15 T60,15' stroke='%2307203F' stroke-width='2' fill='none'/%3E%3C/svg%3E");
-      background-repeat:no-repeat;
-      background-size:contain;
+    .stepper-labels{
+      display:flex;
+      justify-content:space-between;
+      width:100%;
+      max-width:400px;
     }
-    .step{
+    .step-label{
       font-size:.95rem;
       color:var(--muted);
-      position:relative;
       letter-spacing:.5px;
-      z-index:2;
-      background:#fff;
-      padding:0 .75rem;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:.5rem;
+      text-align:center;
+      flex:1;
     }
-    .step.active{color:var(--primary-blue);font-weight:700}
-    .step.completed{color:var(--primary-blue)}
-    .step-dot{
-      width:18px;
-      height:18px;
-      border-radius:50%;
-      background:#fff;
-      border:2px solid rgba(7,32,63,.2);
-      transition:.3s ease;
-    }
-    .step.active .step-dot{
-      background:var(--primary-blue);
-      border-color:var(--primary-blue);
-      box-shadow:0 0 0 4px rgba(7,32,63,.15);
-    }
-    .step.completed .step-dot{
-      background:var(--primary-blue);
-      border-color:var(--primary-blue);
+    .step-label.active{
+      color:var(--primary-blue);
+      font-weight:700;
     }
 
     .container{
@@ -263,10 +232,31 @@
       font-weight:600;
       letter-spacing:.5px;
     }
+    .price-container{
+      margin:.35rem 0 .25rem;
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+      flex-wrap:wrap;
+    }
     .price{
       font-weight:800;
-      margin:.35rem 0 .55rem;
       color:var(--dark);
+    }
+    .original-price{
+      font-size:.9rem;
+      color:var(--muted);
+      text-decoration:line-through;
+    }
+    .discount{
+      font-size:.75rem;
+      color:#27ae60;
+      font-weight:700;
+    }
+    .product-code{
+      font-size:.75rem;
+      color:var(--muted);
+      margin-top:.25rem;
     }
     .delivery-info{
       font-size:.8rem;
@@ -282,6 +272,7 @@
       padding:.35rem .5rem;
       border-radius:12px;
       width:max-content;
+      margin-top:.5rem;
     }
     .qty button{
       width:28px;height:28px;
@@ -351,11 +342,11 @@
 
     .usp{
       display:flex;
-      justify-content:space-around;
+      justify-content:center;
       margin:1.5rem 0 0;
       font-size:.85rem;
       color:var(--muted);
-      gap:1rem;
+      gap:2rem;
       flex-wrap:wrap;
     }
     .usp span{
@@ -370,6 +361,7 @@
     /* ================= ADD MORE ITEMS SECTION ================= */
     .add-more-section{
       margin-top:2.5rem;
+      margin-bottom:2rem;
     }
     .add-more-title{
       font-family:var(--font-primary);
@@ -457,92 +449,41 @@
       transform:scale(1.02);
     }
 
-    /* ================= FOOTER ================= */
-    footer{
-      margin-top:3rem;
-      padding:3rem 1rem 1.5rem;
+    /* ================= TOAST NOTIFICATION ================= */
+    .toast{
+      position:fixed;
+      bottom:100px;
+      right:20px;
       background:var(--primary-blue);
-      color:rgba(255,255,255,.85);
-    }
-    .footer-container{
-      max-width:1200px;
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
-      gap:2.5rem;
-      padding-bottom:2rem;
-      border-bottom:1px solid rgba(255,255,255,.15);
-    }
-    .footer-section h4{
-      font-family:var(--font-primary);
-      font-size:1.1rem;
-      font-weight:600;
-      margin-bottom:1.25rem;
       color:#fff;
-      letter-spacing:.5px;
-    }
-    .footer-section ul{
-      list-style:none;
-      display:flex;
-      flex-direction:column;
-      gap:.85rem;
-    }
-    .footer-section a{
-      font-size:.9rem;
-      color:rgba(255,255,255,.75);
-      transition:.25s ease;
-      display:inline-block;
-    }
-    .footer-section a:hover{
-      color:#fff;
-      transform:translateX(4px);
-    }
-    .footer-about p{
-      font-size:.9rem;
-      line-height:1.65;
-      color:rgba(255,255,255,.75);
-      margin-bottom:1rem;
-    }
-    .footer-social{
-      display:flex;
-      gap:1rem;
-      margin-top:1rem;
-    }
-    .footer-social a{
-      width:38px;
-      height:38px;
-      border-radius:50%;
-      border:1px solid rgba(255,255,255,.25);
+      padding:1rem 1.5rem;
+      border-radius:12px;
+      box-shadow:0 4px 12px rgba(0,0,0,.15);
       display:flex;
       align-items:center;
-      justify-content:center;
-      font-size:1rem;
-      transition:.25s ease;
+      gap:.75rem;
+      opacity:0;
+      transform:translateY(20px);
+      transition:all .3s ease;
+      z-index:10000;
+      max-width:350px;
+      font-size:.9rem;
     }
-    .footer-social a:hover{
-      background:rgba(255,255,255,.1);
-      border-color:rgba(255,255,255,.5);
-      transform:translateY(-3px);
+    .toast.show{
+      opacity:1;
+      transform:translateY(0);
     }
-    .footer-bottom{
-      padding-top:1.5rem;
-      text-align:center;
-      font-size:.85rem;
-      color:rgba(255,255,255,.65);
+    .toast i{
+      font-size:1.2rem;
     }
-    .footer-bottom a{
-      color:rgba(255,255,255,.85);
-      text-decoration:underline;
+    .toast.success{
+      background:#27ae60;
     }
-    .footer-bottom a:hover{
-      color:#fff;
+    .toast.error{
+      background:#e74c3c;
     }
-
-    @media (max-width: 768px){
-      .footer-container{
-        grid-template-columns:1fr;
-        gap:2rem;
-      }
+    .toast.info{
+      background:#3498db;
     }
 
     /* ================= RESPONSIVE ================= */
@@ -567,9 +508,34 @@
       .product-grid{
         grid-template-columns:repeat(2, 1fr);
       }
+
+      .usp{
+        gap:1rem;
+      }
+      
+      .stepper{
+        height:100px;
+      }
+      .stepper-image{
+        max-width:300px;
+        max-height:65px;
+      }
+      .step-label{
+        font-size:.85rem;
+      }
     }
 
     @media (max-width: 560px){
+      .stepper{
+        height:90px;
+      }
+      .stepper-image{
+        max-width:280px;
+        max-height:55px;
+      }
+      .step-label{
+        font-size:.8rem;
+      }
       .cart-item{
         grid-template-columns:72px 1fr;
         grid-template-areas:
@@ -587,26 +553,14 @@
         padding-top:.75rem;
         margin-top:.5rem;
       }
-      .stepper{
-        flex-wrap:wrap;
-        gap:.5rem 1rem;
-      }
-      .step{
-        font-size:.85rem;
-        padding:0 .5rem;
-      }
-      .step span{
-        font-size:.8rem;
-      }
-      .step-dot{
-        width:14px;
-        height:14px;
-      }
-      .stepper-line::before{
-        width:40px;
-        height:20px;
-      }
       .checkout{padding:.85rem 1rem}
+      
+      .toast{
+        left:10px;
+        right:10px;
+        max-width:calc(100% - 20px);
+        bottom:90px;
+      }
     }
   </style>
 </head>
@@ -672,18 +626,11 @@
     <div class="container">
       <!-- STEPS -->
       <div class="stepper">
-        <div class="stepper-line"></div>
-        <div class="step active">
-          <div class="step-dot"></div>
-          <span>Bag</span>
-        </div>
-        <div class="step">
-          <div class="step-dot"></div>
-          <span>Order Details</span>
-        </div>
-        <div class="step">
-          <div class="step-dot"></div>
-          <span>Payment</span>
+        <img src="./assets/23.png" alt="Order Progress" class="stepper-image" />
+        <div class="stepper-labels">
+          <span class="step-label active">Bag</span>
+          <span class="step-label">Order Details</span>
+          <span class="step-label">Payment</span>
         </div>
       </div>
 
@@ -695,7 +642,12 @@
           </div>
           <div class="cart-info">
             <h4>Elegant Silver Ring</h4>
-            <div class="price">₹24,999</div>
+            <div class="price-container">
+              <span class="price">₹24,999</span>
+              <span class="original-price">₹29,999</span>
+              <span class="discount">(17% OFF)</span>
+            </div>
+            <div class="product-code">Product Code: ESR-2024-001</div>
             <div class="delivery-info">Delivery by 2047</div>
             <div class="qty" aria-label="Quantity selector">
               <button type="button" aria-label="Decrease quantity">-</button>
@@ -714,7 +666,12 @@
           </div>
           <div class="cart-info">
             <h4>Drop Earrings</h4>
-            <div class="price">₹12,999</div>
+            <div class="price-container">
+              <span class="price">₹12,999</span>
+              <span class="original-price">₹15,999</span>
+              <span class="discount">(19% OFF)</span>
+            </div>
+            <div class="product-code">Product Code: DE-2024-045</div>
             <div class="delivery-info">Delivery by 2047</div>
             <div class="qty" aria-label="Quantity selector">
               <button type="button" aria-label="Decrease quantity">-</button>
@@ -744,7 +701,7 @@
       <!-- USP -->
       <div class="usp">
         <span><i class="fa-solid fa-lock"></i> Secure Payment</span>
-        <span><i class="fa-solid fa-rotate-left"></i> Easy Returns</span>
+        <span><i class="fa-solid fa-rotate-left"></i> Easy Exchange</span>
       </div>
 
       <!-- ADD MORE ITEMS SECTION -->
@@ -789,65 +746,11 @@
     <button class="checkout" type="button">Proceed</button>
   </div>
 
-  <footer>
-    <div class="footer-container">
-      <!-- About Section -->
-      <div class="footer-section footer-about">
-        <h4>ETTHNICOAST</h4>
-        <p>Crafting timeless elegance through exquisite jewelry that celebrates your unique style and precious moments.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-          <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-          <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-        </div>
-      </div>
-
-      <!-- Shop Section -->
-      <div class="footer-section">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="#">New Arrivals</a></li>
-          <li><a href="#">Rings</a></li>
-          <li><a href="#">Necklaces</a></li>
-          <li><a href="#">Earrings</a></li>
-          <li><a href="#">Bracelets</a></li>
-          <li><a href="#">Anklets</a></li>
-          <li><a href="#">Sale</a></li>
-        </ul>
-      </div>
-
-      <!-- Customer Care Section -->
-      <div class="footer-section">
-        <h4>Customer Care</h4>
-        <ul>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Shipping & Returns</a></li>
-          <li><a href="#">Size Guide</a></li>
-          <li><a href="#">Track Order</a></li>
-          <li><a href="#">FAQs</a></li>
-          <li><a href="#">Store Locator</a></li>
-        </ul>
-      </div>
-
-      <!-- Company Section -->
-      <div class="footer-section">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms & Conditions</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <p>© <span id="year"></span> ETTHNICOAST. All rights reserved. | Designed with <i class="fas fa-heart" style="color:#ff6b6b;"></i> in India</p>
-      <p style="margin-top:0.5rem;font-size:0.8rem;">Payment methods accepted: <i class="fab fa-cc-visa"></i> <i class="fab fa-cc-mastercard"></i> <i class="fab fa-cc-amex"></i> UPI</p>
-    </div>
-  </footer>
+  <!-- TOAST NOTIFICATION -->
+  <div class="toast" id="toast">
+    <i class="fas fa-check-circle"></i>
+    <span id="toast-message"></span>
+  </div>
 
   <script>
     // ============================================================
@@ -924,18 +827,60 @@
     });
 
     // ============================================================
-    // Footer year
-    // ============================================================
-    document.getElementById("year").textContent = new Date().getFullYear();
-
-    // ============================================================
     // CART FUNCTIONALITY
     // ============================================================
     
+    // Toast notification function
+    function showToast(message, type = 'success') {
+      const toast = document.getElementById('toast');
+      const toastMessage = document.getElementById('toast-message');
+      const toastIcon = toast.querySelector('i');
+      
+      // Set message
+      toastMessage.textContent = message;
+      
+      // Set icon and type
+      toast.className = 'toast';
+      if (type === 'success') {
+        toast.classList.add('success');
+        toastIcon.className = 'fas fa-check-circle';
+      } else if (type === 'error') {
+        toast.classList.add('error');
+        toastIcon.className = 'fas fa-exclamation-circle';
+      } else if (type === 'info') {
+        toast.classList.add('info');
+        toastIcon.className = 'fas fa-info-circle';
+      }
+      
+      // Show toast
+      toast.classList.add('show');
+      
+      // Hide after 3 seconds
+      setTimeout(() => {
+        toast.classList.remove('show');
+      }, 3000);
+    }
+    
     // Cart data structure
     let cartItems = [
-      { id: 1, name: "Elegant Silver Ring", price: 24999, quantity: 1, image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&h=300&fit=crop" },
-      { id: 2, name: "Drop Earrings", price: 12999, quantity: 1, image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=300&fit=crop" }
+      { 
+        id: 1, 
+        name: "Elegant Silver Ring", 
+        price: 24999, 
+        originalPrice: 29999,
+        productCode: "ESR-2024-001",
+        quantity: 1, 
+        image: "https://images.unsplash.com/photo-1605100804763-247f67b3557e?w=300&h=300&fit=crop" 
+      },
+      { 
+        id: 2, 
+        name: "Drop Earrings", 
+        price: 12999, 
+        originalPrice: 15999,
+        productCode: "DE-2024-045",
+        quantity: 1, 
+        image: "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?w=300&h=300&fit=crop" 
+      }
     ];
 
     // Update cart total
@@ -959,6 +904,9 @@
         // Add visual feedback
         qtySpan.style.transform = 'scale(1.2)';
         setTimeout(() => qtySpan.style.transform = 'scale(1)', 200);
+        
+        // Show toast
+        showToast('Quantity updated', 'success');
       }
 
       // Handle quantity decrease
@@ -975,6 +923,9 @@
           // Add visual feedback
           qtySpan.style.transform = 'scale(0.8)';
           setTimeout(() => qtySpan.style.transform = 'scale(1)', 200);
+          
+          // Show toast
+          showToast('Quantity updated', 'success');
         }
       }
 
@@ -982,59 +933,146 @@
       if (e.target.matches('.remove')) {
         const cartItem = e.target.closest('.cart-item');
         const index = Array.from(document.querySelectorAll('.cart-item')).indexOf(cartItem);
+        const itemName = cartItems[index].name;
         
-        // Confirm removal
-        if (confirm(`Remove ${cartItems[index].name} from cart?`)) {
-          // Fade out animation
-          cartItem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-          cartItem.style.opacity = '0';
-          cartItem.style.transform = 'translateX(-20px)';
+        // Fade out animation
+        cartItem.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        cartItem.style.opacity = '0';
+        cartItem.style.transform = 'translateX(-20px)';
+        
+        setTimeout(() => {
+          cartItems.splice(index, 1);
+          cartItem.remove();
+          updateCartTotal();
           
-          setTimeout(() => {
-            cartItems.splice(index, 1);
-            cartItem.remove();
-            updateCartTotal();
-            
-            // Check if cart is empty
-            if (cartItems.length === 0) {
-              document.querySelector('.cart-list').innerHTML = `
-                <div style="text-align:center;padding:3rem 1rem;color:var(--muted);">
-                  <i class="fas fa-shopping-bag" style="font-size:3rem;margin-bottom:1rem;opacity:0.3;"></i>
-                  <p style="font-size:1.1rem;">Your cart is empty</p>
-                  <p style="font-size:0.9rem;margin-top:0.5rem;">Add some beautiful jewelry to get started!</p>
-                </div>
-              `;
-              document.querySelector('.checkout').disabled = true;
-              document.querySelector('.checkout').style.opacity = '0.5';
-              document.querySelector('.checkout').style.cursor = 'not-allowed';
-            }
-          }, 300);
-        }
+          // Show toast
+          showToast(`${itemName} removed from cart`, 'info');
+          
+          // Check if cart is empty
+          if (cartItems.length === 0) {
+            document.querySelector('.cart-list').innerHTML = `
+              <div style="text-align:center;padding:3rem 1rem;color:var(--muted);">
+                <i class="fas fa-shopping-bag" style="font-size:3rem;margin-bottom:1rem;opacity:0.3;"></i>
+                <p style="font-size:1.1rem;">Your cart is empty</p>
+                <p style="font-size:0.9rem;margin-top:0.5rem;">Add some beautiful jewelry to get started!</p>
+              </div>
+            `;
+            document.querySelector('.checkout').disabled = true;
+            document.querySelector('.checkout').style.opacity = '0.5';
+            document.querySelector('.checkout').style.cursor = 'not-allowed';
+          }
+        }, 300);
       }
 
       // Handle checkout button
       if (e.target.matches('.checkout')) {
         if (cartItems.length > 0) {
-          alert('Proceeding to Order Details...\n\nThis would navigate to the next step in a real implementation.');
-          // In a real app: window.location.href = '/checkout';
+          showToast('Proceeding to order details...', 'success');
+          // In a real app: setTimeout(() => window.location.href = '/checkout', 1000);
         }
       }
 
       // Handle coupon section
       if (e.target.matches('.coupon') || e.target.closest('.coupon')) {
-        alert('Coupon feature coming soon!\n\nAvailable coupons:\n• FIRST10 - 10% off on first order\n• SAVE500 - ₹500 off on orders above ₹25,000');
+        showToast('Coupon feature coming soon!', 'info');
+        // In a real app: open coupon modal
       }
 
       // Handle product cards in "Add More Items"
       if (e.target.closest('.product-card')) {
         const card = e.target.closest('.product-card');
         const productName = card.querySelector('.product-name').textContent;
+        const productPrice = card.querySelector('.product-price').textContent;
+        const productImage = card.querySelector('.product-image img').src;
         
-        // Add pulse animation
+        // Parse price (remove ₹ and commas)
+        const price = parseInt(productPrice.replace(/[₹,]/g, ''));
+        
+        // Generate product code
+        const productCode = productName.toUpperCase().replace(/\s+/g, '-').substring(0, 10) + '-' + Math.floor(Math.random() * 1000);
+        
+        // Check if item already exists in cart
+        const existingItemIndex = cartItems.findIndex(item => item.name === productName);
+        
+        if (existingItemIndex !== -1) {
+          // Item exists, increase quantity
+          cartItems[existingItemIndex].quantity++;
+          
+          // Update the quantity display in the cart
+          const cartItemElements = document.querySelectorAll('.cart-item');
+          if (cartItemElements[existingItemIndex]) {
+            const qtySpan = cartItemElements[existingItemIndex].querySelector('.qty span');
+            qtySpan.textContent = cartItems[existingItemIndex].quantity;
+            
+            // Visual feedback
+            qtySpan.style.transform = 'scale(1.3)';
+            setTimeout(() => qtySpan.style.transform = 'scale(1)', 300);
+          }
+          
+          showToast(`${productName} quantity increased!`, 'success');
+        } else {
+          // New item, add to cart
+          const newItem = {
+            id: cartItems.length + 1,
+            name: productName,
+            price: price,
+            originalPrice: Math.floor(price * 1.2), // 20% markup for original price
+            productCode: productCode,
+            quantity: 1,
+            image: productImage
+          };
+          
+          cartItems.push(newItem);
+          
+          // Create and add new cart item HTML
+          const cartList = document.querySelector('.cart-list');
+          const discount = Math.round(((newItem.originalPrice - newItem.price) / newItem.originalPrice) * 100);
+          
+          const newCartItemHTML = `
+            <div class="cart-item" style="opacity:0;transform:translateY(20px);">
+              <div class="cart-img" aria-hidden="true">
+                <img src="${newItem.image}" alt="${newItem.name}" />
+              </div>
+              <div class="cart-info">
+                <h4>${newItem.name}</h4>
+                <div class="price-container">
+                  <span class="price">₹${newItem.price.toLocaleString('en-IN')}</span>
+                  <span class="original-price">₹${newItem.originalPrice.toLocaleString('en-IN')}</span>
+                  <span class="discount">(${discount}% OFF)</span>
+                </div>
+                <div class="product-code">Product Code: ${newItem.productCode}</div>
+                <div class="delivery-info">Delivery by 2047</div>
+                <div class="qty" aria-label="Quantity selector">
+                  <button type="button" aria-label="Decrease quantity">-</button>
+                  <span>1</span>
+                  <button type="button" aria-label="Increase quantity">+</button>
+                </div>
+              </div>
+              <div class="cart-actions">
+                <span class="remove" role="button" tabindex="0">Remove</span>
+              </div>
+            </div>
+          `;
+          
+          cartList.insertAdjacentHTML('beforeend', newCartItemHTML);
+          
+          // Animate the new item in
+          const newCartItem = cartList.lastElementChild;
+          setTimeout(() => {
+            newCartItem.style.transition = 'all 0.3s ease';
+            newCartItem.style.opacity = '1';
+            newCartItem.style.transform = 'translateY(0)';
+          }, 10);
+          
+          showToast(`${productName} added to cart!`, 'success');
+        }
+        
+        // Update total
+        updateCartTotal();
+        
+        // Add pulse animation to card
         card.style.animation = 'pulse 0.3s ease';
         setTimeout(() => card.style.animation = '', 300);
-        
-        alert(`"${productName}" would be added to cart in a real implementation!`);
       }
     });
 
